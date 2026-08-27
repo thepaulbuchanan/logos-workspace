@@ -1,0 +1,21 @@
+[TIMESTAMP: 1787845637] [ERROR: SVI-L101] [DETAILS: Circular tracking loop flagged.]
+RAW_TEXT: "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
+--------------------------------------------------------
+[TIMESTAMP: 1787846283] [ERROR: SVI-L402] [PARAGRAPH: 1] [DETAILS: Unhedged deterministic simulation timeline overreach.]
+RAW_TEXT: "Our computer models predict a 2°C temperature increase will trigger a 30% collapse in regional crop yields by the year 2060."
+--------------------------------------------------------
+[TIMESTAMP: 1787846283] [ERROR: SVI-L101] [PARAGRAPH: 3] [DETAILS: Circular reasoning pattern identified.]
+RAW_TEXT: "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
+--------------------------------------------------------
+[TIMESTAMP: 1787852207] [ERROR: SVI-L402] [PARAGRAPH: 1] [DETAILS: Unhedged deterministic simulation timeline overreach.]
+RAW_TEXT: "Our computer models predict a 2°C temperature increase will trigger a 30% collapse in regional crop yields by the year 2060."
+--------------------------------------------------------
+[TIMESTAMP: 1787852207] [ERROR: SVI-L101] [PARAGRAPH: 3] [DETAILS: Circular reasoning pattern identified.]
+RAW_TEXT: "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
+--------------------------------------------------------
+[TIMESTAMP: 1787852731] [ERROR: SVI-L402] [PARAGRAPH: 1] [DETAILS: Unhedged deterministic simulation timeline overreach.]
+RAW_TEXT: "Our computer models predict a 2°C temperature increase will trigger a 30% collapse in regional crop yields by the year 2060."
+--------------------------------------------------------
+[TIMESTAMP: 1787852731] [ERROR: SVI-L101] [PARAGRAPH: 3] [DETAILS: Circular reasoning pattern identified.]
+RAW_TEXT: "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
+--------------------------------------------------------
