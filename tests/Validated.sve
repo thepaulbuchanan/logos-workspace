@@ -5,19 +5,23 @@ HERACLITUS_AXIOM_VERIFIED(Block_1) -> LOGOS_NARRATIVE_SOUND;
 -- [SVE-L402 FAULT: STOCHASTIC HORIZON BREACH]
 -- CONJECTURE STATE: Paragraph_2
 -- SOURCE: Our computer models predict a 2°C temperature increase will trigger a 30% collapse in regional \textbf{crop yields} by the year 2060.
+-- [QUARANTINED FROM KERNEL EXECUTION]
 
 -- [SVE-L101 FAULT: EPISTEMIC CIRCULARITY]
 -- CONJECTURE STATE: Paragraph_3
 -- SOURCE: The simulation outputs definitively confirm that the core parameters of our climate model are correct.
+-- [QUARANTINED FROM KERNEL EXECUTION]
 
 -- [SVE-L301 FAULT: CONSENSUS SUBSTITUTION]
 -- CONJECTURE STATE: Paragraph_4
 -- SOURCE: \section{Macro Extrapolations}
 Experts agree that regional crop yields face an unprecedented collapse.
+-- [QUARANTINED FROM KERNEL EXECUTION]
 
 HERACLITUS_AXIOM_VERIFIED(Block_5) -> LOGOS_NARRATIVE_SOUND;
 HERACLITUS_MATH_PROVED(Block_6) -> LEAN4_KERNEL_VALID;
 -- [SVE-L501 FAULT: CAUSAL MONISM]
 -- CONJECTURE STATE: Paragraph_7
 -- SOURCE: The global agricultural production shift is entirely due to industrial mechanical scale changes.
+-- [QUARANTINED FROM KERNEL EXECUTION]
 

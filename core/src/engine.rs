@@ -1,28 +1,17 @@
+use crate::latex::LatexParser;
+use crate::lemmas::LogosLib;
 use regex::Regex;
 use std::fs::{self, File};
 use std::io::Write;
 use std::process::Command;
-use crate::latex::LatexParser;
 
 pub struct HeraclitusCore {
-    pub lemma_201_triggers: Vec<&'static str>,
-    pub lemma_301_triggers: Vec<&'static str>,
-    pub lemma_501_triggers: Vec<&'static str>,
-    pub lemma_601_triggers: Vec<&'static str>,
-    pub negative_tokens: Vec<&'static str>,
     pub latex_lexer: LatexParser,
 }
 
 impl HeraclitusCore {
     pub fn new() -> Self {
-        HeraclitusCore {
-            lemma_201_triggers: vec!["collapse", "fail", "completely collapse", "completely fail", "devastate"],
-            lemma_301_triggers: vec!["experts agree", "universally accepted", "consensus shows", "most scientists believe", "widespread consensus"],
-            lemma_501_triggers: vec!["solely driven", "entirely due to", "the single cause", "exclusively because"],
-            lemma_601_triggers: vec!["absolute faith", "religious pursuit", "modeling is fundamentally"],
-            negative_tokens: vec!["not", "unlikely", "insufficient", "cannot", "never"],
-            latex_lexer: LatexParser::new(),
-        }
+        HeraclitusCore { latex_lexer: LatexParser::new() }
     }
 
     pub fn verify_math_via_lean4(&self, formula: &str, index: usize) -> Result<String, String> {
@@ -75,15 +64,12 @@ impl HeraclitusCore {
                 Err(err_stack) => {
                     let summary = format!("- **Paragraph {} [MATH]**: 🔴 Native Lean 4 Compilation Error Stack:\n  ```\n  {}\n  ```\n", index, err_stack);
                     let sve_str = format!("-- [HERACLITUS ALERT: LEAN 4 SYNTAX FAILED IN PARAGRAPH {}]\n\n", index);
-                    return (false, summary, sve_str, format!("[P{}] ERROR_LEAN_MATH_FAILED", index));
+                    return (false, summary, sve_str, format!("[P{}] SVE-L_LEAN_MATH_FAILED", index));
                 }
             }
         }
         
-        let mut has_negative = false;
-        for neg in &self.negative_tokens {
-            if lower_cleaned.contains(neg) { has_negative = true; }
-        }
+        let has_negative = LogosLib::match_negatives(&lower_cleaned);
 
         let temp_re = Regex::new(r"(\d+c)").unwrap();
         let percent_re = Regex::new(r"(\d+%)").unwrap();
@@ -97,44 +83,40 @@ impl HeraclitusCore {
         let percent_val = percent_re.captures(&lower_cleaned).map(|c| format!("-{}", c.get(1).unwrap().as_str())).unwrap_or_else(|| "Unknown".to_string());
         let year_val = year_re.captures(&lower_cleaned).map(|c| c.get(1).unwrap().as_str().to_string()).unwrap_or_else(|| "Undefined".to_string());
 
-        let mut triggered_l301 = false;
-        for trigger in &self.lemma_301_triggers {
-            if lower_cleaned.contains(trigger) { triggered_l301 = true; }
+        if LogosLib::match_l102(&lower_cleaned) {
+            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L102 (Ad Hominem / Personal Attack)\n  *Source*: \"{}\"\n", index, raw_block.trim());
+            let sve_block = format!("-- [SVE-L102 FAULT: AD HOMINEM]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L102_AD_HOMINEM_ALERT", index));
         }
-        if triggered_l301 && !has_temp && !has_percent {
+
+        if LogosLib::match_l103(&lower_cleaned) {
+            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L103 (Straw Man / Caricature)\n  *Source*: \"{}\"\n", index, raw_block.trim());
+            let sve_block = format!("-- [SVE-L103 FAULT: STRAW MAN]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L103_STRAW_MAN_ALERT", index));
+        }
+
+        if LogosLib::match_l301(&lower_cleaned) && !has_temp && !has_percent {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L301 (Appeal to Consensus Fallacy)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L301 FAULT: CONSENSUS SUBSTITUTION]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] ERROR_CONSENSUS_FALLACY", index));
+            let sve_block = format!("-- [SVE-L301 FAULT: CONSENSUS SUBSTITUTION]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L301_CONSENSUS_FALLACY", index));
         }
 
-        let mut triggered_l501 = false;
-        for trigger in &self.lemma_501_triggers {
-            if lower_cleaned.contains(trigger) { triggered_l501 = true; }
-        }
-        if triggered_l501 {
+        if LogosLib::match_l501(&lower_cleaned) {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L501 (Fallacy of the Single Cause)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L501 FAULT: CAUSAL MONISM]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] ERROR_SINGLE_CAUSE_FALLACY", index));
+            let sve_block = format!("-- [SVE-L501 FAULT: CAUSAL MONISM]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L501_SINGLE_CAUSE_FALLACY", index));
         }
 
-        let mut triggered_l601 = false;
-        for trigger in &self.lemma_601_triggers {
-            if lower_cleaned.contains(trigger) { triggered_l601 = true; }
-        }
-        if triggered_l601 {
+        if LogosLib::match_l601(&lower_cleaned) {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L601 (Equivocation / Variable Semantic Drift)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L601 FAULT: VARIABLE SEMANTIC DRIFT]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] ERROR_VARIABLE_DRIFT", index));
+            let sve_block = format!("-- [SVE-L601 FAULT: VARIABLE SEMANTIC DRIFT]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L601_VARIABLE_DRIFT_ALERT", index));
         }
 
-        let mut triggered_l201 = false;
-        for trigger in &self.lemma_201_triggers {
-            if lower_cleaned.contains(trigger) { triggered_l201 = true; }
-        }
-        if triggered_l201 && !has_temp && !has_percent {
+        if LogosLib::match_l201(&lower_cleaned) && !has_temp && !has_percent {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L201 (Unsupported Macro-Inference)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L201 FAULT: CAUSAL VOID]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] ERROR_UNSUPPORTED_INFERENCE", index));
+            let sve_block = format!("-- [SVE-L201 FAULT: CAUSAL VOID]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L201_CAUSAL_VOID_ALERT", index));
         }
 
         let has_output = lower_cleaned.contains("simulation outputs") || lower_cleaned.contains("simulation output");
@@ -144,11 +126,11 @@ impl HeraclitusCore {
         if has_output && has_params && has_proof_verb {
             if has_negative {
                 let sve_block = format!("HERACLITUS_LEMMA_VERIFIED(Block_{}) -> HEDGED_CONJECTURE_FRAME;\n", index);
-                return (true, format!("- **Paragraph {}**: 🟢 Verified Invariant Logos (Hedged Frame)", index), sve_block, format!("[P{}] CONJECTURE_PASSED", index));
+                return (true, format!("- **Paragraph {}**: 🟢 Verified Invariant Logos (Hedged Frame)", index), sve_block, format!("[P{}] SVE-L101_CONJECTURE_PASSED", index));
             } else {
                 let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L101 (Circular Reasoning Loop)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-                let sve_block = format!("-- [SVE-L101 FAULT: EPISTEMIC CIRCULARITY]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
-                return (false, summary, sve_block, format!("[P{}] ERROR_CONSTRAINED_LOOP", index));
+                let sve_block = format!("-- [SVE-L101 FAULT: EPISTEMIC CIRCULARITY]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+                return (false, summary, sve_block, format!("[P{}] SVE-L101_CIRCULAR_LOOP_ALERT", index));
             }
         }
 
@@ -156,11 +138,11 @@ impl HeraclitusCore {
 
         if has_year && !is_conjecture_framed && (lower_cleaned.contains("will") || lower_cleaned.contains("guarantee")) {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L402 (Stochastic Timeline Overreach)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L402 FAULT: STOCHASTIC HORIZON BREACH]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] ERROR_TIMELINE_OVERREACH", index));
+            let sve_block = format!("-- [SVE-L402 FAULT: STOCHASTIC HORIZON BREACH]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L402_TIMELINE_OVERREACH", index));
         }
 
-                let base_op = if lower_cleaned.contains("predict") { "Project" } else if lower_cleaned.contains("trigger") { "Imply" } else { "Unknown" };
+        let base_op = if lower_cleaned.contains("predict") { "Project" } else if lower_cleaned.contains("trigger") { "Imply" } else { "Unknown" };
         let final_op = if has_negative { format!("NOT(Operator[{}])", base_op) } else { format!("Operator[{}]", base_op) };
 
         let summary = format!("- **Paragraph {}**: 🟢 Verified Narrative Sound\n", index);
@@ -173,4 +155,3 @@ impl HeraclitusCore {
         (true, summary, sve_block, ir_trace)
     }
 }
-
