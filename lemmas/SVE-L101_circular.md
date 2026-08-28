@@ -1,5 +1,5 @@
 ---
-lemma_id: L101
+lemma_id: SVE-L101
 name: Circular Reasoning / Begging the Question
 tags: [fallacy, structural-logic, epistemic-loops]
 ---

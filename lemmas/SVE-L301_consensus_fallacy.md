@@ -1,5 +1,5 @@
 ---
-lemma_id: L301
+lemma_id: SVE-L301
 name: Appeal to Consensus / Rhetorical Substitution
 tags: [fallacy, structural-logic, consensus-bias]
 ---
