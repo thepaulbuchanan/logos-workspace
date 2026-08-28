@@ -1,1 +1,1 @@
-/Users/PEB/GitHub/svi_workspace/core/target/debug/svi_compiler: /Users/PEB/GitHub/svi_workspace/core/src/main.rs
+/Users/PEB/GitHub/Semantic-Validation-Engine/core/target/debug/svi_compiler: /Users/PEB/GitHub/Semantic-Validation-Engine/core/src/latex.rs /Users/PEB/GitHub/Semantic-Validation-Engine/core/src/main.rs

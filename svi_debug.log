@@ -712,3 +712,27 @@ RAW_TEXT: "Regional infrastructure will completely fail by mid-century."
 [TIMESTAMP: 1787855571] [ERROR: SVI-L301] [PARAGRAPH: 5] [DETAILS: Rhetorical consensus used to substitute empirical variable metrics.]
 RAW_TEXT: "Experts agree that regional crop yields face an unprecedented collapse."
 --------------------------------------------------------
+[TIMESTAMP: 1787935209] [ERROR: SVI-L402] [PARAGRAPH: 1] [DETAILS: Timeline overreach.]
+RAW_TEXT: "Our computer models predict a 2°C temperature increase will trigger a 30% collapse in regional crop yields by the year 2060."
+--------------------------------------------------------
+[TIMESTAMP: 1787935209] [ERROR: SVI-L101] [PARAGRAPH: 3] [DETAILS: Circular loop detected.]
+RAW_TEXT: "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
+--------------------------------------------------------
+[TIMESTAMP: 1787935209] [ERROR: SVI-L201] [PARAGRAPH: 4] [DETAILS: Unsupported macro-inference detected.]
+RAW_TEXT: "Regional infrastructure will completely fail by mid-century."
+--------------------------------------------------------
+[TIMESTAMP: 1787935209] [ERROR: SVI-L301] [PARAGRAPH: 5] [DETAILS: Consensus substitution detected.]
+RAW_TEXT: "Experts agree that regional crop yields face an unprecedented collapse."
+--------------------------------------------------------
+[TIMESTAMP: 1787935213] [ERROR: SVI-L402] [PARAGRAPH: 1] [DETAILS: Timeline overreach.]
+RAW_TEXT: "Our computer models predict a 2°C temperature increase will trigger a 30% collapse in regional crop yields by the year 2060."
+--------------------------------------------------------
+[TIMESTAMP: 1787935213] [ERROR: SVI-L101] [PARAGRAPH: 3] [DETAILS: Circular loop detected.]
+RAW_TEXT: "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
+--------------------------------------------------------
+[TIMESTAMP: 1787935213] [ERROR: SVI-L201] [PARAGRAPH: 4] [DETAILS: Unsupported macro-inference detected.]
+RAW_TEXT: "Regional infrastructure will completely fail by mid-century."
+--------------------------------------------------------
+[TIMESTAMP: 1787935213] [ERROR: SVI-L301] [PARAGRAPH: 5] [DETAILS: Consensus substitution detected.]
+RAW_TEXT: "Experts agree that regional crop yields face an unprecedented collapse."
+--------------------------------------------------------
