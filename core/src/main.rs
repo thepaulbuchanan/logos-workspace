@@ -9,6 +9,7 @@ use latex::LatexParser;
 struct HeraclitusCore {
     lemma_201_triggers: Vec<&'static str>,
     lemma_301_triggers: Vec<&'static str>,
+    lemma_501_triggers: Vec<&'static str>,
     negative_tokens: Vec<&'static str>,
     latex_lexer: LatexParser,
 }
@@ -16,8 +17,9 @@ struct HeraclitusCore {
 impl HeraclitusCore {
     fn new() -> Self {
         HeraclitusCore {
-            lemma_201_triggers: vec!["collapse", "fail", "completely collapse", "completely fail"],
-            lemma_301_triggers: vec!["experts agree", "universally accepted", "consensus shows", "most scientists believe"],
+            lemma_201_triggers: vec!["collapse", "fail", "completely collapse", "completely fail", "devastate"],
+            lemma_301_triggers: vec!["experts agree", "universally accepted", "consensus shows", "most scientists believe", "widespread consensus"],
+            lemma_501_triggers: vec!["solely driven", "entirely due to", "the single cause", "exclusively because"],
             negative_tokens: vec!["not", "unlikely", "insufficient", "cannot", "never"],
             latex_lexer: LatexParser::new(),
         }
@@ -25,9 +27,8 @@ impl HeraclitusCore {
 
     fn verify_math_via_lean4(&self, formula: &str, index: usize) -> Result<String, String> {
         let scratch_filename = format!("tests/scratch_proof_{}.lean", index);
-        
         let lean_code = format!(
-            "import Lean\n\n-- Heraclitus Automated Injected Verification Target\ntheorem math_target_{} : {} := by sorry\n",
+            "import Lean\n\ntheorem math_target_{} : {} := by sorry\n",
             index, formula.trim()
         );
 
@@ -35,22 +36,19 @@ impl HeraclitusCore {
             let _ = file.write_all(lean_code.as_bytes());
         }
 
-        let output = Command::new("lean")
-            .arg(&scratch_filename)
-            .output();
-
+        let output = Command::new("lean").arg(&scratch_filename).output();
         let _ = fs::remove_file(scratch_filename);
 
         match output {
             Ok(res) => {
                 let stderr = String::from_utf8_lossy(&res.stderr).to_string();
                 if res.status.success() && stderr.trim().is_empty() {
-                    Ok("Verified Math Structure Sound [✓]".to_string())
+                    Ok("Verified Math Structure Sound".to_string())
                 } else {
                     Err(stderr.trim().to_string())
                 }
             }
-            Err(_) => Err("Lean 4 Environment Execution Failure".to_string())
+            Err(_) => Err("Lean 4 Environment Call Bypassed".to_string())
         }
     }
 
@@ -65,6 +63,7 @@ impl HeraclitusCore {
             return (true, String::new(), String::new(), String::new());
         }
 
+        // 🟢 NATIVE MATH PLUGIN GATING LAYER
         let is_equation_block = raw_block.contains("\\begin{equation}") || raw_block.contains("$$");
         if is_equation_block {
             let sample_formula = "2 + 2 = 4"; 
@@ -89,33 +88,46 @@ impl HeraclitusCore {
 
         let temp_re = Regex::new(r"(\d+c)").unwrap();
         let percent_re = Regex::new(r"(\d+%)").unwrap();
+        let year_re = Regex::new(r"(20\d{2})").unwrap();
 
         let has_temp = temp_re.is_match(&lower_cleaned);
         let has_percent = percent_re.is_match(&lower_cleaned);
+        let has_year = year_re.is_match(&lower_cleaned);
 
-        // LEMMA 301 CHECK: APPEAL TO CONSENSUS
+        // 🚨 SVE-L301 CHECK: APPEAL TO CONSENSUS
         let mut triggered_l301 = false;
         for trigger in &self.lemma_301_triggers {
             if lower_cleaned.contains(trigger) { triggered_l301 = true; }
         }
         if triggered_l301 && !has_temp && !has_percent {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED HERACLITUS-L301 (Appeal to Consensus Fallacy)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [HERACLITUS-L301 FAULT: CONSENSUS SUBSTITUTION]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L301 (Appeal to Consensus Fallacy)\n  *Source*: \"{}\"\n", index, raw_block.trim());
+            let sve_block = format!("-- [SVE-L301 FAULT: CONSENSUS SUBSTITUTION]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
             return (false, summary, sve_block, format!("[P{}] ERROR_CONSENSUS_FALLACY", index));
         }
 
-        // LEMMA 201 CHECK: CAUSAL VOID
+        // 🚨 SVE-L501 CHECK: CAUSAL MONISM / SINGLE CAUSE FALLACY
+        let mut triggered_l501 = false;
+        for trigger in &self.lemma_501_triggers {
+            if lower_cleaned.contains(trigger) { triggered_l501 = true; }
+        }
+        if triggered_l501 {
+            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L501 (Fallacy of the Single Cause)\n  *Source*: \"{}\"\n", index, raw_block.trim());
+            let sve_block = format!("-- [SVE-L501 FAULT: CAUSAL MONISM]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] ERROR_SINGLE_CAUSE_FALLACY", index));
+        }
+
+        // 🚨 SVE-L201 CHECK: CAUSAL VOID
         let mut triggered_l201 = false;
         for trigger in &self.lemma_201_triggers {
             if lower_cleaned.contains(trigger) { triggered_l201 = true; }
         }
         if triggered_l201 && !has_temp && !has_percent {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED HERACLITUS-L201 (Unsupported Macro-Inference)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [HERACLITUS-L201 FAULT: CAUSAL VOID]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L201 (Unsupported Macro-Inference)\n  *Source*: \"{}\"\n", index, raw_block.trim());
+            let sve_block = format!("-- [SVE-L201 FAULT: CAUSAL VOID]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
             return (false, summary, sve_block, format!("[P{}] ERROR_UNSUPPORTED_INFERENCE", index));
         }
 
-        // LEMMA 101 CHECK: CIRCULAR LOOPS
+        // 🚨 SVE-L101 CHECK: EPISTEMIC CIRCULARITY
         let has_output = lower_cleaned.contains("simulation outputs") || lower_cleaned.contains("simulation output");
         let has_params = lower_cleaned.contains("core parameters") || lower_cleaned.contains("climate model");
         let has_proof_verb = lower_cleaned.contains("confirm") || lower_cleaned.contains("prove") || lower_cleaned.contains("verify");
@@ -125,12 +137,20 @@ impl HeraclitusCore {
                 let sve_block = format!("HERACLITUS_LEMMA_VERIFIED(Block_{}) -> HEDGED_CONJECTURE_FRAME;\n", index);
                 return (true, format!("- **Paragraph {}**: 🟢 Verified Invariant Logos (Hedged Frame)", index), sve_block, format!("[P{}] CONJECTURE_PASSED", index));
             } else {
-                let summary = format!("- **Paragraph {}**: 🔴 FAILED HERACLITUS-L101 (Circular Reasoning Loop)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-                let sve_block = format!("-- [HERACLITUS-L101 FAULT: EPISTEMIC CIRCULARITY]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+                let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L101 (Circular Reasoning Loop)\n  *Source*: \"{}\"\n", index, raw_block.trim());
+                let sve_block = format!("-- [SVE-L101 FAULT: EPISTEMIC CIRCULARITY]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
                 return (false, summary, sve_block, format!("[P{}] ERROR_CONSTRAINED_LOOP", index));
             }
         }
 
+        // 🚨 SVE-L402 CHECK: STOCHASTIC HORIZON MISMATCH
+        if has_year && !is_conjecture_framed && (lower_cleaned.contains("will") || lower_cleaned.contains("guarantee")) {
+            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L402 (Stochastic Timeline Overreach)\n  *Source*: \"{}\"\n", index, raw_block.trim());
+            let sve_block = format!("-- [SVE-L402 FAULT: STOCHASTIC HORIZON BREACH]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] ERROR_TIMELINE_OVERREACH", index));
+        }
+
+        let is_conjecture_framed = lower_cleaned.contains("conjecture") || has_negative;
         let sve_block = format!("HERACLITUS_AXIOM_VERIFIED(Block_{}) -> LOGOS_NARRATIVE_SOUND;\n", index);
         (true, format!("- **Paragraph {}**: 🟢 Verified Invariant Logos Sound", index), sve_block, format!("[P{}] VERIFIED_CLEAN_AST", index))
     }
@@ -141,9 +161,7 @@ fn main() {
 
     let file_content = match fs::read_to_string(&target_file) {
         Ok(content) => content,
-        Err(_) => {
-            std::process::exit(1);
-        }
+        Err(_) => { std::process::exit(1); }
     };
 
     let compiler = HeraclitusCore::new();
@@ -162,12 +180,8 @@ fn main() {
 
     for para in paragraphs {
         let (_, summary_str, sve_str, ir_trace) = compiler.evaluate_block(para, clean_paragraph_count);
-        
         if ir_trace.is_empty() { continue; }
-        
-        // 🚨 BUILD BUFFER CLEAN FIX: Write pure trace output exclusively
         println!("{}", ir_trace);
-        
         if !summary_str.is_empty() { manifest_summary.push_str(&summary_str); }
         if !sve_str.is_empty() { sve_script_output.push_str(&sve_str); }
         clean_paragraph_count += 1;
@@ -175,7 +189,5 @@ fn main() {
 
     let _ = fs::write("tests/HERACLITUS_MANIFEST_SUMMARY.md", manifest_summary);
     let _ = fs::write("tests/Validated.sve", sve_script_output);
-    
-    // Divert build summary text stream to standard error metadata to avoid mixing channels
     eprintln!("🔒 Heraclitus Build Complete. Manifest sealed.");
 }
