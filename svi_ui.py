@@ -9,6 +9,7 @@ def render_dashboard():
     target_file = "tests/manuscript.tex"
     compiler_path = "./core/target/debug/svi_compiler"
 
+    # Quietly compile the core to seamlessly incorporate updates
     subprocess.run("cd core && cargo build --quiet", shell=True)
 
     clear_screen()
@@ -25,8 +26,9 @@ def render_dashboard():
     result = subprocess.run([compiler_path], capture_output=True, text=True)
     ir_lines = [line for line in result.stdout.split("\n") if line.strip()]
 
-    passed_clean = sum(1 for line in ir_lines if "VERIFIED" in line or "CONJECTURE_PASSED" in line or "LEAN4" in line)
-    violations_detected = sum(1 for line in ir_lines if "ERROR" in line)
+    # FIX: Correctly count clean statements by filtering out SVE-L violations
+    passed_clean = sum(1 for line in ir_lines if "VERIFIED" in line or "LEAN4" in line)
+    violations_detected = sum(1 for line in ir_lines if "SVE-L" in line or "ERROR" in line)
     total_blocks = len(ir_lines)
 
     print("📦 GENERATED HERACLITUS EXPERT EVIDENCE LEDGERS:")
@@ -37,7 +39,8 @@ def render_dashboard():
 
     print("\n📥 HERACLITUS CORE INVARIANT LOGOS AUDIT TRACE:")
     for idx, line in enumerate(ir_lines):
-        if "ERROR" in line:
+        # FIX: Dynamically flag any line matching our new SVE-L error hash taxonomy
+        if "SVE-L" in line or "ERROR" in line:
             print(f"  [Block {idx+1}]: 🔴 {line}")
         elif "LEAN4" in line:
             print(f"  [Block {idx+1}]: 🔵 {line} -> Injected native mathematical check passed.")
