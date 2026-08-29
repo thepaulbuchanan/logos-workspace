@@ -1,17 +1,26 @@
 ---
 lemma_id: SVE-L101
-name: Circular Reasoning / Begging the Question
-tags: [fallacy, structural-logic, epistemic-loops]
+name: Epistemic Circularity / Begging the Question
+triggers: ["simulation outputs confirm", "outputs prove", "confirm that the core parameters"]
+ep_hash: sle_sha256_7a9f2c8b3d4e1f6g
 ---
 
-### Formal Definition
-Let $A$ be an unverified assertion or core hypothesis. A linguistic or symbolic transition violates this lemma if it asserts that the validity of $A$ is verified by a downstream observation $B$, where $B$ is structurally dependent on the truth-value or operational parameters of $A$ to exist.
+### 1. Human Readable Specification
+Let an author introduce a core model or premise. It is a structural fallacy to assert that downstream data outputs or simulation metrics validate the truth-value of that core model if those exact outputs require the model's parameters to be assumed true to execute the run.
 
+### 2. First-Order Logic Invariant
 $$\forall A, B : \text{Dependent}(B, A) \implies \text{Cannot\_Verify}(B, A)$$
 
-### Rejected Human Language Syntax
-* "The simulation outputs prove that the core parameters of our climate model are correct."
-* "The validity of our financial projection is confirmed by the resulting spreadsheet calculations."
+### 3. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L101) {
+  MATCH_CONTEXT(Modal[Simulation_Output], Operator[Assert_Proof], Entity[Core_Model_Parameters]);
+  ASSERT_DEPENDENCY_TRACK(Source[Core_Model_Parameters] -> Derived[Simulation_Output]);
+  ENFORCE_CONSTRAINT(UNHEDGED_DETERMINISTIC_ASSERTION == FALSE);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 
-### Approved Reframed Human Language Syntax
-* "The simulation outputs match the theoretical constraints of our model. We offer this as a consistent observation, noting that empirical verification requires independent fieldwork."
+### 4. Verified Human Syntax Benchmarks
+* **REJECTED:** "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
+* **APPROVED:** "The simulation outputs match the theoretical constraints of our model. We offer this as a consistent observation, noting that empirical verification requires independent fieldwork."

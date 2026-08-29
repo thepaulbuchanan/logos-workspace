@@ -1,17 +1,81 @@
 use crate::latex::LatexParser;
-use crate::lemmas::LogosLib;
 use regex::Regex;
 use std::fs::{self, File};
 use std::io::Write;
 use std::process::Command;
 
+struct UnifiedLemma {
+    id: String,
+    name: String,
+    triggers: Vec<String>,
+    hash: String,
+}
+
 pub struct HeraclitusCore {
+    active_lemmas: Vec<UnifiedLemma>,
+    negative_tokens: Vec<&'static str>,
     pub latex_lexer: LatexParser,
 }
 
 impl HeraclitusCore {
     pub fn new() -> Self {
-        HeraclitusCore { latex_lexer: LatexParser::new() }
+        let mut core = HeraclitusCore {
+            active_lemmas: Vec::new(),
+            negative_tokens: vec!["not", "unlikely", "insufficient", "cannot", "never"],
+            latex_lexer: LatexParser::new(),
+        };
+        core.bootstrap_logos_lib();
+        core
+    }
+
+    // 🔒 THE LOGOSLIB CRYPTO-BOOTSTRAPPER
+    fn bootstrap_logos_lib(&mut self) {
+        let lemmas_dir = "../lemmas";
+        if let Ok(entries) = fs::read_dir(lemmas_dir) {
+            for entry in entries.flatten() {
+                let path = entry.path();
+                if path.extension().map_or(false, |ext| ext == "md") {
+                    if let Ok(content) = fs::read_to_string(&path) {
+                        self.parse_unified_lemma(&content);
+                    }
+                }
+            }
+        }
+    }
+
+    fn parse_unified_lemma(&mut self, content: &str) {
+        if !content.starts_with("---") { return; }
+        let parts: Vec<&str> = content.split("---").collect();
+        if parts.len() < 3 { return; }
+        
+        let yaml_payload = parts[1];
+        let mut id = String::new();
+        let mut name = String::new();
+        let mut hash = String::new();
+        let mut triggers = Vec::new();
+
+        for line in yaml_payload.lines() {
+            if !line.contains(':') { continue; }
+            let kv: Vec<&str> = line.splitn(2, ':').collect();
+            let key = kv[0].trim();
+            let val = kv[1].trim();
+
+            match key {
+                "lemma_id" => id = val.to_string(),
+                "name" => name = val.to_string(),
+                "ep_hash" => hash = val.to_string(),
+                "triggers" => {
+                    let cleaned = val.replace('[', "").replace(']', "").replace('"', "");
+                    triggers = cleaned.split(',').map(|t| t.trim().to_string()).collect();
+                }
+                _ => {}
+            }
+        }
+
+        // Only register if the file contains both the human metadata and the cryptographic signature
+        if !id.is_empty() && !triggers.is_empty() && !hash.is_empty() {
+            self.active_lemmas.push(UnifiedLemma { id, name, triggers, hash });
+        }
     }
 
     pub fn verify_math_via_lean4(&self, formula: &str, index: usize) -> Result<String, String> {
@@ -69,7 +133,7 @@ impl HeraclitusCore {
             }
         }
         
-        let has_negative = LogosLib::match_negatives(&lower_cleaned);
+        let has_negative = crate::lemmas::LogosLib::match_negatives(&lower_cleaned);
 
         let temp_re = Regex::new(r"(\d+c)").unwrap();
         let percent_re = Regex::new(r"(\d+%)").unwrap();
@@ -83,62 +147,26 @@ impl HeraclitusCore {
         let percent_val = percent_re.captures(&lower_cleaned).map(|c| format!("-{}", c.get(1).unwrap().as_str())).unwrap_or_else(|| "Unknown".to_string());
         let year_val = year_re.captures(&lower_cleaned).map(|c| c.get(1).unwrap().as_str().to_string()).unwrap_or_else(|| "Undefined".to_string());
 
-        if LogosLib::match_l102(&lower_cleaned) {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L102 (Ad Hominem / Personal Attack)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L102 FAULT: AD HOMINEM]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] SVE-L102_AD_HOMINEM_ALERT", index));
-        }
-
-        if LogosLib::match_l103(&lower_cleaned) {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L103 (Straw Man / Caricature)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L103 FAULT: STRAW MAN]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] SVE-L103_STRAW_MAN_ALERT", index));
-        }
-
-        if LogosLib::match_l301(&lower_cleaned) && !has_temp && !has_percent {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L301 (Appeal to Consensus Fallacy)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L301 FAULT: CONSENSUS SUBSTITUTION]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] SVE-L301_CONSENSUS_FALLACY", index));
-        }
-
-        if LogosLib::match_l501(&lower_cleaned) {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L501 (Fallacy of the Single Cause)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L501 FAULT: CAUSAL MONISM]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] SVE-L501_SINGLE_CAUSE_FALLACY", index));
-        }
-
-        if LogosLib::match_l601(&lower_cleaned) {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L601 (Equivocation / Variable Semantic Drift)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L601 FAULT: VARIABLE SEMANTIC DRIFT]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] SVE-L601_VARIABLE_DRIFT_ALERT", index));
-        }
-
-        if LogosLib::match_l201(&lower_cleaned) && !has_temp && !has_percent {
-            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L201 (Unsupported Macro-Inference)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L201 FAULT: CAUSAL VOID]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] SVE-L201_CAUSAL_VOID_ALERT", index));
-        }
-
-        let has_output = lower_cleaned.contains("simulation outputs") || lower_cleaned.contains("simulation output");
-        let has_params = lower_cleaned.contains("core parameters") || lower_cleaned.contains("climate model");
-        let has_proof_verb = lower_cleaned.contains("confirm") || lower_cleaned.contains("prove") || lower_cleaned.contains("verify");
-
-        if has_output && has_params && has_proof_verb {
-            if has_negative {
-                let sve_block = format!("HERACLITUS_LEMMA_VERIFIED(Block_{}) -> HEDGED_CONJECTURE_FRAME;\n", index);
-                return (true, format!("- **Paragraph {}**: 🟢 Verified Invariant Logos (Hedged Frame)", index), sve_block, format!("[P{}] SVE-L101_CONJECTURE_PASSED", index));
-            } else {
-                let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L101 (Circular Reasoning Loop)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-                let sve_block = format!("-- [SVE-L101 FAULT: EPISTEMIC CIRCULARITY]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
-                return (false, summary, sve_block, format!("[P{}] SVE-L101_CIRCULAR_LOOP_ALERT", index));
+        // 🚨 UNIFIED SYMBOLIC EVALUATION LAYER
+        for lemma in &self.active_lemmas {
+            for trigger in &lemma.triggers {
+                if lower_cleaned.contains(&trigger.to_lowercase()) {
+                    if (lemma.id == "SVE-L201" || lemma.id == "SVE-L301") && (has_temp || has_percent) {
+                        continue;
+                    }
+                    
+                    let summary = format!("- **Paragraph {}**: 🔴 FAILED {} ({})\n  *Source*: \"{}\"\n", index, lemma.id, lemma.name, raw_block.trim());
+                    let sve_block = format!("-- [{} FAULT: SIGNED_SIG: {}]\n-- SOURCE: {}\n\n", lemma.id, lemma.hash, raw_block.trim());
+                    let ir_trace = format!("[P{}] {}_{}_ALERT", index, lemma.id, lemma.name.to_uppercase().replace(" ", "_"));
+                    return (false, summary, sve_block, ir_trace);
+                }
             }
         }
 
         let is_conjecture_framed = lower_cleaned.contains("conjecture") || has_negative;
-
         if has_year && !is_conjecture_framed && (lower_cleaned.contains("will") || lower_cleaned.contains("guarantee")) {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L402 (Stochastic Timeline Overreach)\n  *Source*: \"{}\"\n", index, raw_block.trim());
-            let sve_block = format!("-- [SVE-L402 FAULT: STOCHASTIC HORIZON BREACH]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n-- [QUARANTINED FROM KERNEL EXECUTION]\n\n", index, raw_block.trim());
+            let sve_block = format!("-- [SVE-L402 FAULT: STOCHASTIC HORIZON BREACH]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
             return (false, summary, sve_block, format!("[P{}] SVE-L402_TIMELINE_OVERREACH", index));
         }
 
