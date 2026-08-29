@@ -3,6 +3,7 @@ use regex::Regex;
 use std::fs::{self, File};
 use std::io::Write;
 use std::process::Command;
+use std::path::Path;
 
 struct UnifiedLemma {
     id: String,
@@ -26,9 +27,24 @@ impl HeraclitusCore {
         core
     }
 
+    // 🔒 PATH-RESILIENT BOOTSTRAPPER: Probes multiple relative structural depths
     fn bootstrap_logos_lib(&mut self) {
-        let lemmas_dir = "../lemmas";
-        if let Ok(entries) = fs::read_dir(lemmas_dir) {
+        let paths_to_test = vec!["lemmas", "../lemmas", "../../lemmas"];
+        let mut target_dir = "";
+
+        for path in paths_to_test {
+            if Path::new(path).exists() && Path::new(path).is_dir() {
+                target_dir = path;
+                break;
+            }
+        }
+
+        if target_dir.is_empty() {
+            eprintln!("⚠️ SVE CORE ERROR: Unable to locate 'lemmas' directory path structure.");
+            return;
+        }
+
+        if let Ok(entries) = fs::read_dir(target_dir) {
             for entry in entries.flatten() {
                 let path = entry.path();
                 if path.extension().map_or(false, |ext| ext == "md") {
@@ -62,7 +78,6 @@ impl HeraclitusCore {
                 "name" => name = val.to_string(),
                 "ep_hash" => hash = val.to_string(),
                 "triggers" => {
-                    // Clean quotes, brackets, and spaces completely
                     let cleaned = val.replace('[', "").replace(']', "").replace('"', "").replace('\'', "");
                     triggers = cleaned.split(',').map(|t| t.trim().to_string()).filter(|t| !t.is_empty()).collect();
                 }
@@ -154,17 +169,18 @@ impl HeraclitusCore {
                     
                     let summary = format!("- **Paragraph {}**: 🔴 FAILED {} ({})\n  *Source*: \"{}\"\n", index, lemma.id, lemma.name, raw_block.trim());
                     let sve_block = format!("-- [{} FAULT: SIGNED_SIG: {}]\n-- SOURCE: {}\n\n", lemma.id, lemma.hash, raw_block.trim());
-                    let ir_trace = format!("[P{}] {}_{}_ALERT", index, lemma.id, lemma.name.to_uppercase().replace(" ", "_"));
+                    let ir_trace = format!("[P{}] {}", index, lemma.id);
                     return (false, summary, sve_block, ir_trace);
                 }
             }
         }
 
         let is_conjecture_framed = lower_cleaned.contains("conjecture") || has_negative;
+
         if has_year && !is_conjecture_framed && (lower_cleaned.contains("will") || lower_cleaned.contains("guarantee")) {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L402 (Stochastic Timeline Overreach)\n  *Source*: \"{}\"\n", index, raw_block.trim());
             let sve_block = format!("-- [SVE-L402 FAULT: STOCHASTIC HORIZON BREACH]\n-- CONJECTURE STATE: Paragraph_{}\n-- SOURCE: {}\n\n", index, raw_block.trim());
-            return (false, summary, sve_block, format!("[P{}] SVE-L402_TIMELINE_OVERREACH", index));
+            return (false, summary, sve_block, format!("[P{}] SVE-L402", index));
         }
 
         let base_op = if lower_cleaned.contains("predict") { "Project" } else if lower_cleaned.contains("trigger") { "Imply" } else { "Unknown" };
