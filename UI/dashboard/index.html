@@ -148,94 +148,95 @@
         </header>
 
         <div class="dashboard-grid">
-            <!-- Left Side: Radial Gauge Panel -->
             <div class="panel gauge-container">
                 <div class="trace-title">INDUSTRIAL LOGOS METRICS</div>
-                <div class="radial-gauge">
-                    <div class="gauge-value">16%</div>
+                <div class="radial-gauge" id="metricGauge">
+                    <div class="gauge-value" id="objectivityPct">--%</div>
                 </div>
                 <div class="metrics-list">
                     <div class="metric-row">
-                        <span class="text-muted">Total Lemma Chunks</span>
-                        <strong>6</strong>
+                        <span class="text-muted">Total Active Database Lemmas</span>
+                        <strong id="totalLemmas">0</strong>
+                    </div>
+                    <div class="metric-row">
+                        <span class="text-muted">Total Document Chunks</span>
+                        <strong id="totalChunks">0</strong>
                     </div>
                     <div class="metric-row">
                         <span class="text-muted">Verified Executable Output</span>
-                        <span style="color: var(--accent-clean);">1 [✓]</span>
+                        <span style="color: var(--accent-clean);" id="cleanChunks">0 [✓]</span>
                     </div>
                     <div class="metric-row">
                         <span class="text-muted">Quarantined via Conjecture</span>
-                        <span style="color: var(--accent-quarantine);">5 [✗]</span>
+                        <span style="color: var(--accent-quarantine);" id="quarantinedChunks">0 [✗]</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Side: Interactive Audit Ledger Trace -->
             <div class="panel">
                 <div class="trace-title">INVARIANT LOGOS AUDIT TRACE</div>
-                
-                <div class="block-card">
-                    <div class="card-header">
-                        <span>Block 1: Narrative Stochastic Verification</span>
-                        <span class="card-badge badge-quarantine">🔴 SVE-L402_TIMELINE_OVERREACH</span>
-                    </div>
-                    <div class="card-body">
-                        <strong>Source Clause:</strong> "Our computer models predict a 2°C temperature increase will trigger a 30% collapse in regional crop yields by the year 2060."
-                    </div>
+                <div id="traceContainer">
+                    <p class="text-muted">Awaiting stream array ingestion payload...</p>
                 </div>
-
-                <div class="block-card">
-                    <div class="card-header">
-                        <span>Block 2: Narrative Stochastic Verification</span>
-                        <span class="card-badge badge-quarantine">🔴 SVE-L101_CIRCULAR_LOOP_ALERT</span>
-                    </div>
-                    <div class="card-body">
-                        <strong>Source Clause:</strong> "The simulation outputs definitively confirm that the core parameters of our climate model are correct."
-                    </div>
-                </div>
-
-                <div class="block-card">
-                    <div class="card-header">
-                        <span>Block 3: Narrative Stochastic Verification</span>
-                        <span class="card-badge badge-quarantine">🔴 SVE-L201_CAUSAL_VOID_ALERT</span>
-                    </div>
-                    <div class="card-body">
-                        <strong>Source Clause:</strong> "Experts agree that regional crop yields face an unprecedented collapse."
-                    </div>
-                </div>
-
-                <div class="block-card">
-                    <div class="card-header">
-                        <span>Block 4: Mathematical Verification environment</span>
-                        <span class="card-badge badge-math">🔵 LEAN4_MATH_VERIFIED</span>
-                    </div>
-                    <div class="card-body">
-                        <strong>Expression Signature:</strong> "theorem math_target_4 : 2 + 2 = 4 := by sorry" -> Injected native mathematical check passed.
-                    </div>
-                </div>
-
-                <div class="block-card">
-                    <div class="card-header">
-                        <span>Block 5: Narrative Stochastic Verification</span>
-                        <span class="card-badge badge-quarantine">🔴 SVE-L501_SINGLE_CAUSE_FALLACY</span>
-                    </div>
-                    <div class="card-body">
-                        <strong>Source Clause:</strong> "The global agricultural production shift is entirely due to industrial mechanical scale changes."
-                    </div>
-                </div>
-
-                <div class="block-card">
-                    <div class="card-header">
-                        <span>Block 6: Narrative Stochastic Verification</span>
-                        <span class="card-badge badge-quarantine">🔴 SVE-L144_WORST_CASE_FALLACY_ALERT</span>
-                    </div>
-                    <div class="card-body">
-                        <strong>Source Clause:</strong> "Out of an abundance of caution, we must implement these restrictions immediately before evaluating the baseline statistical metrics."
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
+
+    <!-- ⚡ REAL-TIME RECONCILIATION DRIVER HOOK -->
+    <script>
+        async function fetchTelemetryData() {
+            try {
+                const response = await fetch('/api/lemmas');
+                const data = await response.json();
+                
+                // Update active tracking counter totals
+                document.getElementById('totalLemmas').innerText = data.total_library_lemmas;
+                document.getElementById('totalChunks').innerText = data.total_chunks;
+                document.getElementById('cleanChunks').innerText = `${data.clean_count} [✓]`;
+                document.getElementById('quarantinedChunks').innerText = `${data.quarantine_count} [✗]`;
+                document.getElementById('objectivityPct').innerText = `${data.objectivity_score}%`;
+                
+                // Redraw the animated CSS radial gradient ring boundaries dynamically
+                const gauge = document.getElementById('metricGauge');
+                gauge.style.background = `conic-gradient(var(--accent-clean) 0% ${data.objectivity_score}%, var(--border-color) ${data.objectivity_score}% 100%)`;
+                gauge.style.boxShadow = 'inset 0 0 0 15px var(--bg-secondary)';
+
+                // Render dynamic card blocks
+                const container = document.getElementById('traceContainer');
+                container.innerHTML = '';
+                
+                data.trace.forEach((block) => {
+                    const card = document.createElement('div');
+                    card.className = 'block-card';
+                    
+                    let badgeClass = 'badge-clean';
+                    let badgeLabel = '🟢 Clean Pass';
+                    if (block.status === 'quarantine') {
+                        badgeClass = 'badge-quarantine';
+                        badgeLabel = `🔴 ${block.lemma_id}`;
+                    } else if (block.status === 'math') {
+                        badgeClass = 'badge-math';
+                        badgeLabel = '🔵 Lean4 Math Verified';
+                    }
+
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <span>Block ${block.index}: ${block.environment}</span>
+                            <span class="card-badge ${badgeClass}">${badgeLabel}</span>
+                        </div>
+                        <div class="card-body">
+                            <strong>Source Context Payload:</strong> "${block.clause}"
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (e) {
+                console.error("Telemetry pipeline ingest failure:", e);
+            }
+        }
+        
+        // Initialise state tracking loop instantly on boot
+        fetchTelemetryData();
+    </script>
 </body>
 </html>
