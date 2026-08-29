@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L125
 name: The Big "But" Fallacy
-triggers: ["25 the"]
-ep_hash: sle_sha256_auto_ea8ed6db9b1d4a4c
+triggers: ["the big"]
+ep_hash: sle_sha256_auto_3c69b26352f3c7f7
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L125) {
-  MATCH_CONTEXT(Rhetorical_Pattern["25 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the big"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 25. The Big "But" Fallacy (also, Special Pleading):  The fallacy of enunciating a generally-accepted principle and then
 directly negating it with a "but." Often this takes the form of the "Special Case," which is supposedly exempt from
 the usual rules of law, logic, morality, ethics or even credibility  E.g., "As Americans we have always believed on

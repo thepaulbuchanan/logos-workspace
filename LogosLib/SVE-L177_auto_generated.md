@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L177
 name: Mortiﬁcation
-triggers: ["77 mortiﬁcation"]
-ep_hash: sle_sha256_auto_4d66642dcb6e5dfe
+triggers: ["mortiﬁcation also"]
+ep_hash: sle_sha256_auto_b7b6ec1cd4dd09bf
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L177) {
-  MATCH_CONTEXT(Rhetorical_Pattern["77 mortiﬁcation"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["mortiﬁcation also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 77. Mortiﬁcation (also, Live as Though You're Dying; Pleasure-hating; No Pain No Gain): An ancient fallacy of logos,
 trying to "beat the ﬂesh into submission" by extreme exercise or ascetic practices, deliberate starvation or inﬂiction
 of pain, denying the undeniable fact that discomfort and pain exist for the purpose of warning of lasting damage to

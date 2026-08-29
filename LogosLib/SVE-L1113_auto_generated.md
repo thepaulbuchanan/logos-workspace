@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1113
 name: Scare Tactics
-triggers: ["113 scare"]
-ep_hash: sle_sha256_auto_b0c6954e8bdbbff5
+triggers: ["scare tactics"]
+ep_hash: sle_sha256_auto_4d5d7dd83607926b
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1113) {
-  MATCH_CONTEXT(Rhetorical_Pattern["113 scare"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["scare tactics"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 113. Scare Tactics (also Appeal to Fear; Paranoia; the Bogeyman Fallacy; Shock Doctrine [ShockDoc]; Rally 'Round the
 Flag; Rally 'Round the President): A variety of Playing on Emotions, a corrupted argument from pathos, taking
 advantage of a emergent or deliberately-created crisis and its associated public shock, panic and chaos in order to

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L183
 name: No Discussion
-triggers: ["83 no"]
-ep_hash: sle_sha256_auto_452b1dca61b6bdd0
+triggers: ["no discussion"]
+ep_hash: sle_sha256_auto_4c0ae82b8fa6b0a9
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L183) {
-  MATCH_CONTEXT(Rhetorical_Pattern["83 no"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["no discussion"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 83. No Discussion (also No Negotiation; the Control Voice; Peace through Strength; a Muscular Foreign Policy;
 Fascism):  A pure Argumentum ad Baculum that rejects reasoned dialogue, offering either instant, unconditional
 compliance/surrender or defeat/death as the only two options for settling even minor differences, e.g., screaming

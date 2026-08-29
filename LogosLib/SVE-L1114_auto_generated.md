@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1114
 name: "Scoring"
-triggers: ["114 scoring"]
-ep_hash: sle_sha256_auto_fd74b42f9838d63e
+triggers: ["scoring also"]
+ep_hash: sle_sha256_auto_db707e99842d8037
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1114) {
-  MATCH_CONTEXT(Rhetorical_Pattern["114 scoring"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["scoring also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 114. "Scoring" (also, Moving the Ball Down the Field, the Sports World Fallacy; "Hey, Sports Fans!"): An instance of
 faulty analogy, the common contemporary fallacy of inappropriately and most often offensively applying sports,
 gaming, hunting or other recreational imagery to unrelated areas of life, such as war or intimacy. E.g., "Nope, I

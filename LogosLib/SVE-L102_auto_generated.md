@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L102
 name: Ableism
-triggers: ["2 ableism"]
-ep_hash: sle_sha256_auto_fd9420bdb451e40e
+triggers: ["ableism also"]
+ep_hash: sle_sha256_auto_39687fad78994b0b
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L102) {
-  MATCH_CONTEXT(Rhetorical_Pattern["2 ableism"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["ableism also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 2. Ableism (also, The Con Artist's Fallacy; The Dacoit's Fallacy; Shearing the Sheeple; Proﬁteering; "Vulture
 Capitalism," "Wealth is disease, and I am the cure."): A corrupt argument from ethos, arguing that because someone
 is intellectually slower, physically or emotionally less capable, less ambitious, less aggressive, older or less healthy

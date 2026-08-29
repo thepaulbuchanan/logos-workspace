@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1118
 name: The Shopping Hungry Fallacy
-triggers: ["118 the"]
-ep_hash: sle_sha256_auto_c99fcd157a818932
+triggers: ["the shopping"]
+ep_hash: sle_sha256_auto_38d357489a34ae20
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1118) {
-  MATCH_CONTEXT(Rhetorical_Pattern["118 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the shopping"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 118. The Shopping Hungry Fallacy : A fallacy of pathos, a variety of Playing on Emotions and sometimes Scare Tactics,
 making stupid but important decisions (or being prompted, manipulated or forced to "freely" take public or private
 decisions that may be later regretted but are difﬁcult to reverse) "in the heat of the moment" when  under the

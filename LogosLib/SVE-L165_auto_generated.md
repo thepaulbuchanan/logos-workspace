@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L165
 name: Infotainment
-triggers: ["65 infotainment"]
-ep_hash: sle_sha256_auto_7c35655446a6d9df
+triggers: ["infotainment also"]
+ep_hash: sle_sha256_auto_96b067760d53a5c3
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L165) {
-  MATCH_CONTEXT(Rhetorical_Pattern["65 infotainment"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["infotainment also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 65. Infotainment (also Infortainment; Fake News; InfoWars);  A very corrupt and dangerous modern media-driven
 fallacy that deliberately and knowingly stirs in facts, news, falsities and outright lies with entertainment, a mixture
 usually concocted for speciﬁc, base ideological and proﬁt-making motives. Origins of this fallacy predate the current

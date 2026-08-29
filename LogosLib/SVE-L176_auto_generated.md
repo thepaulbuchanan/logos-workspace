@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L176
 name: Moral Superiority
-triggers: ["76 moral"]
-ep_hash: sle_sha256_auto_c9a0d0b64a132872
+triggers: ["moral superiority"]
+ep_hash: sle_sha256_auto_46475f66543141d4
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L176) {
-  MATCH_CONTEXT(Rhetorical_Pattern["76 moral"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["moral superiority"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 76. Moral Superiority (also, Self Righteousness; the Moral High Ground):  An ancient, immoral and extremely
 dangerous fallacy, enunciated in Thomistic / Scholastic philosophy in the late Middle Ages, arguing that Evil has no
 rights that the Good and the Righteous are bound to respect. That way lies torture, heretic-burning, and the Spanish

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L109
 name: The Appeal to Heaven
-triggers: ["9 the"]
-ep_hash: sle_sha256_auto_452b1dc807ecdd60
+triggers: ["the appeal"]
+ep_hash: sle_sha256_auto_b0498d4b71761fba
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L109) {
-  MATCH_CONTEXT(Rhetorical_Pattern["9 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the appeal"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 9. The Appeal to Heaven : (also, Argumentum ad Coelum, Deus Vult, Gott mit Uns, Manifest Destiny, American
 Exceptionalism, or the Special Covenant): An ancient, extremely dangerous fallacy (a deluded argument from ethos)
 that of claiming to know the mind of God (or History, or a higher power), who has allegedly ordered or anointed,

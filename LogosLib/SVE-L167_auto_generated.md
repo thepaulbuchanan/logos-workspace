@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L167
 name: Just Do it.
-triggers: ["67 just"]
-ep_hash: sle_sha256_auto_3c69b781e1ca039d
+triggers: ["just do"]
+ep_hash: sle_sha256_auto_3c69b7921b2033e3
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L167) {
-  MATCH_CONTEXT(Rhetorical_Pattern["67 just"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["just do"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 67. Just Do it.  (also, "Find a way;" "I don't care how you do it;" "Accomplish the mission;" "By Any Means
 Necessary." ):  A pure, abusive Argumentum ad Baculum (argument from force), in which someone in power
 arbitrarily waves aside or overrules the moral objections of subordinates or followers and orders them to accomplish

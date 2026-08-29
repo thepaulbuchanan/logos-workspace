@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L152
 name: The "F-Bomb"
-triggers: ["52 the"]
-ep_hash: sle_sha256_auto_ea8ed6f87fbd430c
+triggers: ["the f-bomb"]
+ep_hash: sle_sha256_auto_b3a54571c793ddf8
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L152) {
-  MATCH_CONTEXT(Rhetorical_Pattern["52 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the f-bomb"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 52. The "F-Bomb" (also Cursing; Obscenity; Profanity). An adolescent fallacy of pathos, attempting to defend or
 strengthen one's argument with gratuitous, unrelated sexual, obscene, vulgar, crude or profane language when such
 language does nothing to make an argument stronger, other than perhaps to create a sense of identity with certain

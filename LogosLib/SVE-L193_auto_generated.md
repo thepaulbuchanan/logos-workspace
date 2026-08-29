@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L193
 name: The Passive Voice Fallacy
-triggers: ["93 the"]
-ep_hash: sle_sha256_auto_ea8ed72087258e56
+triggers: ["the passive"]
+ep_hash: sle_sha256_auto_8597a62aa4c784a5
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L193) {
-  MATCH_CONTEXT(Rhetorical_Pattern["93 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the passive"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 93. The Passive Voice Fallacy (also, the Bureaucratic Passive): A fallacy from ethos, concealing active human agency
 behind the curtain of the grammatical passive voice, e.g., "It has been decided that you are to be let go," arrogating
 an ethos of cosmic infallibility and inevitability to a very fallible conscious decision made by identiﬁable, fallible

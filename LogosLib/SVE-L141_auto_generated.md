@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L141
 name: Dog-Whistle Politics
-triggers: ["41 dog-whistle"]
-ep_hash: sle_sha256_auto_67ec8eab3ab810e
+triggers: ["dog-whistle politics"]
+ep_hash: sle_sha256_auto_6274d8b638c8b2d0
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L141) {
-  MATCH_CONTEXT(Rhetorical_Pattern["41 dog-whistle"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["dog-whistle politics"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 41. Dog-Whistle Politics: An extreme version of reductionism and sloganeering in the public sphere, a contemporary
 fallacy of logos and pathos in which a brief phrase or slogan of the hour, e.g., "Abortion," "The 1%," "9/11,"
 "Zionism,""Chain Migration," "Islamic Terrorism," "Fascism," "Communism," "Big government," "Taco trucks!",

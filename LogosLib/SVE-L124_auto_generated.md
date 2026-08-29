@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L124
 name: The Big Brain/Little Brain Fallacy
-triggers: ["24 the"]
-ep_hash: sle_sha256_auto_ea8ed6db4e10f50a
+triggers: ["the big"]
+ep_hash: sle_sha256_auto_3c69b25966b1f316
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L124) {
-  MATCH_CONTEXT(Rhetorical_Pattern["24 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the big"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 24. The Big Brain/Little Brain Fallacy (also, the Führerprinzip; Mad Leader Disease): A not-uncommon but extreme
 example of the Blind Loyalty Fallacy below, in which a tyrannical boss, military commander, or religious or cult-
 leader tells followers "Don't think with your little brains (the brain in your head), but with your BIG  brain (mine)."

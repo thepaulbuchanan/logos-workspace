@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1128
 name: They're All Crooks
-triggers: ["128 theyre"]
-ep_hash: sle_sha256_auto_ca680530e78e3424
+triggers: ["theyre all"]
+ep_hash: sle_sha256_auto_ca73583fce1cb8e2
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1128) {
-  MATCH_CONTEXT(Rhetorical_Pattern["128 theyre"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["theyre all"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 128. They're All Crooks: The common contemporary fallacy of refusing to get involved in public politics because "all"
 politicians and politics are allegedly corrupt, ignoring the fact that if this is so in a democratic country it is precisely
 because decent people like you and I refuse to get involved, leaving the ﬁeld open to the "crooks" by default. An

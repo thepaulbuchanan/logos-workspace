@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1140
 name: Venue
-triggers: ["140 venue"]
-ep_hash: sle_sha256_auto_b0d669acede08eaa
+triggers: ["venue the"]
+ep_hash: sle_sha256_auto_b0d6c3e8f58c9856
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1140) {
-  MATCH_CONTEXT(Rhetorical_Pattern["140 venue"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["venue the"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 140. Venue: The ancient fallacy of Venue, a corrupt argument from kairos, falsely and arbitrarily invalidates an
 otherwise-valid argument or piece of evidence because it is supposedly offered in the wrong place, at the wrong
 moment or in an inappropriate court, medium or forum. According to PhD student Amanda Thran, "Quite often,

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L148
 name: Esoteric Knowledge
-triggers: ["48 esoteric"]
-ep_hash: sle_sha256_auto_13f94c55435a0bd3
+triggers: ["esoteric knowledge"]
+ep_hash: sle_sha256_auto_aa83683ad6539b27
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L148) {
-  MATCH_CONTEXT(Rhetorical_Pattern["48 esoteric"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["esoteric knowledge"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 48. Esoteric Knowledge (also Esoteric Wisdom; Gnosticism; Inner Truth; the Inner Sanctum; Need to Know): A fallacy
 from logos and ethos, that there is some knowledge reserved only for the Wise, the Holy or the Enlightened, (or
 those with proper Security Clearance), things that the masses cannot understand and do not deserve to know, at least

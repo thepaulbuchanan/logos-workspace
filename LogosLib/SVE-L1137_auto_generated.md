@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1137
 name: Two-sides Fallacy
-triggers: ["137 two-sides"]
-ep_hash: sle_sha256_auto_fc2a078bd7317b2
+triggers: ["two-sides fallacy"]
+ep_hash: sle_sha256_auto_5f8b0a38af00f0d3
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1137) {
-  MATCH_CONTEXT(Rhetorical_Pattern["137 two-sides"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["two-sides fallacy"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 137. Two-sides Fallacy (also, Teach the Controversy): The presentation of an issue that makes it seem to have two sides
 of equal weight or signiﬁcance, when in fact a consensus or much stronger argument supports just one side. Also
 called “false balance” or “false equivalence.” (Thanks to Teaching Tolerance for this deﬁnition!)  E.g,. "Scientists

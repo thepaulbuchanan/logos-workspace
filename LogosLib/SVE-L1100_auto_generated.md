@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1100
 name: The Pollyanna Principle
-triggers: ["100 the"]
-ep_hash: sle_sha256_auto_c99fcb7ea1108480
+triggers: ["the pollyanna"]
+ep_hash: sle_sha256_auto_fddee0d18c33d87d
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1100) {
-  MATCH_CONTEXT(Rhetorical_Pattern["100 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the pollyanna"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 100. The Pollyanna Principle (also, "The Projection Bias," "They're Just Like Us," "Singing 'Kumbaya.'"):  A traditional,
 often tragic fallacy of ethos, that of automatically (and falsely) assuming that everyone else in any given place, time
 and circumstance had or has basically the same (positive) wishes, desires, interests, concerns, ethics and moral code

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L168
 name: Just Plain Folks
-triggers: ["68 just"]
-ep_hash: sle_sha256_auto_3c69b78bd061011f
+triggers: ["just plain"]
+ep_hash: sle_sha256_auto_b477e62869c9adc5
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L168) {
-  MATCH_CONTEXT(Rhetorical_Pattern["68 just"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["just plain"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 68. Just Plain Folks (also, "Values"): This corrupt modern argument from ethos argues to a less-educated or rural
 audience that the one arguing is "just plain folks" who is a "plain talker,"  "says what s/he is thinking," "scorns
 political correctness," someone who "you don't need a dictionary to understand" and who thinks like the audience

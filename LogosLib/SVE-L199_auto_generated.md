@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L199
 name: Political Correctness
-triggers: ["99 political"]
-ep_hash: sle_sha256_auto_9900c522f11db122
+triggers: ["political correctness"]
+ep_hash: sle_sha256_auto_cfc4ee52ea0ffcfb
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L199) {
-  MATCH_CONTEXT(Rhetorical_Pattern["99 political"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["political correctness"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 99. Political Correctness ("PC"): A postmodern fallacy, a counterpart of the "Name Calling" fallacy, supposing that the
 nature of a thing or situation can be changed by simply changing its name. E.g., "Today we strike a blow for animal
 rights and against cruelty to animals by changing the name of ‘pets’ to ‘animal companions.’" Or "Never, ever play

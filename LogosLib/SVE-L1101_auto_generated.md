@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1101
 name: The Positive Thinking Fallacy
-triggers: ["101 the"]
-ep_hash: sle_sha256_auto_c99fcb888d6471e2
+triggers: ["the positive"]
+ep_hash: sle_sha256_auto_9af5fc1892458623
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1101) {
-  MATCH_CONTEXT(Rhetorical_Pattern["101 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the positive"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 101. The Positive Thinking Fallacy: An immensely popular but deluded modern fallacy of logos, that because we are
 "thinking positively" that in itself somehow biases external, objective reality in our favor even before we lift a ﬁnger
 to act. See also, Magical Thinking. Note that this particular fallacy is often part of a much wider closed-minded,

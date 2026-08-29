@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1129
 name: The "Third Person Effect"
-triggers: ["129 the"]
-ep_hash: sle_sha256_auto_c99fce66dda71036
+triggers: ["the third"]
+ep_hash: sle_sha256_auto_b0cd5b6d712301b5
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1129) {
-  MATCH_CONTEXT(Rhetorical_Pattern["129 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the third"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 129. The "Third Person Effect" (also, "Wise up!" and "They're All Liars"):  An example of the fallacy of Deliberate
 Ignorance, the arch-cynical postmodern fallacy of deliberately discounting or ignoring media information a priori,
 opting to remain in ignorance rather than "listening to the lies" of the mainstream media, the President, the "medical

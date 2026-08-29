@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L170
 name: Lying with Statistics
-triggers: ["70 lying"]
-ep_hash: sle_sha256_auto_c9a0c907c13e548e
+triggers: ["lying with"]
+ep_hash: sle_sha256_auto_b5004760e16b5203
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L170) {
-  MATCH_CONTEXT(Rhetorical_Pattern["70 lying"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["lying with"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 70. Lying with Statistics: The contemporary fallacy of misusing true ﬁgures and numbers to “prove” unrelated claims.
 (e.g. "In real terms, attending college has never been cheaper than it is now. When expressed as a percentage of the
 national debt, the cost of getting a college education is actually far less today than it was back in 1965!"). A

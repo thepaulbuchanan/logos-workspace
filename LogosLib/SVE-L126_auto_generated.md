@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L126
 name: The Big Lie Technique
-triggers: ["26 the"]
-ep_hash: sle_sha256_auto_ea8ed6dbe8299f8e
+triggers: ["the big"]
+ep_hash: sle_sha256_auto_3c69b26d3f359cd8
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L126) {
-  MATCH_CONTEXT(Rhetorical_Pattern["26 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the big"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 26. The Big Lie Technique (also the Bold Faced Lie; "Staying on Message."): The contemporary fallacy of repeating a
 lie, fallacy, slogan, talking-point, nonsense-statement or deceptive half-truth over and over in different forms
 (particularly in the media) until it becomes part of daily discourse and people accept it without further proof or

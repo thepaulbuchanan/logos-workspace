@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1134
 name: Transfer
-triggers: ["134 transfer"]
-ep_hash: sle_sha256_auto_a3c358cc6e8d9f12
+triggers: ["transfer also"]
+ep_hash: sle_sha256_auto_58334fc86e53a609
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1134) {
-  MATCH_CONTEXT(Rhetorical_Pattern["134 transfer"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["transfer also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 134. Transfer: (also, Name Dropping) A corrupt argument from ethos, falsely associating a famous or respected person,
 place or thing with an unrelated thesis or standpoint (e.g. putting a picture of the Rev. Dr. Martin Luther King Jr. on
 an advertisement for mattresses, using Genghis Khan, a Mongol who hated Chinese, as the name of a Chinese

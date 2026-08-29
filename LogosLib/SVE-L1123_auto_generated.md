@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1123
 name: The Soldiers' Honor Fallacy
-triggers: ["123 the"]
-ep_hash: sle_sha256_auto_c99fce2b53af7fea
+triggers: ["the soldiers"]
+ep_hash: sle_sha256_auto_c0ee4a3f5b94da79
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1123) {
-  MATCH_CONTEXT(Rhetorical_Pattern["123 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the soldiers"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 123. The Soldiers' Honor Fallacy: The ancient fallacy that all who wore a uniform, fought hard and followed orders are
 worthy of some special honor or glory or are even "heroes," whether they fought for freedom or fought to defend
 slavery, marched under Grant or Lee, Hitler, Stalin, Eisenhower or McArthur, fought to defend their homes, fought

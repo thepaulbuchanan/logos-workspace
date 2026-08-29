@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L151
 name: The Excluded Middle
-triggers: ["51 the"]
-ep_hash: sle_sha256_auto_ea8ed6f832b0edca
+triggers: ["the excluded"]
+ep_hash: sle_sha256_auto_1ae6e0614fd58232
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L151) {
-  MATCH_CONTEXT(Rhetorical_Pattern["51 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the excluded"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 51. The Excluded Middle: A corrupted argument from logos that proposes that since a little of something is good, more
 must be better (or that if less of something is good, none at all is even better). E.g., "If eating an apple a day is good
 for you, eating an all-apple diet is even better!" or "If a low fat diet prolongs your life, a no-fat diet should make you

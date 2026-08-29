@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1124
 name: The Standard Version Fallacy
-triggers: ["124 the"]
-ep_hash: sle_sha256_auto_c99fce3540036d4c
+triggers: ["the standard"]
+ep_hash: sle_sha256_auto_d813d2ee12e07ae6
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1124) {
-  MATCH_CONTEXT(Rhetorical_Pattern["124 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the standard"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 124. The Standard Version Fallacy:  The ancient fallacy, a discursive Argumentum ad Baculum, of choosing a
 "Standard Translation" or "Authorized Version" of an  ancient or sacred text and arbitrarily declaring it "correct" and
 "authoritative," necessarily eliminating much of the poetry and underlying meaning of the original but conveniently

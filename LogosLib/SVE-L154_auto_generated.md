@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L154
 name: Finish the Job
-triggers: ["54 finish"]
-ep_hash: sle_sha256_auto_fdafae83a76a6090
+triggers: ["finish the"]
+ep_hash: sle_sha256_auto_b3adda21723c3228
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L154) {
-  MATCH_CONTEXT(Rhetorical_Pattern["54 finish"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["finish the"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 54. Finish the Job:  The dangerous contemporary fallacy, often aimed at a lesser-educated or working class audience,
 that an action or standpoint (or the continuation of that action or standpoint) may not be questioned or discussed
 because there is "a job to be done" or ﬁnished, falsely assuming "jobs" are meaningless but never to be questioned.

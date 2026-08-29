@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L159
 name: The Half Truth
-triggers: ["59 the"]
-ep_hash: sle_sha256_auto_ea8ed6fa9b1397da
+triggers: ["the half"]
+ep_hash: sle_sha256_auto_c9a0828d8f816787
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L159) {
-  MATCH_CONTEXT(Rhetorical_Pattern["59 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the half"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 59. The Half Truth (also Card Stacking, Stacking the Deck, Incomplete Information): A corrupt argument from logos,
 the fallacy of consciously selecting, collecting and sharing only that evidence that supports one's own standpoint,
 telling the strict truth but deliberately minimizing or omitting important key details in order to falsify the larger

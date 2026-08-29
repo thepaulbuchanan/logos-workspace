@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1126
 name: The Straw Man
-triggers: ["126 the"]
-ep_hash: sle_sha256_auto_c99fce4918ab4810
+triggers: ["the straw"]
+ep_hash: sle_sha256_auto_b0ccdccb64f7ee88
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1126) {
-  MATCH_CONTEXT(Rhetorical_Pattern["126 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the straw"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 126. The Straw Man (also "The Straw Person" ""The Straw Figure"): The fallacy of setting up a phony, weak, extreme
 or ridiculous parody of an opponent's argument and then proceeding to knock it down or reduce it to absurdity with a
 rhetorical wave of the hand. E.g., "Vegetarians say animals have feelings like you and me. Ever seen a cow laugh at

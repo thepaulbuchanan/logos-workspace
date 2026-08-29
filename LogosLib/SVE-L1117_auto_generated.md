@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1117
 name: Shifting the Burden of Proof
-triggers: ["117 shifting"]
-ep_hash: sle_sha256_auto_f17c52ce0ba1780b
+triggers: ["shifting the"]
+ep_hash: sle_sha256_auto_20fb41403a2bce33
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1117) {
-  MATCH_CONTEXT(Rhetorical_Pattern["117 shifting"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["shifting the"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 117. Shifting the Burden of Proof:  A classic fallacy of logos that challenges an opponent to disprove a claim rather than
 asking the person making the claim to defend his/her own argument. E.g., "These days space-aliens are everywhere
 among us, masquerading as true humans, even right here on campus! I dare you to prove it isn't so! See?  You

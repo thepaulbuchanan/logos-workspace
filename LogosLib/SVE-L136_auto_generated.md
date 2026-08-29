@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L136
 name: Default Bias
-triggers: ["36 default"]
-ep_hash: sle_sha256_auto_b248ef797a8ea874
+triggers: ["default bias"]
+ep_hash: sle_sha256_auto_8bac7db4a928160a
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L136) {
-  MATCH_CONTEXT(Rhetorical_Pattern["36 default"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["default bias"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 36. Default Bias: (also, Normalization of Evil, "Deal with it;" "If it ain't broke, don't ﬁx it;" Acquiescence; "Making
 one's peace with the situation;" "Get used to it;" "Whatever is, is right;"  "It is what it is;" "Let it be, let it be;" "This
 is the best of all possible worlds [or, the only possible world];" "Better the devil you know than the devil you

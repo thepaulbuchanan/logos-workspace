@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L187
 name: Olfactory Rhetoric
-triggers: ["87 olfactory"]
-ep_hash: sle_sha256_auto_6e20a255c07c984e
+triggers: ["olfactory rhetoric"]
+ep_hash: sle_sha256_auto_6d8a4cbe533adff
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L187) {
-  MATCH_CONTEXT(Rhetorical_Pattern["87 olfactory"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["olfactory rhetoric"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 87. Olfactory Rhetoric (also, "The Nose Knows"): A vicious, zoological-level fallacy of pathos in which opponents are
 marginalized, dehumanized or hated primarily based on their supposed odor, lack of personal cleanliness, imagined
 diseases or ﬁlth. E. g.,  "Those demonstrators are demanding something or another but I'll only talk to them if ﬁrst

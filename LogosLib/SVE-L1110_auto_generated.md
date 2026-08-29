@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1110
 name: The Romantic Rebel
-triggers: ["110 the"]
-ep_hash: sle_sha256_auto_c99fccc617e21e22
+triggers: ["the romantic"]
+ep_hash: sle_sha256_auto_7fa711d648178b0d
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1110) {
-  MATCH_CONTEXT(Rhetorical_Pattern["110 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the romantic"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 110. The Romantic Rebel (also, the Truthdig / Truthout Fallacy; the Brave Heretic; Conspiracy theories; the Iconoclastic
 Fallacy): The contemporary fallacy of claiming Truth or validity for one's standpoint solely or primarily because one
 is supposedly standing up heroically to the dominant "orthodoxy," the current Standard Model, conventional wisdom

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L164
 name: The Identity Fallacy
-triggers: ["64 the"]
-ep_hash: sle_sha256_auto_ea8ed703086ceb12
+triggers: ["the identity"]
+ep_hash: sle_sha256_auto_5c2e18e22b7b79f2
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L164) {
-  MATCH_CONTEXT(Rhetorical_Pattern["64 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the identity"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 64. The Identity Fallacy (also Identity Politics; "Die away, ye old forms and logic!"): A corrupt postmodern argument
 from ethos, a variant on the Argumentum ad Hominem in which the validity of one's logic, evidence, experience or
 arguments depends not on their own strength but rather on whether the one arguing is a member of a given social

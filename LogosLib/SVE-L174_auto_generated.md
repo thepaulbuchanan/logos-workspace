@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L174
 name: Mind-reading
-triggers: ["74 mind-reading"]
-ep_hash: sle_sha256_auto_78af9dcc0963a242
+triggers: ["mind-reading also"]
+ep_hash: sle_sha256_auto_ce0bcd31da144fe6
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L174) {
-  MATCH_CONTEXT(Rhetorical_Pattern["74 mind-reading"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["mind-reading also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 74. Mind-reading (Also, "The Fallacy of Speculation;" "I can read you like a book"): An ancient fallacy, a corruption of
 stasis theory, speculating about someone else's thoughts, emotions, motivations and "body language" and then
 claiming to understand these clearly, sometimes more accurately than the person in question knows themselves. The

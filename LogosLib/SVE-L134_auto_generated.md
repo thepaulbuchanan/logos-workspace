@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L134
 name: Conﬁrmation Bias
-triggers: ["34 conﬁrmation"]
-ep_hash: sle_sha256_auto_db1a212b307f9981
+triggers: ["conﬁrmation bias"]
+ep_hash: sle_sha256_auto_bf8d3255f140e9f9
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L134) {
-  MATCH_CONTEXT(Rhetorical_Pattern["34 conﬁrmation"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["conﬁrmation bias"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 34. Conﬁrmation Bias: A fallacy of logos, the common tendency to notice, search out, select and share evidence that
 conﬁrms one's own standpoint and beliefs, as opposed to contrary evidence. This fallacy is how "fortune tellers"
 work--If I am told I will meet a "tall, dark stranger" I will be on the lookout for a tall, dark stranger, and when I meet

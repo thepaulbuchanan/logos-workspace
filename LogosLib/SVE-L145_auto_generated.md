@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L145
 name: Either/Or Reasoning
-triggers: ["45 either/or"]
-ep_hash: sle_sha256_auto_4da1e9b05aba4ca0
+triggers: ["either/or reasoning"]
+ep_hash: sle_sha256_auto_8a2e2d2c1e9e587d
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L145) {
-  MATCH_CONTEXT(Rhetorical_Pattern["45 either/or"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["either/or reasoning"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 45. Either/Or Reasoning: (also False Dilemma, All or Nothing Thinking; False Dichotomy, Black/White Fallacy, False
 Binary): A fallacy of logos that falsely offers only two possible options even though a broad range of possible
 alternatives, variations and combinations are always readily available. E.g., "Either you are 100% Simon

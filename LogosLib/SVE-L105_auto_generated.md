@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L105
 name: The Affective Fallacy
-triggers: ["5 the"]
-ep_hash: sle_sha256_auto_452b1dc7fe4fd8d8
+triggers: ["the affective"]
+ep_hash: sle_sha256_auto_15c951df6dec88f0
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L105) {
-  MATCH_CONTEXT(Rhetorical_Pattern["5 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the affective"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 5. The Affective Fallacy (also The Romantic Fallacy; Emotion over Reﬂection; "Follow Your Heart"): An extremely
 common modern fallacy of Pathos, that one's emotions, urges or "feelings" are innate and in every case self-
 validating, autonomous, and above any human intent or act of will (one's own or others'), and are thus immune to

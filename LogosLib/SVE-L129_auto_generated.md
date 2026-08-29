@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L129
 name: Brainwashing
-triggers: ["29 brainwashing"]
-ep_hash: sle_sha256_auto_9049aaa87d47a870
+triggers: ["brainwashing also"]
+ep_hash: sle_sha256_auto_7620680129808774
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L129) {
-  MATCH_CONTEXT(Rhetorical_Pattern["29 brainwashing"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["brainwashing also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 29. Brainwashing (also, Propaganda, "Radicalization."): The Cold War-era fantasy that an enemy can instantly win over
 or "radicalize" an unsuspecting audience with their vile but somehow unspeakably persuasive "propaganda,"  e.g.,
 "Don't look at that website! They're trying to brainwash you with their propaganda!" Historically, "brainwashing"

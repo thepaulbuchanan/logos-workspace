@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L196
 name: The Plain Truth Fallacy;
-triggers: ["96 the"]
-ep_hash: sle_sha256_auto_ea8ed7216e4a8e1c
+triggers: ["the plain"]
+ep_hash: sle_sha256_auto_fdc6197789981841
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L196) {
-  MATCH_CONTEXT(Rhetorical_Pattern["96 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the plain"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 96. The Plain Truth Fallacy; (also, the Simple Truth fallacy, Salience Bias, the KISS Principle [Keep it Short and
 Simple / Keep it Simple, Stupid], the Monocausal Fallacy; the Executive Summary): A fallacy of logos favoring
 familiar, singular, summarized or easily comprehensible data, examples, explanations and evidence over those that

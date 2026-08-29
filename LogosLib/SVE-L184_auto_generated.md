@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L184
 name: Non-recognition
-triggers: ["84 non-recognition"]
-ep_hash: sle_sha256_auto_d63ac822fa94ce8e
+triggers: ["non-recognition a"]
+ep_hash: sle_sha256_auto_a5c23fe65fb674a3
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L184) {
-  MATCH_CONTEXT(Rhetorical_Pattern["84 non-recognition"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["non-recognition a"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 84. Non-recognition: A deluded fallacy in which one deliberately chooses not to publicly "recognize"  ground truth,
 usually on the theory that this would somehow reward evil-doers if we recognize their deeds as real or
 consequential. Often the underlying theory is that the situation is "temporary" and will soon be reversed. E.g., In the

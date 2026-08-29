@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1105
 name: Prosopology
-triggers: ["105 prosopology"]
-ep_hash: sle_sha256_auto_f05ae48712afafb6
+triggers: ["prosopology also"]
+ep_hash: sle_sha256_auto_d4a000889c8e1dcf
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1105) {
-  MATCH_CONTEXT(Rhetorical_Pattern["105 prosopology"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["prosopology also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 105. Prosopology (also, Prosopography, Reciting the Litany; "Tell Me, What Were Their Names?"; Reading the Roll of
 Martyrs): An ancient fallacy of pathos and ethos, publicly reading out loud, singing, or inscribing at length a list of
 names (most or all of which will be unknown to the reader or audience), sometimes in a negative sense, to underline

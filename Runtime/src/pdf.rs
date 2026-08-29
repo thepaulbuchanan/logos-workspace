@@ -14,6 +14,7 @@ pub struct ExtractedFallacyNode {
 pub struct PdfExtractorCore {
     header_regex: Regex,
     trigger_cleaner: Regex,
+    number_stripper: Regex,
 }
 
 impl PdfExtractorCore {
@@ -21,6 +22,7 @@ impl PdfExtractorCore {
         PdfExtractorCore {
             header_regex: Regex::new(r"^(?P<num>\d+)\.\s+(?P<title>[^:\n\(\]]+)").unwrap(),
             trigger_cleaner: Regex::new(r#"[."';:,\(\)!\?]"#).unwrap(),
+            number_stripper: Regex::new(r"^\d+\.?\s*").unwrap(),
         }
     }
 
@@ -54,15 +56,18 @@ impl PdfExtractorCore {
                 
                 let lemma_id = format!("SVE-L1{:02}", number_id.parse::<usize>().unwrap_or(0));
                 
-                let cleaned_text = self.trigger_cleaner.replace_all(block, "");
+                let pure_body = self.number_stripper.replace(block, "");
+                let cleaned_text = self.trigger_cleaner.replace_all(&pure_body, "");
                 let words: Vec<&str> = cleaned_text.split_whitespace().collect();
+                
                 let mut candidate_triggers = Vec::new();
                 
-                // FIX: Correctly extract indices sequentially from the string slice array vector
+                // FIX: Properly convert slice elements to strings before downcasing
                 if words.len() >= 2 {
-                    candidate_triggers.push(format!("{} {}", words[0], words[1]).to_lowercase());
+                    let first_key = format!("{} {}", words[0].to_string().to_lowercase(), words[1].to_string().to_lowercase());
+                    candidate_triggers.push(first_key);
                 } else if !words.is_empty() {
-                    candidate_triggers.push(words[0].to_lowercase());
+                    candidate_triggers.push(words[0].to_string().to_lowercase());
                 }
 
                 detected_nodes.push(ExtractedFallacyNode {

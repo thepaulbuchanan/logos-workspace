@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L160
 name: Hero-Busting
-triggers: ["60 hero-busting"]
-ep_hash: sle_sha256_auto_144be79713b98940
+triggers: ["hero-busting also"]
+ep_hash: sle_sha256_auto_7cfbae9151c652e9
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L160) {
-  MATCH_CONTEXT(Rhetorical_Pattern["60 hero-busting"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["hero-busting also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 60. Hero-Busting (also, "The Perfect is the Enemy of the Good"): A postmodern fallacy of ethos under which, since
 nothing and nobody in this world is perfect there are not and have never been any heroes: Washington and Jefferson
 held slaves, Lincoln was (by our contemporary standards) a racist, Karl Marx sexually exploited his family's own

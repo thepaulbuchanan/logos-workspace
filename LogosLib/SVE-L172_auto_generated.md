@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L172
 name: Mala Fides
-triggers: ["72 mala"]
-ep_hash: sle_sha256_auto_3c69b897fa4f0cea
+triggers: ["mala fides"]
+ep_hash: sle_sha256_auto_b50b34ea3fe1c88c
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L172) {
-  MATCH_CONTEXT(Rhetorical_Pattern["72 mala"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["mala fides"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 72. Mala Fides (Arguing in Bad Faith; also Sophism):  Using an argument that the arguer himself or herself knows is
 not valid.  E.g., An unbeliever attacking believers by throwing verses from their own Holy Scriptures at them, or a
 lawyer arguing for the innocence of someone whom s/he knows full well to be guilty. This latter is a common

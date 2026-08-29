@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L146
 name: Equivocation
-triggers: ["46 equivocation"]
-ep_hash: sle_sha256_auto_3e1fe0b46f22d0c8
+triggers: ["equivocation the"]
+ep_hash: sle_sha256_auto_e3fdc432ee48ed3f
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L146) {
-  MATCH_CONTEXT(Rhetorical_Pattern["46 equivocation"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["equivocation the"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 46. Equivocation: The fallacy of deliberately failing to deﬁne one's terms, or knowingly and deliberately using words in
 a different sense than the one the audience will understand. (E.g., President Bill Clinton stating that he did not have
 sexual relations with "that woman," meaning no sexual penetration, knowing full well that the audience will

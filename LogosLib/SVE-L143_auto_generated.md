@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L143
 name: The Dunning-Kruger Effect
-triggers: ["43 the"]
-ep_hash: sle_sha256_auto_ea8ed6eede329acc
+triggers: ["the dunning-kruger"]
+ep_hash: sle_sha256_auto_d57240ed75b49ed5
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L143) {
-  MATCH_CONTEXT(Rhetorical_Pattern["43 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the dunning-kruger"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 43. The Dunning-Kruger Effect: A cognitive bias that leads people of limited skills or knowledge to mistakenly
 believe their abilities are greater than they actually are. (Thanks to Teaching Tolerance for this deﬁnition!)  E.g., "I
 know Washington was the Father of His Country and never told a lie, Pocahontas was the ﬁrst Native American,

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1112
 name: Scapegoating
-triggers: ["112 scapegoating"]
-ep_hash: sle_sha256_auto_4807c8fecbf45e3a
+triggers: ["scapegoating also"]
+ep_hash: sle_sha256_auto_ab00dd97e929dd75
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1112) {
-  MATCH_CONTEXT(Rhetorical_Pattern["112 scapegoating"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["scapegoating also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 112. Scapegoating (also, Blamecasting): The ancient fallacy that whenever something goes wrong there's always
 someone other than oneself to blame. Although sometimes this fallacy is a practical denial of randomness or chance
 itself, today it is more often a mere insurance-driven business decision ("I don't care if it was an accident! Somebody

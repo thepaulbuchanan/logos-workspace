@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L180
 name: Name-Calling
-triggers: ["80 name-calling"]
-ep_hash: sle_sha256_auto_9b92dbf60cfc45f5
+triggers: ["name-calling a"]
+ep_hash: sle_sha256_auto_5b58ef10a96c634e
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L180) {
-  MATCH_CONTEXT(Rhetorical_Pattern["80 name-calling"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["name-calling a"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 80. Name-Calling: A variety of the "Ad Hominem" argument. The dangerous fallacy that, simply because of who one is
 or is alleged to be, any and all arguments, disagreements or objections against one's standpoint or actions are
 automatically racist, sexist, anti-Semitic, bigoted, discriminatory or hateful. E.g., "My stand on abortion is the only

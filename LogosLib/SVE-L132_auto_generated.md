@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L132
 name: Circular Reasoning
-triggers: ["32 circular"]
-ep_hash: sle_sha256_auto_f897f6ab5c35319c
+triggers: ["circular reasoning"]
+ep_hash: sle_sha256_auto_e36aa10b5c2b20bd
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L132) {
-  MATCH_CONTEXT(Rhetorical_Pattern["32 circular"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["circular reasoning"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 32. Circular Reasoning (also, The Vicious Circle; Catch 22, Begging the Question, Circulus in Probando): A fallacy of
 logos where A is because of B, and B is because of A, e.g., "You can't get a job without experience, and you can't get
 experience without a job." Also refers to falsely arguing that something is true by repeating the same statement in

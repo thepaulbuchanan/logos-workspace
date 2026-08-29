@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L150
 name: The Etymological Fallacy
-triggers: ["50 the"]
-ep_hash: sle_sha256_auto_ea8ed6f7e5a49888
+triggers: ["the etymological"]
+ep_hash: sle_sha256_auto_2f3bf7ec81738c6c
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L150) {
-  MATCH_CONTEXT(Rhetorical_Pattern["50 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the etymological"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 50. The Etymological Fallacy: (also, "The Underlying Meaning"): A fallacy of logos, drawing false conclusions from
 the (most often long-forgotten) linguistic origins of a current word, or the alleged meanings or associations of that
 word in another language. E.g., "As used in physics, electronics and electrical engineering the term 'hysteresis' is

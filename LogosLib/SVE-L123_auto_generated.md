@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L123
 name: The Bandwagon Fallacy
-triggers: ["23 the"]
-ep_hash: sle_sha256_auto_ea8ed6db01049fc8
+triggers: ["the bandwagon"]
+ep_hash: sle_sha256_auto_b70e8c67c0a6cb4
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L123) {
-  MATCH_CONTEXT(Rhetorical_Pattern["23 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the bandwagon"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 23. The Bandwagon Fallacy (also, Argument from Common Sense, Argumentum ad Populum): The fallacy of arguing
 that because "everyone," "the people," or "the majority" (or someone in power who has widespread backing)
 supposedly thinks or does something, it must therefore be true and right. E.g., "Whether there actually is large scale

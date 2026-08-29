@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L112
 name: The Appeal to Tradition
-triggers: ["12 the"]
-ep_hash: sle_sha256_auto_ea8ed6d0c5614d04
+triggers: ["the appeal"]
+ep_hash: sle_sha256_auto_b0d70654fce08854
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L112) {
-  MATCH_CONTEXT(Rhetorical_Pattern["12 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the appeal"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 12. The Appeal to Tradition: (also, Conservative Bias; Back in Those Good Times, "The Good Old Days"): The
 ancient fallacy that a standpoint, situation or action is right, proper and correct simply because it has "always" been
 that way, because people have "always" thought that way, or because it was that way long ago (most often meaning

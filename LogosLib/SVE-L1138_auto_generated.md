@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1138
 name: Two Truths
-triggers: ["138 two"]
-ep_hash: sle_sha256_auto_c99fcfa46824be6f
+triggers: ["two truths"]
+ep_hash: sle_sha256_auto_cb26fb7f4fb2635d
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1138) {
-  MATCH_CONTEXT(Rhetorical_Pattern["138 two"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["two truths"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 138. Two Truths (also, Compartmentalization; Epistemically Closed Systems; Alternative Truth): A very corrupt and
 dangerous fallacy of logos and ethos, ﬁrst formally described in medieval times but still common today, holding that
 there exists one "truth" in one given environment (e.g., in science, work or school) and simultaneously a different,

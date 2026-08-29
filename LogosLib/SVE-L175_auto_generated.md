@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L175
 name: Moral Licensing
-triggers: ["75 moral"]
-ep_hash: sle_sha256_auto_c9a0cf6e889c7ab0
+triggers: ["moral licensing"]
+ep_hash: sle_sha256_auto_38ae6d5625f91f20
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L175) {
-  MATCH_CONTEXT(Rhetorical_Pattern["75 moral"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["moral licensing"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 75. Moral Licensing: The contemporary ethical fallacy that one's consistently moral life, good behavior or recent
 extreme suffering or sacriﬁce earns him/her the right to commit an immoral act without repercussions, consequences
 or punishment. E.g., "I've been good all year, so one bad won't matter," or  "After what I've been through, God

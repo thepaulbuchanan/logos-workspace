@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1125
 name: Star Power
-triggers: ["125 star"]
-ep_hash: sle_sha256_auto_fd999624b7425707
+triggers: ["star power"]
+ep_hash: sle_sha256_auto_ca62ea55259e0fdc
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1125) {
-  MATCH_CONTEXT(Rhetorical_Pattern["125 star"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["star power"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 125. Star Power (also Testimonial, Questionable Authority, Faulty Use of Authority, Falacia ad Vericundiam; Eminence-
 based Practice): In academia and medicine, a corrupt argument from ethos in which arguments, standpoints and
 themes of professional discourse are granted fame and validity or condemned to obscurity solely by whoever may be

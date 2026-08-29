@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1120
 name: The Simpleton's Fallacy
-triggers: ["120 the"]
-ep_hash: sle_sha256_auto_c99fce0d8eb3b7c4
+triggers: ["the simpletons"]
+ep_hash: sle_sha256_auto_51aa94297e71ab9f
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1120) {
-  MATCH_CONTEXT(Rhetorical_Pattern["120 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the simpletons"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 120. The Simpleton's Fallacy:  (Or, The "Good Simpleton" Fallacy): A corrupt fallacy of logos, described in an undated
 quote from science writer Isaac Asimov as "The false notion that democracy means that 'my ignorance is just as good
 as your knowledge.'" The name of this fallacy is borrowed from Walter M. Miller Jr.'s classic (1960) post-

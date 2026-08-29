@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L186
 name: Nothing New Under the Sun
-triggers: ["86 nothing"]
-ep_hash: sle_sha256_auto_b5cb916e9d9f41b0
+triggers: ["nothing new"]
+ep_hash: sle_sha256_auto_706d647e2ca39a8c
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L186) {
-  MATCH_CONTEXT(Rhetorical_Pattern["86 nothing"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["nothing new"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 86. Nothing New Under the Sun (also, Uniformitarianism, “Seen it all before;” "Surprise, surprise;" "Plus ça change,
 plus c'est la même chose."):  Fairly rare in contemporary discourse, this deeply cynical fallacy, a corruption of the
 argument from logos, falsely proposes that there is not and will never be any real novelty in this world. Any

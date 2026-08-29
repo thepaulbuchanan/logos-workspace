@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L157
 name: Gaslighting
-triggers: ["57 gaslighting"]
-ep_hash: sle_sha256_auto_a13ab992647c55a6
+triggers: ["gaslighting a"]
+ep_hash: sle_sha256_auto_2d527d52820c841b
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L157) {
-  MATCH_CONTEXT(Rhetorical_Pattern["57 gaslighting"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["gaslighting a"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 57. Gaslighting: A recently-prominent, vicious fallacy of logic, denying or invalidating a person's own knowledge and
 experiences by deliberately twisting or distorting known facts, memories, scenes, events and evidence in order to
 disorient a vulnerable opponent and to make him or her doubt his/her sanity. E.g., "Who are you going to believe? 

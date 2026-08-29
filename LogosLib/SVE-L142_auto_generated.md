@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L142
 name: The "Draw Your Own Conclusion" Fallacy
-triggers: ["42 the"]
-ep_hash: sle_sha256_auto_ea8ed6ee9126458a
+triggers: ["the draw"]
+ep_hash: sle_sha256_auto_c9a04f635c0dd4d2
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L142) {
-  MATCH_CONTEXT(Rhetorical_Pattern["42 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the draw"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 42. The "Draw Your Own Conclusion" Fallacy (also the Non-argument Argument; Let the Facts Speak for
 Themselves). In this fallacy of logos an otherwise uninformed audience is presented with carefully selected and
 groomed, "shocking facts" and then prompted to immediately "draw their own conclusions." E.g., "Crime rates are

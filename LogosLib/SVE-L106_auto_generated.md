@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L106
 name: Alphabet Soup
-triggers: ["6 alphabet"]
-ep_hash: sle_sha256_auto_b02ea5296f781efa
+triggers: ["alphabet soup"]
+ep_hash: sle_sha256_auto_5cecc4178720130b
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L106) {
-  MATCH_CONTEXT(Rhetorical_Pattern["6 alphabet"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["alphabet soup"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 6. Alphabet Soup: A corrupt modern implicit fallacy from ethos in which a person inappropriately overuses acronyms,
 abbreviations, form numbers and arcane insider "shop talk" primarily to prove to an audience that s/he "speaks their
 language" and is "one of them" and to shut out, confuse or impress outsiders. E.g., "It's not uncommon for a K-12

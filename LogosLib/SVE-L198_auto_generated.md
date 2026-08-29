@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L198
 name: Playing on Emotion
-triggers: ["98 playing"]
-ep_hash: sle_sha256_auto_b68a2fe857f5fd33
+triggers: ["playing on"]
+ep_hash: sle_sha256_auto_b693868e8ae5fedf
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L198) {
-  MATCH_CONTEXT(Rhetorical_Pattern["98 playing"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["playing on"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 98. Playing on Emotion (also, the Sob Story; the Pathetic Fallacy; the "Bleeding Heart" fallacy, the Drama Queen /
 Drama King Fallacy): The classic fallacy of pure argument from pathos, ignoring facts and evoking emotion alone.
 E.g., “If you don’t agree that witchcraft is a major problem just shut up, close your eyes for a moment and picture in

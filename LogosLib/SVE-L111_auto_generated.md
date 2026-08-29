@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L111
 name: The Appeal to Pity
-triggers: ["11 the"]
-ep_hash: sle_sha256_auto_ea8ed6d07854f7c2
+triggers: ["the appeal"]
+ep_hash: sle_sha256_auto_b0d1955e7783d313
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L111) {
-  MATCH_CONTEXT(Rhetorical_Pattern["11 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the appeal"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 11. The Appeal to Pity : (also, "Argumentum ad Miserecordiam"): The fallacy of urging an audience to “root for the
 underdog” regardless of the issues at hand. A classic example is, “Those poor, cute little squeaky mice are being
 gobbled up by mean, nasty cats ten times their size!” A contemporary example might  be America's uncritical

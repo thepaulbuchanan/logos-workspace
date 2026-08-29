@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1108
 name: Reductionism
-triggers: ["108 reductionism"]
-ep_hash: sle_sha256_auto_5116ff9d3eb3ef65
+triggers: ["reductionism also"]
+ep_hash: sle_sha256_auto_6687e6432e78efdb
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1108) {
-  MATCH_CONTEXT(Rhetorical_Pattern["108 reductionism"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["reductionism also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 108. Reductionism: (also, Oversimplifying, Sloganeering): The fallacy of deceiving an audience by giving simple
 answers or bumper-sticker slogans in response to complex questions, especially when appealing to less educated or
 unsophisticated audiences. E.g., "If the glove doesn’t ﬁt, you must vote to acquit." Or, "Vote for Snith. He'll bring

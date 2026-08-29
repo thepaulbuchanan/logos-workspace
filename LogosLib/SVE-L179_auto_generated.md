@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L179
 name: MYOB
-triggers: ["79 myob"]
-ep_hash: sle_sha256_auto_3c69b8dd807061f4
+triggers: ["myob mind"]
+ep_hash: sle_sha256_auto_fdbbade4a20a4ccc
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L179) {
-  MATCH_CONTEXT(Rhetorical_Pattern["79 myob"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["myob mind"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 79. MYOB (Mind Your Own Business;  also You're Not the Boss of Me; "None of yer beeswax," "So What?", The
 Appeal to Privacy): The contemporary fallacy of arbitrarily prohibiting or terminating any discussion of one's own
 standpoints or behavior, no matter how absurd, dangerous, evil or offensive, by drawing a phony curtain of privacy

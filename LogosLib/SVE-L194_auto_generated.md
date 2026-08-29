@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L194
 name: Paternalism
-triggers: ["94 paternalism"]
-ep_hash: sle_sha256_auto_17349b271ded9d57
+triggers: ["paternalism a"]
+ep_hash: sle_sha256_auto_e4ce6aa1f182556b
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L194) {
-  MATCH_CONTEXT(Rhetorical_Pattern["94 paternalism"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["paternalism a"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 94. Paternalism: A serious fallacy of ethos, arbitrarily tut-tutting, dismissing or ignoring another's arguments or
 concerns as "childish" or "immature;" taking a condescending attitude of superiority toward opposing standpoints or
 toward opponents themselves. E.g., "Your argument against the war is so infantile. Try approaching the issue like an

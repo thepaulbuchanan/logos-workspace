@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L107
 name: Alternative Truth
-triggers: ["7 alternative"]
-ep_hash: sle_sha256_auto_56fb69b2bd9559da
+triggers: ["alternative truth"]
+ep_hash: sle_sha256_auto_7071db3be92ebb1a
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L107) {
-  MATCH_CONTEXT(Rhetorical_Pattern["7 alternative"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["alternative truth"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 7. Alternative Truth (also, Alt Facts; Counterknowledge; Disinformation; Information Pollution): A newly-famous
 contemporary fallacy of logos rooted in postmodernism, denying the resilience of facts or truth as such. Writer
 Hannah Arendt, in her The Origins of Totalitarianism (1951) warned that "The ideal subject of totalitarian rule is not

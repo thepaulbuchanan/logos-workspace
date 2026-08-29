@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L169
 name: The Law of Unintended Consequences
-triggers: ["69 the"]
-ep_hash: sle_sha256_auto_ea8ed70489aa955c
+triggers: ["the law"]
+ep_hash: sle_sha256_auto_3c69b7a8d5ed0911
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L169) {
-  MATCH_CONTEXT(Rhetorical_Pattern["69 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the law"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 69. The Law of Unintended Consequences (also, "Every Revolution Ends up Eating its own Young:" Grit; Resilience
 Doctrine): In this very dangerous, archly pessimistic postmodern fallacy the bogus "Law of Unintended
 Consequences," once a semi-humorous satirical corollary of "Murphy's Law," is elevated to to the status of an iron

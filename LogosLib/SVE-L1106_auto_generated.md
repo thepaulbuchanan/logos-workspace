@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1106
 name: The Red Herring
-triggers: ["106 the"]
-ep_hash: sle_sha256_auto_c99fcbba2b0814cc
+triggers: ["the red"]
+ep_hash: sle_sha256_auto_c99fcbced6795550
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1106) {
-  MATCH_CONTEXT(Rhetorical_Pattern["106 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the red"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 106. The Red Herring (also, Distraction): An irrelevant argument, attempting to mislead and distract an audience by
 bringing up an unrelated but emotionally loaded issue. E.g., "In regard to my several bankruptcies and recent
 indictment for corruption let’s be straight up about what’s really important: Terrorism!  Just look at what happened

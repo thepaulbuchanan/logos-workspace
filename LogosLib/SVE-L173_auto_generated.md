@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L173
 name: Measurability
-triggers: ["73 measurability"]
-ep_hash: sle_sha256_auto_49fd143a449a7c4c
+triggers: ["measurability a"]
+ep_hash: sle_sha256_auto_4dbd93e94b3085c3
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L173) {
-  MATCH_CONTEXT(Rhetorical_Pattern["73 measurability"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["measurability a"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 73. Measurability: A corrupt argument from logos and ethos (that of science and mathematics), the modern Fallacy of
 Measurability proposes that if something cannot be measured, quantiﬁed and replicated it does not exist, or is
 "nothing but anecdotal, touchy-feely stuff" unworthy of serious consideration, i.e., mere gossip or subjective

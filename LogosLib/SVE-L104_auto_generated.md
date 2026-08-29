@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L104
 name: The Ad Hominem Argument
-triggers: ["4 the"]
-ep_hash: sle_sha256_auto_452b1dc7fbe897b6
+triggers: ["the ad"]
+ep_hash: sle_sha256_auto_ea8ed6c813532ee7
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L104) {
-  MATCH_CONTEXT(Rhetorical_Pattern["4 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the ad"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 4. The Ad Hominem Argument (also, "Personal attack," "Poisoning the well"): The fallacy of attempting to refute an
 argument by attacking the opposition’s intelligence, morals, education, professional qualiﬁcations, personal
 character or reputation, using a corrupted negative argument from ethos. E.g., "That so-called judge;" or "He's so

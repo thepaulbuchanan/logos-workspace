@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L110
 name: The Appeal to Nature
-triggers: ["10 the"]
-ep_hash: sle_sha256_auto_ea8ed6d02b48a280
+triggers: ["the appeal"]
+ep_hash: sle_sha256_auto_b0cc2467f2271dd2
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L110) {
-  MATCH_CONTEXT(Rhetorical_Pattern["10 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the appeal"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 10. The Appeal to Nature (also, Biologizing; The Green Fallacy): The contemporary romantic fallacy of ethos (that of
 "Mother Nature") that if something is "natural" it has to be good, healthy and beneﬁcial.  E.g., "Our premium herb
 tea is lovingly brewed from the ﬁnest freshly-picked and delicately dried natural T. Radicans leaves. Those who

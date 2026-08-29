@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L190
 name: Overexplanation
-triggers: ["90 overexplanation"]
-ep_hash: sle_sha256_auto_8c2c76782d7c73ce
+triggers: ["overexplanation a"]
+ep_hash: sle_sha256_auto_a5a1b127ac6851a6
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L190) {
-  MATCH_CONTEXT(Rhetorical_Pattern["90 overexplanation"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["overexplanation a"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 90. Overexplanation: A fallacy of logos stemming from the real paradox that beyond a certain point, more explanation,
 instructions, data, discussion, evidence or proof inevitably results in less, not more, understanding. Contemporary
 urban mythology holds that this fallacy is typically male ("Mansplaining"), while barely half a century ago the

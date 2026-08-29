@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L135
 name: Cost Bias
-triggers: ["35 cost"]
-ep_hash: sle_sha256_auto_3c69b396c0340f26
+triggers: ["cost bias"]
+ep_hash: sle_sha256_auto_fda5340612de3cfd
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L135) {
-  MATCH_CONTEXT(Rhetorical_Pattern["35 cost"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["cost bias"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 35. Cost Bias: A fallacy of ethos (that of a product), the fact that something expensive (either in terms of money, or
 something that is "hard fought" or "hard won" or for which one "paid dearly") is generally valued more highly than
 something obtained free or cheaply, regardless of the item's real quality, utility or true value to the purchaser. E. g.,

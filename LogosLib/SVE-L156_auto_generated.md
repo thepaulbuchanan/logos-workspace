@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L156
 name: The Fundamental Attribution Error
-triggers: ["56 the"]
-ep_hash: sle_sha256_auto_ea8ed6f9b3ee9814
+triggers: ["the fundamental"]
+ep_hash: sle_sha256_auto_f00b11f86a23c4f8
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L156) {
-  MATCH_CONTEXT(Rhetorical_Pattern["56 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the fundamental"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 56. The Fundamental Attribution Error (also, Self Justiﬁcation): A corrupt argument from ethos, this fallacy occurs
 as a result of observing and comparing behavior. "You assume that the bad behavior of others is caused by character
 ﬂaws and foul dispositions while your behavior is explained by the environment.  So, for example, I get up in the

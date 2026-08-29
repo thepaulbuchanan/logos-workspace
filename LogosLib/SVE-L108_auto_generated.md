@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L108
 name: The Appeal to Closure
-triggers: ["8 the"]
-ep_hash: sle_sha256_auto_452b1dc805859c3e
+triggers: ["the appeal"]
+ep_hash: sle_sha256_auto_b0441c54ec196a79
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L108) {
-  MATCH_CONTEXT(Rhetorical_Pattern["8 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the appeal"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 8. The Appeal to Closure: The contemporary fallacy that an argument, standpoint, action or conclusion no matter how
 questionable must be accepted as ﬁnal or else the point will remain unsettled, which is unthinkable because those
 affected will be denied "closure." This fallacy falsely reiﬁes a specialized term (closure) from Gestalt Psychology

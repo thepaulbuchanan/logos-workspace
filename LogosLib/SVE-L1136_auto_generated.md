@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1136
 name: Tu Quoque
-triggers: ["136 tu"]
-ep_hash: sle_sha256_auto_3c69b0f4dd8f6bba
+triggers: ["tu quoque"]
+ep_hash: sle_sha256_auto_b0d24e2ee74d5f80
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1136) {
-  MATCH_CONTEXT(Rhetorical_Pattern["136 tu"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["tu quoque"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 136. Tu Quoque ("You Do it Too!"; also, Two Wrongs Make a Right): A corrupt argument from ethos, the fallacy of
 defending a shaky or false standpoint or excusing one's own bad action by pointing out that one's opponent's acts,
 ideology or personal character are also open to question, or are perhaps even worse than one's own. E.g., "Sure, we

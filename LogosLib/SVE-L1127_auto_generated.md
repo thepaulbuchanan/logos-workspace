@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1127
 name: The Taboo
-triggers: ["127 the"]
-ep_hash: sle_sha256_auto_c99fce5304ff3572
+triggers: ["the taboo"]
+ep_hash: sle_sha256_auto_b0cd07016909eaad
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1127) {
-  MATCH_CONTEXT(Rhetorical_Pattern["127 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the taboo"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 127. The Taboo (also, Dogmatism):: The ancient fallacy of unilaterally declaring certain "bedrock" arguments,
 assumptions, dogmas, standpoints or actions "sacrosanct" and not open to discussion, or arbitrarily taking some
 emotional tones, logical standpoints, doctrines or options "off the table" beforehand. (E.g., " "No, let's not discuss

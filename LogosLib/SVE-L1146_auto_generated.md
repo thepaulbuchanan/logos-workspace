@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1146
 name: Zero Tolerance
-triggers: ["146 zero"]
-ep_hash: sle_sha256_auto_fd99ebd8d0212573
+triggers: ["zero tolerance"]
+ep_hash: sle_sha256_auto_5dedd19ccaf7a975
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1146) {
-  MATCH_CONTEXT(Rhetorical_Pattern["146 zero"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["zero tolerance"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 146. Zero Tolerance (also, Zero Risk Bias, Broken Windows Policing, Disproportionate Response; Even One is Too
 Many; Exemplary Punishment; Judenrein): The contemporary fallacy of declaring an "emergency" and promising to
 disregard justice and due process and devote unlimited resources (and occasionally, unlimited cruelty) to stamp out a

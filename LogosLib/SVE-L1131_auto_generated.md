@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1131
 name: Throwing Good Money After Bad
-triggers: ["131 throwing"]
-ep_hash: sle_sha256_auto_5e52401f9a467a39
+triggers: ["throwing good"]
+ep_hash: sle_sha256_auto_5e0886cde421eacd
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1131) {
-  MATCH_CONTEXT(Rhetorical_Pattern["131 throwing"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["throwing good"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 131. Throwing Good Money After Bad (also, "Sunk Cost Fallacy"): In his excellent book, Logically Fallacious (2015),
 Author Bo Bennett describes this fallacy as follows: "Reasoning that further investment is warranted on the fact that
 the resources already invested will be lost otherwise, not taking into consideration the overall losses involved in the

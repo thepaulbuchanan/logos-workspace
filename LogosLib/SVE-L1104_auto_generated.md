@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1104
 name: The Procrustean Fallacy
-triggers: ["104 the"]
-ep_hash: sle_sha256_auto_c99fcba652603a08
+triggers: ["the procrustean"]
+ep_hash: sle_sha256_auto_20f921cec8d273c9
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1104) {
-  MATCH_CONTEXT(Rhetorical_Pattern["104 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the procrustean"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 104. The Procrustean Fallacy (also, "Keeping up Standards," Standardization, Uniformity, Fordism).  The modernist
 fallacy of falsely and inappropriately applying the norms and requirements of standardized manufacturing. quality
 control and rigid scheduling, or of military discipline to inherently diverse free human beings, their lives, education,

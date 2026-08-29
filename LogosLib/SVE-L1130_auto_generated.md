@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L1130
 name: The "Thousand Flowers" Fallacy
-triggers: ["130 the"]
-ep_hash: sle_sha256_auto_c99fcf5505855166
+triggers: ["the thousand"]
+ep_hash: sle_sha256_auto_77544e96825aa7d8
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L1130) {
-  MATCH_CONTEXT(Rhetorical_Pattern["130 the"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the thousand"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 130. The "Thousand Flowers" Fallacy (also, "Take names and kick butt."): A sophisticated, modern "Argumentum ad
 Baculum" in which free and open discussion and "brainstorming" are temporarily allowed and encouraged (even
 demanded) within an organization or country not primarily in order to hear and consider opposing views, but rather

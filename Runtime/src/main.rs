@@ -9,6 +9,7 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use engine::HeraclitusCore;
 use pdf::PdfExtractorCore;
+// use refactor::LemmaRefactor;
 
 fn locate_base_paths() -> (String, String) {
     let test_paths = vec!["Test", "../Test", "../../Test"];
@@ -35,13 +36,12 @@ fn locate_base_paths() -> (String, String) {
 fn main() {
     let (test_dir, logos_dir) = locate_base_paths();
     
-    // 🔍 CHOOSE TEST TARGET: Toggle this filename to run different simulation tracks
-    // Target 1: The Standard Tex Manuscript
-let target_filename = "manuscript.tex";
-// Target 2: The Master Fallacies Reference Sheet (Uncomment to test the recursive loop!)
-// let target_filename = "Master_List_of_Logical_Fallacies.pdf";
-    // Target 2: The Master Fallacies Reference Sheet (Uncomment to test the recursive loop!)
-    // let target_filename = "Master List of Logical Fallacies.pdf";
+    // 🔍 SIMULATION TOGGLE
+    // Track 1: Parse PDF to simulate Stage A/B Submission Drafts
+    // let target_filename = "Master_List_of_Logical_Fallacies.pdf";
+    // Track 2: Execute Linter to evaluate the manuscript against Stage C Locked Lemmas
+    let target_filename = "manuscript.tex";
+    // let target_filename = "Master_List_of_Logical_Fallacies.pdf";
 
     let target_path = format!("{}/{}", test_dir, target_filename);
 
@@ -50,48 +50,51 @@ let target_filename = "manuscript.tex";
         std::process::exit(1);
     }
 
-    // 🚨 IF THE INGESTION TARGET IS A BINARY PDF -> EXECUTE RECURSIVE SUBMISSION GENERATION
+    // =========================================================================
+    // STAGE A: INGESTION & SUBMISSION GENERATION (PDF TRACK)
+    // =========================================================================
     if target_path.ends_with(".pdf") {
-        println!("🚀 HERACLITUS RECURSIVE INVARIANT SCANNER ACTIVATED");
-        println!(" Ingrained Source Target: {}", target_path);
-
+        println!("🚀 STAGE A: ACTIVATING INVARIANT SCANNER");
         let extractor = PdfExtractorCore::new();
-        match extractor.scan_pdf_to_paragraphs(&target_path) {
-            Ok(paragraphs) => {
-                let discovered_fallacies = extractor.extract_fallacy_nodes(&paragraphs);
-                println!("🔍 Analyzed PDF content -> Found {} Fallacy Candidate Nodes.", discovered_fallacies.len());
+        
+        if let Ok(paragraphs) = extractor.scan_pdf_to_paragraphs(&target_path) {
+            let discovered = extractor.extract_fallacy_nodes(&paragraphs);
+            println!("🔍 Discovered {} Fallacy Candidates. Writing Uncommitted Drafts...", discovered.len());
 
-                for node in discovered_fallacies {
-                    let out_file_name = format!("{}/{}_auto_generated.md", logos_dir, node.id);
-                    let file_path = PathBuf::from(out_file_name);
+            for node in discovered {
+                let out_name = format!("{}/{}_auto_generated.md", logos_dir, node.id);
+                let file_path = PathBuf::from(out_name);
 
-                    // If the lemma file does not exist yet in LogosLib, automatically compile and commit it!
-                    if !file_path.exists() {
-                        let calculated_hash = refactor::LemmaRefactor::calculate_hash(&node.id, &node.candidate_triggers);
-                        refactor::LemmaRefactor::compile_and_lock(
-                            &node.id,
-                            &node.name,
-                            &node.candidate_triggers,
-                            &calculated_hash,
-                            &node.body,
-                            &file_path
-                        );
-                    }
+                if !file_path.exists() {
+                    // Stage A/B Manifest: Human readable parameters only, ep_hash sits empty!
+                    let draft_content = format!(
+                        "---\nlemma_id: {}\nname: {}\ntriggers: {:?}\nep_hash: \n---\n\n\
+                         ### 1. Human Readable Specification\nAuto-extracted from reference materials.\n\n\
+                         ### 2. Verification Context\n{}",
+                        node.id, node.name, node.candidate_triggers, node.body
+                    );
+                    let _ = fs::write(file_path, draft_content);
                 }
-                println!("🔒 Automated LogosLib Library Sync Complete.");
             }
-            Err(err) => eprintln!("🔴 PDF Extraction Failure Loop: {}", err),
+            println!("🟢 Stage A Complete: Uncommitted Drafts Staged in LogosLib.");
         }
         return;
     }
 
-    // Default Fallback Track: Processing the active LaTeX manuscript
+    // =========================================================================
+    // STAGE C: REFACTOR ENGINE HASH LOCK & EXECUTION (TEX LINTER TRACK)
+    // =========================================================================
+    println!("⚙️ STAGE C: INITIALISING THE HERACLITUS REFACTOR CORE");
+    
+    // Trigger the dynamic bootstrapper to scan LogosLib, intercept any open hashes, 
+    // compile their machine-bytecode blocks, and seal them cryptographically using SHA-256.
+    let compiler = HeraclitusCore::new();
+    
     let file_content = match fs::read_to_string(&target_path) {
         Ok(content) => content,
         Err(_) => std::process::exit(1),
     };
 
-    let compiler = HeraclitusCore::new();
     let paragraphs: Vec<&str> = file_content.split("\n\n")
         .map(|p| p.trim())
         .filter(|p| !p.is_empty())
@@ -112,7 +115,7 @@ let target_filename = "manuscript.tex";
         println!("{}", ir_trace);
         
         if !summary_str.is_empty() { manifest_summary.push_str(&summary_str); }
-        if !sve_str.is_empty() { sve_script_output.push_str(&sve_str); }
+        if !sve_script_output.is_empty() { sve_script_output.push_str(&sve_str); }
         clean_paragraph_count += 1;
     }
 

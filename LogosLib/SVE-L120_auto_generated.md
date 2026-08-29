@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L120
 name: Argumentum ad Mysteriam
-triggers: ["20 argumentum"]
-ep_hash: sle_sha256_auto_f78bb779b328a266
+triggers: ["argumentum ad"]
+ep_hash: sle_sha256_auto_67407ac2098d37c9
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L120) {
-  MATCH_CONTEXT(Rhetorical_Pattern["20 argumentum"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["argumentum ad"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 20. Argumentum ad Mysteriam ("Argument from Mystery;" also Mystagogy.): A darkened chamber, incense, chanting
 or drumming, bowing and kneeling, special robes or headgear, holy rituals and massed voices reciting sacred
 mysteries in an unknown tongue  have a quasi-hypnotic effect and can often persuade more strongly than any logical

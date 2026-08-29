@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L189
 name: Othering
-triggers: ["89 othering"]
-ep_hash: sle_sha256_auto_7158ed454176f23f
+triggers: ["othering also"]
+ep_hash: sle_sha256_auto_4f41f076c363ba9d
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L189) {
-  MATCH_CONTEXT(Rhetorical_Pattern["89 othering"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["othering also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 89. Othering (also Otherizing, "They're Not Like Us," Stereotyping, Xenophobia, Racism, Prejudice): A badly
 corrupted, discriminatory argument from ethos where facts, arguments, experiences or objections are arbitrarily
 disregarded, ignored or put down without serious consideration because those involved "are not like us," or "don't

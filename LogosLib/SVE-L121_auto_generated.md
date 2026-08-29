@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L121
 name: Argumentum ex Silentio
-triggers: ["21 argumentum"]
-ep_hash: sle_sha256_auto_f415e5981f5c3968
+triggers: ["argumentum ex"]
+ep_hash: sle_sha256_auto_6317191944cd7202
 ---
 
 ### 1. Human Readable Specification
@@ -11,12 +11,16 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L121) {
-  MATCH_CONTEXT(Rhetorical_Pattern["21 argumentum"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["argumentum ex"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
 
 ### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
 21. Argumentum ex Silentio (Argument from Silence): The fallacy that if available sources remain silent or current
 knowledge and evidence can prove nothing about a given subject or question this fact in itself proves the truth of
 one's claim. E.g., "Science can tell us nothing about God. That proves God doesn't exist." Or "Science admits it can
