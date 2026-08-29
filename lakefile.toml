@@ -1,0 +1,13 @@
+[package]
+name = "heraclitus_mvp"
+version = "1.0.0"
+keywords = ["epistemology", "logos", "linter", "neuro-symbolic"]
+defaultTarget = "sve_compiler"
+
+[[lean_lib]]
+name = "LogosCore"
+srcDir = "LogosLib"
+
+[[lean_exe]]
+name = "sve_compiler"
+root = "Runtime.src.main"
