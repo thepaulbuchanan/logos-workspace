@@ -1,12 +1,13 @@
 mod latex;
 mod engine;
 mod refactor;
+mod lean;
+mod registry; // Link our brand new library audit layer submodule
 
 use std::fs;
 use engine::HeraclitusCore;
 
 fn main() {
-    // Look one level up and into our production Test/ folder path matrix
     let target_file = "../Test/manuscript.tex".to_string();
 
     let file_content = match fs::read_to_string(&target_file) {
