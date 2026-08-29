@@ -1,6 +1,6 @@
 mod latex;
-mod lemmas; // Register the new LogosLib submodule lookups file
-mod engine; 
+mod engine;
+mod refactor;
 
 use std::fs;
 use engine::HeraclitusCore;
