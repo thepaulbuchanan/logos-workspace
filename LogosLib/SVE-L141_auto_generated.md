@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L141
-name: Dog-Whistle Politics
-triggers: ["dog-whistle politics"]
-ep_hash: sle_sha256_auto_6274d8b638c8b2d0
+name: We Have to Do Something
+triggers: ["we have"]
+ep_hash: sle_sha256_auto_3c69b4cb661b70c2
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L141) {
-  MATCH_CONTEXT(Rhetorical_Pattern["dog-whistle politics"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["we have"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,17 +21,12 @@ DECLARE_LEMMA(SVE_L141) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-41. Dog-Whistle Politics: An extreme version of reductionism and sloganeering in the public sphere, a contemporary
-fallacy of logos and pathos in which a brief phrase or slogan of the hour, e.g., "Abortion," "The 1%," "9/11,"
-"Zionism,""Chain Migration," "Islamic Terrorism," "Fascism," "Communism," "Big government," "Taco trucks!",
-"Tax and tax and spend and spend," "Gun violence," "Gun control," "Freedom of choice," "Lock 'em up,",
-"Amnesty," etc. is ﬂung out as "red meat" or "chum in the water" that reﬂexively sends one's audience into a
-snapping, foaming-at-the-mouth feeding-frenzy. Any reasoned attempt to more clearly identify, deconstruct or
-challenge an opponent's "dog whistle" appeal results in puzzled confusion at best and wild, irrational fury at worst.
-"Dog whistles" differ widely in different places, moments and cultural milieux, and they change and lose or gain
-power so quickly that even recent historic texts sometimes become extraordinarily difﬁcult to interpret. A common
-but sad instance of the fallacy of Dog Whistle Politics is that of  candidate "debaters" of differing political shades
-simply blowing a succession of discursive "dog whistles" at their audience instead of addressing, refuting or even
-bothering to listen to each other's arguments, a situation resulting in contemporary (2017) allegations that the
-political Right and Left in America are speaking "different languages" when they are simply blowing different "dog
-whistles." See also, Reductionism..
+141. We Have to Do Something: (also,  the Placebo Effect; Political Theater; Security Theater; We have to send a
+message): The dangerous contemporary fallacy that when "People are scared / People are angry / People are fed up /
+People are hurting / People want change" it becomes necessary to do something, anything, at once without stopping
+to ask "What?" or "Why?", even if what is done is an overreaction, is a completely ineffective sham, an inert
+placebo, or actually makes the situation worse, rather than "just sitting there doing nothing." (E.g., "Banning air
+passengers from carrying ham sandwiches onto the plane and making parents take off their newborn infants' tiny
+pink baby-shoes probably does nothing to deter potential terrorists, but people are scared and we have to do
+something to respond to this crisis!") This is a badly corrupted argument from pathos. (See also "Scare Tactic" and
+"The Big 'But' Fallacy.")

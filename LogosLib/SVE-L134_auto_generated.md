@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L134
-name: Conﬁrmation Bias
-triggers: ["conﬁrmation bias"]
-ep_hash: sle_sha256_auto_bf8d3255f140e9f9
+name: Transfer
+triggers: ["transfer also"]
+ep_hash: sle_sha256_auto_84ecbcad291b9e58
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L134) {
-  MATCH_CONTEXT(Rhetorical_Pattern["conﬁrmation bias"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["transfer also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,14 +21,9 @@ DECLARE_LEMMA(SVE_L134) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-34. Conﬁrmation Bias: A fallacy of logos, the common tendency to notice, search out, select and share evidence that
-conﬁrms one's own standpoint and beliefs, as opposed to contrary evidence. This fallacy is how "fortune tellers"
-work--If I am told I will meet a "tall, dark stranger" I will be on the lookout for a tall, dark stranger, and when I meet
-someone even marginally meeting that description I will marvel at the correctness of the "psychic's" prediction. In
-contemporary times Conﬁrmation Bias is most often seen in the tendency of various audiences to "curate their
-political environments, subsisting on one-sided information diets and [even] selecting into politically homogeneous
-neighborhoods" (Michael A. Neblo et al., 2017, Science magazine).  Conﬁrmation Bias (also, Homophily) means
-that people tend to seek out and follow solely those media outlets that conﬁrm their common ideological and cultural
-biases, sometimes to an degree that leads a the false (implicit or even explicit) conclusion that "everyone" agrees
-with that bias and that anyone who doesn't is "crazy," "looney," evil or even "radicalized." See also, "Half Truth,"
-and "Defensiveness."
+134. Transfer: (also, Name Dropping) A corrupt argument from ethos, falsely associating a famous or respected person,
+place or thing with an unrelated thesis or standpoint (e.g. putting a picture of the Rev. Dr. Martin Luther King Jr. on
+an advertisement for mattresses, using Genghis Khan, a Mongol who hated Chinese, as the name of a Chinese
+restaurant, or using the Texas ﬂag to sell more cars or pickups in Texas that were made in Detroit, Kansas City or
+Korea). This fallacy is common in contemporary academia in the form of using a profusion of scholarly-looking
+citations from respected authorities to lend a false gravitas to otherwise specious ideas or text. See also "Star Power."

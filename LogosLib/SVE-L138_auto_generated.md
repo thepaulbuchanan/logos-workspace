@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L138
-name: Deliberate Ignorance
-triggers: ["deliberate ignorance"]
-ep_hash: sle_sha256_auto_6a76abfba4374b4f
+name: Two Truths
+triggers: ["two truths"]
+ep_hash: sle_sha256_auto_b25edf3db949a60c
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L138) {
-  MATCH_CONTEXT(Rhetorical_Pattern["deliberate ignorance"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["two truths"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,11 +21,13 @@ DECLARE_LEMMA(SVE_L138) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-38. Deliberate Ignorance: (also, Closed-mindedness; "I don't want to hear it!"; Motivated Ignorance; Tuning Out; Hear
-No Evil, See No Evil, Speak No Evil [The Three Monkeys' Fallacy]): As described by author and commentator
-Brian Resnik on Vox.com (2017), this is the fallacy of simply choosing not to listen, "tuning out" or turning off any
-information, evidence or arguments that challenge one's beliefs, ideology, standpoint, or peace of mind, following
-the popular humorous dictum: "Don't try to confuse me with the facts; my mind is made up!" This seemingly
-innocuous fallacy has enabled the most vicious tyrannies and abuses over history, and continues to do so today. See
-also Trust your Gut, Conﬁrmation Bias, The Third Person Effect, "They're All Crooks," the Simpleton's Fallacy, and
-The Positive Thinking Fallacy.
+138. Two Truths (also, Compartmentalization; Epistemically Closed Systems; Alternative Truth): A very corrupt and
+dangerous fallacy of logos and ethos, ﬁrst formally described in medieval times but still common today, holding that
+there exists one "truth" in one given environment (e.g., in science, work or school) and simultaneously a different,
+formally contradictory but equally true "truth" in a different epistemic system, context, environment, intended
+audience or discourse community (e.g., in one's religion or at home). This can lead to a situation of stable cognitive
+dissonance where, as UC Irvine scholar Dr. Carter T. Butts describes it (2016), "I know but don't believe," making
+rational discussion difﬁcult, painful or impossible. This fallacy also describes the discourse of politicians who
+cynically proclaim one "truth" as mere "campaign rhetoric" used "to mobilize the base," or "for domestic
+consumption only," and a quite different and contradictory "truth" for more general or practical purposes once in
+ofﬁce.  See also Disciplinary Blinders; Alternative Truth.

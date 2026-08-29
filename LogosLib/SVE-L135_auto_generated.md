@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L135
-name: Cost Bias
-triggers: ["cost bias"]
-ep_hash: sle_sha256_auto_fda5340612de3cfd
+name: Trust your Gut
+triggers: ["trust your"]
+ep_hash: sle_sha256_auto_b24e86495ba845b6
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L135) {
-  MATCH_CONTEXT(Rhetorical_Pattern["cost bias"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["trust your"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,10 +21,9 @@ DECLARE_LEMMA(SVE_L135) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-35. Cost Bias: A fallacy of ethos (that of a product), the fact that something expensive (either in terms of money, or
-something that is "hard fought" or "hard won" or for which one "paid dearly") is generally valued more highly than
-something obtained free or cheaply, regardless of the item's real quality, utility or true value to the purchaser. E. g.,
-"Hey, I worked hard to get this car!  It may be nothing but a clunker that can't make it up a steep hill, but it's mine,
-and to me it's better than some millionaire's limo."  Also applies to judging the quality of a consumer item (or even
-of its owner!) primarily by the item's brand, price, label or source, e.g., "Hey, you there in the Jay-Mart suit! Har-
-har!" or, "Ooh, she's driving a Mercedes!"
+135. Trust your Gut (also, Trust your Heart; Trust Your Feelings; Trust your Intuition; Trust your Instincts; Emotional
+Reasoning): A corrupt argument from pathos, the ancient fallacy of relying primarily on "gut feelings" rather than
+reason or evidence to make decisions. A recent (2017) Ohio State University study ﬁnds, unsurprisingly, that people
+who "trust their gut" are signiﬁcantly more susceptible to falling for "fake news," phony conspiracy theories, frauds
+and scams than those who insist on hard evidence or logic. See also Deliberate Ignorance, the Affective Fallacy, and
+The "Third Person Effect."

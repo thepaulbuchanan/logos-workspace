@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L127
-name: Blind Loyalty
-triggers: ["blind loyalty"]
-ep_hash: sle_sha256_auto_5d18a56954ef8bfd
+name: The Taboo
+triggers: ["the taboo"]
+ep_hash: sle_sha256_auto_fda02cefe85c137c
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L127) {
-  MATCH_CONTEXT(Rhetorical_Pattern["blind loyalty"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the taboo"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,6 +21,13 @@ DECLARE_LEMMA(SVE_L127) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-27. Blind Loyalty (also Blind Obedience, Unthinking Obedience, the "Team Player" appeal, the Nuremberg Defense):
-The dangerous fallacy that an argument or action is right simply and solely because a respected leader or source (a
-President, expert, one’s parents, one's own "side," team or country, one’s boss or commanding ofﬁcers) says it is
+127. The Taboo (also, Dogmatism):: The ancient fallacy of unilaterally declaring certain "bedrock" arguments,
+assumptions, dogmas, standpoints or actions "sacrosanct" and not open to discussion, or arbitrarily taking some
+emotional tones, logical standpoints, doctrines or options "off the table" beforehand. (E.g., " "No, let's not discuss
+my sexuality," "Don't bring my drinking into this," or "Before we start, you need to know I won't allow you to play
+the race card or permit you to attack my arguments by claiming 'That's just what Hitler would say!'")  Also applies to
+discounting or rejecting certain arguments, facts and evidence (or even experiences!) out of hand because they are
+supposedly "against the Bible" or other sacred dogma (See also the A Priori Argument). This fallacy occasionally
+degenerates into a separate, distracting argument over who gets to deﬁne the parameters, tones, dogmas and taboos
+of the main argument, though at this point reasoned discourse most often breaks down and the entire affair becomes
+a naked Argumentum ad Baculum. See also, MYOB, Tone Policing, and Calling "Cards."

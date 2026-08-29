@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L144
-name: E" for Effort.
-triggers: ["e for"]
-ep_hash: sle_sha256_auto_452b1dc9334800d1
+name: The Worst-Case Fallacy
+triggers: ["the worst-case"]
+ep_hash: sle_sha256_auto_882b157d95b7d52e
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L144) {
-  MATCH_CONTEXT(Rhetorical_Pattern["e for"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the worst-case"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,11 +21,7 @@ DECLARE_LEMMA(SVE_L144) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-44. E" for Effort. (also Noble Effort; I'm Trying My Best; The Lost Cause): The common contemporary fallacy of
-ethos that something must be right, true, valuable, or worthy of respect and honor solely because one (or someone
-else) has put so much sincere good-faith effort or even sacriﬁce and bloodshed into it. (See also Appeal to Pity;
-Argument from Inertia; Heroes All; or Sob Story).  An extreme example of this fallacy is Waving the Bloody Shirt
-(also, the "Blood of the Martyrs" Fallacy), the fallacy that a cause or argument, no matter how questionable or
-reprehensible, cannot be questioned without dishonoring the blood and sacriﬁce of those who died so nobly for that
-cause. E.g., "Defend the patriotic gore / That ﬂecked the streets of Baltimore..." (from the ofﬁcial Maryland State
-Song). See also Cost Bias, The Soldier's Honor Fallacy, and the Argument from Inertia.
+144. The Worst-Case Fallacy (also, "Just in case;" "We can't afford to take chances;" "An abundance of caution;" "Better
+Safe than Sorry;" "Better to prevent than to lament."): A pessimistic fallacy by which one’s reasoning is based on an
+improbable, far-fetched or even completely imaginary worst-case scenario rather than on reality. This plays on
+pathos (fear) rather than reason, and is often politically motivated. E.g., "What if armed terrorists were to attack your

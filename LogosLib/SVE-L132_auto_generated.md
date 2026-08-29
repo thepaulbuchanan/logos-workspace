@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L132
-name: Circular Reasoning
-triggers: ["circular reasoning"]
-ep_hash: sle_sha256_auto_e36aa10b5c2b20bd
+name: TINA
+triggers: ["tina there"]
+ep_hash: sle_sha256_auto_b23e279715c24d46
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L132) {
-  MATCH_CONTEXT(Rhetorical_Pattern["circular reasoning"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["tina there"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,8 +21,11 @@ DECLARE_LEMMA(SVE_L132) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-32. Circular Reasoning (also, The Vicious Circle; Catch 22, Begging the Question, Circulus in Probando): A fallacy of
-logos where A is because of B, and B is because of A, e.g., "You can't get a job without experience, and you can't get
-experience without a job." Also refers to falsely arguing that something is true by repeating the same statement in
-different words. E.g., “The witchcraft problem is the most urgent spiritual crisis in the world today. Why? Because
-witches threaten our very eternal salvation.” A corrupt argument from logos. See also the "Big Lie technique."
+132. TINA (There Is No Alternative. Also the "Love it or Leave It" Fallacy; "Get over it," "Suck it up," "It is what it is,"
+"Actions/Elections have consequences," or the "Fait Accompli"): A very common contemporary extension of the
+either/or fallacy in which someone in power quashes critical thought by announcing that there is no realistic
+alternative to a given standpoint, status or action, arbitrarily ruling any and all other options out of bounds, or
+announcing that a decision has been made and any further discussion is insubordination, disloyalty, treason,
+disobedience or simply a waste of precious time when there's a job to be done. (See also, "Taboo;" "Finish the Job.") 
+TINA is most often a naked power-play, a slightly more sophisticated variety of the Argumentum ad Baculum.  See
+also Appeal to Closure.

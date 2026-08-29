@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L116
-name: The Argument from Incredulity
-triggers: ["the argument"]
-ep_hash: sle_sha256_auto_9f48123d7abe2ca8
+name: Sending the Wrong Message
+triggers: ["sending the"]
+ep_hash: sle_sha256_auto_ce802ea1077e574d
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L116) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the argument"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["sending the"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,9 +21,8 @@ DECLARE_LEMMA(SVE_L116) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-16. The Argument from Incredulity: The popular fallacy of doubting or rejecting a novel claim or argument out of
-hand simply because it appears superﬁcially "incredible," "insane" or "crazy," or because it goes against one's own
-personal beliefs, prior experience or ideology.  This cynical fallacy falsely elevates the saying popularized by Carl
-Sagan, that "Extraordinary claims require extraordinary proof," to an absolute law of logic. See also Hoyle's Fallacy.
-The common, popular-level form of this fallacy is dismissing surprising, extraordinary or unfamiliar arguments and
-evidence with a wave of the hand, a shake of the head, and a mutter of  "that's crazy!"
+116. Sending the Wrong Message: A dangerous fallacy of logos that attacks a given statement, argument or action, no
+matter how good, true or necessary, because it will "send the wrong message." In effect, those who use this fallacy
+are openly confessing to fraud and admitting that the truth will destroy the fragile web of illusion they have
+deliberately created by their lies. E.g., "Actually, we haven't a clue about how to deal with this crisis, but if we
+publicly admit it we'll be sending the wrong message." See also, "Mala Fides."

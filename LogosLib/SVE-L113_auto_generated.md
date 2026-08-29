@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L113
-name: Appeasement
-triggers: ["appeasement also"]
-ep_hash: sle_sha256_auto_debb7817057be43
+name: Scare Tactics
+triggers: ["scare tactics"]
+ep_hash: sle_sha256_auto_7a16eabcf0cf8aba
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L113) {
-  MATCH_CONTEXT(Rhetorical_Pattern["appeasement also"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["scare tactics"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,13 +21,14 @@ DECLARE_LEMMA(SVE_L113) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-13. Appeasement  (also, "Assertiveness," "The squeaky wheel gets the grease;" "I know my rights!"): This fallacy, most
-often popularly connected to the shameful pre-World War II appeasement of Hitler, is in fact still commonly
-practiced in public agencies, education and retail business today, e.g. "Customers are always right, even when they're
-wrong. Don't argue with them, just give'em what they want so they'll shut up and go away, and not make a stink--it's
-cheaper and easier than a lawsuit."  Widespread unchallenged acceptance of this fallacy encourages offensive,
-uncivil public behavior and sometimes the development of a coarse subculture of obnoxious, "assertive"
-manipulators who, like "spoiled" children, leverage their knowledge of how to ﬁguratively (or sometimes even
-literally!) "make a stink" into a primary coping skill in order to get what they want when they want it. The works of
-the late Community Organizing guru Saul Alinsky suggest practical, nonviolent ways for groups to harness the
-power of this fallacy to promote social change, for good or for evil.. See also Bribery.
+113. Scare Tactics (also Appeal to Fear; Paranoia; the Bogeyman Fallacy; Shock Doctrine [ShockDoc]; Rally 'Round the
+Flag; Rally 'Round the President): A variety of Playing on Emotions, a corrupted argument from pathos, taking
+advantage of a emergent or deliberately-created crisis and its associated public shock, panic and chaos in order to
+impose an argument, action or solution that would be clearly unacceptable if carefully considered. E.g., "If you don't
+shut up and do what I say we're all gonna die! In this moment of crisis we can't afford the luxury of criticizing or
+trying to second-guess my decisions when our very lives and freedom are in peril!  Instead, we need to be united as
+one!" Or, in the (2017) words of former White House Spokesperson Sean Spicer, "This is about the safety of
+America!" This fallacy is discussed at length in Naomi Klein's (2010) The Shock Doctrine: The Rise of Disaster
+Capitalism and her (2017) No is Not Enough: Resisting Trump's Shock Politics and Winning the World We Need. See
+also, The Shopping Hungry Fallacy, Dog-Whistle Politics, "We Have to do Something!", and The Worst Case
+Fallacy.

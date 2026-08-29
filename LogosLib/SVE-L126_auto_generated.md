@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L126
-name: The Big Lie Technique
-triggers: ["the big"]
-ep_hash: sle_sha256_auto_3c69b26d3f359cd8
+name: The Straw Man
+triggers: ["the straw"]
+ep_hash: sle_sha256_auto_fda002b9e44a1757
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L126) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the big"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the straw"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,19 +21,13 @@ DECLARE_LEMMA(SVE_L126) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-26. The Big Lie Technique (also the Bold Faced Lie; "Staying on Message."): The contemporary fallacy of repeating a
-lie, fallacy, slogan, talking-point, nonsense-statement or deceptive half-truth over and over in different forms
-(particularly in the media) until it becomes part of daily discourse and people accept it without further proof or
-evidence. Sometimes the bolder and more outlandish the Big Lie becomes the more credible it seems to a willing,
-most often angry audience. E.g., "What about the Jewish Problem?" Note that when this particular phony debate was
-going on there was no "Jewish Problem," only a Nazi Problem, but hardly anybody in power recognized or wanted
-to talk about that, while far too many ordinary Germans were only too ready to ﬁnd a convenient scapegoat to blame
-for their suffering during the Great Depression. Writer Miles J. Brewer expertly demolishes The Big Lie Technique
-in his classic (1930) short story, "The Gostak and the Doshes." However, more contemporary examples of the Big
-Lie fallacy might be the completely ﬁctitious August 4, 1964 "Tonkin Gulf Incident" concocted under Lyndon
-Johnson as a false justiﬁcation for escalating the Vietnam War, or the non-existent "Weapons of Mass Destruction" in
-Iraq (conveniently abbreviated "WMD's" in order to lend this Big Lie a legitimizing, military-sounding "Alphabet
-Soup" ethos), used in 2003 as a false justiﬁcation for the Second Gulf War. The November, 2016 U.S. President-
-elect's statement that "millions" of ineligible votes were cast in that year's American. presidential election appears to
-be a classic Big Lie. See also, Alternative Truth; The Bandwagon Fallacy, the Straw Man, Alphabet Soup, and
-Propaganda.
+126. The Straw Man (also "The Straw Person" ""The Straw Figure"): The fallacy of setting up a phony, weak, extreme
+or ridiculous parody of an opponent's argument and then proceeding to knock it down or reduce it to absurdity with a
+rhetorical wave of the hand. E.g., "Vegetarians say animals have feelings like you and me. Ever seen a cow laugh at
+a Shakespeare comedy? Vegetarianism is nonsense!" Or, "Pro-choicers hate babies and want to kill them!" Or, "Pro-
+lifers hate women and want them to spend their lives barefoot, pregnant and chained to the kitchen stove!"  A too-
+common example of this fallacy is that of highlighting the most absurd, offensive, silly or violent examples in a
+mass movement or demonstration, e.g. "Tree huggers" for environmentalists, "bra burners" for feminists, or "rioters"
+when there are a dozen violent crazies in a peaceful, disciplined demonstration of thousands or tens of thousands,
+and then falsely portraying these extreme examples as typical of the entire movement in order to condemn it with a
+wave of the hand. See also Olfactory Rhetoric.

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L109
-name: The Appeal to Heaven
-triggers: ["the appeal"]
-ep_hash: sle_sha256_auto_b0498d4b71761fba
+name: Reifying
+triggers: ["reifying also"]
+ep_hash: sle_sha256_auto_d4df77fe71d14dd2
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L109) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the appeal"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["reifying also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,11 +21,7 @@ DECLARE_LEMMA(SVE_L109) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-9. The Appeal to Heaven : (also, Argumentum ad Coelum, Deus Vult, Gott mit Uns, Manifest Destiny, American
-Exceptionalism, or the Special Covenant): An ancient, extremely dangerous fallacy (a deluded argument from ethos)
-that of claiming to know the mind of God (or History, or a higher power), who has allegedly ordered or anointed,
-supports or approves of one's own country, standpoint or actions so no further justiﬁcation is required and no serious
-challenge is possible. (E.g., "God ordered me to kill my children," or "We need to take away your land, since God
-[or Scripture, or Manifest Destiny, or Fate, or Heaven] has given it to us as our own.") A private individual who
-seriously asserts this fallacy risks ending up in a psychiatric ward, but groups or nations who do it are far too often
-taken seriously. Practiced by those who will not or cannot tell God's will from their own, this vicious (and
+109. Reifying (also, Mistaking the Map for the Territory): The ancient fallacy of treating imaginary intellectual
+categories, schemata or names as actual, material "things." (E.g., "The War against Terror is just another chapter in
+the eternal ﬁght to the death between Freedom and Absolute Evil!") Sometimes also referred to as "Essentializing"
+or “Hypostatization.”

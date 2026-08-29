@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L136
-name: Default Bias
-triggers: ["default bias"]
-ep_hash: sle_sha256_auto_8bac7db4a928160a
+name: Tu Quoque
+triggers: ["tu quoque"]
+ep_hash: sle_sha256_auto_fda5741d669f884f
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L136) {
-  MATCH_CONTEXT(Rhetorical_Pattern["default bias"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["tu quoque"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,11 +21,11 @@ DECLARE_LEMMA(SVE_L136) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-36. Default Bias: (also, Normalization of Evil, "Deal with it;" "If it ain't broke, don't ﬁx it;" Acquiescence; "Making
-one's peace with the situation;" "Get used to it;" "Whatever is, is right;"  "It is what it is;" "Let it be, let it be;" "This
-is the best of all possible worlds [or, the only possible world];" "Better the devil you know than the devil you
-don't."): The logical fallacy of automatically favoring or accepting a situation simply because it exists right now, and
-arguing that any other alternative is mad, unthinkable, impossible, or at least would take too much effort, expense,
-stress or risk to change. The opposite of this fallacy is that of Nihilism ("Tear it all down!"), blindly rejecting what
-exists in favor of what could be, the adolescent fantasy of romanticizing anarchy, chaos (an ideology sometimes
-called political "Chaos Theory"), disorder, "permanent revolution," or change for change's sake.
+136. Tu Quoque ("You Do it Too!"; also, Two Wrongs Make a Right): A corrupt argument from ethos, the fallacy of
+defending a shaky or false standpoint or excusing one's own bad action by pointing out that one's opponent's acts,
+ideology or personal character are also open to question, or are perhaps even worse than one's own. E.g., "Sure, we
+may have tortured prisoners and killed kids with drones, but we don't cut off heads like they do!" Or, "You can't
+stand there and accuse me of corruption! You guys are all into politics and you know what we have to do to get
+reelected!"  Unusual, self-deprecating variants on this fallacy are the Ego / Nos Quoque Fallacies ("I / we do it
+too!"), minimizing or defending another's evil actions because I am / we are guilty of the same thing  or of even
+worse. E.g., In response to allegations that  Russian Premier Vladimir Putin is a "killer," American President Donald

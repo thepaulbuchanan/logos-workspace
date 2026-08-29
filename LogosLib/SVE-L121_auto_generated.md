@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L121
-name: Argumentum ex Silentio
-triggers: ["argumentum ex"]
-ep_hash: sle_sha256_auto_6317191944cd7202
+name: The Slippery Slope
+triggers: ["the slippery"]
+ep_hash: sle_sha256_auto_276305e2fc383e79
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L121) {
-  MATCH_CONTEXT(Rhetorical_Pattern["argumentum ex"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the slippery"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,12 +21,8 @@ DECLARE_LEMMA(SVE_L121) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-21. Argumentum ex Silentio (Argument from Silence): The fallacy that if available sources remain silent or current
-knowledge and evidence can prove nothing about a given subject or question this fact in itself proves the truth of
-one's claim. E.g., "Science can tell us nothing about God. That proves God doesn't exist." Or "Science admits it can
-tell us nothing about God, so you can't deny that God exists!" Often misused in the American justice system, where,
-contrary to the 5th Amendment and the legal presumption of innocence until proven guilty,  remaining silent or
-"taking the Fifth" is often falsely portrayed as proof of guilt. E.g., "Mr. Hixon can offer no alibi for his whereabouts
-the evening of January 15th. This proves that he was in fact in room 331 at the Smuggler's Inn, murdering his wife
-with a hatchet!" In today's America, choosing to remain silent in the face of a police ofﬁcer's questions can make one
-guilty enough to be arrested or even shot. See also, Argument from Ignorance.
+121. The Slippery Slope  (also, the Domino Theory): The common fallacy that "one thing inevitably leads to another."
+E.g., "If you two go and drink coffee together one thing will lead to another and next thing you know you'll be
+pregnant and end up spending your life on welfare living in the Projects," or "If we close Gitmo one thing will lead
+to another and before you know it armed terrorists will be strolling through our church doors with suicide belts,
+proud as you please, smack in the middle of the 10:30 a.m. Sunday worship service right here in Garﬁeld, Kansas!"

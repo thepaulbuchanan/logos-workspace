@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L145
-name: Either/Or Reasoning
-triggers: ["either/or reasoning"]
-ep_hash: sle_sha256_auto_8a2e2d2c1e9e587d
+name: The Worst Negates the Bad
+triggers: ["the worst"]
+ep_hash: sle_sha256_auto_fdaaba70eb3e9726
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L145) {
-  MATCH_CONTEXT(Rhetorical_Pattern["either/or reasoning"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the worst"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,14 +21,10 @@ DECLARE_LEMMA(SVE_L145) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-45. Either/Or Reasoning: (also False Dilemma, All or Nothing Thinking; False Dichotomy, Black/White Fallacy, False
-Binary): A fallacy of logos that falsely offers only two possible options even though a broad range of possible
-alternatives, variations and combinations are always readily available. E.g., "Either you are 100% Simon
-Straightarrow or you are as queer as a three dollar bill--it's as simple as that and there's no middle ground!" Or,
-“Either you’re in with us all the way or you’re a hostile and must be destroyed!  What's it gonna be?"  Or, if your
-performance is anything short of perfect, you consider yourself an abject failure. Also applies to falsely contrasting
-one option or case to another that is not really opposed, e.g., falsely opposing "Black Lives Matter" to "Blue Lives
-Matter" when in fact not a few police ofﬁcers are themselves African American, and African Americans and police
-are not (or ought not to be!) natural enemies. Or, falsely posing a choice of either helping needy American veterans
-or helping needy foreign refugees, when in fact in today's United States there are ample resources available to easily
-do both should we care to do so.  See also, Overgeneralization.
+145. The Worst Negates the Bad (also, Be Grateful for What You've Got): The extremely common modern logical
+fallacy that an objectively bad situation somehow isn't so bad simply because it could have been far worse, or
+because someone, somewhere has it even worse. E.g., "I cried because I had no shoes, until I saw someone who had
+no feet." Or, "You're protesting because you earn only $7.25 an hour? You could just as easily be out on the street! I
+happen to know there are people in Uttar Pradesh who are doing the very same work you're doing for one tenth of
+what you're making, and they're pathetically glad just to have work at all.  You need to shut up, put down that picket
+sign, get back to work for what I care to pay you, and  thank me each and every day for giving you a job!"

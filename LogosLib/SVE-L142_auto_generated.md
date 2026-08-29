@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L142
-name: The "Draw Your Own Conclusion" Fallacy
-triggers: ["the draw"]
-ep_hash: sle_sha256_auto_c9a04f635c0dd4d2
+name: Where there’s Smoke, there’s Fire
+triggers: ["where there’s"]
+ep_hash: sle_sha256_auto_92b2f6b10d252684
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L142) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the draw"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["where there’s"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,11 +21,9 @@ DECLARE_LEMMA(SVE_L142) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-42. The "Draw Your Own Conclusion" Fallacy (also the Non-argument Argument; Let the Facts Speak for
-Themselves). In this fallacy of logos an otherwise uninformed audience is presented with carefully selected and
-groomed, "shocking facts" and then prompted to immediately "draw their own conclusions." E.g., "Crime rates are
-more than twice as high among middle-class Patzinaks than among any other similar population group--draw your
-own conclusions." It is well known that those who are allowed to "come to their own conclusions" are generally
-much more strongly convinced than those who are given both evidence and conclusion up front. However, Dr.
-William Lorimer points out that "The only rational response to the non-argument is 'So what?' i.e. 'What do you
-think you've proved, and why/how do you think you've proved it?'" Closely related (if not identical) to this is the
+142. Where there’s Smoke, there’s Fire (also Hasty Conclusion; Jumping to a Conclusion): The dangerous fallacy of
+ignorantly drawing a snap conclusion and/or taking action without sufﬁcient evidence. E.g., “Captain! The guy
+sitting next to me in coach has dark skin and is reading a book in some kind of funny language all full of accent
+marks, weird squiggles above the "N's" and upside-down question marks. It must be Arabic! Get him off the plane
+before he blows us all to kingdom come!” A variety of the “Just in Case” fallacy. The opposite of this fallacy is the
+"Paralysis of Analysis."

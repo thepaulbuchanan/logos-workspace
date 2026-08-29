@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L137
-name: Defensiveness
-triggers: ["defensiveness also"]
-ep_hash: sle_sha256_auto_df39ef34f9f73a68
+name: Two-sides Fallacy
+triggers: ["two-sides fallacy"]
+ep_hash: sle_sha256_auto_f3457d0d029a78a2
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L137) {
-  MATCH_CONTEXT(Rhetorical_Pattern["defensiveness also"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["two-sides fallacy"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,8 +21,9 @@ DECLARE_LEMMA(SVE_L137) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-37. Defensiveness (also, Choice-support Bias: Myside Bias): A fallacy of ethos (one's own), in which after one has taken
-a given decision, commitment or course of action, one automatically tends to defend that decision and to irrationally
-dismiss opposing options even when one's decision later on proves to be shaky or wrong. E.g., "Yeah, I voted for
-Snith. Sure, he turned out to be a crook and a liar and he got us into war, but I still say that at that time he was better
-than the available alternatives!"  See also "Argument from Inertia" and "Conﬁrmation Bias."
+137. Two-sides Fallacy (also, Teach the Controversy): The presentation of an issue that makes it seem to have two sides
+of equal weight or signiﬁcance, when in fact a consensus or much stronger argument supports just one side. Also
+called “false balance” or “false equivalence.” (Thanks to Teaching Tolerance for this deﬁnition!)  E.g,. "Scientists
+theorize that the Earth is a sphere, but there are always two sides to any argument:  Others believe that the Earth is
+ﬂat and is perched on the back of a giant turtle, and a truly balanced presentation of the issue requires teaching both
+explanations without bias or unduly favoring either side over the other."

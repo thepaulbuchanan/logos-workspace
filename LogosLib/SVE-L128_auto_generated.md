@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L128
-name: Blood is Thicker than Water
-triggers: ["blood is"]
-ep_hash: sle_sha256_auto_c9a001f2c3131e13
+name: They're All Crooks
+triggers: ["theyre all"]
+ep_hash: sle_sha256_auto_b1ab3bfe37b3fb91
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L128) {
-  MATCH_CONTEXT(Rhetorical_Pattern["blood is"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["theyre all"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,9 +21,14 @@ DECLARE_LEMMA(SVE_L128) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-28. Blood is Thicker than Water (also Favoritism; Compadrismo; "For my friends, anything."): The reverse of the "Ad
-Hominem" fallacy, a corrupt argument from ethos where a statement, argument or action is automatically regarded
-as true, correct and above challenge because one is related to, knows and likes, or is on the same team or side, or
-belongs to the same religion, party, club or fraternity as the individual involved.  (E.g., "My brother-in-law says he
-saw you gooﬁng off on the job. You're a hard worker but who am I going to believe, you or him? You're ﬁred!")  See
-also the Identity Fallacy.
+128. They're All Crooks: The common contemporary fallacy of refusing to get involved in public politics because "all"
+politicians and politics are allegedly corrupt, ignoring the fact that if this is so in a democratic country it is precisely
+because decent people like you and I refuse to get involved, leaving the ﬁeld open to the "crooks" by default. An
+example of Circular Reasoning. Related to this fallacy is "They're All Biased," the extremely common
+contemporary cynical fallacy of ignoring news and news media because none tells the "objective truth" and all push
+some "agenda."  This basically true observation logically requiring audiences to regularly view or read a variety of
+media sources in order to get any approximation of reality, but for many younger people today (2017) it means in
+practice, "Ignore news, news media and public affairs altogether and instead pay attention to something that's fun,
+exciting or personally interesting to you." The sinister implication for democracy is, "Mind your own business and
+leave all the 'big' questions to your betters, those whose job is to deal with these questions and who are well paid to
+do so." See also the Third Person Effect, and Deliberate Ignorance.

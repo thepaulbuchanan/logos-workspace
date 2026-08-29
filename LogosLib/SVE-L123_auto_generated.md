@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L123
-name: The Bandwagon Fallacy
-triggers: ["the bandwagon"]
-ep_hash: sle_sha256_auto_b70e8c67c0a6cb4
+name: The Soldiers' Honor Fallacy
+triggers: ["the soldiers"]
+ep_hash: sle_sha256_auto_55ae173e880784e8
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L123) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the bandwagon"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the soldiers"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,18 +21,15 @@ DECLARE_LEMMA(SVE_L123) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-23. The Bandwagon Fallacy (also, Argument from Common Sense, Argumentum ad Populum): The fallacy of arguing
-that because "everyone," "the people," or "the majority" (or someone in power who has widespread backing)
-supposedly thinks or does something, it must therefore be true and right. E.g., "Whether there actually is large scale
-voter fraud in America or not, many people now think there is and that makes it so." Sometimes also includes Lying
-with Statistics, e.g. “Over 75% of Americans believe that crooked Bob Hodiak is a thief, a liar and a pervert. There
-may not be any evidence, but for anyone with half a brain that conclusively proves that Crooked Bob should go to
-jail! Lock him up! Lock him up!” This is sometimes combined with the "Argumentum ad Baculum," e.g., "Like it or
-not, it's time to choose sides: Are you going to get on board  the bandwagon with everyone else, or get crushed under
-the wheels as it goes by?" Or in the 2017 words of former White House spokesperson Sean Spicer, ""They should
-either get with the program or they can go," A contemporary digital form of the Bandwagon Fallacy is the
-Information Cascade, "in which people echo the opinions of others, usually online, even when their own opinions
-or exposure to information contradicts that opinion. When information cascades form a pattern, this pattern can
-begin to overpower later opinions by making it seem as if a consensus already exists." (Thanks to Teaching
-Tolerance for this deﬁnition!) See also Wisdom of the Crowd, and The Big Lie Technique. For the opposite of this
-fallacy see the Romantic Rebel fallacy.
+123. The Soldiers' Honor Fallacy: The ancient fallacy that all who wore a uniform, fought hard and followed orders are
+worthy of some special honor or glory or are even "heroes," whether they fought for freedom or fought to defend
+slavery, marched under Grant or Lee, Hitler, Stalin, Eisenhower or McArthur, fought to defend their homes, fought
+for oil or to spread empire, or even fought against and killed U.S. soldiers! A corrupt argument from ethos (that of a
+soldier), closely related to the "Finish the Job" fallacy ("Sure, he died for a lie, but he deserves honor because he
+followed orders and did his job faithfully to the end!"). See also "Heroes All." This fallacy was recognized and
+decisively refuted at the Nuremburg Trials after World War II but remains powerful to this day nonetheless. See also
+"Blind Loyalty." Related is the State Actor Fallacy, that those who ﬁght and die for their country (America, Russia,
+Iran, the Third Reich, etc.) are worthy of honor or at least pardonable while those who ﬁght for a non-state actor
+(armed abolitionists, guerrillas, freedom-ﬁghters, jihadis, mujahideen) are not and remain "terrorists" no matter how
+noble or vile their cause, until or unless they win and become the recognized state, or are adopted by a state after the
+fact.

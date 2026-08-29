@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L119
-name: Argumentum ad Baculum
-triggers: ["argumentum ad"]
-ep_hash: sle_sha256_auto_cb21a2947b87d0b1
+name: The Silent Majority Fallacy
+triggers: ["the silent"]
+ep_hash: sle_sha256_auto_b0fd1d12cbe57d17
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L119) {
-  MATCH_CONTEXT(Rhetorical_Pattern["argumentum ad"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the silent"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,13 +21,8 @@ DECLARE_LEMMA(SVE_L119) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-19. Argumentum ad Baculum ("Argument from the Club." Also, "Argumentum ad Baculam," "Argument from
-Strength," "Muscular Leadership," "Non-negotiable Demands," "Hard Power," Bullying, The Power-Play, Fascism,
-Resolution by Force of Arms, Shock and Awe.): The fallacy of "persuasion" or "proving one is right" by force,
-violence, brutality, terrorism, superior strength, raw military might, or threats of violence. E.g., "Gimmee your wallet
-or I'll knock your head off!" or "We have the perfect right to take your land, since we have the big guns and you
-don't." Also applies to indirect forms of threat. E.g., "Give up your foolish pride, kneel down and accept our religion
-today if you don't want to burn in hell forever and ever!" A mainly discursive Argumentum ad Baculum is that of
-forcibly silencing opponents, ruling them "out of order," blocking, censoring or jamming their message, or simply
-speaking over them or/speaking more loudly than they do, this last a tactic particularly attributed to men in mixed-
-gender discussions.
+119. The Silent Majority Fallacy: A variety of the argument from ignorance, this fallacy, famously enunciated by
+disgraced American President Richard Nixon, alleges special knowledge of a hidden "silent majority" of voters (or
+of the population in general) that stands in support of an otherwise unpopular leader and his/her policies, contrary to
+the repeated ﬁndings of polls, surveys and popular vote totals. In an extreme case the leader arrogates to him/herself
+the title of the "Voice of the Voiceless."

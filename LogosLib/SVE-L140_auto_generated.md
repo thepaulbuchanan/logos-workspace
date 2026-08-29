@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L140
-name: Disciplinary Blinders
-triggers: ["disciplinary blinders"]
-ep_hash: sle_sha256_auto_b7d71ed05c4a8a9f
+name: Venue
+triggers: ["venue the"]
+ep_hash: sle_sha256_auto_fda9e9d774dec125
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L140) {
-  MATCH_CONTEXT(Rhetorical_Pattern["disciplinary blinders"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["venue the"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,11 +21,13 @@ DECLARE_LEMMA(SVE_L140) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-40. Disciplinary Blinders: A very common contemporary scholarly or professional fallacy of ethos (that of one's
-discipline, profession or academic ﬁeld),  automatically disregarding, discounting or ignoring a priori otherwise-
-relevant research, arguments and evidence that come from outside one's own professional discipline, discourse
-community or academic area of study. E.g., "That might be relevant or not, but it's so not what we're doing in our
-ﬁeld right now."  See also, "Star Power" and "Two Truths." An analogous fallacy is that of Denominational
-Blinders, arbitrarily ignoring or waving aside without serious consideration any arguments or discussion about faith,
-morality, ethics, spirituality, the Divine or the afterlife that come from outside one's own speciﬁc religious
-denomination or faith tradition.
+140. Venue: The ancient fallacy of Venue, a corrupt argument from kairos, falsely and arbitrarily invalidates an
+otherwise-valid argument or piece of evidence because it is supposedly offered in the wrong place, at the wrong
+moment or in an inappropriate court, medium or forum. According to PhD student Amanda Thran, "Quite often,
+people will say to me in person that Facebook, Twitter, etc. are 'not the right forums' for discussing politically and
+socially sensitive issues. ... In this same vein, I’ve also encountered the following argument: 'Facebook, which is
+used for sharing wedding, baby, and pet photos, is an inappropriate place for political discourse; people don’t wished
+to be burdened with that when they log in.' In my experience, this line of reasoning is most often employed (and
+abused) to shut down a conversation when one feels they are losing it. Ironically, I have seen it used when the
+argument has already been transpiring on the platform [in] an already lengthy discussion." See also Disciplinary
+Blinders.

@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L112
-name: The Appeal to Tradition
-triggers: ["the appeal"]
-ep_hash: sle_sha256_auto_b0d70654fce08854
+name: Scapegoating
+triggers: ["scapegoating also"]
+ep_hash: sle_sha256_auto_3ebb506c3cc36544
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L112) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the appeal"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["scapegoating also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,12 +21,14 @@ DECLARE_LEMMA(SVE_L112) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-12. The Appeal to Tradition: (also, Conservative Bias; Back in Those Good Times, "The Good Old Days"): The
-ancient fallacy that a standpoint, situation or action is right, proper and correct simply because it has "always" been
-that way, because people have "always" thought that way, or because it was that way long ago (most often meaning
-in the audience members' youth or childhood, not before) and still continues to serve one particular group very well.
-A corrupted argument from ethos (that of past generations). E.g., "In America, women have always been paid less,
-so let's not mess with long-standing tradition."  See also Argument from Inertia, and Default Bias. The opposite of
-this fallacy is The Appeal to Novelty  (also, "Pro-Innovation bias," "Recency Bias," and "The Bad Old Days;" The
-Early Adopter's Fallacy), e.g., "It's NEW, and [therefore it must be] improved!" or "This is the very latest discovery--
-it has to be better."
+112. Scapegoating (also, Blamecasting): The ancient fallacy that whenever something goes wrong there's always
+someone other than oneself to blame. Although sometimes this fallacy is a practical denial of randomness or chance
+itself, today it is more often a mere insurance-driven business decision ("I don't care if it was an accident! Somebody
+with deep pockets is gonna pay for this!"), though often scapegoating is no more than a cynical ploy to shield those
+truly responsible from blame. The term "Scapegoating" is also used to refer to the tactic of casting collective blame
+on marginalized or scorned "Others," e.g., "The Jews are to blame!" A particularly corrupt and cynical example of
+scapegoating is the fallacy of Blaming the Victim, in which one falsely casts the blame for one's own evil or
+questionable actions on those affected, e.g., "If you move an eyelash I'll have to kill you and you'll be to blame!" "If
+you don't bow to our demands we'll shut down the government and it'll be totally YOUR fault!" or "You bi**h, you
+acted ﬂirty and made me rape you! Then you snitched on me to the cops and let them collect a rape kit on you, and
+now I'm going to prison and every bit of it is your fault!" See also, the Affective Fallacy.

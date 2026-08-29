@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L104
-name: The Ad Hominem Argument
-triggers: ["the ad"]
-ep_hash: sle_sha256_auto_ea8ed6c813532ee7
+name: The Procrustean Fallacy
+triggers: ["the procrustean"]
+ep_hash: sle_sha256_auto_61c15acd5579bbd8
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L104) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the ad"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the procrustean"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,13 +21,13 @@ DECLARE_LEMMA(SVE_L104) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-4. The Ad Hominem Argument (also, "Personal attack," "Poisoning the well"): The fallacy of attempting to refute an
-argument by attacking the opposition’s intelligence, morals, education, professional qualiﬁcations, personal
-character or reputation, using a corrupted negative argument from ethos. E.g., "That so-called judge;" or "He's so
-evil that you can't believe anything he says." See also "Guilt by Association." The opposite of this is the "Star
-Power" fallacy.  Another obverse of Ad Hominem is the Token Endorsement Fallacy, where, in the words of
-scholar Lara Bhasin, "Individual A has been accused of anti-Semitism, but Individual B is Jewish and says
-Individual A is not anti-Semitic, and the implication of course is that we can believe Individual B because, being
-Jewish, he has special knowledge of anti- Semitism. Or, a presidential candidate is accused of anti-Muslim bigotry,
-but someone ﬁnds a testimony from a Muslim who voted for said candidate, and this is trotted out as evidence
-against the candidate's bigotry."  The same fallacy would apply to a sports team offensively named after a
+104. The Procrustean Fallacy (also, "Keeping up Standards," Standardization, Uniformity, Fordism).  The modernist
+fallacy of falsely and inappropriately applying the norms and requirements of standardized manufacturing. quality
+control and rigid scheduling, or of military discipline to inherently diverse free human beings, their lives, education,
+behavior, clothing and appearance. This fallacy often seems to stem from the pathological need of someone in power
+to place in "order" their disturbingly free, messy and disordered universe by restricting others' freedom and insisting
+on rigid standardization, alphabetization, discipline, uniformity and "objective" assessment of everyone under their
+power. This fallacy partially explains why marching in straight lines, mass calisthenics, goose-stepping, drum-and-
+bugle or ﬂag corps, standing at attention, saluting, uniforms, and standardized categorization are so typical of
+fascism, tyrannical regimes, and of tyrants petty and grand everywhere. Thanks to author Eimar O'Duffy for
+identifying this fallacy!

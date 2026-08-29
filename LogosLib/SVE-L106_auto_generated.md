@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L106
-name: Alphabet Soup
-triggers: ["alphabet soup"]
-ep_hash: sle_sha256_auto_5cecc4178720130b
+name: The Red Herring
+triggers: ["the red"]
+ep_hash: sle_sha256_auto_3c69afde563cfe5f
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L106) {
-  MATCH_CONTEXT(Rhetorical_Pattern["alphabet soup"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["the red"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,15 +21,10 @@ DECLARE_LEMMA(SVE_L106) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-6. Alphabet Soup: A corrupt modern implicit fallacy from ethos in which a person inappropriately overuses acronyms,
-abbreviations, form numbers and arcane insider "shop talk" primarily to prove to an audience that s/he "speaks their
-language" and is "one of them" and to shut out, confuse or impress outsiders. E.g., "It's not uncommon for a K-12
-with ASD to be both GT and LD;" "I had a twenty-minute DX Q-so on 15 with a Zed-S1 and a couple of LU2's even
-though the QR-Nancy was 10 over S9;" or "I hope I'll keep on seeing my BAQ on my LES until the day I get my
-DD214."   See also, Name Calling. This fallacy has recently become common in media pharmaceutical advertising
-in the United States, where "Alphabet Soup" is used to create false identiﬁcation with and to exploit  patient groups
-suffering from speciﬁc illnesses or conditions, e.g., "If you have DPC with associated ZL you can keep your B2D
-under control with Luglugmena®. Ask your doctor today about Luglugmena® Helium Tetracarbide lozenges to
-control symptoms of ZL and to keep your B2D under that crucial 7.62 threshold. Side effects of  Luglugmena® may
-include K4 Syndrome which may lead to lycanthropic bicephaly, BMJ and occasionally, death. Do not take
-Luglugmena® if you are allergic to dogbite or have type D Flinder's Garbosis..."
+106. The Red Herring (also, Distraction): An irrelevant argument, attempting to mislead and distract an audience by
+bringing up an unrelated but emotionally loaded issue. E.g., "In regard to my several bankruptcies and recent
+indictment for corruption let’s be straight up about what’s really important: Terrorism!  Just look at what happened
+last week in [name the place]. Vote for me and I'll ﬁght those terrorists anywhere in the world!"  Also applies to
+raising unrelated issues as falsely opposing the issue at hand, e.g., "You say 'Black Lives Matter,' but I would rather
+say 'Climate Change Matters!'" when the two contentions are in no way opposed, only competing for attention. See
+also Availability Bias, and Dog Whistle Politics.

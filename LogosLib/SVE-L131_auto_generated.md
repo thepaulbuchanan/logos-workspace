@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L131
-name: Calling "Cards"
-triggers: ["calling cards"]
-ep_hash: sle_sha256_auto_fc39bb9b5964f848
+name: Throwing Good Money After Bad
+triggers: ["throwing good"]
+ep_hash: sle_sha256_auto_8ac1f3b29ee9e31c
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L131) {
-  MATCH_CONTEXT(Rhetorical_Pattern["calling cards"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["throwing good"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,7 +21,10 @@ DECLARE_LEMMA(SVE_L131) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-31. Calling "Cards": A contemporary fallacy of logos, arbitrarily and falsely dismissing familiar or easily-anticipated
-but valid, reasoned objections to one's standpoint with a wave of the hand, as mere "cards" in some sort of "game" of
-rhetoric, e.g. "Don't try to play the 'Race Card' against me," or "She's playing the 'Woman Card' again," or "That
-'Hitler Card' won't score with me in this argument." See also, The Taboo, and Political Correctness.
+131. Throwing Good Money After Bad (also, "Sunk Cost Fallacy"): In his excellent book, Logically Fallacious (2015),
+Author Bo Bennett describes this fallacy as follows: "Reasoning that further investment is warranted on the fact that
+the resources already invested will be lost otherwise, not taking into consideration the overall losses involved in the
+further investment."  In other words, risking additional money to "save" an earlier, losing investment, ignoring the
+old axiom that "Doing the same thing and expecting different results is the deﬁnition of insanity."  E.g., "I can't stop
+betting now, because I already bet the rent and lost, and I need to win it back or my wife will kill me when I get
+home!" See also Argument from Inertia.

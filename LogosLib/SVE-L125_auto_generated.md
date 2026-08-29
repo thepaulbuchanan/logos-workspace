@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L125
-name: The Big "But" Fallacy
-triggers: ["the big"]
-ep_hash: sle_sha256_auto_3c69b26352f3c7f7
+name: Star Power
+triggers: ["star power"]
+ep_hash: sle_sha256_auto_b19ace138f35528b
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L125) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the big"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["star power"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,13 +21,19 @@ DECLARE_LEMMA(SVE_L125) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-25. The Big "But" Fallacy (also, Special Pleading):  The fallacy of enunciating a generally-accepted principle and then
-directly negating it with a "but." Often this takes the form of the "Special Case," which is supposedly exempt from
-the usual rules of law, logic, morality, ethics or even credibility  E.g., "As Americans we have always believed on
-principle that every human being has God-given, inalienable rights to life, liberty and the pursuit of happiness,
-including in the case of criminal accusations a fair and speedy trial before a jury of one's peers. BUT, your crime was
-so unspeakable and a trial would be so problematic for national security that it justiﬁes locking you up for life in
-Guantanamo without trial, conviction or possibility of appeal."  Or, "Yes, Honey, I still love you more than life itself,
-and I know that in my wedding vows I promised before God that I'd forsake all others and be faithful to you 'until
-death do us part,' but you have to understand, this was a special case..."  See also, "Shopping Hungry," and "We
-Have to do Something!"
+125. Star Power (also Testimonial, Questionable Authority, Faulty Use of Authority, Falacia ad Vericundiam; Eminence-
+based Practice): In academia and medicine, a corrupt argument from ethos in which arguments, standpoints and
+themes of professional discourse are granted fame and validity or condemned to obscurity solely by whoever may be
+the reigning "stars" or "premier journals" of the profession or discipline at the moment. E.g., "Foster's take on
+Network Theory has been thoroughly criticized and is so last-week!.This week everyone's into Safe Spaces and
+Pierce's Theory of Microaggressions. Get with the program." (See also, the Bandwagon.) Also applies to an
+obsession with journal Impact Factors. At the popular level this fallacy also refers to a corrupt argument from ethos
+in which public support for a standpoint or product is established by a well-known or respected ﬁgure (i.e.,. a star
+athlete or entertainer) who is not an expert and who may have been well paid to make the endorsement (e.g.,
+“Olympic gold-medal pole-vaulter Fulano de Tal uses Quick Flush Internet--Shouldn’t you?" Or, "My favorite rock
+star warns that vaccinations spread cooties, so I'm not vaccinating my kids!" ). Includes other false, meaningless or
+paid means of associating oneself or one’s product or standpoint with the ethos of a famous person or event (e.g.,
+“Try Salsa Cabria, the ofﬁcial taco sauce of the Winter Olympics!”). This fallacy also covers Faulty use of Quotes
+(also, The Devil Quotes Scripture), including quoting out of context or against the clear intent of the original speaker
+or author.  E.g., racists quoting and twisting the Rev. Dr. Martin Luther King Jr.'s statements in favor of racial
+equality against contemporary activists and movements for racial equality.

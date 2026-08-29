@@ -20,9 +20,10 @@ pub struct PdfExtractorCore {
 impl PdfExtractorCore {
     pub fn new() -> Self {
         PdfExtractorCore {
-            header_regex: Regex::new(r"^(?P<num>\d+)\.\s+(?P<title>[^:\n\(\]]+)").unwrap(),
+            // FIX: Captures up to triple-digit indexes safely (e.g., "145. The Worst-Case Fallacy", "300. New Lemma")
+            header_regex: Regex::new(r"^(?P<num>\d{1,3})\.\s+(?P<title>[^:\n\(\]]+)").unwrap(),
             trigger_cleaner: Regex::new(r#"[."';:,\(\)!\?]"#).unwrap(),
-            number_stripper: Regex::new(r"^\d+\.?\s*").unwrap(),
+            number_stripper: Regex::new(r"^\d{1,3}\.?\s*").unwrap(),
         }
     }
 
@@ -54,7 +55,9 @@ impl PdfExtractorCore {
                 let number_id = caps.name("num").unwrap().as_str();
                 let fallacy_name = caps.name("title").unwrap().as_str().trim();
                 
-                let lemma_id = format!("SVE-L1{:02}", number_id.parse::<usize>().unwrap_or(0));
+                // Index format matches higher sequence counts cleanly
+                let parsed_num = number_id.parse::<usize>().unwrap_or(0);
+                let lemma_id = format!("SVE-L{:03}", parsed_num);
                 
                 let pure_body = self.number_stripper.replace(block, "");
                 let cleaned_text = self.trigger_cleaner.replace_all(&pure_body, "");
@@ -62,7 +65,6 @@ impl PdfExtractorCore {
                 
                 let mut candidate_triggers = Vec::new();
                 
-                // FIX: Properly convert slice elements to strings before downcasing
                 if words.len() >= 2 {
                     let first_key = format!("{} {}", words[0].to_string().to_lowercase(), words[1].to_string().to_lowercase());
                     candidate_triggers.push(first_key);

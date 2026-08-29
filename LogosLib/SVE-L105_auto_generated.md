@@ -1,8 +1,8 @@
 ---
 lemma_id: SVE-L105
-name: The Affective Fallacy
-triggers: ["the affective"]
-ep_hash: sle_sha256_auto_15c951df6dec88f0
+name: Prosopology
+triggers: ["prosopology also"]
+ep_hash: sle_sha256_auto_2e6f5958be1e67be
 ---
 
 ### 1. Human Readable Specification
@@ -11,7 +11,7 @@ Auto-compiled from committed LogosLib community manifest parameters.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L105) {
-  MATCH_CONTEXT(Rhetorical_Pattern["the affective"]);
+  MATCH_CONTEXT(Rhetorical_Pattern["prosopology also"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
@@ -21,21 +21,15 @@ DECLARE_LEMMA(SVE_L105) {
 Auto-extracted from reference materials.
 
 ### 2. Verification Context
-5. The Affective Fallacy (also The Romantic Fallacy; Emotion over Reﬂection; "Follow Your Heart"): An extremely
-common modern fallacy of Pathos, that one's emotions, urges or "feelings" are innate and in every case self-
-validating, autonomous, and above any human intent or act of will (one's own or others'), and are thus immune to
-challenge or criticism. (In fact, researchers now [2017] have robust scientiﬁc evidence that emotions are actually
-cognitive and not innate.) In this fallacy one argues, "I feel it, so it must be true. My feelings are valid, so you have
-no right to criticize what I say or do, or how I say or do it." This latter is also a fallacy of stasis, confusing a
-respectful and reasoned response or refutation with personal invalidation, disrespect, prejudice, bigotry, sexism,
-homophobia or hostility. A grossly sexist form of the Affective Fallacy is the well-known crude fallacy that the
-phallus "Has no conscience" (also, "A man's gotta do what a man's gotta do;" "Thinking with your other head."), i.e.,
-since (male) sexuality is self-validating and beyond voluntary control what one does with it cannot be controlled
-either and such actions are not open to criticism, an assertion eagerly embraced and extended beyond the male
-gender in certain reiﬁcations of "Desire" in contemporary academic theory. See also, Playing on Emotion. Opposite
-to this fallacy is the Chosen Emotion Fallacy (thanks to scholar Marc Lawson for identifying this fallacy), in which
-one falsely claims complete, or at least reliable prior voluntary control over one's own  autonomic, "gut level"
-affective reactions. Closely related if not identical to this last is the ancient fallacy of Angelism, falsely claiming that
-one is capable of "objective" reasoning and judgment without emotion, claiming for oneself a viewpoint of
-Olympian  "disinterested objectivity" or pretending to place oneself far above all personal feelings, temptations or
-bias. See also, Mortiﬁcation.
+105. Prosopology (also, Prosopography, Reciting the Litany; "Tell Me, What Were Their Names?"; Reading the Roll of
+Martyrs): An ancient fallacy of pathos and ethos, publicly reading out loud, singing, or inscribing at length a list of
+names (most or all of which will be unknown to the reader or audience), sometimes in a negative sense, to underline
+the gravity of a past tragedy or mass-casualty event, sometimes in a positive sense, to emphasize the ancient
+historical continuity of a church, organization or cause. Proper names, especially if they are from the same culture or
+language group as the audience, can have near-mystical persuasive power. In some cases, those who use this fallacy
+in its contemporary form will defend it as an attempt to "personalize" an otherwise anonymous recent mass tragedy.
+This fallacy was virtually unknown in secular American affairs before about 100 years ago, when the custom
+emerged of listing of the names of local World War I casualties on community monuments around the country. That
+this is indeed a fallacy is evident by the fact that the names on these century-old monuments are now meaningful
+only to genealogists and specialized historians, just as the names on the Vietnam War Memorial in Washington or the
+names of those who perished on 9/11 will surely be in another several generations.

@@ -37,6 +37,7 @@ fn main() {
     
     // 🔍 SIMULATION TOGGLE
     let target_filename = "manuscript.tex";
+    // let target_filename = "300_Fallacies.pdf";
 
     let target_path = format!("{}/{}", test_dir, target_filename);
 
