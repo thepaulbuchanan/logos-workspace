@@ -3,7 +3,7 @@ use crate::registry::{LibraryRegistry, UnifiedLemma};
 use crate::lean::LeanVerifier;
 use crate::citation::CitationAuditor; // 🟢 Link our fresh Citation Auditor layer
 use regex::Regex;
-use std::fs;
+// use std::fs;
 use std::path::Path;
 
 pub struct HeraclitusCore {
