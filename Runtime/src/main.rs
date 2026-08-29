@@ -6,11 +6,15 @@ use std::fs;
 use engine::HeraclitusCore;
 
 fn main() {
-    let target_file = "tests/manuscript.tex".to_string();
+    // Look one level up and into our production Test/ folder path matrix
+    let target_file = "../Test/manuscript.tex".to_string();
 
     let file_content = match fs::read_to_string(&target_file) {
         Ok(content) => content,
-        Err(_) => { std::process::exit(1); }
+        Err(_) => {
+            eprintln!("⚠️ HERACLITUS PATH FAULT: Unable to find manuscript at '{}'", target_file);
+            std::process::exit(1);
+        }
     };
 
     let compiler = HeraclitusCore::new();
@@ -38,6 +42,6 @@ fn main() {
         clean_paragraph_count += 1;
     }
 
-    let _ = fs::write("tests/HERACLITUS_MANIFEST_SUMMARY.md", manifest_summary);
-    let _ = fs::write("tests/Validated.sve", sve_script_output);
+    let _ = fs::write("../Test/HERACLITUS_MANIFEST_SUMMARY.md", manifest_summary);
+    let _ = fs::write("../Test/Validated.sve", sve_script_output);
 }

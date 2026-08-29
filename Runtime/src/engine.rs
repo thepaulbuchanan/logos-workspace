@@ -27,13 +27,15 @@ impl HeraclitusCore {
         core
     }
 
-    fn bootstrap_and_refactor_logos_lib(&mut self) {
-        let paths = vec!["lemmas", "../lemmas", "../../lemmas"];
+        fn bootstrap_and_refactor_logos_lib(&mut self) {
+        // Explicitly point downstream directly into your production library folder name
+        let paths = vec!["LogosLib", "../LogosLib", "../../LogosLib"];
         let mut target_dir = "";
         for p in paths {
             if Path::new(p).exists() && Path::new(p).is_dir() { target_dir = p; break; }
         }
         if target_dir.is_empty() { return; }
+
 
         if let Ok(entries) = fs::read_dir(target_dir) {
             for entry in entries.flatten() {
