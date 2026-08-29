@@ -9,7 +9,6 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use engine::HeraclitusCore;
 use pdf::PdfExtractorCore;
-// use refactor::LemmaRefactor;
 
 fn locate_base_paths() -> (String, String) {
     let test_paths = vec!["Test", "../Test", "../../Test"];
@@ -37,11 +36,7 @@ fn main() {
     let (test_dir, logos_dir) = locate_base_paths();
     
     // 🔍 SIMULATION TOGGLE
-    // Track 1: Parse PDF to simulate Stage A/B Submission Drafts
-    // let target_filename = "Master_List_of_Logical_Fallacies.pdf";
-    // Track 2: Execute Linter to evaluate the manuscript against Stage C Locked Lemmas
     let target_filename = "manuscript.tex";
-    // let target_filename = "Master_List_of_Logical_Fallacies.pdf";
 
     let target_path = format!("{}/{}", test_dir, target_filename);
 
@@ -50,23 +45,19 @@ fn main() {
         std::process::exit(1);
     }
 
-    // =========================================================================
-    // STAGE A: INGESTION & SUBMISSION GENERATION (PDF TRACK)
-    // =========================================================================
     if target_path.ends_with(".pdf") {
-        println!("🚀 STAGE A: ACTIVATING INVARIANT SCANNER");
+        eprintln!("🚀 STAGE A: ACTIVATING INVARIANT SCANNER");
         let extractor = PdfExtractorCore::new();
         
         if let Ok(paragraphs) = extractor.scan_pdf_to_paragraphs(&target_path) {
             let discovered = extractor.extract_fallacy_nodes(&paragraphs);
-            println!("🔍 Discovered {} Fallacy Candidates. Writing Uncommitted Drafts...", discovered.len());
+            eprintln!("🔍 Discovered {} Fallacy Candidates. Writing Uncommitted Drafts...", discovered.len());
 
             for node in discovered {
                 let out_name = format!("{}/{}_auto_generated.md", logos_dir, node.id);
                 let file_path = PathBuf::from(out_name);
 
                 if !file_path.exists() {
-                    // Stage A/B Manifest: Human readable parameters only, ep_hash sits empty!
                     let draft_content = format!(
                         "---\nlemma_id: {}\nname: {}\ntriggers: {:?}\nep_hash: \n---\n\n\
                          ### 1. Human Readable Specification\nAuto-extracted from reference materials.\n\n\
@@ -76,20 +67,15 @@ fn main() {
                     let _ = fs::write(file_path, draft_content);
                 }
             }
-            println!("🟢 Stage A Complete: Uncommitted Drafts Staged in LogosLib.");
+            eprintln!("🟢 Stage A Complete: Uncommitted Drafts Staged in LogosLib.");
         }
         return;
     }
 
-    // =========================================================================
-    // STAGE C: REFACTOR ENGINE HASH LOCK & EXECUTION (TEX LINTER TRACK)
-    // =========================================================================
-    println!("⚙️ STAGE C: INITIALISING THE HERACLITUS REFACTOR CORE");
+    // FIX: Route log headers to standard error to clear standard output pipes
+    eprintln!("⚙️ STAGE C: INITIALISING THE HERACLITUS REFACTOR CORE");
     
-    // Trigger the dynamic bootstrapper to scan LogosLib, intercept any open hashes, 
-    // compile their machine-bytecode blocks, and seal them cryptographically using SHA-256.
     let compiler = HeraclitusCore::new();
-    
     let file_content = match fs::read_to_string(&target_path) {
         Ok(content) => content,
         Err(_) => std::process::exit(1),
