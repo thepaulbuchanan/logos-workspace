@@ -1,6 +1,6 @@
 # HERACLITUS EPISTEMIC MANIFEST SUMMARY REPORT
 
-Target File Ingested: Test/manuscript.tex
+Target File Ingested: ../Test/manuscript.tex
 Status: EVALUATION COMPLETE
 
 ## Epistemic Audit Ledger:

@@ -1,0 +1,11 @@
+/Users/PEB/GitHub/heraclitus-mvp/Runtime/target/debug/deps/pdf_extract-ef0821e7741067a1.d: /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/lib.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/core_fonts.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/glyphnames.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/zapfglyphnames.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/encodings.rs
+
+/Users/PEB/GitHub/heraclitus-mvp/Runtime/target/debug/deps/libpdf_extract-ef0821e7741067a1.rlib: /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/lib.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/core_fonts.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/glyphnames.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/zapfglyphnames.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/encodings.rs
+
+/Users/PEB/GitHub/heraclitus-mvp/Runtime/target/debug/deps/libpdf_extract-ef0821e7741067a1.rmeta: /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/lib.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/core_fonts.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/glyphnames.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/zapfglyphnames.rs /Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/encodings.rs
+
+/Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/lib.rs:
+/Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/core_fonts.rs:
+/Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/glyphnames.rs:
+/Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/zapfglyphnames.rs:
+/Users/PEB/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pdf-extract-0.7.12/src/encodings.rs:
