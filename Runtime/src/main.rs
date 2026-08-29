@@ -1,14 +1,15 @@
 mod latex;
 mod engine;
 mod refactor;
-mod lean;
-mod registry; // Link our brand new library audit layer submodule
+mod registry; // Natively link the library audit loader
+mod lean;     // Natively link the dual-track math oracle
 
 use std::fs;
 use engine::HeraclitusCore;
 
 fn main() {
-    let target_file = "../Test/manuscript.tex".to_string();
+    // Locked to the central repository root directory layout
+    let target_file = "Test/manuscript.tex".to_string();
 
     let file_content = match fs::read_to_string(&target_file) {
         Ok(content) => content,
@@ -39,10 +40,10 @@ fn main() {
         println!("{}", ir_trace);
         
         if !summary_str.is_empty() { manifest_summary.push_str(&summary_str); }
-        if !sve_str.is_empty() { sve_script_output.push_str(&sve_str); }
+        if !sve_script_output.is_empty() { sve_script_output.push_str(&sve_str); }
         clean_paragraph_count += 1;
     }
 
-    let _ = fs::write("../Test/HERACLITUS_MANIFEST_SUMMARY.md", manifest_summary);
-    let _ = fs::write("../Test/Validated.sve", sve_script_output);
+    let _ = fs::write("Test/HERACLITUS_MANIFEST_SUMMARY.md", manifest_summary);
+    let _ = fs::write("Test/Validated.sve", sve_script_output);
 }

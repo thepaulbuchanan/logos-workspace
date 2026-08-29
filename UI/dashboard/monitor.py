@@ -6,8 +6,11 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def render_dashboard():
-    # 🔒 ABSOLUTE PATH ANCHORING: Locks tracking relative to this script's physical disk address
+    # Absolute Path Anchoring
     script_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Establish the absolute root directory path of the entire workspace repository
+    repo_root = os.path.abspath(os.path.join(script_dir, "../../"))
     
     target_file = os.path.abspath(os.path.join(script_dir, "../../Test/manuscript.tex"))
     runtime_dir = os.path.abspath(os.path.join(script_dir, "../../Runtime"))
@@ -15,7 +18,7 @@ def render_dashboard():
     manifest_summary = os.path.abspath(os.path.join(script_dir, "../../Test/HERACLITUS_MANIFEST_SUMMARY.md"))
     validated_sve = os.path.abspath(os.path.join(script_dir, "../../Test/Validated.sve"))
 
-    # Quietly build the Rust core inside the absolute Runtime folder directory path
+    # Quietly build the Rust core inside the production Runtime sub-folder directory path
     subprocess.run(f"cd {runtime_dir} && cargo build --quiet", shell=True)
 
     clear_screen()
@@ -29,8 +32,8 @@ def render_dashboard():
         print(f"⚠️ PATH ERROR: Waiting for '{target_file}'...")
         return
 
-    # Execute the local binary compiled runner with absolute path parameters
-    result = subprocess.run([compiler_path], capture_output=True, text=True)
+    # FIX: Force the running binary to execute with its working context locked directly to the repo root folder
+    result = subprocess.run([compiler_path], capture_output=True, text=True, cwd=repo_root)
     ir_lines = [line for line in result.stdout.split("\n") if line.strip()]
 
     # Filter out your clean axiom states from your SVE-L violation tokens
