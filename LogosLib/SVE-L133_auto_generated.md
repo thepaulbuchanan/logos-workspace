@@ -1,0 +1,25 @@
+---
+lemma_id: SVE-L133
+name: The Complex Question
+triggers: ["33 the"]
+ep_hash: sle_sha256_auto_ea8ed6e4ef9b9d4a
+---
+
+### 1. Human Readable Specification
+Auto-compiled from committed LogosLib community manifest parameters.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L133) {
+  MATCH_CONTEXT(Rhetorical_Pattern["33 the"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+
+### 3. Verification Context
+33. The Complex Question: The contemporary fallacy of demanding a direct answer to a question that cannot be
+answered without ﬁrst analyzing or challenging the basis of the question itself. E.g., "Just answer me 'yes' or 'no': 
+Did you think you could get away with plagiarism and not suffer the consequences?" Or, "Why did you rob that
+bank?" Also applies to situations where one is forced to either accept or reject complex standpoints or propositions
+containing both acceptable and unacceptable parts. A corruption of the argument from logos. A counterpart of
+Either/Or Reasoning.

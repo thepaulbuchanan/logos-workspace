@@ -1,0 +1,28 @@
+---
+lemma_id: SVE-L102
+name: Ableism
+triggers: ["2 ableism"]
+ep_hash: sle_sha256_auto_fd9420bdb451e40e
+---
+
+### 1. Human Readable Specification
+Auto-compiled from committed LogosLib community manifest parameters.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L102) {
+  MATCH_CONTEXT(Rhetorical_Pattern["2 ableism"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+
+### 3. Verification Context
+2. Ableism (also, The Con Artist's Fallacy; The Dacoit's Fallacy; Shearing the Sheeple; Proﬁteering; "Vulture
+Capitalism," "Wealth is disease, and I am the cure."): A corrupt argument from ethos, arguing that because someone
+is intellectually slower, physically or emotionally less capable, less ambitious, less aggressive, older or less healthy
+(or simply more trusting or less lucky) than others, s/he "naturally" deserves less in life and may be freely victimized
+by those who are luckier, quicker, younger, stronger, healthier, greedier, more powerful, less moral or more gifted (or
+who simply have more immediate felt need for money, often involving some form of addiction). This fallacy is a
+"softer" argumentum ad baculum. When challenged, those who practice this fallacy seem to most often shrug their
+shoulders and mumble "Life is ruff and you gotta be tuff [sic]," "You gotta do what you gotta do to get ahead in this
+world," "It's no skin off my nose," "That's free enterprise," "That's the way life is!" or similar.

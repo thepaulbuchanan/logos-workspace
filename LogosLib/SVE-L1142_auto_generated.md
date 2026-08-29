@@ -1,0 +1,25 @@
+---
+lemma_id: SVE-L1142
+name: Where there’s Smoke, there’s Fire
+triggers: ["142 where"]
+ep_hash: sle_sha256_auto_b0d6be198ffdc166
+---
+
+### 1. Human Readable Specification
+Auto-compiled from committed LogosLib community manifest parameters.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L1142) {
+  MATCH_CONTEXT(Rhetorical_Pattern["142 where"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+
+### 3. Verification Context
+142. Where there’s Smoke, there’s Fire (also Hasty Conclusion; Jumping to a Conclusion): The dangerous fallacy of
+ignorantly drawing a snap conclusion and/or taking action without sufﬁcient evidence. E.g., “Captain! The guy
+sitting next to me in coach has dark skin and is reading a book in some kind of funny language all full of accent
+marks, weird squiggles above the "N's" and upside-down question marks. It must be Arabic! Get him off the plane
+before he blows us all to kingdom come!” A variety of the “Just in Case” fallacy. The opposite of this fallacy is the
+"Paralysis of Analysis."

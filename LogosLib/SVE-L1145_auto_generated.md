@@ -1,0 +1,26 @@
+---
+lemma_id: SVE-L1145
+name: The Worst Negates the Bad
+triggers: ["145 the"]
+ep_hash: sle_sha256_auto_c99fd0ce19fa8df2
+---
+
+### 1. Human Readable Specification
+Auto-compiled from committed LogosLib community manifest parameters.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L1145) {
+  MATCH_CONTEXT(Rhetorical_Pattern["145 the"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+
+### 3. Verification Context
+145. The Worst Negates the Bad (also, Be Grateful for What You've Got): The extremely common modern logical
+fallacy that an objectively bad situation somehow isn't so bad simply because it could have been far worse, or
+because someone, somewhere has it even worse. E.g., "I cried because I had no shoes, until I saw someone who had
+no feet." Or, "You're protesting because you earn only $7.25 an hour? You could just as easily be out on the street! I
+happen to know there are people in Uttar Pradesh who are doing the very same work you're doing for one tenth of
+what you're making, and they're pathetically glad just to have work at all.  You need to shut up, put down that picket
+sign, get back to work for what I care to pay you, and  thank me each and every day for giving you a job!"
