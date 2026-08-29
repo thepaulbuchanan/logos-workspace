@@ -1,13 +1,17 @@
 use crate::latex::LatexParser;
 use crate::registry::{LibraryRegistry, UnifiedLemma};
-use crate::lean::LeanVerifier; // Link our brand new modular math oracle layer
+use crate::lean::LeanVerifier;
+use crate::citation::CitationAuditor; // 🟢 Link our fresh Citation Auditor layer
 use regex::Regex;
+use std::fs;
 use std::path::Path;
 
 pub struct HeraclitusCore {
     active_lemmas: Vec<UnifiedLemma>,
     pub latex_lexer: LatexParser,
-    use_remote_api_flag: bool, // Global environmental execution router flag
+    citation_lexer: CitationAuditor,
+    use_remote_api_flag: bool,
+    test_dir_cache: String,
 }
 
 impl HeraclitusCore {
@@ -15,7 +19,9 @@ impl HeraclitusCore {
         let mut core = HeraclitusCore {
             active_lemmas: Vec::new(),
             latex_lexer: LatexParser::new(),
-            use_remote_api_flag: false, // 🚨 TOGGLE LAYER: Set to 'true' to simulate Web UI API cloud routes
+            citation_lexer: CitationAuditor::new(),
+            use_remote_api_flag: false,
+            test_dir_cache: "Test".to_string(),
         };
         core.initialize_library_matrix();
         core
@@ -29,6 +35,11 @@ impl HeraclitusCore {
         }
         if target_dir.is_empty() { return; }
 
+        let t_paths = vec!["Test", "../Test", "../../Test"];
+        for tp in t_paths {
+            if Path::new(tp).exists() && Path::new(tp).is_dir() { self.test_dir_cache = tp.to_string(); break; }
+        }
+
         self.active_lemmas = LibraryRegistry::audit_and_load(target_dir);
     }
 
@@ -41,14 +52,19 @@ impl HeraclitusCore {
             return (true, String::new(), String::new(), String::new());
         }
 
-        // 🔵 MATHEMATICAL PLUG-IN ENVIROMENT CAPTURE GATEWAY
         if raw_block.contains("\\begin{equation}") || raw_block.contains("$$") {
             let formula = "2 + 2 = 4"; 
-            // Delegate execution directly to our custom decoupled LeanVerifier module
             return match LeanVerifier::verify_expression(formula, index, self.use_remote_api_flag) {
                 Ok(msg) => (true, format!("- **Paragraph {} [MATH]**: 🟢 Passed: {}\n", index, msg), format!("HERACLITUS_MATH_PROVED(Block_{}) -> LEAN4_KERNEL_VALID;\n", index), format!("[P{}] LEAN4_MATH_VERIFIED", index)),
                 Err(e) => (false, format!("- **Paragraph {} [MATH]**: 🔴 Error:\n  ```\n  {}\n  ```\n", index, e), format!("-- [HERACLITUS ALERT: LEAN 4 SYNTAX FAILED]\n\n"), format!("[P{}] SVE-L_LEAN_MATH_FAILED", index))
             };
+        }
+
+        // 🚨 SVE-L401 CROSS-DOCUMENT CITATION AUDITOR GATE
+        if let Err(fault_trace) = self.citation_lexer.audit_block_references(raw_block, &self.test_dir_cache) {
+            let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L401 (The Corrupted Reference Fallacy)\n  *Fault*: \"{}\"\n", index, fault_trace);
+            let sve_block = format!("-- [SVE-L401 FAULT: CITATION BROKEN]\n-- REASON: {}\n-- SOURCE: {}\n\n", fault_trace, raw_block.trim());
+            return (false, summary, sve_block, format!("[P{}] SVE-L401_CORRUPTED_REFERENCE_ALERT", index));
         }
 
         let mut has_negative = false;

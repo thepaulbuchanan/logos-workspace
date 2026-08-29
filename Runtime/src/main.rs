@@ -2,6 +2,7 @@ mod latex;
 mod engine;
 mod refactor;
 mod registry;
+mod citation;
 mod lean;
 mod pdf;
 

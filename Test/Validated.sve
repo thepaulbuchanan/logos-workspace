@@ -22,3 +22,7 @@ HERACLITUS_MATH_PROVED(Block_4) -> LEAN4_KERNEL_VALID;
 -- [SVE-L144 FAULT: SIGNED_SIG: sle_sha256_auto_d82fb61e20ee9ff9]
 -- SOURCE: Out of an abundance of caution, we must implement these restrictions immediately before evaluating the baseline statistical metrics.
 
+-- [SVE-L401 FAULT: CITATION BROKEN]
+-- REASON: SVE-L401 SHIFT: Narrative asserts macro collapse, but companion anchor 'crop_metrics_data' metrics register a negligible '2%' shift.
+-- SOURCE: Furthermore, our data records confirm a catastrophic macro collapse of food networks \cite{crop_metrics_data}.
+

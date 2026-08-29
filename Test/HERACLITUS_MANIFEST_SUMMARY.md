@@ -1,6 +1,6 @@
 # HERACLITUS EPISTEMIC MANIFEST SUMMARY REPORT
 
-Target File Ingested: Test/manuscript.tex
+Target File Ingested: ../Test/manuscript.tex
 Status: EVALUATION COMPLETE
 
 ## Epistemic Audit Ledger:
@@ -20,3 +20,5 @@ Experts agree that regional crop yields face an unprecedented collapse."
   *Source*: "The global agricultural production shift is entirely due to industrial mechanical scale changes."
 - **Paragraph 6**: 🔴 FAILED SVE-L144 (Worst-Case Fallacy)
   *Source*: "Out of an abundance of caution, we must implement these restrictions immediately before evaluating the baseline statistical metrics."
+- **Paragraph 7**: 🔴 FAILED SVE-L401 (The Corrupted Reference Fallacy)
+  *Fault*: "SVE-L401 SHIFT: Narrative asserts macro collapse, but companion anchor 'crop_metrics_data' metrics register a negligible '2%' shift."
