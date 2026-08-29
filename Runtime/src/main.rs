@@ -37,9 +37,9 @@ fn main() {
     
     // 🔍 CHOOSE TEST TARGET: Toggle this filename to run different simulation tracks
     // Target 1: The Standard Tex Manuscript
-// let target_filename = "manuscript.tex";
+let target_filename = "manuscript.tex";
 // Target 2: The Master Fallacies Reference Sheet (Uncomment to test the recursive loop!)
-let target_filename = "Master_List_of_Logical_Fallacies.pdf";
+// let target_filename = "Master_List_of_Logical_Fallacies.pdf";
     // Target 2: The Master Fallacies Reference Sheet (Uncomment to test the recursive loop!)
     // let target_filename = "Master List of Logical Fallacies.pdf";
 
