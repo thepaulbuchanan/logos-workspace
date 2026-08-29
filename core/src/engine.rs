@@ -13,7 +13,6 @@ struct UnifiedLemma {
 
 pub struct HeraclitusCore {
     active_lemmas: Vec<UnifiedLemma>,
-    negative_tokens: Vec<&'static str>,
     pub latex_lexer: LatexParser,
 }
 
@@ -21,14 +20,12 @@ impl HeraclitusCore {
     pub fn new() -> Self {
         let mut core = HeraclitusCore {
             active_lemmas: Vec::new(),
-            negative_tokens: vec!["not", "unlikely", "insufficient", "cannot", "never"],
             latex_lexer: LatexParser::new(),
         };
         core.bootstrap_logos_lib();
         core
     }
 
-    // 🔒 THE LOGOSLIB CRYPTO-BOOTSTRAPPER
     fn bootstrap_logos_lib(&mut self) {
         let lemmas_dir = "../lemmas";
         if let Ok(entries) = fs::read_dir(lemmas_dir) {
@@ -65,14 +62,14 @@ impl HeraclitusCore {
                 "name" => name = val.to_string(),
                 "ep_hash" => hash = val.to_string(),
                 "triggers" => {
-                    let cleaned = val.replace('[', "").replace(']', "").replace('"', "");
-                    triggers = cleaned.split(',').map(|t| t.trim().to_string()).collect();
+                    // Clean quotes, brackets, and spaces completely
+                    let cleaned = val.replace('[', "").replace(']', "").replace('"', "").replace('\'', "");
+                    triggers = cleaned.split(',').map(|t| t.trim().to_string()).filter(|t| !t.is_empty()).collect();
                 }
                 _ => {}
             }
         }
 
-        // Only register if the file contains both the human metadata and the cryptographic signature
         if !id.is_empty() && !triggers.is_empty() && !hash.is_empty() {
             self.active_lemmas.push(UnifiedLemma { id, name, triggers, hash });
         }
@@ -147,7 +144,7 @@ impl HeraclitusCore {
         let percent_val = percent_re.captures(&lower_cleaned).map(|c| format!("-{}", c.get(1).unwrap().as_str())).unwrap_or_else(|| "Unknown".to_string());
         let year_val = year_re.captures(&lower_cleaned).map(|c| c.get(1).unwrap().as_str().to_string()).unwrap_or_else(|| "Undefined".to_string());
 
-        // 🚨 UNIFIED SYMBOLIC EVALUATION LAYER
+        // 🚨 UNIFIED SELECTION LOOP GATEWAY
         for lemma in &self.active_lemmas {
             for trigger in &lemma.triggers {
                 if lower_cleaned.contains(&trigger.to_lowercase()) {

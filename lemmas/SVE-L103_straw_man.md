@@ -1,16 +1,21 @@
 ---
 lemma_id: SVE-L103
-name: Straw Man / Rhetorical Caricature
-tags: [fallacy, logos-distortion, misrepresentation]
+name: Straw Man
+triggers: ["hate economic growth", "want to destroy", "hate babies", "barefoot and pregnant"]
+ep_hash: sle_sha256_sm103strawman1f6g7h9f
 ---
-### Formal Definition
-Let $P$ be a nuanced logical position held by opponent $O$. A text stream violates this lemma if it instantiates a simplified, weakened, or absurd caricature $P'$ where $P' \neq P$, and proceeds to execute a proof of disproof on $P'$ while claiming to have refuted $P$.
 
+### 1. Human Readable Specification
+Constructing a simplified, weakened, or extreme caricature of an opposing researcher's position, refuting that caricature, and claiming to have systematically dismantled the original position is a direct semantic violation.
+
+### 2. First-Order Logic Invariant
 $$\exists P, P' : \text{Position}(O, P) \land \text{Caricature}(P') \land \text{Disprove}(P') \implies \text{Violates\_SVE-L103}$$
 
-### Rejected Human Language Syntax
-* "Environmentalists hate economic growth and want everyone to live in the dark."
-* "Pro-choicers simply want to destroy families."
-
-### Approved Reframed Human Language Syntax
-* "The environmental framework aims to decouple economic development from ecological degradation, as specified in the multi-variable model in Section 2."
+### 3. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L103) {
+  MATCH_CONTEXT(Rhetorical_Caricature["want to destroy"]);
+  ASSERT_SEMANTIC_EQUIVALENCE(Original_Position == Evaluated_Position);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```

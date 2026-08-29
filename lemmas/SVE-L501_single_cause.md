@@ -1,17 +1,20 @@
 ---
 lemma_id: SVE-L501
-name: Fallacy of the Single Cause / Causal Monism
-tags: [fallacy, structural-logic, complex-systems]
+name: Fallacy of the Single Cause
+triggers: ["solely driven", "entirely due to", "the single cause", "exclusively because"]
+ep_hash: sle_sha256_3d4e1f6g7h9f2c8b
 ---
 
-### Formal Definition
-Let $Y$ be a multi-variable macroscopic state shift or systemic outcome governed by a complex function $f(X_1, X_2 ... X_n)$. A linguistic transition violates this lemma if it asserts that $Y$ is deterministically and exclusively driven by a single isolated variable $X_i$, while completely ignoring or masking the concurrent weights of the broader input matrix.
+### 1. Human Readable Specification
+Declaring that a highly complex, non-linear macro-system state shift is driven exclusively by a single, isolated causal input factor is a structural type violation.
 
+### 2. First-Order Logic Invariant
 $$\forall Y, X_i : \text{Assert}(Y \leftarrow X_i) \land \text{Mask}(\{X_1...X_n\} \setminus \{X_i\}) \implies \text{Violates\_SVE-L501}$$
 
-### Rejected Human Language Syntax
-* "The shift in global agricultural production is entirely due to industrial mechanical scale changes."
-* "The corporate financial contraction was solely driven by the localized tax adjustment."
-
-### Approved Reframed Human Language Syntax
-* "The dataset indicates that industrial mechanical scale changes represent a statistically significant vector within the multi-variable agricultural function detailed in Section 4."
+### 3. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L501) {
+  MATCH_CONTEXT(Causal_Monism["entirely due to"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
