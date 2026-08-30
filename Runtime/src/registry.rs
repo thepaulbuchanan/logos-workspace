@@ -1,6 +1,7 @@
 use std::fs;
 use std::path::PathBuf;
 use crate::refactor::LemmaRefactor;
+use crate::critic::LemmaCriticEngine; // 🟢 Link our fresh Adversarial Critic layer
 
 pub struct UnifiedLemma {
     pub id: String,
@@ -20,7 +21,8 @@ impl LibraryRegistry {
                 let path = entry.path();
                 if path.extension().map_or(false, |ext| ext == "md") {
                     if let Ok(content) = fs::read_to_string(&path) {
-                        if let Some(lemma) = Self::parse_or_compile(&content, path) {
+                        // Pass the accumulating clean library down to run validation checks
+                        if let Some(lemma) = Self::parse_or_compile(&content, path, &loaded_lemmas) {
                             loaded_lemmas.push(lemma);
                         }
                     }
@@ -30,12 +32,11 @@ impl LibraryRegistry {
         loaded_lemmas
     }
 
-    fn parse_or_compile(content: &str, file_path: PathBuf) -> Option<UnifiedLemma> {
+    fn parse_or_compile(content: &str, file_path: PathBuf, extant_library: &[UnifiedLemma]) -> Option<UnifiedLemma> {
         if !content.starts_with("---") { return None; }
         let parts: Vec<&str> = content.split("---").collect();
         if parts.len() < 3 { return None; }
         
-        // Isolate the front-matter block payload string segment explicitly
         let yaml_text = parts[1];
         let remaining_body = parts[2..].join("---");
         
@@ -44,7 +45,6 @@ impl LibraryRegistry {
         let mut hash = String::new();
         let mut triggers = Vec::new();
 
-        // FIX: Call .lines() directly on the raw extracted string segment text
         for line in yaml_text.lines() {
             if !line.contains(':') { continue; }
             let kv: Vec<&str> = line.splitn(2, ':').collect();
@@ -63,8 +63,15 @@ impl LibraryRegistry {
             }
         }
 
+        // 🚨 ADVERSARIAL CRITIC GATEWAY FOR NEW UNHASHED ENTRIES
         if hash.is_empty() && !id.is_empty() && !triggers.is_empty() {
-            let calculated_hash = LemmaRefactor::calculate_hash(&id, &triggers);
+            // Run the proposal through our Strawman/Steelman agent tournament prior to compilation!
+            if let Err(critic_fault) = LemmaCriticEngine::evaluate_proposal(&id, &triggers, extant_library) {
+                eprintln!("🔴 HERACLITUS CRITIC SECURITY FAULT for {}: {}", id, critic_fault);
+                return None; // Hard stop: Reject the corrupted proposal asset instantly!
+            }
+            
+            let calculated_hash = LemmaRefactor::calculate_hash(&id, &name, &triggers, &remaining_body);
             LemmaRefactor::compile_and_lock(&id, &name, &triggers, &calculated_hash, &remaining_body, &file_path);
             hash = calculated_hash;
         }

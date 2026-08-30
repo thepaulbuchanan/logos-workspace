@@ -3,6 +3,7 @@ mod engine;
 mod refactor;
 mod registry;
 mod citation;
+mod critic;
 mod lean;
 mod pdf;
 
