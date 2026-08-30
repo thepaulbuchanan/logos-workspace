@@ -1,9 +1,8 @@
 use crate::latex::LatexParser;
 use crate::registry::{LibraryRegistry, UnifiedLemma};
 use crate::lean::LeanVerifier;
-use crate::citation::CitationAuditor; // 🟢 Link our fresh Citation Auditor layer
+use crate::citation::CitationAuditor;
 use regex::Regex;
-// use std::fs;
 use std::path::Path;
 
 pub struct HeraclitusCore {
@@ -52,15 +51,16 @@ impl HeraclitusCore {
             return (true, String::new(), String::new(), String::new());
         }
 
-        if raw_block.contains("\\begin{equation}") || raw_block.contains("$$") {
-            let formula = "2 + 2 = 4"; 
-            return match LeanVerifier::verify_expression(formula, index, self.use_remote_api_flag) {
-                Ok(msg) => (true, format!("- **Paragraph {} [MATH]**: 🟢 Passed: {}\n", index, msg), format!("HERACLITUS_MATH_PROVED(Block_{}) -> LEAN4_KERNEL_VALID;\n", index), format!("[P{}] LEAN4_MATH_VERIFIED", index)),
-                Err(e) => (false, format!("- **Paragraph {} [MATH]**: 🔴 Error:\n  ```\n  {}\n  ```\n", index, e), format!("-- [HERACLITUS ALERT: LEAN 4 SYNTAX FAILED]\n\n"), format!("[P{}] SVE-L_LEAN_MATH_FAILED", index))
+        // 🔵 UPGRADED NEURO-SYMBOLIC AUTO-FORMALIZATION GATEWAY
+        // Triggers mathematical verification whenever explicit equations or metric percentages are encountered in text.
+        if raw_block.contains("\\begin{equation}") || raw_block.contains("$$") || lower_cleaned.contains("plus") || lower_cleaned.contains("%") {
+            // Pass the raw block string into the LeanVerifier to execute automated text-to-code synthesis
+            return match LeanVerifier::verify_expression(raw_block, index, self.use_remote_api_flag) {
+                Ok(msg) => (true, format!("- **Block {} [MATH]**: 🟢 Passed: {}\n", index, msg), format!("HERACLITUS_AUTO_FORMALIZED(Block_{}) -> LEAN4_VALID;\n", index), format!("[P{}] LEAN4_MATH_VERIFIED", index)),
+                Err(e) => (false, format!("- **Block {} [MATH]**: 🔴 Error:\n  ```\n  {}\n  ```\n", index, e), format!("-- [HERACLITUS ALERT: LEAN 4 SYNTAX FAILED]\n\n"), format!("[P{}] SVE-L_LEAN_MATH_FAILED", index))
             };
         }
 
-        // 🚨 SVE-L401 CROSS-DOCUMENT CITATION AUDITOR GATE
         if let Err(fault_trace) = self.citation_lexer.audit_block_references(raw_block, &self.test_dir_cache) {
             let summary = format!("- **Paragraph {}**: 🔴 FAILED SVE-L401 (The Corrupted Reference Fallacy)\n  *Fault*: \"{}\"\n", index, fault_trace);
             let sve_block = format!("-- [SVE-L401 FAULT: CITATION BROKEN]\n-- REASON: {}\n-- SOURCE: {}\n\n", fault_trace, raw_block.trim());
