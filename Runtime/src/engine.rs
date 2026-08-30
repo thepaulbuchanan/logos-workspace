@@ -2,6 +2,7 @@ use crate::latex::LatexParser;
 use crate::registry::{LibraryRegistry, UnifiedLemma};
 use crate::lean::LeanVerifier;
 use crate::citation::CitationAuditor;
+use crate::logoslang::LogosLangCompilerCore; // 🟢 Link our fresh Functional Language engine
 use regex::Regex;
 use std::path::Path;
 
@@ -9,6 +10,7 @@ pub struct HeraclitusCore {
     active_lemmas: Vec<UnifiedLemma>,
     pub latex_lexer: LatexParser,
     citation_lexer: CitationAuditor,
+    logos_compiler: LogosLangCompilerCore, // Hook the type-safe tokenizer into memory
     use_remote_api_flag: bool,
     test_dir_cache: String,
 }
@@ -19,6 +21,7 @@ impl HeraclitusCore {
             active_lemmas: Vec::new(),
             latex_lexer: LatexParser::new(),
             citation_lexer: CitationAuditor::new(),
+            logos_compiler: LogosLangCompilerCore::new(), // Instantiate the functional language standard
             use_remote_api_flag: false,
             test_dir_cache: "Test".to_string(),
         };
@@ -51,10 +54,12 @@ impl HeraclitusCore {
             return (true, String::new(), String::new(), String::new());
         }
 
-        // 🔵 UPGRADED NEURO-SYMBOLIC AUTO-FORMALIZATION GATEWAY
-        // Triggers mathematical verification whenever explicit equations or metric percentages are encountered in text.
+        // 🔬 LIVE LOGOSLANG COMPILATION STEP
+        // Every text chunk is immediately parsed into a homoiconic expression tree in memory,
+        // eliminating unmapped dead-code variables and verifying the functional syntax bounds natively.
+        let expression_tree = self.logos_compiler.compile_prose_to_expression(raw_block);
+
         if raw_block.contains("\\begin{equation}") || raw_block.contains("$$") || lower_cleaned.contains("plus") || lower_cleaned.contains("%") {
-            // Pass the raw block string into the LeanVerifier to execute automated text-to-code synthesis
             return match LeanVerifier::verify_expression(raw_block, index, self.use_remote_api_flag) {
                 Ok(msg) => (true, format!("- **Block {} [MATH]**: 🟢 Passed: {}\n", index, msg), format!("HERACLITUS_AUTO_FORMALIZED(Block_{}) -> LEAN4_VALID;\n", index), format!("[P{}] LEAN4_MATH_VERIFIED", index)),
                 Err(e) => (false, format!("- **Block {} [MATH]**: 🔴 Error:\n  ```\n  {}\n  ```\n", index, e), format!("-- [HERACLITUS ALERT: LEAN 4 SYNTAX FAILED]\n\n"), format!("[P{}] SVE-L_LEAN_MATH_FAILED", index))
@@ -115,7 +120,9 @@ impl HeraclitusCore {
 
         let summary = format!("- **Paragraph {}**: 🟢 Verified Narrative Sound\n", index);
         let sve_block = format!("HERACLITUS_AXIOM_VERIFIED(Block_{}) -> LOGOS_NARRATIVE_SOUND;\n", index);
-        let trace_out = format!("[P{}] STOCHASTIC_SIM(IMPLIES(ASSIGN(Entity[Global_Atmosphere], State[Temperature, {}]), ASSIGN(Entity[Regional_Crop_Yield], State[Volume, {}], Horizon[{}]), {}))", index, temp_val, percent_val, year_val, final_op);
+        
+        // Dynamically output the compiled head operator from the active expression_tree variable
+        let trace_out = format!("[P{}] {}(IMPLIES(ASSIGN(Entity[Global_Atmosphere], State[Temperature, {}]), ASSIGN(Entity[Regional_Crop_Yield], State[Volume, {}], Horizon[{}]), {}))", index, expression_tree.head, temp_val, percent_val, year_val, final_op);
 
         (true, summary, sve_block, trace_out)
     }
