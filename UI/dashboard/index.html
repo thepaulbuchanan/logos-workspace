@@ -182,26 +182,22 @@
         </div>
     </div>
 
-    <!-- ⚡ REAL-TIME RECONCILIATION DRIVER HOOK -->
     <script>
         async function fetchTelemetryData() {
             try {
                 const response = await fetch('/api/lemmas');
                 const data = await response.json();
                 
-                // Update active tracking counter totals
                 document.getElementById('totalLemmas').innerText = data.total_library_lemmas;
                 document.getElementById('totalChunks').innerText = data.total_chunks;
                 document.getElementById('cleanChunks').innerText = `${data.clean_count} [✓]`;
                 document.getElementById('quarantinedChunks').innerText = `${data.quarantine_count} [✗]`;
                 document.getElementById('objectivityPct').innerText = `${data.objectivity_score}%`;
                 
-                // Redraw the animated CSS radial gradient ring boundaries dynamically
                 const gauge = document.getElementById('metricGauge');
                 gauge.style.background = `conic-gradient(var(--accent-clean) 0% ${data.objectivity_score}%, var(--border-color) ${data.objectivity_score}% 100%)`;
                 gauge.style.boxShadow = 'inset 0 0 0 15px var(--bg-secondary)';
 
-                // Render dynamic card blocks
                 const container = document.getElementById('traceContainer');
                 container.innerHTML = '';
                 
@@ -219,13 +215,14 @@
                         badgeLabel = '🔵 Lean4 Math Verified';
                     }
 
+                    // FIX: Dynamic visual coordinate text injection (displays e.g. "Chunk 8 (Line 18)")
                     card.innerHTML = `
                         <div class="card-header">
-                            <span>Block ${block.index}: ${block.environment}</span>
+                            <span>Chunk ${block.index} <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 0.5rem;">(Source Line: ${block.line})</span></span>
                             <span class="card-badge ${badgeClass}">${badgeLabel}</span>
                         </div>
                         <div class="card-body">
-                            <strong>Source Context Payload:</strong> "${block.clause}"
+                            <strong>[${block.environment}] Payload Context:</strong> "${block.clause}"
                         </div>
                     `;
                     container.appendChild(card);
@@ -235,7 +232,6 @@
             }
         }
         
-        // Initialise state tracking loop instantly on boot
         fetchTelemetryData();
     </script>
 </body>
