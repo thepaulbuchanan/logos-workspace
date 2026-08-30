@@ -85,10 +85,11 @@ fn main() {
     let mut global_line_counter = 1;
     let mut block_index = 1;
 
-    for line in file_content.lines() {
+        for line in file_content.lines() {
         if line.trim().is_empty() {
             if !current_block.trim().is_empty() {
-                let (_, summary_str, sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
+                // FIX: Added underscores to satisfy strict compiler linter requirements
+                let (_, _summary_str, _sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
                 if !ir_trace.is_empty() {
                     println!("[Line {} -> Chunk {}] {}", block_start_line, block_index, ir_trace);
                     block_index += 1;
@@ -103,6 +104,7 @@ fn main() {
         }
         global_line_counter += 1;
     }
+
 
     if !current_block.trim().is_empty() {
         let (_, _summary_str, _sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
