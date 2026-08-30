@@ -3,36 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heraclitus Platform | Epistemic Lake-Build Monitor</title>
-    <!-- Link out to our external style module -->
+    <title>Heraclitus Platform | Live-Synthesis Executive Canvas</title>
     <link rel="stylesheet" href="/dashboard.css">
+    <style>
+        /* Asymmetric split-screen layout adjustment for our premium input workspace */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .canvas-area {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .editor-textarea {
+            width: 100%;
+            height: 450px;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            margin-top: 1rem;
+        }
+        .editor-textarea:focus {
+            border-color: var(--accent-math);
+        }
+        .status-pulse {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-clean);
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div>
-                <h1>HERACLITUS FRONT-END COMPILER</h1>
-                <div class="meta-target">Live Ingestion URL: <span class="text-highlight">https://wikipedia.org</span></div>
+                <h1>HERACLITUS LIVE-SYNTHESIS CANVAS</h1>
+                <div class="meta-target">Execution Track: <span class="text-highlight">Tier 3 Premium Real-Time Interactive Suite</span></div>
             </div>
-            <a href="/download-sve" class="btn-download">Download Validated.sve</a>
+            <div class="status-pulse">
+                <div class="pulse-dot"></div>
+                <span id="syncStatus">Epistemic Firewall Synced</span>
+            </div>
         </header>
 
         <div class="dashboard-grid">
-            <!-- Left Side: Gauge Metrics Panel -->
-            <div class="panel gauge-container">
-                <div class="trace-title">INDUSTRIAL LOGOS METRICS</div>
-                <div class="radial-gauge" id="metricGauge">
-                    <div class="gauge-value" id="objectivityPct">--%</div>
-                </div>
-                <div class="metrics-list">
-                    <div class="metric-row"><span class="text-muted">Active Lemmas</span><strong id="totalLemmas">0</strong></div>
-                    <div class="metric-row"><span class="text-muted">Total Chunks</span><strong id="totalChunks">0</strong></div>
-                    <div class="metric-row"><span class="text-muted">Verified Clean</span><span class="text-clean" id="cleanChunks">0</span></div>
-                    <div class="metric-row"><span class="text-muted">Quarantined Faults</span><span class="text-quarantine" id="quarantinedChunks">0</span></div>
-                </div>
+            <!-- PANE A: THE PRIMARY CORPORATE COMPOSITION CANVAS -->
+            <div class="canvas-area">
+                <div class="trace-title">PANE A: EXECUTIVE TEXT DISPATCH COMPOSER</div>
+                <textarea 
+                    id="executiveEditor" 
+                    class="editor-textarea" 
+                    placeholder="Type or paste unstructured executive prose here... (Linter processes on pauses)"
+                >Implementing this minor restriction on baseline statistical metrics will inevitably results in a total systemic failure of our macroeconomic infrastructure.
+
+The consensus baseline asserts that the global macroeconomic food framework structure faces an unprecedented collapse, as experts agree.
+
+Our data records confirm a catastrophic macro collapse of food networks [Ref crop_metrics_data].</textarea>
             </div>
 
-            <!-- Right Side: Philosophical Classification Tracker -->
+            <!-- PANE B: THE REAL-TIME PHILOSOPHICAL TELEMETRY MONITOR -->
             <div class="panel">
                 <div class="tab-bar">
                     <button class="tab-btn active" onclick="switchPillar('epistemology')" id="tab-epistemology">Epistemology (<span id="count-epistemology">0</span>)</button>
@@ -41,13 +91,12 @@
                 </div>
                 
                 <div id="traceContainer">
-                    <p class="text-muted">Awaiting pipeline stream ingestion...</p>
+                    <p class="text-muted">Initializing stream compiler arrays...</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Inject our asynchronous runtime engine controller -->
     <script src="/telemetry.js"></script>
 </body>
 </html>

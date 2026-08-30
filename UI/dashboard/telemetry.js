@@ -1,28 +1,48 @@
 let globalTraceData = [];
 let currentPillar = 'epistemology';
+let typingTimer;
+const doneTypingInterval = 400; // 400ms Debounce Threshold to prevent compiler lag
 
-async function fetchTelemetryData() {
+const editor = document.getElementById('executiveEditor');
+const syncStatus = document.getElementById('syncStatus');
+
+// Monitor keystroke inputs and handle live timing resets
+if (editor) {
+    editor.addEventListener('input', () => {
+        clearTimeout(typingTimer);
+        syncStatus.innerText = "Analyzing text stream...";
+        syncStatus.style.color = "var(--text-muted)";
+        typingTimer = setTimeout(pushTextStreamDownstream, doneTypingInterval);
+    });
+}
+
+async function pushTextStreamDownstream() {
     try {
-        const response = await fetch('/api/lemmas');
+        const textPayload = editor.value;
+        
+        // FIX: Enforced strict native JSON serialization casing to resolve browser console crashes
+        const response = await fetch('/api/evaluate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: textPayload })
+        });
+        
         const data = await response.json();
         
-        document.getElementById('totalLemmas').innerText = data.total_library_lemmas;
-        document.getElementById('totalChunks').innerText = data.total_chunks;
-        document.getElementById('cleanChunks').innerText = `${data.clean_count} [✓]`;
-        document.getElementById('quarantinedChunks').innerText = `${data.quarantine_count} [✗]`;
-        document.getElementById('objectivityPct').innerText = `${data.objectivity_score}%`;
-        
+        // Update metric row element trackers
         document.getElementById('count-epistemology').innerText = data.epistemology_total;
         document.getElementById('count-ontology').innerText = data.ontology_total;
         document.getElementById('count-phenomenology').innerText = data.phenomenology_total;
         
-        const gauge = document.getElementById('metricGauge');
-        gauge.style.background = `conic-gradient(var(--accent-clean) 0% ${data.objectivity_score}%, var(--border-color) ${data.objectivity_score}% 100%)`;
+        syncStatus.innerText = "Epistemic Firewall Synced";
+        syncStatus.style.color = "var(--accent-clean)";
 
         globalTraceData = data.trace;
         renderActivePillar();
     } catch (e) {
-        console.error("Telemetry channel ingestion fault:", e);
+        console.error("In-memory streaming channel failure:", e);
+        syncStatus.innerText = "Connection Broken";
+        syncStatus.style.color = "var(--accent-quarantine)";
     }
 }
 
@@ -39,7 +59,7 @@ function renderActivePillar() {
     
     const filtered = globalTraceData.filter(b => b.pillar === currentPillar);
     if (filtered.length === 0) {
-        container.innerHTML = '<p class="text-muted">No fault nodes registered inside this classification pillar.</p>';
+        container.innerHTML = '<p class="text-muted">No logical flaws isolated inside this classification node matrix.</p>';
         return;
     }
 
@@ -62,5 +82,5 @@ function renderActivePillar() {
     });
 }
 
-// Initialise execution polling loop on initialization
-fetchTelemetryData();
+// Initialise compilation loop on boot sequence
+pushTextStreamDownstream();

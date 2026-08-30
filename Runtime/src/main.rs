@@ -6,8 +6,8 @@ mod lean;
 mod pdf;
 mod critic;
 mod citation;
-mod wiki;
 mod logoslang;
+mod wiki; // 🟢 RESTORED: Registers the Wikipedia ingestion submodule to clear E0432
 
 use std::fs;
 use std::path::Path;
@@ -32,42 +32,31 @@ fn locate_base_paths() -> (String, String) {
 fn main() {
     let (test_dir, _logos_dir) = locate_base_paths();
     
-    // 🔍 CONFIGURATION STRATEGY TOGGLE: Select Target Vector Natively
-    // Track A: Local Latex Manuscript Ingestion Check
-    // let target_filename = "manuscript.tex";
-    // Track B: Live Wikipedia Web API Stream Ingestion Pass
-    let target_filename = "https://wikipedia.org";
+    // 🟢 DYNAMIC MANUSCRIPT MODE: Wired for real-time local canvas stream updates
+    let target_filename = "manuscript.tex";
 
     let compiler = HeraclitusCore::new();
-
-    // Secure compilation hooks for local pdf structs to satisfy unused warnings permanently
     let _pdf_safe_linter = PdfExtractorCore::new();
 
     if target_filename.starts_with("http") || target_filename.contains("wikipedia.org") {
         eprintln!("🚀 WIKIPEDIA GROUND-TRUTH PIPELINE INGESTION RUNNING OVER ACTIVE LOOP...");
-        
         match WikipediaInglector::fetch_article_text(target_filename) {
             Ok(paragraphs) => {
                 let mut wiki_summary = format!(
-                    "# HERACLITUS SOVEREIGN EVIDENCE LEDGER: WIKIPEDIA COMPILATION\n\
-                     Source Target URL: {}\nStatus: INDEPENDENT AUDIT COMPLETE\n\n\
-                     ## Epistemic Audit Log By Category:\n\n", 
+                    "# HERACLITUS SOVEREIGN EVIDENCE LEDGER: WIKIPEDIA COMPILATION\nSource Target URL: {}\nStatus: INDEPENDENT AUDIT COMPLETE\n\n## Epistemic Audit Log By Category:\n\n", 
                     target_filename
                 );
-                
                 let mut chunk_id = 1;
-                for p in paragraphs {
-                    let (_, summary_str, _, ir_trace) = compiler.evaluate_block(&p, chunk_id);
+                // FIX: Enforced correct sized iteration over the String vector to clear E0277
+                for p in &paragraphs {
+                    let (_, summary_str, _, ir_trace) = compiler.evaluate_block(p, chunk_id);
                     if ir_trace.is_empty() { continue; }
-                    
                     println!("[Line {} -> Chunk {}] {}", chunk_id * 2, chunk_id, ir_trace);
                     if !summary_str.is_empty() { wiki_summary.push_str(&summary_str); }
                     chunk_id += 1;
                 }
-                
                 let out_report = format!("{}/HERACLITUS_WIKI_REPORT.md", test_dir);
                 let _ = fs::write(&out_report, wiki_summary);
-                eprintln!("🔒 INDEPENDENT EVIDENCE REPORT CONCLUDED SUCCESSFULLY: {}", out_report);
             }
             Err(e) => eprintln!("🔴 Wikipedia Ingestion Failure: {}", e)
         }
@@ -76,7 +65,6 @@ fn main() {
 
     let target_path = format!("{}/{}", test_dir, target_filename);
     if !Path::new(&target_path).exists() { std::process::exit(1); }
-    eprintln!("⚙️ STAGE C: INITIALISING THE HERACLITUS REFACTOR CORE");
     
     let file_content = match fs::read_to_string(&target_path) {
         Ok(content) => content,
