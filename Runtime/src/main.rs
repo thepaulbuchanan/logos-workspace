@@ -7,6 +7,7 @@ mod pdf;
 mod critic;
 mod citation;
 mod wiki;
+mod logoslang;
 
 use std::fs;
 use std::path::Path;
