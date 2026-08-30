@@ -1,32 +1,31 @@
-# 📊 Heraclitus Engine: Enterprise Pricing & Seat-Cost Analysis
+# 📊 Heraclitus Engine: Strategic Pricing Matrix & Tiered Unit Economics
 
-## 1. Commercial Architecture
-Heraclitus operates on a hybrid monetization model combining **Seat-Based Enterprise SaaS** for internal workflow linting with a **Pay-Per-Audit Clearinghouse Fee** for issuing public cryptographic compliance stamps.
+## 1. Product Monetization Architecture
+Heraclitus splits its software delivery model into two distinct execution tracks to maximize top-of-funnel academic adoption while extracting high-margin contract revenue from enterprise compliance networks.
 
 ---
 
-## 2. Tiered Pricing Matrix
+## 2. Definitive Tier Matrix
 
-### Tier 1: Academic & Independent Researcher (Open-Source)
-*   **Pricing:** $0 / Free
-*   **Deployment:** Public GitHub access + Local execution loop.
-*   **Scope:** Restricted to public repositories and open academic manuscripts.
-*   **Purpose:** The ultimate top-of-funnel scaling engine. It builds universal alignment with the *Heraclitus* standard.
+### 🟢 Tier 1: Post-Facto Analyzer (Open-Source / Free Track)
+*   **Target Segment:** Independent researchers, academics, journalists, and student logicians.
+*   **Deployment:** Public GitHub binary download or free access node on the public Poetic Web UI portal.
+*   **Functional Scope:** **Read-Only Post-Facto Processing.** The user inputs a *completed, static document* (`.pdf`, `.tex`, `.md`). The engine compiles a post-build report summary manifest and a downloadable `.sve` token file.
+*   **Strategic Value:** Drives global awareness, crowd-sources the definition parameters of new logical fallacies via Zulip, and cements `LogosLang` as the universal compliance standard.
 
-### Tier 2: Enterprise Corporate Audit (Private Node)
-*   **Target Segment:** Big Four audit firms, corporate legal teams, corporate shareholder compliance networks, and public policy drafting cells.
+### 🔵 Tier 2: Private Enterprise Audit (Private Node Core)
+*   **Target Segment:** Mid-tier corporate legal groups, boutique investment houses, and public policy drafting cells.
 *   **Pricing:** $250 / seat / month (Minimum 50 seats, billed annually at $150,000 baseline).
-*   **Deployment:** Private on-premise local server configuration or localized VPC container cluster setup. 
-*   **Security:** Fully air-gapped behind corporate firewalls. Zero text manuscript telemetry hits Poetic servers. It pulls signed `.sve` lemma library updates downstream from *LogosLib* using a secure read-only sync loop.
+*   **Functional Scope:** Air-gapped on-premise cloud container deployments running the Post-Facto Analyzer securely behind corporate firewalls. Includes read-only automated library updates downstream from the master *LogosLib* ledger.
 
-### Tier 3: Regulatory Clearinghouse & Public Verification Stamp
-*   **Target Segment:** Pharmaceutical regulatory submissions (MHRA/FDA), statutory corporate registry bodies, and premium media syndicates.
-*   **Pricing:** $1,500 / Full Manuscript Formal Compilation Run (Or volume API contract pricing: $10,000 / month up to 10 audited documents).
-*   **Deployment:** Public SVE Clearinghouse API validation nodes.
-*   **Deliverable:** Generates an immutable, public-facing, cryptographically signed certification badge verifying a document has passed a "Sorry-Free Semantic Build" with zero lemma fractures.
+### 👑 Tier 3: Heraclitus Live-Synthesis Canvas (Top-Tier Enterprise Suite)
+*   **Target Segment:** Big Four auditing firms, sovereign legislative assemblies, multinational banking risk cells, and pharmaceutical regulatory groups (MHRA, FDA).
+*   **Pricing:** $650 / seat / month (Minimum 100 seats, billed annually at $780,000 baseline enterprise contract).
+*   **Functional Scope:** **Real-Time Inline Validation Engine.** A premium, collaborative rich-text WYSIWYG editor environment. It deploys an active asynchronous loop that scans narrative strings and statistical metrics *on the fly as they are typed*. It auto-formalizes mathematical expressions via background Aristotle/Lean 4 handshakes, flags logical fallacies instantly via red inline highlights, and forces the user to author completely verified, "sorry-free" documents from the ground up.
 
 ---
 
-## 3. Unit Economics & Gross Margin Profile
-*   **Marginal Execution Cost:** Near-zero. Because Heraclitus compiles natural language to an Intermediate Representation (IR) and delegates math proofs to localized Lean 4/Aristotle installations via background shell hooks, computing overhead is completely decoupled from expensive, token-heavy neural generation layers.
-*   **Target Gross Margin:** 88%–92% across private enterprise nodes.
+## 3. Margin & Computational Superiority
+Unlike traditional generative AI tools that suffer from severe token-cost overhead and server latency due to large-model text sampling loops, Heraclitus operates via deterministic, lightweight intermediate compilation routing. 
+*   **Target Gross Margin:** 92% on Tier 3 private VPC cluster nodes.
+*   **Operational Scale Overhead:** Flat. Computing requirements are completely uncoupled from expensive LLM parameters, delegating proof loads directly to local execution kernels.
