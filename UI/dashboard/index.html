@@ -3,96 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heraclitus Platform | Live-Synthesis Executive Canvas</title>
+    <title>Heraclitus Platform | Live-Synthesis Executive Workspace</title>
     <link rel="stylesheet" href="/dashboard.css">
     <style>
-        /* Asymmetric split-screen layout adjustment for our premium input workspace */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        .canvas-area {
+        .control-panel {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
         }
-        .editor-textarea {
-            width: 100%;
-            height: 450px;
+        .workspace-input {
             background-color: var(--bg-primary);
             color: var(--text-main);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 1rem;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-            resize: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
             outline: none;
-            margin-top: 1rem;
+            width: 250px;
         }
-        .editor-textarea:focus {
-            border-color: var(--accent-math);
+        .workspace-input:focus { border-color: var(--accent-math); }
+        .btn-action {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--accent-math);
+            color: var(--accent-math);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.2s;
         }
-        .status-pulse {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-clean);
-            border-radius: 50%;
-        }
+        .btn-action:hover { background-color: var(--accent-math); color: var(--bg-primary); }
+        .file-upload-wrapper { display: flex; align-items: center; gap: 0.5rem; }
+        .dashboard-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; }
+        .canvas-area { background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; }
+        .editor-textarea { width: 100%; height: 400px; background-color: var(--bg-primary); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 6px; padding: 1rem; font-family: sans-serif; font-size: 1rem; line-height: 1.6; resize: none; outline: none; margin-top: 1rem; }
+        .status-pulse { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+        .pulse-dot { width: 8px; height: 8px; background-color: var(--accent-clean); border-radius: 50%; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div>
-                <h1>HERACLITUS LIVE-SYNTHESIS CANVAS</h1>
-                <div class="meta-target">Execution Track: <span class="text-highlight">Tier 3 Premium Real-Time Interactive Suite</span></div>
+                <h1>HERACLITUS WORKSPACE CANVAS</h1>
+                <div class="meta-target">Active Project Workspace Target: <span class="text-highlight" id="activeProjectDisplay">default</span></div>
             </div>
             <div class="status-pulse">
                 <div class="pulse-dot"></div>
-                <span id="syncStatus">Epistemic Firewall Synced</span>
+                <span id="syncStatus">Workspace Synchronized</span>
             </div>
         </header>
 
+        <!-- Dynamic Control Panel for Workspace Project Generation & File Imports -->
+        <div class="control-panel">
+            <div>
+                <input type="text" id="projectNameInput" class="workspace-input" placeholder="Enter new project workspace name...">
+                <button class="btn-action" onclick="createNewProjectWorkspace()">Initialize Project Workspace</button>
+            </div>
+            <div class="file-upload-wrapper">
+                <input type="file" id="fileImportInput" style="display: none;" onchange="executeFileImportPayload()">
+                <button class="btn-action" style="border-color: var(--accent-clean); color: var(--accent-clean);" onclick="document.getElementById('fileImportInput').click()">Import Companion Reference File</button>
+                <span id="fileNameDisplay" style="font-size: 0.85rem; color: var(--text-muted);"></span>
+            </div>
+        </div>
+
         <div class="dashboard-grid">
-            <!-- PANE A: THE PRIMARY CORPORATE COMPOSITION CANVAS -->
             <div class="canvas-area">
-                <div class="trace-title">PANE A: EXECUTIVE TEXT DISPATCH COMPOSER</div>
-                <textarea 
-                    id="executiveEditor" 
-                    class="editor-textarea" 
-                    placeholder="Type or paste unstructured executive prose here... (Linter processes on pauses)"
-                >Implementing this minor restriction on baseline statistical metrics will inevitably results in a total systemic failure of our macroeconomic infrastructure.
-
-The consensus baseline asserts that the global macroeconomic food framework structure faces an unprecedented collapse, as experts agree.
-
-Our data records confirm a catastrophic macro collapse of food networks [Ref crop_metrics_data].</textarea>
+                <div class="trace-title">TEXT CANVAS INPUT COMPOSER</div>
+                <textarea id="executiveEditor" class="editor-textarea" placeholder="Type or paste unstructured text prose here..."></textarea>
             </div>
 
-            <!-- PANE B: THE REAL-TIME PHILOSOPHICAL TELEMETRY MONITOR -->
             <div class="panel">
                 <div class="tab-bar">
                     <button class="tab-btn active" onclick="switchPillar('epistemology')" id="tab-epistemology">Epistemology (<span id="count-epistemology">0</span>)</button>
                     <button class="tab-btn" onclick="switchPillar('ontology')" id="tab-ontology">Ontology (<span id="count-ontology">0</span>)</button>
                     <button class="tab-btn" onclick="switchPillar('phenomenology')" id="tab-phenomenology">Phenomenology (<span id="count-phenomenology">0</span>)</button>
                 </div>
-                
-                <div id="traceContainer">
-                    <p class="text-muted">Initializing stream compiler arrays...</p>
-                </div>
+                <div id="traceContainer"><p class="text-muted">Awaiting stream array ingestion...</p></div>
             </div>
         </div>
     </div>
