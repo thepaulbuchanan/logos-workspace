@@ -5,11 +5,13 @@ mod registry;
 mod lean;
 mod pdf;
 mod critic;
+mod citation; // 🟢 RESTORED: Natively registers the cross-document citation auditor
 
 use std::fs;
 use std::path::{Path, PathBuf};
 use engine::HeraclitusCore;
 use pdf::PdfExtractorCore;
+
 
 fn locate_base_paths() -> (String, String) {
     let test_paths = vec!["Test", "../Test", "../../Test"];

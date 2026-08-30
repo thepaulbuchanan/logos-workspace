@@ -63,13 +63,14 @@ impl LibraryRegistry {
             }
         }
 
-        // 🚨 ADVERSARIAL CRITIC GATEWAY FOR NEW UNHASHED ENTRIES
+               // 🚨 ADVERSARIAL CRITIC GATEWAY FOR NEW UNHASHED ENTRIES
         if hash.is_empty() && !id.is_empty() && !triggers.is_empty() {
-            // Run the proposal through our Strawman/Steelman agent tournament prior to compilation!
-            if let Err(critic_fault) = LemmaCriticEngine::evaluate_proposal(&id, &triggers, extant_library) {
+            // Updated call signature passing the structural name component cleanly
+            if let Err(critic_fault) = LemmaCriticEngine::evaluate_proposal(&id, &name, &triggers, extant_library) {
                 eprintln!("🔴 HERACLITUS CRITIC SECURITY FAULT for {}: {}", id, critic_fault);
-                return None; // Hard stop: Reject the corrupted proposal asset instantly!
+                return None; 
             }
+
             
             let calculated_hash = LemmaRefactor::calculate_hash(&id, &name, &triggers, &remaining_body);
             LemmaRefactor::compile_and_lock(&id, &name, &triggers, &calculated_hash, &remaining_body, &file_path);
