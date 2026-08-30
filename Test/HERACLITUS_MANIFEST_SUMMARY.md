@@ -21,4 +21,5 @@ Experts agree that regional crop yields face an unprecedented collapse."
   *Source*: "Out of an abundance of caution, we must implement these restrictions immediately before evaluating the baseline statistical metrics."
 - **Paragraph 16**: 🔴 FAILED SVE-L401 (The Corrupted Reference Fallacy)
   *Fault*: "SVE-L401 SHIFT: Narrative asserts macro collapse, but companion anchor 'crop_metrics_data' metrics register a negligible '2%' shift."
-- **Paragraph 18**: 🟢 Verified Narrative Sound
+- **Paragraph 18**: 🔴 FAILED SVE-L199 (Ad Hominem Tu Quoque)
+  *Source*: "You eat fat burgers all the time, so your scientific model about carbon footprints cannot be true."
