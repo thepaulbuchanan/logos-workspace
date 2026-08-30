@@ -1,0 +1,20 @@
+---
+lemma_id: SVE-L102
+name: Hasty Generalization Fallacy
+triggers: ["all climate models", "always fails", "every model", "universally true"]
+ep_hash: 
+---
+
+### 1. LogosLang First-Order Logic Invariant Parameters
+```logos
+lemma hasty_generalization_audit (S : Subset) (P : Population) (A : Assertion) : Prop :=
+  forall (p : Paragraph), Ingest(p, A) AND ExtrapolatesTo(p, S, P) ──►
+    SatisfiesSampleBounds(S) OR HasVerifiedStatisticalKernel(p)
+    ON_VIOLATION(THROW_QUARANTINE_CONJECTURE)
+```
+
+### 2. Human Readable Specification
+Auto-extracted from committed LogosLib community manifest parameters. Flags instances where an author projects a sweeping, universal structural claim over an entire population class based on a minor, non-representative sample size or a solitary data point.
+
+### 3. Verification Context
+A fallacy of informal logic stemming from a structural inductive leap. Occurs when a macro-level conclusion is drawn from micro-level data without calculating appropriate confidence intervals or sample distribution curves, commonly used rhetorically to force generalized compliance.
