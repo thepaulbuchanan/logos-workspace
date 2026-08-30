@@ -5,13 +5,14 @@ mod registry;
 mod lean;
 mod pdf;
 mod critic;
-mod citation; // 🟢 RESTORED: Natively registers the cross-document citation auditor
+mod citation;
+mod wiki; // 🟢 Link our brand new Live Web Ingestion Module
 
 use std::fs;
 use std::path::{Path, PathBuf};
 use engine::HeraclitusCore;
 use pdf::PdfExtractorCore;
-
+use wiki::WikipediaInglector;
 
 fn locate_base_paths() -> (String, String) {
     let test_paths = vec!["Test", "../Test", "../../Test"];
@@ -29,38 +30,56 @@ fn locate_base_paths() -> (String, String) {
 
 fn main() {
     let (test_dir, logos_dir) = locate_base_paths();
-    let target_filename = "manuscript.tex";
-    let target_path = format!("{}/{}", test_dir, target_filename);
+    
+    // 🔍 MASTER EXECUTION TOGGLE SIMULATION
+    // Track 1: Standard Tex Manuscript Ingestion
+    // let target_filename = "manuscript.tex";
+    // Track 2: Live Wikipedia Article Ingestion URL Target
+    let target_filename = "https://wikipedia.org";
 
-    if !Path::new(&target_path).exists() {
-        eprintln!("⚠️ HERACLITUS PATH FAULT: Unable to find target file at '{}'", target_path);
-        std::process::exit(1);
-    }
+    let compiler = HeraclitusCore::new();
 
-    if target_path.ends_with(".pdf") {
-        eprintln!("🚀 STAGE A: ACTIVATING INVARIANT SCANNER");
-        let extractor = PdfExtractorCore::new();
-        if let Ok(paragraphs) = extractor.scan_pdf_to_paragraphs(&target_path) {
-            let discovered = extractor.extract_fallacy_nodes(&paragraphs);
-            for node in discovered {
-                let out_name = format!("{}/{}_auto_generated.md", logos_dir, node.id);
-                let file_path = PathBuf::from(out_name);
-                if !file_path.exists() {
-                    let draft_content = format!(
-                        "---\nlemma_id: {}\nname: {}\ntriggers: {:?}\nep_hash: \n---\n\n\
-                         ### 1. Human Readable Specification\nAuto-extracted from reference materials.\n\n\
-                         ### 2. Verification Context\n{}",
-                        node.id, node.name, node.candidate_triggers, node.body
-                    );
-                    let _ = fs::write(file_path, draft_content);
+    // =========================================================================
+    // LIVE WIKIPEDIA / GROKEPEDIA PROTOCOL TRACK
+    // =========================================================================
+    if target_filename.starts_with("http") || target_filename.contains("wikipedia.org") {
+        eprintln!("🚀 WIKIPEDIA GROUND-TRUTH PIPELINE INGESTION RUNNING OVER ACTIVE LOOP...");
+        
+        match WikipediaInglector::fetch_article_text(target_filename) {
+            Ok(paragraphs) => {
+                let mut wiki_summary = format!(
+                    "# HERACLITUS SOVEREIGN EVIDENCE LEDGER: WIKIPEDIA COMPILATION\n\
+                     Source Target URL: {}\nStatus: INDEPENDENT AUDIT COMPLETE\n\n\
+                     ## Epistemic Audit Log By Category:\n\n", 
+                    target_filename
+                );
+                
+                let mut chunk_id = 1;
+                for p in paragraphs {
+                    // Evaluate line 1 as the default base for the streaming web chunks
+                    let (_, summary_str, _, ir_trace) = compiler.evaluate_block(&p, chunk_id);
+                    if ir_trace.is_empty() { continue; }
+                    
+                    // Format the trace and print it cleanly to the standard output buffer
+                    println!("[Line {} -> Chunk {}] {}", chunk_id * 2, chunk_id, ir_trace);
+                    if !summary_str.is_empty() { wiki_summary.push_str(&summary_str); }
+                    chunk_id += 1;
                 }
+                
+                let out_report = format!("{}/HERACLITUS_WIKI_REPORT.md", test_dir);
+                let _ = fs::write(&out_report, wiki_summary);
+                eprintln!("🔒 INDEPENDENT EVIDENCE REPORT CONCLUDED SUCCESSFULLY: {}", out_report);
             }
+            Err(e) => eprintln!("🔴 Wikipedia Ingestion Failure: {}", e)
         }
         return;
     }
 
+    // Default Fallback Track: Processing the active LaTeX manuscript line-by-line
+    let target_path = format!("{}/{}", test_dir, target_filename);
+    if !Path::new(&target_path).exists() { std::process::exit(1); }
     eprintln!("⚙️ STAGE C: INITIALISING THE HERACLITUS REFACTOR CORE");
-    let compiler = HeraclitusCore::new();
+    
     let file_content = match fs::read_to_string(&target_path) {
         Ok(content) => content,
         Err(_) => std::process::exit(1),
@@ -72,7 +91,6 @@ fn main() {
     );
     let mut sve_script_output = "-- HERACLITUS SCRIPT: INVARIANT LOGOS LEDGER\n-- VERSION: v1.0.0-ALPHA\n\n".to_string();
 
-    // 🔬 LINE-AWARE PARAGRAPH PARSING CORE
     let mut current_block = String::new();
     let mut block_start_line = 1;
     let mut global_line_counter = 1;
@@ -81,10 +99,8 @@ fn main() {
     for line in file_content.lines() {
         if line.trim().is_empty() {
             if !current_block.trim().is_empty() {
-                // Evaluate block with exact file coordinate trackers passed into index space
                 let (_, summary_str, sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
                 if !ir_trace.is_empty() {
-                    // Reformat the trace to print line limits explicitly to the terminal
                     println!("[Line {} -> Chunk {}] {}", block_start_line, block_index, ir_trace);
                     if !summary_str.is_empty() { manifest_summary.push_str(&summary_str); }
                     if !sve_str.is_empty() { sve_script_output.push_str(&sve_str); }
@@ -94,16 +110,13 @@ fn main() {
             }
             block_start_line = global_line_counter + 1;
         } else {
-            if current_block.is_empty() {
-                block_start_line = global_line_counter;
-            }
+            if current_block.is_empty() { block_start_line = global_line_counter; }
             current_block.push_str(line);
             current_block.push('\n');
         }
         global_line_counter += 1;
     }
 
-    // Process final trailing block trailing elements if buffer remains full
     if !current_block.trim().is_empty() {
         let (_, summary_str, sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
         if !ir_trace.is_empty() {

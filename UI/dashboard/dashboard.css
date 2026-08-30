@@ -1,0 +1,156 @@
+:root {
+    --bg-primary: #0b0f19;
+    --bg-secondary: #161f30;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --accent-clean: #10b981;
+    --accent-quarantine: #ef4444;
+    --accent-math: #3b82f6;
+    --border-color: #24334a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; }
+.meta-target { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem; }
+.text-highlight { color: var(--text-main); }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.panel {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.gauge-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.radial-gauge {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent-clean) 0% 16%, var(--border-color) 16% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: inset 0 0 0 15px var(--bg-secondary);
+}
+
+.gauge-value { font-size: 2.5rem; font-weight: 700; color: var(--text-main); }
+.metrics-list { width: 100%; margin-top: 1.5rem; }
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.875rem;
+}
+.metric-row:last-child { border-bottom: none; }
+.text-clean { color: var(--accent-clean); }
+.text-quarantine { color: var(--accent-quarantine); }
+
+.trace-title { font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; }
+
+.tab-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--text-main); background-color: rgba(255,255,255,0.02); }
+.tab-btn.active {
+    color: var(--accent-math);
+    border-color: var(--accent-math);
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.block-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.card-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.badge-quarantine { background-color: rgba(239, 68, 68, 0.15); color: var(--accent-quarantine); }
+.badge-clean { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-clean); }
+.badge-math { background-color: rgba(59, 130, 246, 0.15); color: var(--accent-math); }
+
+.card-body {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.875rem;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-download {
+    display: inline-block;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--accent-clean);
+    color: var(--accent-clean);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.btn-download:hover { background-color: var(--accent-clean); color: var(--bg-primary); }

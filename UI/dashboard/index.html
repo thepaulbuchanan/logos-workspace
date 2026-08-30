@@ -4,235 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heraclitus Platform | Epistemic Lake-Build Monitor</title>
-    <style>
-        :root {
-            --bg-primary: #0b0f19;
-            --bg-secondary: #161f30;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --accent-clean: #10b981;
-            --accent-quarantine: #ef4444;
-            --accent-math: #3b82f6;
-            --border-color: #24334a;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            line-height: 1.5;
-            padding: 2rem;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 2rem;
-        }
-
-        h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; }
-        .meta-target { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem; }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-        }
-
-        .panel {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-
-        .gauge-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .radial-gauge {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: conic-gradient(var(--accent-clean) 0% 16%, var(--border-color) 16% 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            box-shadow: inset 0 0 0 15px var(--bg-secondary);
-        }
-
-        .gauge-value { font-size: 2.5rem; font-weight: 700; color: var(--text-main); }
-        .metrics-list { width: 100%; margin-top: 1.5rem; }
-        .metric-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.875rem;
-        }
-        .metric-row:last-child { border-bottom: none; }
-
-        .trace-title { font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; }
-        
-        .block-card {
-            background-color: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .card-badge {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        .badge-quarantine { background-color: rgba(239, 68, 68, 0.15); color: var(--accent-quarantine); }
-        .badge-clean { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-clean); }
-        .badge-math { background-color: rgba(59, 130, 246, 0.15); color: var(--accent-math); }
-
-        .card-body {
-            padding: 1rem;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.875rem;
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-download {
-            display: inline-block;
-            background-color: var(--bg-primary);
-            border: 1px solid var(--accent-clean);
-            color: var(--accent-clean);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .btn-download:hover { background-color: var(--accent-clean); color: var(--bg-primary); }
-    </style>
+    <!-- Link out to our external style module -->
+    <link rel="stylesheet" href="/dashboard.css">
 </head>
 <body>
     <div class="container">
         <header>
             <div>
-                <h1>HERACLITUS PLATFORM</h1>
-                <div class="meta-target">Active Ingestion Target: <span style="color: var(--text-main);">Test/manuscript.tex</span></div>
+                <h1>HERACLITUS FRONT-END COMPILER</h1>
+                <div class="meta-target">Live Ingestion URL: <span class="text-highlight">https://wikipedia.org</span></div>
             </div>
             <a href="/download-sve" class="btn-download">Download Validated.sve</a>
         </header>
 
         <div class="dashboard-grid">
+            <!-- Left Side: Gauge Metrics Panel -->
             <div class="panel gauge-container">
                 <div class="trace-title">INDUSTRIAL LOGOS METRICS</div>
                 <div class="radial-gauge" id="metricGauge">
                     <div class="gauge-value" id="objectivityPct">--%</div>
                 </div>
                 <div class="metrics-list">
-                    <div class="metric-row">
-                        <span class="text-muted">Total Active Database Lemmas</span>
-                        <strong id="totalLemmas">0</strong>
-                    </div>
-                    <div class="metric-row">
-                        <span class="text-muted">Total Document Chunks</span>
-                        <strong id="totalChunks">0</strong>
-                    </div>
-                    <div class="metric-row">
-                        <span class="text-muted">Verified Executable Output</span>
-                        <span style="color: var(--accent-clean);" id="cleanChunks">0 [✓]</span>
-                    </div>
-                    <div class="metric-row">
-                        <span class="text-muted">Quarantined via Conjecture</span>
-                        <span style="color: var(--accent-quarantine);" id="quarantinedChunks">0 [✗]</span>
-                    </div>
+                    <div class="metric-row"><span class="text-muted">Active Lemmas</span><strong id="totalLemmas">0</strong></div>
+                    <div class="metric-row"><span class="text-muted">Total Chunks</span><strong id="totalChunks">0</strong></div>
+                    <div class="metric-row"><span class="text-muted">Verified Clean</span><span class="text-clean" id="cleanChunks">0</span></div>
+                    <div class="metric-row"><span class="text-muted">Quarantined Faults</span><span class="text-quarantine" id="quarantinedChunks">0</span></div>
                 </div>
             </div>
 
+            <!-- Right Side: Philosophical Classification Tracker -->
             <div class="panel">
-                <div class="trace-title">INVARIANT LOGOS AUDIT TRACE</div>
+                <div class="tab-bar">
+                    <button class="tab-btn active" onclick="switchPillar('epistemology')" id="tab-epistemology">Epistemology (<span id="count-epistemology">0</span>)</button>
+                    <button class="tab-btn" onclick="switchPillar('ontology')" id="tab-ontology">Ontology (<span id="count-ontology">0</span>)</button>
+                    <button class="tab-btn" onclick="switchPillar('phenomenology')" id="tab-phenomenology">Phenomenology (<span id="count-phenomenology">0</span>)</button>
+                </div>
+                
                 <div id="traceContainer">
-                    <p class="text-muted">Awaiting stream array ingestion payload...</p>
+                    <p class="text-muted">Awaiting pipeline stream ingestion...</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        async function fetchTelemetryData() {
-            try {
-                const response = await fetch('/api/lemmas');
-                const data = await response.json();
-                
-                document.getElementById('totalLemmas').innerText = data.total_library_lemmas;
-                document.getElementById('totalChunks').innerText = data.total_chunks;
-                document.getElementById('cleanChunks').innerText = `${data.clean_count} [✓]`;
-                document.getElementById('quarantinedChunks').innerText = `${data.quarantine_count} [✗]`;
-                document.getElementById('objectivityPct').innerText = `${data.objectivity_score}%`;
-                
-                const gauge = document.getElementById('metricGauge');
-                gauge.style.background = `conic-gradient(var(--accent-clean) 0% ${data.objectivity_score}%, var(--border-color) ${data.objectivity_score}% 100%)`;
-                gauge.style.boxShadow = 'inset 0 0 0 15px var(--bg-secondary)';
-
-                const container = document.getElementById('traceContainer');
-                container.innerHTML = '';
-                
-                data.trace.forEach((block) => {
-                    const card = document.createElement('div');
-                    card.className = 'block-card';
-                    
-                    let badgeClass = 'badge-clean';
-                    let badgeLabel = '🟢 Clean Pass';
-                    if (block.status === 'quarantine') {
-                        badgeClass = 'badge-quarantine';
-                        badgeLabel = `🔴 ${block.lemma_id}`;
-                    } else if (block.status === 'math') {
-                        badgeClass = 'badge-math';
-                        badgeLabel = '🔵 Lean4 Math Verified';
-                    }
-
-                    // FIX: Dynamic visual coordinate text injection (displays e.g. "Chunk 8 (Line 18)")
-                    card.innerHTML = `
-                        <div class="card-header">
-                            <span>Chunk ${block.index} <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 0.5rem;">(Source Line: ${block.line})</span></span>
-                            <span class="card-badge ${badgeClass}">${badgeLabel}</span>
-                        </div>
-                        <div class="card-body">
-                            <strong>[${block.environment}] Payload Context:</strong> "${block.clause}"
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            } catch (e) {
-                console.error("Telemetry pipeline ingest failure:", e);
-            }
-        }
-        
-        fetchTelemetryData();
-    </script>
+    <!-- Inject our asynchronous runtime engine controller -->
+    <script src="/telemetry.js"></script>
 </body>
 </html>

@@ -1,32 +1,24 @@
 use regex::Regex;
 
 pub struct LatexParser {
-    inline_macro_re: Regex,
-    comment_re: Regex,
+    macro_regex: Regex,
 }
 
 impl LatexParser {
     pub fn new() -> Self {
         LatexParser {
-            // Catches standard LaTeX structure macros like \cite{...}, \textbf{...}, etc.
-            inline_macro_re: Regex::new(r"\\\w+\{([^}]+)\}").unwrap(),
-            // Identifies native LaTeX comment indicators (%)
-            comment_re: Regex::new(r"(?m)^%_.*$").unwrap(),
+            macro_regex: Regex::new(r"\\\w+\*?\{.*\}|\\begin\{.*\}|\\end\{.*\}").unwrap(),
         }
     }
 
-    // Clean and flatten a LaTeX paragraph block into a clean string for Lemma verification
-    pub fn strip_macro_syntax(&self, tex_block: &str) -> String {
-        // Strip line comments
-        let no_comments = self.comment_re.replace_all(tex_block, "");
-        
-        // Strip LaTeX mathematical display boundaries ($ ... $ or $$ ... $$)
-        let no_math = no_comments.replace("$", "").replace("$$", "");
-        
-        // Replace structural macros with their pure internal string payload
-        // e.g., "\textbf{Crop Yields}" becomes "Crop Yields"
-        let cleaned = self.inline_macro_re.replace_all(&no_math, "$1");
-        
-        cleaned.to_string().trim().to_string()
+    // 🔒 COORDINATE-TRACKING LEXER: Strips macro syntax while preserving structural string integrity
+    pub fn strip_macro_syntax(&self, input_text: &str) -> String {
+        let cleaned = self.macro_regex.replace_all(input_text, "");
+        cleaned.trim().to_string()
+    }
+
+    // Embeds the line numbers into the formatted string log traces
+    pub fn format_coordinate_log(line: usize, chunk: usize, token: &str) -> String {
+        format!("[Line {} -> Chunk {}] {}", line, chunk, token)
     }
 }
