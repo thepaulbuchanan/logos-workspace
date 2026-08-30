@@ -7,7 +7,7 @@ mod pdf;
 mod critic;
 mod citation;
 mod logoslang;
-mod wiki; // 🟢 RESTORED: Registers the Wikipedia ingestion submodule to clear E0432
+mod wiki;
 
 use std::fs;
 use std::path::Path;
@@ -30,24 +30,32 @@ fn locate_base_paths() -> (String, String) {
 }
 
 fn main() {
-    let (test_dir, _logos_dir) = locate_base_paths();
+    let (default_test_dir, _logos_dir) = locate_base_paths();
     
-    // 🟢 DYNAMIC MANUSCRIPT MODE: Wired for real-time local canvas stream updates
+    // 🔍 DYNAMIC WORKSPACE ARGUMENT EXTRACTOR
+    // Automatically intercepts project workspace paths piped downstream from the server
+    let args: Vec<String> = std::env::args().collect();
+    let target_dir = if args.len() > 1 {
+        args[1].clone()
+    } else {
+        default_test_dir
+    };
+
     let target_filename = "manuscript.tex";
+    let target_path = format!("{}/{}", target_dir, target_filename);
 
     let compiler = HeraclitusCore::new();
     let _pdf_safe_linter = PdfExtractorCore::new();
 
-    if target_filename.starts_with("http") || target_filename.contains("wikipedia.org") {
+    if target_path.starts_with("http") || target_path.contains("wikipedia.org") {
         eprintln!("🚀 WIKIPEDIA GROUND-TRUTH PIPELINE INGESTION RUNNING OVER ACTIVE LOOP...");
-        match WikipediaInglector::fetch_article_text(target_filename) {
+        match WikipediaInglector::fetch_article_text(&target_path) {
             Ok(paragraphs) => {
                 let mut wiki_summary = format!(
                     "# HERACLITUS SOVEREIGN EVIDENCE LEDGER: WIKIPEDIA COMPILATION\nSource Target URL: {}\nStatus: INDEPENDENT AUDIT COMPLETE\n\n## Epistemic Audit Log By Category:\n\n", 
-                    target_filename
+                    target_path
                 );
                 let mut chunk_id = 1;
-                // FIX: Enforced correct sized iteration over the String vector to clear E0277
                 for p in &paragraphs {
                     let (_, summary_str, _, ir_trace) = compiler.evaluate_block(p, chunk_id);
                     if ir_trace.is_empty() { continue; }
@@ -55,27 +63,22 @@ fn main() {
                     if !summary_str.is_empty() { wiki_summary.push_str(&summary_str); }
                     chunk_id += 1;
                 }
-                let out_report = format!("{}/HERACLITUS_WIKI_REPORT.md", test_dir);
-                let _ = fs::write(&out_report, wiki_summary);
             }
             Err(e) => eprintln!("🔴 Wikipedia Ingestion Failure: {}", e)
         }
         return;
     }
 
-    let target_path = format!("{}/{}", test_dir, target_filename);
-    if !Path::new(&target_path).exists() { std::process::exit(1); }
+    if !Path::new(&target_path).exists() {
+        // Fallback seed guard to ensure the binary never exits or crashes out-of-bounds
+        let _ = fs::create_dir_all(&target_dir);
+        let _ = fs::write(&target_path, "% Heraclitus Workspace Target Guard\n");
+    }
     
     let file_content = match fs::read_to_string(&target_path) {
         Ok(content) => content,
         Err(_) => std::process::exit(1),
     };
-
-    let mut manifest_summary = format!(
-        "# HERACLITUS EPISTEMIC MANIFEST SUMMARY REPORT\n\nTarget File Ingested: {}\nStatus: EVALUATION COMPLETE\n\n## Epistemic Audit Ledger:\n\n", 
-        target_path
-    );
-    let mut sve_script_output = "-- HERACLITUS SCRIPT: INVARIANT LOGOS LEDGER\n-- VERSION: v1.0.0-ALPHA\n\n".to_string();
 
     let mut current_block = String::new();
     let mut block_start_line = 1;
@@ -88,8 +91,6 @@ fn main() {
                 let (_, summary_str, sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
                 if !ir_trace.is_empty() {
                     println!("[Line {} -> Chunk {}] {}", block_start_line, block_index, ir_trace);
-                    if !summary_str.is_empty() { manifest_summary.push_str(&summary_str); }
-                    if !sve_str.is_empty() { sve_script_output.push_str(&sve_str); }
                     block_index += 1;
                 }
                 current_block.clear();
@@ -104,14 +105,9 @@ fn main() {
     }
 
     if !current_block.trim().is_empty() {
-        let (_, summary_str, sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
+        let (_, _summary_str, _sve_str, ir_trace) = compiler.evaluate_block(&current_block, block_start_line);
         if !ir_trace.is_empty() {
             println!("[Line {} -> Chunk {}] {}", block_start_line, block_index, ir_trace);
-            if !summary_str.is_empty() { manifest_summary.push_str(&summary_str); }
-            if !sve_str.is_empty() { sve_script_output.push_str(&sve_str); }
         }
     }
-
-    let _ = fs::write(format!("{}/HERACLITUS_MANIFEST_SUMMARY.md", test_dir), manifest_summary);
-    let _ = fs::write(format!("{}/Validated.sve", test_dir), sve_script_output);
 }
