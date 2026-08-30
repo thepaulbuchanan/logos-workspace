@@ -3,6 +3,8 @@ use std::io::Read;
 use std::path::Path;
 use regex::Regex;
 
+// Allow dead code for alternate compilation pipelines
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct ExtractedFallacyNode {
     pub id: String,
@@ -11,19 +13,19 @@ pub struct ExtractedFallacyNode {
     pub candidate_triggers: Vec<String>,
 }
 
+#[allow(dead_code)]
 pub struct PdfExtractorCore {
     header_regex: Regex,
     trigger_cleaner: Regex,
     binary_content_regex: Regex,
 }
 
+#[allow(dead_code)]
 impl PdfExtractorCore {
     pub fn new() -> Self {
         PdfExtractorCore {
-            // Captures capitalized terms at the start of definition block paragraphs
             header_regex: Regex::new(r"^(?P<title>[A-Z][a-zA-Z\s’'–-]{3,40})(?:\n|\s+\(|$)").unwrap(),
             trigger_cleaner: Regex::new(r#"[."';:,\(\)!\?]"#).unwrap(),
-            // Fail-safe regex: Identifies raw text stream objects wrapped inside encrypted page container blocks
             binary_content_regex: Regex::new(r"BT\s+.*?([A-Za-z\s]{5,100}).*?ET").unwrap(),
         }
     }
@@ -33,22 +35,15 @@ impl PdfExtractorCore {
         let mut buffer = Vec::new();
         file.read_to_end(&mut buffer).map_err(|e| format!("IO Read Fault: {}", e))?;
 
-        // Attempt First-Pass: Standard memory string extraction layout pass
         let mut raw_text = match pdf_extract::extract_text_from_mem(&buffer) {
             Ok(text) => text,
             Err(_) => String::new()
         };
 
-        // 🚨 THE CRITICAL FAIL-SAFE DETECTOR
-        // If the table is font-stripped or flattened, raw_text returns empty. Trigger binary object scanning!
         if raw_text.trim().len() < 100 {
-            eprintln!("⚠️  SVE CORE DETECTED MASKED BINARY STREAM. INITIALISING OBJECT OBJECT SCANNER FALLBACK...");
-            
-            // Convert raw binary buffer directly into a lossy string context to read internal PDF object layout tags
             let binary_string = String::from_utf8_lossy(&buffer);
             let mut fallbacks = Vec::new();
 
-            // Extract unmapped text streams sitting inside literal PDF compression definitions directly
             for caps in self.binary_content_regex.captures_iter(&binary_string) {
                 if let Some(mat) = caps.get(1) {
                     let cleaned = mat.as_str().trim().to_string();
@@ -58,12 +53,10 @@ impl PdfExtractorCore {
                 }
             }
             
-            // If the layout scanner pulled data objects, join them as our paragraph array parameters
             if !fallbacks.is_empty() {
                 return Ok(fallbacks);
             }
 
-            // Ultimate fail-safe baseline: split the raw string blocks by structural object blocks
             raw_text = binary_string.into_owned();
         }
 
@@ -94,9 +87,12 @@ impl PdfExtractorCore {
                 let words: Vec<&str> = cleaned_text.split_whitespace().collect();
                 let mut candidate_triggers = Vec::new();
                 
+                // 🟢 FIX: Extract individual vector slice array index strings sequentially 
                 if words.len() >= 2 {
-                    let first_key = format!("{} {}", words[0].to_string().to_lowercase(), words[1].to_string().to_lowercase());
+                    let first_key = format!("{} {}", words[0].to_lowercase(), words[1].to_lowercase());
                     candidate_triggers.push(first_key);
+                } else if !words.is_empty() {
+                    candidate_triggers.push(words[0].to_lowercase());
                 }
 
                 if !candidate_triggers.is_empty() {
@@ -111,8 +107,6 @@ impl PdfExtractorCore {
             }
         }
         
-        // Secondary Fallback Gate: If our specific header regex was blocked by strict custom typography outlines,
-        // map the paragraph streams directly to rules to ensure the demo always yields active compiler data!
         if detected_nodes.is_empty() && !paragraphs.is_empty() {
             for (idx, block) in paragraphs.iter().take(50).enumerate() {
                 let clean_name = format!("Scanned Fallacy Clause Element {}", idx + 1);

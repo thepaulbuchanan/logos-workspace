@@ -6,10 +6,10 @@ mod lean;
 mod pdf;
 mod critic;
 mod citation;
-mod wiki; // 🟢 Link our brand new Live Web Ingestion Module
+mod wiki;
 
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use engine::HeraclitusCore;
 use pdf::PdfExtractorCore;
 use wiki::WikipediaInglector;
@@ -29,19 +29,19 @@ fn locate_base_paths() -> (String, String) {
 }
 
 fn main() {
-    let (test_dir, logos_dir) = locate_base_paths();
+    let (test_dir, _logos_dir) = locate_base_paths();
     
-    // 🔍 MASTER EXECUTION TOGGLE SIMULATION
-    // Track 1: Standard Tex Manuscript Ingestion
+    // 🔍 CONFIGURATION STRATEGY TOGGLE: Select Target Vector Natively
+    // Track A: Local Latex Manuscript Ingestion Check
     // let target_filename = "manuscript.tex";
-    // Track 2: Live Wikipedia Article Ingestion URL Target
+    // Track B: Live Wikipedia Web API Stream Ingestion Pass
     let target_filename = "https://wikipedia.org";
 
     let compiler = HeraclitusCore::new();
 
-    // =========================================================================
-    // LIVE WIKIPEDIA / GROKEPEDIA PROTOCOL TRACK
-    // =========================================================================
+    // Secure compilation hooks for local pdf structs to satisfy unused warnings permanently
+    let _pdf_safe_linter = PdfExtractorCore::new();
+
     if target_filename.starts_with("http") || target_filename.contains("wikipedia.org") {
         eprintln!("🚀 WIKIPEDIA GROUND-TRUTH PIPELINE INGESTION RUNNING OVER ACTIVE LOOP...");
         
@@ -56,11 +56,9 @@ fn main() {
                 
                 let mut chunk_id = 1;
                 for p in paragraphs {
-                    // Evaluate line 1 as the default base for the streaming web chunks
                     let (_, summary_str, _, ir_trace) = compiler.evaluate_block(&p, chunk_id);
                     if ir_trace.is_empty() { continue; }
                     
-                    // Format the trace and print it cleanly to the standard output buffer
                     println!("[Line {} -> Chunk {}] {}", chunk_id * 2, chunk_id, ir_trace);
                     if !summary_str.is_empty() { wiki_summary.push_str(&summary_str); }
                     chunk_id += 1;
@@ -75,7 +73,6 @@ fn main() {
         return;
     }
 
-    // Default Fallback Track: Processing the active LaTeX manuscript line-by-line
     let target_path = format!("{}/{}", test_dir, target_filename);
     if !Path::new(&target_path).exists() { std::process::exit(1); }
     eprintln!("⚙️ STAGE C: INITIALISING THE HERACLITUS REFACTOR CORE");
