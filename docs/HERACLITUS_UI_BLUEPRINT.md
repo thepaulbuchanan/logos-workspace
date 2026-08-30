@@ -23,3 +23,10 @@ To transition the current MVP framework toward this unified corporate canvas sta
 1.  **Stream Ingestion (`Runtime/src/stream.rs`):** Upgrading the Rust main loop to handle active, high-frequency text string deltas rather than relying on static file disk reads.
 2.  **Bi-Directional Coordinate Mapping:** Mapping JSON API arrays to index character bounds, allowing the web frontend to link visual cards directly with canvas cursor positions.
 3.  **Interactive Content-Editable Frontends:** Upgrading `index.html` to deploy an editable rich-text composition field that automatically triggers background POST requests to the local server on user typing pauses.
+
+## 4. Tier 3 Real-Time In-Memory Ingestion Pipeline (POST Architecture)
+To support real-time inline checking natively inside the premium executive canvas, the data pipeline transitions from static disk file reads to a high-frequency, asynchronous streaming interface:
+
+*   **The Keystroke Debouncer:** A local JavaScript handler inside `telemetry.js` intercepts canvas changes and enforces a strict 400ms typing pause threshold before executing outbound communication.
+*   **The Network Bridge:** The frontend packages the single active modified text clause into a lightweight JSON payload and fires an HTTP POST request straight to the local network server (`POST /api/evaluate`).
+*   **The Memory Runtime Pass:** The Python server passes the text string directly into the Rust compiler core via a persistent standard input cache pipe. The engine evaluates the clause in volatile RAM, cross-checks the 184 locked lemmas, and returns the telemetry error metrics to draw red underlines inline without ever logging prose to permanent storage disks.
