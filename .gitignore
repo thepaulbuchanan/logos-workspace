@@ -1,0 +1,11 @@
+# Rust build artifacts
+private-heraclitus/target/
+Cargo.lock
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Local VS Code / Environment configurations
+.vscode/
+.env
