@@ -37,27 +37,32 @@ fn main() {
     println!("=== HERACLITUS MULTI-MODULE COMPILER ARCHITECTURE ===");
     let mut v_engine = engine::VerificationEngine::new();
 
-    // Ingest and register the evolving seed cohort
     compile_spec_file("../public-logoslib/specs/LOGOS_001_accident.md", &mut v_engine, "LOGOS_001");
     compile_spec_file("../public-logoslib/specs/LOGOS_002_adhoc.md", &mut v_engine, "LOGOS_002");
     let hominem_ctx = compile_spec_file("../public-logoslib/specs/LOGOS_003_adhominem.md", &mut v_engine, "LOGOS_003");
 
     println!("Registered Core Lemmas in Active Memory Library: {:?}", v_engine.compile_dictionary.keys());
 
-    // Execute intake cross-reference simulation on Fallacy #3
     if let Some(ctx) = hominem_ctx {
         println!("\n[Simulating Intake Analysis for incoming user submission text...]");
         let verdict = v_engine.cross_reference_submission(&ctx);
         
         println!("\n--- Core Engine Epistemic Verdict Report ---");
         match verdict {
-            engine::VerificationStatus::SorryFree => println!("Verdict: SORRY-FREE LAKEBUILD VALIDATED. Cryptographic signature generated."),
-            engine::VerificationStatus::StructuralFallacyDetected { code, error_context, .. } => {
-                println!("Verdict: COMPILATION ABORTED (Structural Logical Fallacy Detected)");
-                println!("Trigger Code : {}", code);
-                println!("Error Spec   : {}", error_context);
+            engine::VerificationStatus::SorryFree { cryptographic_hash } => {
+                println!("Verdict  : SORRY-FREE LAKEBUILD VALIDATED.");
+                println!("Signature: {}", cryptographic_hash);
             }
-            engine::VerificationStatus::BoundedWithStubs(stubs) => println!("Verdict: BUILD BOUNDED. Missing dependency tracks: {:?}", stubs),
+            engine::VerificationStatus::StructuralFallacyDetected { code, error_context } => {
+                println!("Verdict   : COMPILATION ABORTED (Structural Fallacy Intercepted)");
+                println!("Error Code: {}", code);
+                println!("Detail    : {}", error_context);
+            }
+            engine::VerificationStatus::BoundedWithStubs { automated_zulip_payload } => {
+                println!("Verdict   : BUILD BOUNDED BY UNRESOLVED LEMMA INDICES");
+                println!("\n[Piping Payload to Zulip API Integration Layer]:\n");
+                println!("{}", automated_zulip_payload);
+            }
         }
     }
 }
