@@ -1,4 +1,3 @@
-use pest::Parser;
 use pest_derive::Parser;
 use pulldown_cmark::{Event, Parser as MDParser, Tag, TagEnd};
 use crate::ast::{ASTNode, CompilerContext, SVEType};
@@ -6,6 +5,9 @@ use crate::ast::{ASTNode, CompilerContext, SVEType};
 #[derive(Parser)]
 #[grammar = "sve.pest"]
 pub struct SVEParser;
+
+// [Rest of the file remains exactly as it was]
+
 
 pub fn extract_logos_spec_from_markdown(file_content: &str) -> Option<String> {
     let md_parser = MDParser::new(file_content);

@@ -30,6 +30,7 @@ pub enum ASTNode {
     Assertion { tactic: String, expression: String },
 }
 
+#[derive(Debug, Clone)]
 pub struct CompilerContext {
     pub symbol_table: HashMap<String, SVEType>,
     pub ast_nodes: Vec<ASTNode>,

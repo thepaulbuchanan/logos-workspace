@@ -1,4 +1,4 @@
-use crate::ast::{ASTNode, CompilerContext, SVEType};
+use crate::ast::{ASTNode, CompilerContext};
 use std::collections::HashMap;
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -28,9 +28,8 @@ impl VerificationEngine {
     }
 
     /// Module 1 Core: The Ingestion Structural Cross-Referencer
-    /// Audits the semantic AST pattern graph of an incoming user submission text.
     pub fn cross_reference_submission(&self, incoming_ctx: &CompilerContext) -> VerificationStatus {
-        let symbol_table = &incoming_ctx.symbol_table;
+        let _symbol_table = &incoming_ctx.symbol_table;
         
         // Walk the abstract syntax tree nodes to detect architectural logic violations
         for node in &incoming_ctx.ast_nodes {
@@ -55,7 +54,6 @@ impl VerificationEngine {
                     }
 
                     // Check Rule 3: Invalid Attribute Contradiction (Ad Hominem)
-                    // If an expression tries to validate/invalidate an implication using an Agent type's traits
                     if tactic == "ASSERT_ATTRIBUTE_INHERITANCE" && expression.contains("Agent::") {
                         return VerificationStatus::StructuralFallacyDetected {
                             code: "LOGOS_003".to_string(),
