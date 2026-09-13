@@ -1,8 +1,6 @@
 mod ast;
 mod parser;
 mod engine;
-
-// Expose the new Product Platform Modules
 mod auth;
 mod dashboard;
 mod storage;
@@ -33,7 +31,6 @@ fn main() {
     println!("=== HERACLITUS SAAS ENTERPRISE PRODUCT PLATFORM ===");
     println!("==================================================");
 
-    // 1. Initialize Account Lifecycle & Active Workspace Simulator
     let current_session_user = auth::UserAccount {
         uuid: "usr_90a1-f3b5-77c8-9d2e".to_string(),
         corporate_domain: "fortune500_firm.com".to_string(),
@@ -45,22 +42,29 @@ fn main() {
         owner_uuid: current_session_user.uuid.clone(),
         files: vec![dashboard::ProjectFile {
             name: "financial_disclosure.docx".to_string(),
-            raw_content: "Prose data metrics stored inside document profile.".to_string(),
+            raw_content: "All regional operations comply cleanly with capital allocation constraints and baseline standards.".to_string(),
         }],
         historical_runs_count: 14,
     };
 
-    println!("User Dashboard Loaded Successfully.");
-    println!("Active Client  : {} (Tier: {:?})", current_session_user.corporate_domain, current_session_user.tier);
-    println!("Workspace Node : Running execution run #{} on project '{}'", 
-             active_project.historical_runs_count + 1, active_project.project_id);
-
-    // 2. Instantiate Verification Engine Backend
     let mut v_engine = engine::VerificationEngine::new();
     compile_spec_file("../public-logoslib/specs/LOGOS_001_accident.md", &mut v_engine, "LOGOS_001");
     compile_spec_file("../public-logoslib/specs/LOGOS_002_adhoc.md", &mut v_engine, "LOGOS_002");
     compile_spec_file("../public-logoslib/specs/LOGOS_003_adhominem.md", &mut v_engine, "LOGOS_003");
     
-    println!("Active Operational Verification Core Library Loaded (Count: {}).", v_engine.compile_dictionary.len());
+    let lemma_count = v_engine.compile_dictionary.len();
+    println!("Active Operational Verification Core Library Loaded (Count: {}).", lemma_count);
+
+    // Generate and sign the project logic certificate
+    println!("\nGenerating Cryptographic Logic Seal Verification Certificate...");
+    let document_text = &active_project.files[0].raw_content;
+    let certificate = storage::VerificationCertificate::generate_seal(
+        &active_project.project_id, 
+        document_text, 
+        lemma_count
+    );
+
+    println!("\n--- Verifiable Epistemic Token Export Payload ---");
+    println!("{}", certificate.to_json_payload());
     println!("--------------------------------------------------");
 }

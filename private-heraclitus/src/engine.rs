@@ -1,5 +1,21 @@
 use crate::ast::{ASTNode, CompilerContext};
 use std::collections::HashMap;
+use sha2::{Sha256, Digest};
+
+// ... [Keep VerificationStatus and PullRequestVerdict exactly as they are]
+
+/// A diagnostic structure capturing errors inside specific paragraphs of user text
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct ParagraphDiagnostic {
+    pub paragraph_index: usize,
+    pub segment_text: String,
+    pub status: String,
+    pub violation_code: Option<String>,
+    pub diagnostic_details: Option<String>,
+}
+
+// ... [Keep the rest of VerificationEngine layout exactly as it is]
+
 
 #[derive(Debug, Clone, serde::Serialize)]
 pub enum VerificationStatus {
