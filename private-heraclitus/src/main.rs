@@ -2,67 +2,65 @@ mod ast;
 mod parser;
 mod engine;
 
+// Expose the new Product Platform Modules
+mod auth;
+mod dashboard;
+mod storage;
+mod api;
+
 use pest::Parser;
 use std::fs;
 use std::path::Path;
 
 fn compile_spec_file(path_str: &str, engine: &mut engine::VerificationEngine, id: &str) -> Option<ast::CompilerContext> {
     let spec_path = Path::new(path_str);
-    if !spec_path.exists() {
-        println!("Skipping: File not found at {:?}", spec_path);
-        return None;
-    }
-
-    let file_content = fs::read_to_string(spec_path).expect("Unable to read spec file");
+    if !spec_path.exists() { return None; }
+    let file_content = fs::read_to_string(spec_path).expect("Unable to read file");
     
     if let Some(code_block) = parser::extract_logos_spec_from_markdown(&file_content) {
-        match parser::SVEParser::parse(parser::Rule::program, &code_block) {
-            Ok(parsed_tree) => {
-                let mut context = ast::CompilerContext::new();
-                parser::build_ast(parsed_tree, &mut context);
-                engine.register_lemma(id.to_string(), context.clone());
-                Some(context)
-            }
-            Err(e) => {
-                eprintln!("Parser Compilation Exception for {}: {:?}", id, e);
-                None
-            }
+        if let Ok(parsed_tree) = parser::SVEParser::parse(parser::Rule::program, &code_block) {
+            let mut context = ast::CompilerContext::new();
+            parser::build_ast(parsed_tree, &mut context);
+            engine.register_lemma(id.to_string(), context.clone());
+            return Some(context);
         }
-    } else {
-        None
     }
+    None
 }
 
 fn main() {
-    println!("=== HERACLITUS MULTI-MODULE COMPILER ARCHITECTURE ===");
-    let mut v_engine = engine::VerificationEngine::new();
+    println!("==================================================");
+    println!("=== HERACLITUS SAAS ENTERPRISE PRODUCT PLATFORM ===");
+    println!("==================================================");
 
+    // 1. Initialize Account Lifecycle & Active Workspace Simulator
+    let current_session_user = auth::UserAccount {
+        uuid: "usr_90a1-f3b5-77c8-9d2e".to_string(),
+        corporate_domain: "fortune500_firm.com".to_string(),
+        tier: auth::AccountTier::EnterprisePaid,
+    };
+
+    let active_project = dashboard::VerificationProject {
+        project_id: "prj_001_annual_report".to_string(),
+        owner_uuid: current_session_user.uuid.clone(),
+        files: vec![dashboard::ProjectFile {
+            name: "financial_disclosure.docx".to_string(),
+            raw_content: "Prose data metrics stored inside document profile.".to_string(),
+        }],
+        historical_runs_count: 14,
+    };
+
+    println!("User Dashboard Loaded Successfully.");
+    println!("Active Client  : {} (Tier: {:?})", current_session_user.corporate_domain, current_session_user.tier);
+    println!("Workspace Node : Running execution run #{} on project '{}'", 
+             active_project.historical_runs_count + 1, active_project.project_id);
+
+    // 2. Instantiate Verification Engine Backend
+    let mut v_engine = engine::VerificationEngine::new();
     compile_spec_file("../public-logoslib/specs/LOGOS_001_accident.md", &mut v_engine, "LOGOS_001");
     compile_spec_file("../public-logoslib/specs/LOGOS_002_adhoc.md", &mut v_engine, "LOGOS_002");
-    let hominem_ctx = compile_spec_file("../public-logoslib/specs/LOGOS_003_adhominem.md", &mut v_engine, "LOGOS_003");
-
-    println!("Registered Core Lemmas in Active Memory Library: {:?}", v_engine.compile_dictionary.keys());
-
-    if let Some(ctx) = hominem_ctx {
-        println!("\n[Simulating Intake Analysis for incoming user submission text...]");
-        let verdict = v_engine.cross_reference_submission(&ctx);
-        
-        println!("\n--- Core Engine Epistemic Verdict Report ---");
-        match verdict {
-            engine::VerificationStatus::SorryFree { cryptographic_hash } => {
-                println!("Verdict  : SORRY-FREE LAKEBUILD VALIDATED.");
-                println!("Signature: {}", cryptographic_hash);
-            }
-            engine::VerificationStatus::StructuralFallacyDetected { code, error_context } => {
-                println!("Verdict   : COMPILATION ABORTED (Structural Fallacy Intercepted)");
-                println!("Error Code: {}", code);
-                println!("Detail    : {}", error_context);
-            }
-            engine::VerificationStatus::BoundedWithStubs { automated_zulip_payload } => {
-                println!("Verdict   : BUILD BOUNDED BY UNRESOLVED LEMMA INDICES");
-                println!("\n[Piping Payload to Zulip API Integration Layer]:\n");
-                println!("{}", automated_zulip_payload);
-            }
-        }
-    }
+    compile_spec_file("../public-logoslib/specs/LOGOS_003_adhominem.md", &mut v_engine, "LOGOS_003");
+    
+    println!("Active Operational Verification Core Library Loaded (Count: {}).", v_engine.compile_dictionary.len());
+    println!("--------------------------------------------------");
 }
