@@ -1,0 +1,50 @@
+// 1. Invariant White-spaces and Comments
+WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
+COMMENT    = _{ "--" ~ (!"\n" ~ ANY)* ~ "\n"? }
+
+// 2. Main Entry Point
+program = { SOI ~ statement* ~ EOI }
+
+statement = {
+    declaration
+  | definition
+  | evaluation
+}
+
+// 3. Declaration Phase Syntax
+declaration = { keyword_decl ~ identifier ~ ":" ~ type_name }
+keyword_decl = { "CONSTANT" | "VARIABLE" }
+
+// 4. Definition Phase Syntax
+definition = { "DEF" ~ identifier ~ argument_list ~ ":" ~ type_name ~ ":=" ~ expression }
+argument_list = { ("(" ~ identifier ~ ":" ~ type_name ~ ")")* }
+
+// 5. Evaluation Phase Syntax
+evaluation = { keyword_eval ~ "(" ~ expression ~ ")" ~ (implication_op ~ evaluation)? }
+keyword_eval = { "ASSERT_CONTEXT_BOUND" | "ASSERT_EVALUATION" | "ASSERT_APPLICABILITY" | "THROW" }
+
+// 6. Expressions and Operators
+expression = { term ~ (operator ~ term)* }
+term = { 
+    function_call 
+  | namespaced_type 
+  | string_literal 
+  | identifier 
+}
+
+function_call = { identifier ~ "(" ~ expression ~ ("," ~ expression)* ~ ")" }
+namespaced_type = { identifier ~ "::" ~ identifier }
+
+operator = _{ implication_op | contradiction_op | conjunction_op | disjunction_op | eq_op | neq_op | map_op }
+implication_op = { "⟹" }
+contradiction_op = { "↛" }
+conjunction_op = { "∧" }
+disjunction_op = { "∨" }
+eq_op          = { "==" }
+neq_op         = { "!=" }
+map_op         = { "->" }
+
+// 7. Base Primitives and Identifiers
+type_name      = @{ ASCII_ALPHA_UPPER ~ ASCII_ALPHANUMERIC* }
+identifier     = @{ (ASCII_ALPHA_LOWER | ASCII_ALPHA_UPPER) ~ (ASCII_ALPHANUMERIC | "_" | ".")* }
+string_literal = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
