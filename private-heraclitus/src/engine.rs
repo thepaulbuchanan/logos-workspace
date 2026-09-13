@@ -1,6 +1,11 @@
 use crate::ast::{ASTNode, CompilerContext};
 use std::collections::HashMap;
-use sha2::{Sha256, Digest};
+// Removed the unused sha2 imports from this module layer
+
+
+// use crate::ast::{ASTNode, CompilerContext};
+// use std::collections::HashMap;
+// use sha2::{Sha256, Digest};
 
 // ... [Keep VerificationStatus and PullRequestVerdict exactly as they are]
 

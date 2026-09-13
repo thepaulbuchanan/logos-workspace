@@ -7,6 +7,7 @@ pub enum SVEType {
     Token,
     Scope,
     Matrix,
+    Float,
     Custom(String),
 }
 
@@ -18,6 +19,7 @@ impl SVEType {
             "Token" => SVEType::Token,
             "Scope" => SVEType::Scope,
             "Matrix" => SVEType::Matrix,
+            "Float" => SVEType::Float,
             _ => SVEType::Custom(s.to_string()),
         }
     }

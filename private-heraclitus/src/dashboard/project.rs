@@ -1,5 +1,3 @@
-use crate::engine::ParagraphDiagnostic;
-
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct ProjectFile {
     pub name: String,
