@@ -1,0 +1,25 @@
+[package]
+name = "private-heraclitus"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <you@example.com>"]
+description = "Proprietary Semantic Verification Engine (SVE) kernel for text logic checking."
+
+[dependencies]
+# 1. Markdown Parsing (To extract logos-spec blocks from files)
+pulldown-cmark = "0.12"
+
+# 2. SVE Grammar & Language Parsing Framework
+pest = "2.7"
+pest_derive = "2.7"
+
+# 3. Epistemic Graph Processing (For tracking reasoning DAGs and loop matrices)
+petgraph = "0.6"
+
+# 4. Serialization Layer (For reports, stubs, and JSON data handoffs)
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# 5. Cryptographic Hashing (For generating the Sorry-Free signed stamps)
+sha2 = "0.10"
+hex = "0.4"
