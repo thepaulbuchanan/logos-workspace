@@ -10,89 +10,79 @@ use pest::Parser;
 use std::fs;
 use std::path::Path;
 
-fn compile_spec_file(path_str: &str, engine: &mut engine::VerificationEngine, id: &str) -> Option<ast::CompilerContext> {
-    let spec_path = Path::new(path_str);
-    if !spec_path.exists() { 
-        println!("[Loader Warning]: File target missing at {:?}", spec_path);
-        return None; 
-    }
-    let file_content = fs::read_to_string(spec_path).expect("Unable to read file");
-    
-    if let Some(code_block) = parser::extract_logos_spec_from_markdown(&file_content) {
-        match parser::SVEParser::parse(parser::Rule::program, &code_block) {
-            Ok(parsed_tree) => {
-                let mut context = ast::CompilerContext::new();
-                parser::build_ast(parsed_tree, &mut context);
-                engine.register_lemma(id.to_string(), context.clone());
-                return Some(context);
-            }
-            Err(e) => {
-                println!("[Grammar Error]: Spec parsing failed inside target {}!\n{:?}\n", id, e);
-                return None;
+fn compile_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
+    let file_content = fs::read_to_string(path).expect("Unable to read file");
+    let mut lemma_id = String::new();
+    for line in file_content.lines() {
+        let clean_line = line.trim().to_lowercase();
+        if clean_line.starts_with("lemma_id") || clean_line.starts_with("id") {
+            if let Some(val_part) = line.split(':').nth(1) {
+                lemma_id = val_part.replace('"', "").replace('\'', "").trim().to_string();
+                break;
             }
         }
     }
-    println!("[Extractor Warning]: Failed to locate a valid ```logos-spec block inside {}", id);
-    None
+    if lemma_id.is_empty() {
+        if let Some(file_stem) = path.file_stem().and_then(|s| s.to_str()) {
+            lemma_id = file_stem.split('_').take(2).collect::<Vec<&str>>().join("_");
+        }
+    }
+    
+    if let Some(code_block) = parser::extract_logos_spec_from_markdown(&file_content) {
+        if let Ok(parsed_tree) = parser::SVEParser::parse(parser::Rule::program, &code_block) {
+            let mut context = ast::CompilerContext::new();
+            parser::build_ast(parsed_tree, &mut context);
+            engine.register_lemma(lemma_id, context);
+        }
+    }
 }
 
 fn main() {
     println!("==================================================");
-    println!("=== HERACLITUS SAAS ENTERPRISE PRODUCT PLATFORM ===");
+    println!("=== HERACLITUS GRAPH TOPOLOGY RUNTIME ===========");
     println!("==================================================");
 
-    let current_session_user = auth::UserAccount {
-        uuid: "usr_90a1-f3b5-77c8-9d2e".to_string(),
-        corporate_domain: "fortune500_firm.com".to_string(),
-        tier: auth::AccountTier::EnterprisePaid,
-    };
-
-    let raw_uploaded_bytes = b"Paragraph 1: Invariant asset distribution details.\n\nParagraph 2: Secondary corporate statement text profile.";
-    let document_payload = api::IngestionPayload::new(
-        api::IngestionType::RawTextStream,
-        raw_uploaded_bytes.to_vec()
-    );
-
-    let clean_paragraphs = document_payload.extract_clean_paragraphs();
-    
-    let mut active_project = dashboard::VerificationProject {
-        project_id: "prj_001_annual_report".to_string(),
-        owner_uuid: current_session_user.uuid.clone(),
-        files: vec![dashboard::ProjectFile {
-            name: "financial_disclosure.txt".to_string(),
-            raw_content: clean_paragraphs.join("\n\n"),
-        }],
-        historical_runs_count: 14,
-    };
-
     let mut v_engine = engine::VerificationEngine::new();
-    let mut storage_ledger = storage::repository::CertificateLedger::new();
+    let specs_dir = Path::new("../public-logoslib/specs");
     
-    println!("Ingesting Active Specifications Library...");
-    compile_spec_file("../public-logoslib/specs/LOGOS_001_accident.md", &mut v_engine, "LOGOS_001");
-    compile_spec_file("../public-logoslib/specs/LOGOS_002_adhoc.md", &mut v_engine, "LOGOS_002");
-    compile_spec_file("../public-logoslib/specs/LOGOS_003_adhominem.md", &mut v_engine, "LOGOS_003");
-    compile_spec_file("../public-logoslib/specs/LOGOS_006_baserate.md", &mut v_engine, "LOGOS_006");
-    compile_spec_file("../public-logoslib/specs/LOGOS_007_beggingquestion.md", &mut v_engine, "LOGOS_007");
-    compile_spec_file("../public-logoslib/specs/LOGOS_008_hastygeneralization.md", &mut v_engine, "LOGOS_008");
-    
-    let lemma_count = v_engine.compile_dictionary.len();
-    println!("Active Operational Verification Core Library Loaded (Count: {}).", lemma_count);
+    if specs_dir.is_dir() {
+        if let Ok(entries) = fs::read_dir(specs_dir) {
+            for entry in entries.flatten() {
+                let path = entry.path();
+                if path.extension().map_or(false, |ext| ext == "md") {
+                    compile_spec_file(&path, &mut v_engine);
+                }
+            }
+        }
+    }
 
-    println!("\nGenerating Cryptographic Logic Seal Verification Certificate...");
-    let document_text = &active_project.files[0].raw_content;
-    let certificate = storage::VerificationCertificate::generate_seal(
-        &active_project.project_id, 
-        document_text, 
-        lemma_count
-    );
+    println!("Operational Core Library Ingested. Total Lemmas: {}", v_engine.compile_dictionary.len());
 
-    storage_ledger.log_certificate(&active_project.project_id, certificate.clone());
-    active_project.historical_runs_count += storage_ledger.get_history_count(&active_project.project_id) as u32;
+    // --- TEST 1: Clean Hierarchical Document Pipeline ---
+    println!("\n[Test 1: Running Topological Sort on Valid Argument Dependency Tree...]");
+    let valid_dependencies = vec![
+        ("LOGOS_003_adhominem".to_string(), "LOGOS_002_adhoc".to_string()),
+        ("LOGOS_002_adhoc".to_string(), "LOGOS_001_accident".to_string()),
+    ];
 
-    println!("\n--- Verifiable Epistemic Token Export Payload ---");
-    println!("{}", certificate.to_json_payload());
+    match v_engine.verify_dependency_topology(valid_dependencies) {
+        Ok(sorted_sequence) => println!("  ↳ STATUS: SUCCESS. Optimized Compilation Order: {:?}", sorted_sequence),
+        Err(_) => println!("  ↳ STATUS: FAILED. Unexpected sorting exception."),
+    }
+
+    // --- TEST 2: Circular Argument Intercept Loop ---
+    println!("\n[Test 2: Running Topological Sort on Malformed Circular Dependency Loop...]");
+    let circular_dependencies = vec![
+        ("LOGOS_006_baserate".to_string(), "LOGOS_007_beggingquestion".to_string()),
+        ("LOGOS_007_beggingquestion".to_string(), "LOGOS_006_baserate".to_string()), // The loop-closing edge
+    ];
+
+    match v_engine.verify_dependency_topology(circular_dependencies) {
+        Ok(_) => println!("  ↳ STATUS: PASSED. (Error: Engine failed to catch loop)"),
+        Err(loop_path) => {
+            println!("  ↳ STATUS: COMPILE BLOCKED (Cyclical Reference Conflict Detected!)");
+            println!("    Identified Trap Core Node: {:?}", loop_path);
+        }
+    }
     println!("--------------------------------------------------");
-    println!("Database Ledger Check: Project '{}' has now tracked {} verified runs inside this workspace session storage ledger.", 
-             active_project.project_id, storage_ledger.get_history_count(&active_project.project_id));
 }

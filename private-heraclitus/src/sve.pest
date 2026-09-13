@@ -21,13 +21,14 @@ argument_list = { ("(" ~ identifier ~ ":" ~ type_name ~ ")")* }
 
 // 5. Evaluation Phase Syntax
 evaluation = { keyword_eval ~ "(" ~ expression ~ ")" ~ (implication_op ~ evaluation)? }
-keyword_eval = { "ASSERT_CONTEXT_BOUND" | "ASSERT_EVALUATION" | "ASSERT_APPLICABILITY" | "THROW" }
+keyword_eval = { "ASSERT_CONTEXT_BOUND" | "ASSERT_EVALUATION" | "ASSERT_APPLICABILITY" | "ASSERT_POPULATION_BOUND" | "ASSERT_CONDITIONAL_INFERENCE" | "ASSERT_SAMPLE_SIZE" | "THROW" }
 
 // 6. Expressions and Operators
 expression = { term ~ (operator ~ term)* }
 term = { 
     function_call 
   | namespaced_type 
+  | number_literal
   | string_literal 
   | identifier 
 }
@@ -35,16 +36,26 @@ term = {
 function_call = { identifier ~ "(" ~ expression ~ ("," ~ expression)* ~ ")" }
 namespaced_type = { identifier ~ "::" ~ identifier }
 
-operator = _{ implication_op | contradiction_op | conjunction_op | disjunction_op | eq_op | neq_op | map_op }
-implication_op = { "⟹" }
+// FIX: Added numerical comparison operators to the selection tree matrix below
+operator = _{ 
+    implication_op | contradiction_op | conjunction_op | disjunction_op 
+
+  | lte_op | gte_op | lt_op | gt_op | eq_op | neq_op | map_op 
+}
+implication_op   = { "⟹" }
 contradiction_op = { "↛" }
-conjunction_op = { "∧" }
-disjunction_op = { "∨" }
-eq_op          = { "==" }
-neq_op         = { "!=" }
-map_op         = { "->" }
+conjunction_op   = { "∧" }
+disjunction_op   = { "∨" }
+eq_op            = { "==" }
+neq_op           = { "!=" }
+map_op           = { "->" }
+lt_op            = { "<" }
+gt_op            = { ">" }
+lte_op           = { "<=" }
+gte_op           = { ">=" }
 
 // 7. Base Primitives and Identifiers
 type_name      = @{ ASCII_ALPHA_UPPER ~ ASCII_ALPHANUMERIC* }
 identifier     = @{ (ASCII_ALPHA_LOWER | ASCII_ALPHA_UPPER) ~ (ASCII_ALPHANUMERIC | "_" | ".")* }
+number_literal = @{ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? }
 string_literal = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
