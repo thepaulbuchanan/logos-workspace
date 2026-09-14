@@ -183,3 +183,40 @@ impl VerificationEngine {
         manifest
     }
 }
+// ... [Keep all previous VerificationEngine code exactly as it is]
+
+/// Structuring the formal payload block for outward network notifications
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ZulipWebhookPayload {
+    pub stream: String,
+    pub topic: String,
+    pub content: String,
+}
+
+impl VerificationEngine {
+    /// Automation Hook: Compiles a structural anomaly report and dispatches a simulated webhook request
+    pub fn dispatch_zulip_alert(&self, target_stream: &str, target_topic: &str, alert_details: &str) -> String {
+        let payload = ZulipWebhookPayload {
+            stream: target_stream.to_string(),
+            topic: target_topic.to_string(),
+            content: format!(
+                "### 🚨 HERACLITUS ENGINE EXCEPTION WARNING\n\n\
+                **Target Context:** {}\n\n\
+                **Automated Diagnostic Data:**\n\
+                ```text\n\
+                {}\n\
+                ```\n\n\
+                *Please check open specs repositories or regenerate the library_manifest.lock to sync workspace indexes.*",
+                target_topic, alert_details
+            ),
+        };
+
+        // Serialize the token into a pretty JSON payload string format
+        let json_payload = serde_json::to_string_pretty(&payload).unwrap();
+        
+        println!("\n[WEBHOOK AGENT] Formatting outbound JSON event notification payload...");
+        println!("[WEBHOOK AGENT] Piping HTTP POST payload to endpoint channel: `#stream/{}`", payload.stream);
+        
+        json_payload
+    }
+}

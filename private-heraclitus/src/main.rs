@@ -28,10 +28,9 @@ fn compile_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
 
 fn main() {
     println!("==================================================");
-    println!("=== HERACLITUS COLLABORATIVE MULTI-USER WORKSPACE");
+    println!("=== HERACLITUS MULTI-USER WORKSPACE WITH ALERTS ==");
     println!("==================================================");
 
-    // 1. Initialise the Project Owner
     let owner_user = auth::UserAccount {
         uuid: "usr_owner_90a1".to_string(),
         corporate_domain: "fortune500_firm.com".to_string(),
@@ -50,14 +49,12 @@ fn main() {
 
     let mut session = dashboard::project::LiveWorkspaceSession::new(base_project);
 
-    // Register primary user session
     session.register_collaborator(dashboard::project::CollaboratorSession {
         user_uuid: owner_user.uuid.clone(),
         account_tier: owner_user.tier.clone(),
         active_role: dashboard::project::WorkspaceRole::Owner,
     });
 
-    // 2. Simulate inviting an external community reviewer (Free/Fun tier account)
     let external_editor_uuid = "usr_community_44b2".to_string();
     session.register_collaborator(dashboard::project::CollaboratorSession {
         user_uuid: external_editor_uuid.clone(),
@@ -65,7 +62,6 @@ fn main() {
         active_role: dashboard::project::WorkspaceRole::Editor,
     });
 
-    // 3. Instantiate Verification Engine Libraries
     let mut v_engine = engine::VerificationEngine::new();
     let specs_dir = Path::new("../public-logoslib/specs");
     if specs_dir.is_dir() {
@@ -82,27 +78,34 @@ fn main() {
     let lock_file_path = "../public-logoslib/library_manifest.lock";
     v_engine.execute_library_lock_pass(lock_file_path);
 
-    // 4. Action: External editor streams a text change into our project container
-    let incoming_collab_bytes = b"Paragraph 1: The market strategy proposed by the compliance auditor is clean and structurally solid, aligning directly with capital parameters.";
+    // INGESTION TEST CHANGE: Community contributor inputs text triggering an Ad Hominem fallacy
+    let incoming_collab_bytes = b"Paragraph 1: Tony claims corporate tax drops work. But Tony is a convict, so his statement is false.";
     let document_payload = api::IngestionPayload::new(api::IngestionType::RawTextStream, incoming_collab_bytes.to_vec());
     let clean_paragraphs = document_payload.extract_clean_paragraphs();
 
     let stream_event = dashboard::project::EditorStreamEvent {
         file_target: "collab_draft.tex".to_string(),
         line_delta: clean_paragraphs.join("\n\n"),
-        actor_uuid: external_editor_uuid.clone(), // Set the target actor identity
+        actor_uuid: external_editor_uuid.clone(),
     };
 
     println!("\nProcessing incoming workspace stream transaction...");
-    match session.process_shared_stream_mutation(stream_event) {
-        Ok(active_paragraphs) => {
-            let diagnostics = v_engine.verify_document_narrative(&active_paragraphs);
-            println!("\nExecuting Multi-User Epistemic Validation on workspace buffers...");
-            for log in diagnostics {
-                println!("  [Index #{}] Verdict Status: {}", log.paragraph_index, log.status);
+    if let Ok(active_paragraphs) = session.process_shared_stream_mutation(stream_event) {
+        let diagnostics = v_engine.verify_document_narrative(&active_paragraphs);
+        
+        for log in diagnostics {
+            println!("  [Index #{}] Verdict Status: {}", log.paragraph_index, log.status);
+            if log.status == "FAILED" {
+                // EXCEPTION TRIGGER: Compile report details and invoke our outbound Zulip webhook agent block
+                let details = log.diagnostic_details.unwrap();
+                let webhook_json = v_engine.dispatch_zulip_alert(
+                    "logoslib-ci",
+                    "STUB_DISCOVERY_ALERT",
+                    &format!("Fallacy Blocked: {}\nContext Segment: {}", log.violation_code.unwrap(), details)
+                );
+                println!("\n--- Raw Transport Event Packet Payload ---\n{}", webhook_json);
             }
         }
-        Err(err_msg) => println!("[FATAL COLLISION EXCEPTION] Blocked compilation: {}", err_msg),
     }
     println!("==================================================");
 }
