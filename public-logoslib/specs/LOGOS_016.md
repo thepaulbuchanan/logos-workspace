@@ -1,9 +1,20 @@
 ---
-id: LOGOS_016
+lemma_id: LOGOS_016
 name: CompositionDivisionFallacy
-status: SEED_PROSE_VERIFIED
+triggers: []
+ep_hash: sle_sha256_auto_377a5bf8720081f
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(LOGOS_016) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 # Integrated Logic Specification for LOGOS_016
 
 [Include text from Branch A here]
