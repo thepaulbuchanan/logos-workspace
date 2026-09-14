@@ -17,7 +17,6 @@ use tower_http::cors::{Any, CorsLayer};
 struct AppState {
     engine: engine::VerificationEngine,
     session: Mutex<dashboard::project::LiveWorkspaceSession>,
-    // NEW: Central authentication gatekeeper data tracker
     auth_registry: Mutex<auth::CryptographicAuthRegistry>,
 }
 
@@ -54,15 +53,12 @@ fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::Verificati
     }
 }
 
-/// Upgraded JSON model accepted by the public web API endpoint to process token clearance checks
 #[derive(Debug, Clone, serde::Deserialize)]
 pub struct SecureWebIngestionRequest {
-    pub auth_token: String, // Requires a cryptographically signed token instead of a raw user UUID string
+    pub auth_token: String,
     pub project_id: String,
     pub text_content: String,
 }
-
-// ... [Keep all previous imports and structural configuration blocks exactly as they are]
 
 async fn handle_web_verification(
     axum::extract::State(state): axum::extract::State<Arc<AppState>>,
@@ -83,22 +79,6 @@ async fn handle_web_verification(
 
     println!("[SECURITY GATE] Access Authorized. User identity confirmed as: '{}'", active_user.uuid);
 
-    let document_payload = api::IngestionPayload::new(
-        api::IngestionType::RawTextStream,
-        payload.text_content.as_bytes().to_vec()
-    );
-
-    let clean_paragraphs = document_payload.extract_clean_paragraphs();
-    
-    // Execute the upgraded dual-kernel layout lake build check
-    let (_diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
-
-    Ok(Json(verdict))
-}
-
-// ... [Keep the rest of your main function exactly as it was]
-
-    // Step 2: Access authorized. Mutate workspace content buffers safely
     {
         let mut session_lock = state.session.lock().unwrap();
         let mutation = dashboard::project::EditorStreamEvent {
@@ -115,9 +95,9 @@ async fn handle_web_verification(
     );
 
     let clean_paragraphs = document_payload.extract_clean_paragraphs();
-    let diagnostics = state.engine.verify_document_narrative(&clean_paragraphs);
+    let (_diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
 
-    Ok(Json(diagnostics))
+    Ok(Json(verdict))
 }
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
@@ -214,10 +194,7 @@ async fn main() {
         historical_runs_count: 5,
     };
 
-    // Instantiate our core authentication registry manager
     let mut auth_manager = auth::CryptographicAuthRegistry::new();
-    
-    // Mint a baseline valid token context string for our primary corporate owner
     let _valid_test_token = auth_manager.mint_auth_token("usr_owner_90a1").unwrap();
     println!("  ↳ [BOOT DATA] Baseline production token token minted to console for local testing: {}\n", _valid_test_token);
 
@@ -259,10 +236,8 @@ async fn main() {
         .with_state(shared_state);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
-
-
-println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
-println!("Press Ctrl+C to terminate server thread session.\n");
+    println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
+    println!("Press Ctrl+C to terminate server thread session.\n");
 
     axum::serve(listener, app).await.unwrap();
 }
