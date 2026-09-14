@@ -5,20 +5,14 @@ mod auth;
 mod dashboard;
 mod storage;
 mod api;
+mod config;
+mod routes;
 
-use axum::{routing::post, Json, Router};
 use pest::Parser;
 use std::fs;
 use std::path::Path;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
-use tower_http::cors::{Any, CorsLayer};
-
-struct AppState {
-    engine: engine::VerificationEngine,
-    session: Mutex<dashboard::project::LiveWorkspaceSession>,
-    auth_registry: Mutex<auth::CryptographicAuthRegistry>,
-}
 
 fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
     let file_content = fs::read_to_string(path).expect("Unable to read file");
@@ -53,112 +47,10 @@ fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::Verificati
     }
 }
 
-#[derive(Debug, Clone, serde::Deserialize)]
-pub struct SecureWebIngestionRequest {
-    pub auth_token: String,
-    pub project_id: String,
-    pub text_content: String,
-}
-
-async fn handle_web_verification(
-    axum::extract::State(state): axum::extract::State<Arc<AppState>>,
-    Json(payload): Json<SecureWebIngestionRequest>,
-) -> Result<Json<engine::evaluator::LakeBuildVerdict>, (axum::http::StatusCode, String)> {
-    println!("\n[SECURITY GATE] Received secure verification request payload for project '{}'", payload.project_id);
-
-    let active_user = {
-        let auth_lock = state.auth_registry.lock().unwrap();
-        match auth_lock.verify_token_clearance(&payload.auth_token) {
-            Ok(user) => user,
-            Err(err_msg) => {
-                eprintln!("\n[SECURITY ALERT] Unauthorized transaction blocked! Exception: {}", err_msg);
-                return Err((axum::http::StatusCode::UNAUTHORIZED, err_msg));
-            }
-        }
-    };
-
-    println!("[SECURITY GATE] Access Authorized. User identity confirmed as: '{}'", active_user.uuid);
-
-    let document_payload = if payload.text_content.starts_with("%PDF") {
-        api::IngestionPayload::new(api::IngestionType::AttachmentPDF, payload.text_content.as_bytes().to_vec())
-    } else {
-        api::IngestionPayload::new(api::IngestionType::RawTextStream, payload.text_content.as_bytes().to_vec())
-    };
-
-    let clean_paragraphs = document_payload.extract_clean_paragraphs();
-    
-    {
-        let mut session_lock = state.session.lock().unwrap();
-        let mutation = dashboard::project::EditorStreamEvent {
-            file_target: "collab_draft.tex".to_string(),
-            line_delta: clean_paragraphs.join("\n\n"),
-            actor_uuid: active_user.uuid.clone(),
-        };
-        let _ = session_lock.process_shared_stream_mutation(mutation);
-    }
-
-    let (diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
-
-    let mut manifest_summary = format!(
-        "# HERACLITUS EPISTEMIC MANIFEST SUMMARY REPORT\n\nTarget Project: {}\nStatus: EVALUATION COMPLETE\n\n## Epistemic Audit Ledger:\n\n", 
-        payload.project_id
-    );
-    let mut sve_script_output = "-- HERACLITUS SCRIPT: INVARIANT LOGOS LEDGER\n-- VERSION: v1.0.0-ALPHA\n\n".to_string();
-
-    println!("\n--- [SVI-CORE] Live IR Trace Log Stream ---");
-    for diag in &diagnostics {
-        println!("{}", diag.ir_trace_log);
-        manifest_summary.push_str(&diag.segment_text);
-        sve_script_output.push_str(&diag.generated_sve_block);
-    }
-    println!("-------------------------------------------\n");
-
-    let target_dir = Path::new("tests");
-    if !target_dir.exists() { let _ = fs::create_dir_all(target_dir); }
-    
-    let _ = fs::write("tests/HERACLITUS_MANIFEST_SUMMARY.md", manifest_summary);
-    let _ = fs::write("tests/Validated.sve", sve_script_output);
-    println!("[SVI-LOGS] Physical ledger files generated under private-heraclitus/tests/");
-
-    Ok(Json(verdict))
-}
-
-#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
-struct CursorUpdateRequest {
-    pub user_uuid: String,
-    pub line_index: usize,
-    pub character_offset: usize,
-}
-
-async fn handle_cursor_sync(
-    axum::extract::State(state): axum::extract::State<Arc<AppState>>,
-    Json(payload): Json<CursorUpdateRequest>,
-) -> Json<String> {
-    let mut session_lock = state.session.lock().unwrap();
-    
-    let coords = dashboard::LiveCursorCoordinates {
-        line_index: payload.line_index,
-        character_offset: payload.character_offset,
-    };
-
-    match session_lock.update_collaborator_cursor(&payload.user_uuid, coords) {
-        Ok(_) => Json("{\"status\": \"SYNC_SUCCESS\"}".to_string()),
-        Err(_) => {
-            session_lock.register_collaborator(dashboard::CollaboratorSession {
-                user_uuid: payload.user_uuid.clone(),
-                account_tier: auth::AccountTier::FreeFun,
-                active_role: dashboard::WorkspaceRole::Editor,
-                active_cursor: None,
-            });
-            Json("{\"status\": \"REGISTERED_AND_SYNCED\"}".to_string())
-        }
-    }
-}
-
 #[tokio::main]
 async fn main() {
     println!("==================================================");
-    println!("=== HERACLITUS MASS MASSIVE COGNITIVE PIPELINE ===");
+    println!("=== HERACLITUS MODULAR NETWORKING PRODUCTION ====");
     println!("==================================================");
 
     let mut v_engine = engine::VerificationEngine::new();
@@ -218,12 +110,12 @@ async fn main() {
     };
 
     let mut auth_manager = auth::CryptographicAuthRegistry::new();
-    let _valid_test_token = auth_manager.mint_auth_token("usr_owner_90a1").unwrap();
-    println!("  ↳ [BOOT DATA] Baseline production token token minted to console for local testing: {}\n", _valid_test_token);
+    let valid_test_token = auth_manager.mint_auth_token("usr_owner_90a1").unwrap();
+    println!("  ↳ [BOOT DATA] Baseline production token token minted to console for local testing: {}\n", valid_test_token);
 
-    let shared_state = Arc::new(AppState { 
+    let shared_state = Arc::new(config::AppState { 
         engine: v_engine,
-        session: Mutex::new(dashboard::project::LiveWorkspaceSession::new(base_project)),
+        session: Mutex::new(dashboard::LiveWorkspaceSession::new(base_project)),
         auth_registry: Mutex::new(auth_manager),
     });
 
@@ -241,22 +133,17 @@ async fn main() {
                 storage_ledger.backup_active_project_files(
                     &current_project.project_id, 
                     &file.name, 
-&file.raw_content
-);
-}
-}
-});
-let cors_policy = CorsLayer::new()
-.allow_origin(Any)
-.allow_methods([axum::http::Method::POST])
-.allow_headers([axum::http::HeaderName::from_static("content-type")]);
-let app = Router::new()
-.route("/api/verify", post(handle_web_verification))
-.route("/api/cursor", post(handle_cursor_sync))
-.layer(cors_policy)
-.with_state(shared_state);
-let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
-println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
-println!("Press Ctrl+C to terminate server thread session.\n");
-axum::serve(listener, app).await.unwrap();
+                    &file.raw_content
+                );
+            }
+        }
+    });
+
+    let app = routes::build_application_router(shared_state);
+
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
+    println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
+    println!("Press Ctrl+C to terminate server thread session.\n");
+
+    axum::serve(listener, app).await.unwrap();
 }
