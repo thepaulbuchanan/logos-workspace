@@ -1,2 +1,2 @@
 pub mod ingestion;
-pub use ingestion::{IngestionPayload, IngestionType};
+pub use ingestion::{IngestionPayload, IngestionType, WebIngestionRequest};

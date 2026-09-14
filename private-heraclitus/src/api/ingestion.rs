@@ -69,3 +69,12 @@ impl IngestionPayload {
             .collect()
     }
 }
+// ... [Keep your previous IngestionPayload implementation blocks exactly as they are]
+
+/// The standardized JSON network payload accepted by our public web API endpoint
+#[derive(Debug, Clone, serde::Deserialize)]
+pub struct WebIngestionRequest {
+    pub project_id: String,
+    pub actor_uuid: String,
+    pub text_content: String,
+}

@@ -7,6 +7,7 @@ mod storage;
 mod api;
 
 use axum::{routing::post, Json, Router};
+use pest::Parser; // FIX: Ingest trait into scope for SVEParser method mapping resolution
 use std::fs;
 use std::path::Path;
 use std::sync::Arc;
@@ -33,7 +34,7 @@ fn compile_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
 
 async fn handle_web_verification(
     axum::extract::State(state): axum::extract::State<Arc<AppState>>,
-    Json(payload): Json<api::ingestion::WebIngestionRequest>,
+    Json(payload): Json<api::WebIngestionRequest>,
 ) -> Json<Vec<engine::ParagraphDiagnostic>> {
     println!("\n[WEB SERVER] Received live verification request payload for project '{}'", payload.project_id);
 
@@ -70,7 +71,6 @@ async fn main() {
 
     let lemma_count = v_engine.compile_dictionary.len();
     
-    // TRIGGER UNIFIED RENAMING AGENT: Enforce standard naming conventions across the specs folder
     let lock_file_path = "../public-logoslib/library_manifest.lock";
     let specs_folder_path = "../public-logoslib/specs";
     v_engine.execute_library_lock_pass(lock_file_path, specs_folder_path);
