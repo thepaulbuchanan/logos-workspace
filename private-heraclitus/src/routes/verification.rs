@@ -5,7 +5,6 @@ use std::path::Path;
 use crate::config::AppState;
 use crate::api::{IngestionPayload, IngestionType};
 use crate::dashboard::project::EditorStreamEvent;
-use crate::engine::evaluator::LakeBuildVerdict;
 
 #[derive(Debug, Clone, serde::Deserialize)]
 pub struct SecureWebIngestionRequest {
@@ -14,10 +13,19 @@ pub struct SecureWebIngestionRequest {
     pub text_content: String,
 }
 
+/// Dynamic JSON Model mapping the complete structured telemetry verdict required by the Grokepedia Protocol
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct GrokepediaTelemetryVerdict {
+    pub project_id: String,
+    pub is_prose_sorry_free: bool,
+    pub generated_sve_contract: String,
+    pub analytical_diagnostics: Vec<crate::engine::ParagraphDiagnostic>,
+}
+
 pub async fn handle_web_verification(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<SecureWebIngestionRequest>,
-) -> Result<Json<LakeBuildVerdict>, (axum::http::StatusCode, String)> {
+) -> Result<Json<GrokepediaTelemetryVerdict>, (axum::http::StatusCode, String)> {
     println!("\n[SECURITY GATE] Received secure verification request payload for project '{}'", payload.project_id);
 
     let active_user = {
@@ -52,9 +60,10 @@ pub async fn handle_web_verification(
         let _ = session_lock.process_shared_stream_mutation(mutation);
     }
 
+    // Execute the four-tier multi-agent validation sequence
     let (diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
 
-    // SVI-main Output Generation Pipeline
+    // Reconstruct your original SVI-main log collection loops
     let mut manifest_summary = format!(
         "# HERACLITUS EPISTEMIC MANIFEST SUMMARY REPORT\n\nTarget Project: {}\nStatus: EVALUATION COMPLETE\n\n## Epistemic Audit Ledger:\n\n", 
         payload.project_id
@@ -63,7 +72,7 @@ pub async fn handle_web_verification(
 
     println!("\n--- [SVI-CORE] Live IR Trace Log Stream ---");
     for diag in &diagnostics {
-        println!("{}", diag.ir_trace_log);
+        println!("  [{:?}] {}", diag.epistemic_pillar, diag.ir_trace_log);
         manifest_summary.push_str(&diag.segment_text);
         sve_script_output.push_str(&diag.generated_sve_block);
     }
@@ -76,5 +85,13 @@ pub async fn handle_web_verification(
     let _ = fs::write("tests/Validated.sve", sve_script_output);
     println!("[SVI-LOGS] Physical ledger files generated under private-heraclitus/tests/");
 
-    Ok(Json(verdict))
+    // Unify types into a comprehensive protocol response packet
+    let comprehensive_response = GrokepediaTelemetryVerdict {
+        project_id: payload.project_id,
+        is_prose_sorry_free: verdict.is_prose_sorry_free,
+        generated_sve_contract: verdict.generated_sve_contract,
+        analytical_diagnostics: diagnostics,
+    };
+
+    Ok(Json(comprehensive_response))
 }

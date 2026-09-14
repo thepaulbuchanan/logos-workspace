@@ -29,6 +29,29 @@ pub struct ParagraphDiagnostic {
     pub generated_sve_block: String,
     pub ir_trace_log: String,
 }
+// ... [Keep previous module declarations and imports exactly as they are]
+
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub enum EpistemicPillar {
+    Epistemology,   // Audits how a statement claims to know a fact
+    Ontology,       // Audits entity property stability across text history
+    Phenomenology,  // Audits mathematical formulas, data streams, and timelines
+    UnclassifiedSoundness,
+}
+
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct ParagraphDiagnostic {
+    pub paragraph_index: usize,
+    pub segment_text: String,
+    pub status: String,
+    pub violation_code: Option<String>,
+    pub diagnostic_details: Option<String>,
+    pub generated_sve_block: String,
+    pub ir_trace_log: String,
+    pub epistemic_pillar: EpistemicPillar, // NEW: Categorization field for Grokepedia Protocol
+}
+
+// ... [Keep the rest of your engine/mod.rs structures exactly as they are]
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct LockedLemmaEntry {
