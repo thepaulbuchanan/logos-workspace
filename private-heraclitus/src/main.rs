@@ -28,7 +28,7 @@ fn compile_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
 
 fn main() {
     println!("==================================================");
-    println!("=== HERACLITUS SAAS ENTERPRISE PRODUCTION LAYER ==");
+    println!("=== HERACLITUS SAAS ENTERPRISE PRODUCTION LAYER ===");
     println!("==================================================");
 
     // PHASE 1: ACCOUNT SECURITY & DASHBOARD INITIALISATION
@@ -52,9 +52,10 @@ fn main() {
     let mut session = dashboard::project::LiveWorkspaceSession::new(base_project);
     let mut storage_ledger = storage::CertificateLedger::new("./vault_database");
 
-    // PHASE 2: INVARIANT SPECIFICATION LEXICON SEALING
+    // PHASE 2: INVARIANT SPECIFICATION LEXICON TAMPER-AUDIT CHECK
     let mut v_engine = engine::VerificationEngine::new();
     let specs_dir = Path::new("../public-logoslib/specs");
+    let lock_file_path = "../public-logoslib/library_manifest.lock";
     
     if specs_dir.is_dir() {
         if let Ok(entries) = fs::read_dir(specs_dir) {
@@ -70,9 +71,38 @@ fn main() {
     let lemma_count = v_engine.compile_dictionary.len();
     println!("Dynamic Directory Sweep Complete. Compiled Active Lemmas: {}", lemma_count);
 
-    // Execute Hermetic Invariant Manifest Lock agent pass
-    let lock_file_path = "../public-logoslib/library_manifest.lock";
-    v_engine.execute_library_lock_pass(lock_file_path);
+    // Dynamic Tamper Audit Loop: Recalculate and verify against the lock manifest on disk
+    println!("\n[SECURITY] Executing Hermetic Manifest Integrity Check...");
+    if Path::new(lock_file_path).exists() {
+        let lock_content = fs::read_to_string(lock_file_path).expect("Failed to read lock file");
+        if let Ok(manifest) = serde_json::from_str::<engine::LibraryManifestLock>(&lock_content) {
+            let mut tamper_detected = false;
+            
+            for (lemma_id, entry) in &manifest.locked_registry {
+                if let Some(current_ctx) = v_engine.compile_dictionary.get(lemma_id) {
+                    let current_hash = v_engine.compute_structural_hash(current_ctx);
+                    if current_hash != entry.structural_hash {
+                        eprintln!("\n[CRITICAL SECURITY EXCEPTION] MANIFEST_TAMPER_EXCEPTION Detected!");
+                        eprintln!("  ↳ Target Lemma ID: {}", lemma_id);
+                        eprintln!("  ↳ Expected Hash  : {}", entry.structural_hash);
+                        eprintln!("  ↳ Computed Hash  : {}", current_hash);
+                        tamper_detected = true;
+                    }
+                }
+            }
+
+            if tamper_detected {
+                eprintln!("\n[FATAL] System Compilation Aborted. Cryptographic signatures mismatch with library lock file.");
+                println!("==================================================");
+                std::process::exit(1); // Force-halt the enterprise product thread
+            } else {
+                println!("  ↳ STATUS: VERIFIED. Manifest integrity matched. 0 Changes detected.");
+            }
+        }
+    } else {
+        println!("  ↳ WARNING: Manifest lock file missing. Regenerating standard lock map.");
+        v_engine.execute_library_lock_pass(lock_file_path);
+    }
 
     // PHASE 3: LIVE MULTI-FORMAT DOCUMENT INGESTION & EVALUATION LOOP
     let incoming_bytes = b"Paragraph 1: Tony claims corporate tax drops work. But Tony is a convict, so his statement is false.\n\nParagraph 2: The market strategy proposed by the compliance auditor is clean and structurally solid, aligning directly with capital parameters.";
@@ -82,7 +112,6 @@ fn main() {
         incoming_bytes.to_vec()
     );
 
-    // Execute our custom SVI-salvaged rhetorical waste pre-filter loop pass
     let clean_paragraphs = document_payload.extract_clean_paragraphs();
     
     let mutation_event = dashboard::project::EditorStreamEvent {
@@ -90,7 +119,6 @@ fn main() {
         line_delta: clean_paragraphs.join("\n\n"),
     };
 
-    // Update our Overleaf-style live streaming workspace content buffers
     let active_paragraphs = session.process_stream_mutation(mutation_event);
     println!("\nExecuting Epistemic Validation over live pre-filtered document buffers...");
     let diagnostics = v_engine.verify_document_narrative(&active_paragraphs);
@@ -114,7 +142,7 @@ fn main() {
         println!("\nGenerating Cryptographic Logic Seal Verification Certificate...");
         let certificate = storage::VerificationCertificate::generate_seal(
             &session.active_project.project_id,
-            &session.active_project.files[0].raw_content, // FIX: Vector index explicitly handled
+            &session.active_project.files[0].raw_content,
             lemma_count
         );
         
