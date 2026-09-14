@@ -1,6 +1,9 @@
+use crate::engine::ParagraphDiagnostic;
 use sha2::{Sha256, Digest};
-use std::time::{SystemTime, UNIX_EPOCH};
 use std::collections::HashMap;
+use std::fs;
+use std::path::Path;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct VerificationCertificate {
@@ -41,25 +44,52 @@ impl VerificationCertificate {
     }
 }
 
-/// The Enterprise Central Storage Ledger Tracking Project History (Module 3 addition)
+/// Upgraded Persistent Storage Ledger (Module 3 Milestone)
 pub struct CertificateLedger {
+    pub db_directory: String,
     pub records: HashMap<String, Vec<VerificationCertificate>>,
 }
 
 impl CertificateLedger {
-    pub fn new() -> Self {
+    pub fn new(db_path: &str) -> Self {
+        let path = Path::new(db_path);
+        if !path.exists() {
+            fs::create_dir_all(path).expect("Failed to construct system database storage folder hierarchy.");
+        }
+
         Self {
+            db_directory: db_path.to_string(),
             records: HashMap::new(),
         }
     }
 
-    /// Stores a freshly signed verification token into the project's historical timeline array
-    pub fn log_certificate(&mut self, project_id: &str, cert: VerificationCertificate) {
+    /// Harddrive Persistence Layer: Writes the cryptographically sealed JSON stamp straight to a local file database
+    pub fn persist_certificate_to_disk(&mut self, project_id: &str, cert: VerificationCertificate) {
+        // Log in memory cache stack
         let timeline = self.records.entry(project_id.to_string()).or_insert_with(Vec::new);
-        timeline.push(cert);
+        timeline.push(cert.clone());
+
+        // Construct a unique filename bound to the certificate ID
+        let file_path = Path::new(&self.db_directory).join(format!("{}.json", cert.certificate_id));
+        let json_payload = cert.to_json_payload();
+        
+        fs::write(&file_path, json_payload)
+            .expect("Failed to write certificate token record directly to system database disk storage.");
+        println!("[STORAGE COMPONENT] Successfully persisted signed certificate token to disk storage path: {:?}", file_path);
     }
 
-    pub fn get_history_count(&self, project_id: &str) -> usize {
-        self.records.get(project_id).map(|v| v.len()).unwrap_or(0)
+    pub fn get_history_count_from_disk(&self, project_id: &str) -> usize {
+        let mut count = 0;
+        let path = Path::new(&self.db_directory);
+        if let Ok(entries) = fs::read_dir(path) {
+            for entry in entries.flatten() {
+                if let Ok(file_name) = entry.file_name().into_string() {
+                    if file_name.contains(project_id) && file_name.ends_with(".json") {
+                        count += 1;
+                    }
+                }
+            }
+        }
+        count
     }
 }
