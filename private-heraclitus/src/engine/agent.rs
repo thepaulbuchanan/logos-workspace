@@ -69,16 +69,47 @@ pub fn execute_library_lock_pass(engine: &VerificationEngine, target_lock_path: 
                                 let key = kv[0].trim();
                                 let val = kv[1].trim();
 
-                                match key {
-                                    "lemma_id" | "id" => id = val.to_string(),
-                                    "name" => name = val.to_string(),
-                                    "ep_hash" | "hash" => ep_hash = val.to_string(),
-                                    "triggers" | "aliases" => {
-                                        let cleaned = val.replace('[', "").replace(']', "").replace('"', "").replace('\'', "");
-                                        triggers = cleaned.split(',').map(|t| t.trim().to_string()).filter(|t| !t.is_empty()).collect();
-                                    }
-                                    _ => {}
-                                }
+                                // ... [Keep previous file loop structures exactly as they are]
+
+match key {
+    "lemma_id" | "id" => id = val.to_string(),
+    "name" => name = val.to_string(),
+    "ep_hash" | "hash" => ep_hash = val.to_string(),
+    "triggers" | "aliases" => {
+        let cleaned = val.replace('[', "").replace(']', "").replace('"', "").replace('\'', "");
+        triggers = cleaned.split(',').map(|t| t.trim().to_string()).filter(|t| !t.is_empty()).collect();
+    }
+    _ => {}
+}
+
+// FIX: Run the Adversarial Critic evaluation check before compiling or locking the file in-place!
+if ep_hash.is_empty() && !id.is_empty() {
+    match crate::engine::critic::LemmaCriticEngine::evaluate_proposal_collisions(&id, &triggers, &engine.active_lemmas) {
+        Ok(_) => {
+            let calculated_hash = LemmaRefactor::calculate_hash(&id, &triggers);
+            LemmaRefactor::compile_and_lock(&id, &name, &triggers, &calculated_hash, &remaining_body, &current_path);
+        }
+        Err(collision_error) => {
+            eprintln!("\n[CRITIC EXCEPTION] Instability detected during PR pre-compile merge pass!");
+            eprintln!("  ↳ {}", collision_error);
+            
+            // Build out your precise Document 14 Rejection Dispatch template profile record log
+            let dossier_content = format!(
+                "### 📥 ZULIP COMMUNITY INVARIANT DISPATCH: PEER-REVIEW DIALOGUE\n\
+                **Topic:** #lemma-proposals ──► Thread: `[{}] Overlap Intercept`\n\
+                **Status:** 🔴 COMPILATION REJECTED VIA AUTOMATED ADVERSARIAL CRITIC CELL\n\n\
+                ---\n\n#### 🚨 Automated Strawman Defect Log\n\
+                > *\"{}\"*",
+                id, collision_error
+            );
+            
+            let dossier_path = Path::new("tests").join(format!("{}_ZULIP_REJECTION_REPORT.md", id));
+            let _ = std::fs::write(&dossier_path, dossier_content);
+            println!("[CRITIC] Secure Rejection dossier report generated on disk: {:?}", dossier_path);
+        }
+    }
+}
+
                             }
 
                             if ep_hash.is_empty() && !id.is_empty() {

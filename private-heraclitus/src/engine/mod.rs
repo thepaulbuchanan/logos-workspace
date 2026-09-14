@@ -2,6 +2,7 @@ pub mod topology;
 pub mod evaluator;
 pub mod agent;
 pub mod lexicon;
+pub mod critic; // NEW: Expose the Adversarial Critic Cell
 
 use crate::ast::CompilerContext;
 use sha2::Digest;
@@ -169,6 +170,4 @@ impl VerificationEngine {
         };
         serde_json::to_string_pretty(&payload).unwrap()
     }
-    pub fn dispatch_zulip_alert(&self, _target_stream: &str, target_topic: &str, alert_details: &str) -> String {
-        let payload = crate::engine::evaluator::LakeBuildVerdict {
 }
