@@ -50,39 +50,13 @@ fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::Verificati
 #[tokio::main]
 async fn main() {
     println!("==================================================");
-    println!("=== HERACLITUS MODULAR NETWORKING PRODUCTION ====");
+    println!("=== HERACLITUS CLEANROOM PRODUCTION MVP RUNTIME ==");
     println!("==================================================");
 
     let mut v_engine = engine::VerificationEngine::new();
-    let target_specs_dir = Path::new("../public-logoslib/specs");
-    let legacy_svi_dir = Path::new("../archive-legacy/01-SVI-Prototype");
-    let legacy_mvp_dir = Path::new("../archive-legacy/02-Heraclitus-MVP/LogosLib");
-
-    if legacy_svi_dir.is_dir() {
-        if let Ok(entries) = fs::read_dir(legacy_svi_dir) {
-            for entry in entries.flatten() {
-                let path = entry.path();
-                if path.extension().map_or(false, |ext| ext == "md") {
-                    let file_name = path.file_name().unwrap();
-                    let dest = target_specs_dir.join(file_name);
-                    if !dest.exists() { let _ = fs::copy(&path, &dest); }
-                }
-            }
-        }
-    }
-
-    if legacy_mvp_dir.is_dir() {
-        if let Ok(entries) = fs::read_dir(legacy_mvp_dir) {
-            for entry in entries.flatten() {
-                let path = entry.path();
-                if path.extension().map_or(false, |ext| ext == "md") {
-                    let file_name = path.file_name().unwrap();
-                    let dest = target_specs_dir.join(file_name);
-                    if !dest.exists() { let _ = fs::copy(&path, &dest); }
-                }
-            }
-        }
-    }
+    
+    // FIX: Re-target path parameters straight to your cleanroom production database folder
+    let target_specs_dir = Path::new("../LogosLib");
 
     if target_specs_dir.is_dir() {
         if let Ok(entries) = fs::read_dir(target_specs_dir) {
@@ -95,8 +69,9 @@ async fn main() {
         }
     }
 
-    let lock_file_path = "../public-logoslib/library_manifest.lock";
-    let specs_folder_path = "../public-logoslib/specs";
+    // FIX: Update single-source manifest seals straight to your production root
+    let lock_file_path = "../library_manifest.lock";
+    let specs_folder_path = "../LogosLib";
     v_engine.execute_library_lock_pass(lock_file_path, specs_folder_path);
 
     let base_project = dashboard::VerificationProject {
