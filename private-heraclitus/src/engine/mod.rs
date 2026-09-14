@@ -7,6 +7,9 @@ use crate::ast::{ASTNode, CompilerContext};
 use sha2::{Digest, Sha256};
 use std::collections::HashMap;
 
+// Re-export the newly added multi-kernel structures
+pub use evaluator::LakeBuildVerdict;
+
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct ParagraphDiagnostic {
     pub paragraph_index: usize,
@@ -29,13 +32,6 @@ pub struct LibraryManifestLock {
     pub global_verification_timestamp: u64,
     pub total_verified_lemmas: usize,
     pub locked_registry: HashMap<String, LockedLemmaEntry>,
-}
-
-#[derive(Debug, Clone, serde::Serialize)]
-pub struct ZulipWebhookPayload {
-    pub stream: String,
-    pub topic: String,
-    pub content: String,
 }
 
 pub struct VerificationEngine {
@@ -81,34 +77,11 @@ impl VerificationEngine {
         topology::verify_dependency_topology(dependencies)
     }
 
-    pub fn verify_document_narrative(&self, paragraphs: &[String]) -> Vec<ParagraphDiagnostic> {
-        evaluator::verify_document_narrative(paragraphs, &self.compile_dictionary, &self.global_thesaurus)
+    pub fn verify_paper_lake_build(&self, paragraphs: &[String], project_id: &str) -> (Vec<ParagraphDiagnostic>, LakeBuildVerdict) {
+        evaluator::verify_paper_lake_build(paragraphs, &self.compile_dictionary, &self.global_thesaurus, project_id)
     }
 
     pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> LibraryManifestLock {
         agent::execute_library_lock_pass(self, target_lock_path, specs_dir_path)
-    }
-
-    /// Automation Hook: Compiles a security/structural anomaly report and dispatches a simulated webhook
-    pub fn dispatch_zulip_alert(&self, target_stream: &str, target_topic: &str, alert_details: &str) -> String {
-        let payload = ZulipWebhookPayload {
-            stream: target_stream.to_string(),
-            topic: target_topic.to_string(),
-            content: format!(
-                "### 🚨 HERACLITUS EMERGENCY RESPONSE EXCEPTION WARNING\n\n\
-                **Target Context:** {}\n\n\
-                **Automated Diagnostic Data:**\n\
-                ```text\n\
-                {}\n\
-                ```\n\n\
-                *Security firewall intercept active. Session transaction blocked and logged.*",
-                target_topic, alert_details
-            ),
-        };
-
-        let json_payload = serde_json::to_string_pretty(&payload).unwrap();
-        println!("\n[WEBSERVER WEBHOOK AGENT] Formatting outbound JSON security event payload...");
-        println!("[WEBSERVER WEBHOOK AGENT] Piping HTTP POST payload to endpoint channel: `#stream/{}`", payload.stream);
-        json_payload
     }
 }

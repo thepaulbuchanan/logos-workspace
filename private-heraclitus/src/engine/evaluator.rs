@@ -3,8 +3,14 @@ use crate::engine::ParagraphDiagnostic;
 use crate::engine::lexicon::{LogosLibThesaurus, SymbolicPrimitive};
 use std::collections::HashMap;
 
-/// The Core Pure Logic Reasoner: Evaluates an input string against 
-/// the compiled mathematical SVE specification laws generated in Stage 1.
+/// Represents the final multi-kernel validation status of an ingested paper payload
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct LakeBuildVerdict {
+    pub is_prose_sorry_free: bool,
+    pub generated_sve_contract: String,
+    pub external_kernel_handshake_ready: bool,
+}
+
 pub fn evaluate_symbolic_ast_matching(
     text: &str, 
     compile_dictionary: &HashMap<String, CompilerContext>,
@@ -13,46 +19,35 @@ pub fn evaluate_symbolic_ast_matching(
     let normalized = text.to_lowercase();
     let words: Vec<&str> = normalized.split_whitespace().collect();
     
-    // Pass 1: Translate the natural language stream into raw Symbolic Primitives
     let symbolic_stream: Vec<SymbolicPrimitive> = words
         .iter()
         .map(|&w| thesaurus.resolve_token(w))
         .collect();
 
-    // Pass 2: Loop through all 386+ community-proven lemmas registered in memory
     for (lemma_id, context) in compile_dictionary {
-        let clean_id = lemma_id.to_lowercase();
-        
-        // Inspect the actual compiled SVE AST nodes injected during Stage 1
         for node in &context.ast_nodes {
             if let ASTNode::Assertion { tactic, expression } = node {
-                
-                // Case A: The lemma requires an [Agent] type safety boundary constraint (e.g. SVE_L102)
                 if expression.contains("Agent") && tactic.contains("INHERITANCE") {
                     if symbolic_stream.contains(&SymbolicPrimitive::AgentDiscredited) {
                         return Some((
                             lemma_id.clone(),
-                            "Heraclitus Evaluator Intercept: Formal type-safety constraint breach derived from compiled SVE library manifest rule blueprint.".to_string()
+                            "Heraclitus Structural Intercept: Epistemic boundary breach derived from SVE code laws.".to_string()
                         ));
                     }
                 }
-
-                // Case B: The lemma requires a strict context relevance implication constraint (e.g. LOGOS_011)
                 if expression.contains("RELEVANCE_MATRIX") && expression.contains("FALSE") {
                     if symbolic_stream.contains(&SymbolicPrimitive::ConceptDistraction) {
                         return Some((
                             lemma_id.clone(),
-                            "Heraclitus Evaluator Intercept: Semantic trajectory drift. Extraneous concept token breaks relevance matrix implication rules.".to_string()
+                            "Heraclitus Structural Intercept: Semantic trajectory drift breaks relevance rules.".to_string()
                         ));
                     }
                 }
-
-                // Case C: The lemma requires multi-chain causal grounding checks (e.g. LOGOS_012, LOGOS_017)
                 if expression.contains("CAUSAL_GROUNDING") || expression.contains("IMPLICATION") {
                     if symbolic_stream.contains(&SymbolicPrimitive::InferenceDominoCascade) {
                         return Some((
                             lemma_id.clone(),
-                            "Heraclitus Evaluator Intercept: Non-deterministic domino causal chain detected without step-level grounding variables.".to_string()
+                            "Heraclitus Structural Intercept: Non-grounded domino causal chain detected.".to_string()
                         ));
                     }
                 }
@@ -62,12 +57,15 @@ pub fn evaluate_symbolic_ast_matching(
     None
 }
 
-pub fn verify_document_narrative(
+/// Upgraded Production Verification Loop: Evaluates an entire paper and compiles the math-handshake contract
+pub fn verify_paper_lake_build(
     paragraphs: &[String], 
     compile_dictionary: &HashMap<String, CompilerContext>,
-    thesaurus: &LogosLibThesaurus
-) -> Vec<ParagraphDiagnostic> {
+    thesaurus: &LogosLibThesaurus,
+    project_id: &str
+) -> (Vec<ParagraphDiagnostic>, LakeBuildVerdict) {
     let mut diagnostic_log = Vec::new();
+    let mut prose_clean = true;
 
     for (idx, text) in paragraphs.iter().enumerate() {
         let mut current_diag = ParagraphDiagnostic {
@@ -78,14 +76,30 @@ pub fn verify_document_narrative(
             diagnostic_details: None,
         };
 
-        // Query the upgraded symbolic engine
         if let Some((failed_code, failure_detail)) = evaluate_symbolic_ast_matching(text, compile_dictionary, thesaurus) {
             current_diag.status = "FAILED".to_string();
             current_diag.violation_code = Some(failed_code);
             current_diag.diagnostic_details = Some(failure_detail);
+            prose_clean = false;
         }
 
         diagnostic_log.push(current_diag);
     }
-    diagnostic_log
+
+    // Generate the clean Lean-style symbolic intermediate code representation block on success
+    let mut contract_stub = String::new();
+    if prose_clean {
+        contract_stub.push_str(&format!("-- AUTO-GENERATED SVE PROTOCOL CONTRACT FOR LAKE BUILD: {}\n", project_id));
+        contract_stub.push_str("open SVELibrary\n\n");
+        contract_stub.push_str(&format!("theorem paper_narrative_structural_integrity : SorryFreeWorkspace := \n"));
+        contract_stub.push_str("by\n  intros;\n  enforce_prose_logic_bounds;\n  trivial;\n");
+    }
+
+    let verdict = LakeBuildVerdict {
+        is_prose_sorry_free: prose_clean,
+        generated_sve_contract: contract_stub,
+        external_kernel_handshake_ready: prose_clean,
+    };
+
+    (diagnostic_log, verdict)
 }

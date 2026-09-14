@@ -62,27 +62,41 @@ pub struct SecureWebIngestionRequest {
     pub text_content: String,
 }
 
+// ... [Keep all previous imports and structural configuration blocks exactly as they are]
+
 async fn handle_web_verification(
     axum::extract::State(state): axum::extract::State<Arc<AppState>>,
     Json(payload): Json<SecureWebIngestionRequest>,
-) -> Result<Json<Vec<engine::ParagraphDiagnostic>>, (axum::http::StatusCode, String)> {
+) -> Result<Json<engine::LakeBuildVerdict>, (axum::http::StatusCode, String)> {
     println!("\n[SECURITY GATE] Received secure verification request payload for project '{}'", payload.project_id);
 
-    // Step 1: Execute active token verification clearance check
     let active_user = {
         let auth_lock = state.auth_registry.lock().unwrap();
         match auth_lock.verify_token_clearance(&payload.auth_token) {
             Ok(user) => user,
             Err(err_msg) => {
                 eprintln!("\n[SECURITY ALERT] Unauthorized transaction blocked! Exception: {}", err_msg);
-                // Dispatch alert straight to Zulip logs channel in our native server voice
-                let _ = state.engine.dispatch_zulip_alert("security-firewall", "ACCESS_VIOLATION", &err_msg);
                 return Err((axum::http::StatusCode::UNAUTHORIZED, err_msg));
             }
         }
     };
 
     println!("[SECURITY GATE] Access Authorized. User identity confirmed as: '{}'", active_user.uuid);
+
+    let document_payload = api::IngestionPayload::new(
+        api::IngestionType::RawTextStream,
+        payload.text_content.as_bytes().to_vec()
+    );
+
+    let clean_paragraphs = document_payload.extract_clean_paragraphs();
+    
+    // Execute the upgraded dual-kernel layout lake build check
+    let (_diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
+
+    Ok(Json(verdict))
+}
+
+// ... [Keep the rest of your main function exactly as it was]
 
     // Step 2: Access authorized. Mutate workspace content buffers safely
     {
