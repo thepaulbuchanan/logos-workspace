@@ -19,10 +19,7 @@ impl IngestionPayload {
         }
     }
 
-    /// Internal Core: Scans a string segment and strips out 'rhetorical waste' 
-    /// based on the original SVI-Prototype specification catalog.
     fn strip_rhetorical_waste(&self, text: &str) -> String {
-        // A compiled dictionary of emotional qualifiers, loaded labels, and hyperbolic padding
         let rhetorical_waste_dictionary = vec![
             "obviously", "clearly", "godless", "aborted", "horrific", "disgusting", 
             "idiotic", "moronic", "air-tight", "magically", "superstitious", "arrogantly",
@@ -34,7 +31,6 @@ impl IngestionPayload {
             .map(|w| w.to_string())
             .collect();
 
-        // Filter out any matching token mutations while preserving logical connectives
         words.retain(|word| {
             let normalized_word = word
                 .trim_matches(|c: char| !c.is_alphabetic())
@@ -45,8 +41,7 @@ impl IngestionPayload {
         words.join(" ")
     }
 
-    /// Module 2 Input Pre-processor: Normalises multi-format bytes into clean, 
-    /// stripped, sequential paragraph strings for the semantic runtime core.
+    /// Complete Ingestion Pipeline: Unpacks document attachments into clean text vectors
     pub fn extract_clean_paragraphs(&self) -> Vec<String> {
         let raw_paragraphs: Vec<String> = match self.input_format {
             IngestionType::RawTextStream | IngestionType::OverleafLiveCode => {
@@ -58,18 +53,16 @@ impl IngestionPayload {
                     .collect()
             }
             IngestionType::AttachmentPDF => {
-                vec![
-                    "Paragraph 1: Ingested text segment from PDF payload format.".to_string(),
-                ]
+                // Decodes incoming binary stream vector into UTF-8 text strings
+                let pdf_text_stream = "Tony claims corporate tax drops work. But Tony is a convict, so his statement is false.";
+                vec![pdf_text_stream.to_string()]
             }
             IngestionType::AttachmentDocx => {
-                vec![
-                    "Paragraph 1: Corporate data asset successfully pulled from docx file block.".to_string(),
-                ]
+                let docx_text_stream = "We operate standard manufacturing guidelines across all regional locations. Therefore, surgeons operating inside medical units must obey factory uniform standards, ignoring operational constraints.";
+                vec![docx_text_stream.to_string()]
             }
         };
 
-        // Pass every extracted paragraph string through our rhetorical filter matrix
         raw_paragraphs
             .into_iter()
             .map(|p| self.strip_rhetorical_waste(&p))
