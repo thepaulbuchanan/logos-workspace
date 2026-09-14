@@ -109,3 +109,35 @@ fn main() {
     }
     println!("==================================================");
 }
+    // ... [Keep the previous initialization steps exactly as they are]
+
+    // INGESTION TEST CHANGE: Contributor inputs a text block containing a Red Herring budget distraction
+    let incoming_collab_bytes = b"Paragraph 1: Why focus on compliance tracking loops when our competitors are spending twice as much on standard marketing campaigns?";
+    let document_payload = api::IngestionPayload::new(api::IngestionType::RawTextStream, incoming_collab_bytes.to_vec());
+    let clean_paragraphs = document_payload.extract_clean_paragraphs();
+
+    let stream_event = dashboard::project::EditorStreamEvent {
+        file_target: "collab_draft.tex".to_string(),
+        line_delta: clean_paragraphs.join("\n\n"),
+        actor_uuid: external_editor_uuid.clone(),
+    };
+
+    println!("\nProcessing incoming workspace stream transaction...");
+    if let Ok(active_paragraphs) = session.process_shared_stream_mutation(stream_event) {
+        let diagnostics = v_engine.verify_document_narrative(&active_paragraphs);
+        
+        for log in diagnostics {
+            println!("  [Index #{}] Verdict Status: {}", log.paragraph_index, log.status);
+            if log.status == "FAILED" {
+                let details = log.diagnostic_details.unwrap();
+                let webhook_json = v_engine.dispatch_zulip_alert(
+                    "logoslib-ci",
+                    "STUB_DISCOVERY_ALERT",
+                    &format!("Fallacy Blocked: {}\nContext Segment: {}", log.violation_code.unwrap(), details)
+                );
+                println!("\n--- Raw Transport Event Packet Payload ---\n{}", webhook_json);
+            }
+        }
+    }
+    println!("==================================================");
+}
