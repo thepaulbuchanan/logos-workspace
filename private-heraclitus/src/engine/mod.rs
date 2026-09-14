@@ -1,12 +1,12 @@
 pub mod topology;
 pub mod evaluator;
 pub mod agent;
+pub mod lexicon;
 
 use crate::ast::{ASTNode, CompilerContext};
 use sha2::{Digest, Sha256};
 use std::collections::HashMap;
 
-// Unify definitions and data containers within the root module space
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct ParagraphDiagnostic {
     pub paragraph_index: usize,
@@ -34,6 +34,7 @@ pub struct LibraryManifestLock {
 pub struct VerificationEngine {
     pub compile_dictionary: HashMap<String, CompilerContext>,
     pub structural_registry: HashMap<String, String>,
+    pub global_thesaurus: lexicon::LogosLibThesaurus,
 }
 
 impl VerificationEngine {
@@ -41,6 +42,7 @@ impl VerificationEngine {
         Self {
             compile_dictionary: HashMap::new(),
             structural_registry: HashMap::new(),
+            global_thesaurus: lexicon::LogosLibThesaurus::new(),
         }
     }
 
@@ -68,13 +70,12 @@ impl VerificationEngine {
         format!("{:x}", hasher.finalize())
     }
 
-    // Call sub-module implementations internally while preserving signature layouts
     pub fn verify_dependency_topology(&self, dependencies: Vec<(String, String)>) -> Result<Vec<String>, Vec<String>> {
         topology::verify_dependency_topology(dependencies)
     }
 
     pub fn verify_document_narrative(&self, paragraphs: &[String]) -> Vec<ParagraphDiagnostic> {
-        evaluator::verify_document_narrative(paragraphs, &self.compile_dictionary)
+        evaluator::verify_document_narrative(paragraphs, &self.compile_dictionary, &self.global_thesaurus)
     }
 
     pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> LibraryManifestLock {
