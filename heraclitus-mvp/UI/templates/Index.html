@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heraclitus Production Workspace Canvas</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #1a1a1a; color: #e0e0e0; display: flex; height: 100vh; }
+        .sidebar { width: 300px; background: #252526; border-right: 1px solid #3c3c3c; padding: 20px; display: flex; flex-direction: column; }
+        .editor-container { flex: 1; display: flex; flex-direction: column; padding: 20px; }
+        textarea { flex: 1; background: #1e1e1e; color: #d4d4d4; border: 1px solid #3c3c3c; padding: 15px; font-family: "Fira Code", Monaco, monospace; font-size: 14px; border-radius: 4px; resize: none; outline: none; }
+        .btn { background: #007acc; color: white; border: none; padding: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 15px; font-size: 14px; transition: background 0.2s; }
+        .btn:hover { background: #0062a3; }
+        .status-badge { padding: 10px; border-radius: 4px; font-weight: bold; margin-bottom: 20px; text-align: center; font-size: 12px; letter-spacing: 1px; }
+        .status-passed { background: #1e4620; color: #4af656; border: 1px solid #2e7d32; }
+        .status-failed { background: #5a1e1e; color: #ff6b6b; border: 1px solid #c62828; }
+        h2 { font-size: 16px; margin: 0 0 15px 0; text-transform: uppercase; color: #aaaaaa; letter-spacing: 0.5px; }
+        pre { background: #1e1e1e; border: 1px solid #3c3c3c; padding: 10px; border-radius: 4px; font-size: 12px; overflow-x: auto; color: #9cdcfe; max-height: 250px; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div id="buildBadge" class="status-badge status-passed">SYSTEM IDLE</div>
+        <h2>Epistemic Telemetry</h2>
+        <div id="telemetryBox">
+            <p style="font-size: 13px; color: #888;">Submit code to invoke the multi-agent tournament verifier loop.</p>
+        </div>
+        <h2 style="margin-top: auto;">SVE Contract Output</h2>
+        <pre id="contractBox">-- Pending Build...</pre>
+    </div>
+    <div class="editor-container">
+        <h2>Live Workspace Editor Canvas (Overleaf Mode)</h2>
+        <textarea id="editorCanvas" placeholder="% Write LaTeX or Markdown specification text here..."></textarea>
+        <button class="btn" onclick="executeLakeBuild()">Invoke Sorry-Free Lake Build</button>
+    </div>
+
+    <script>
+        // Set dynamic hook tracking our 0-warning compilation active tokens
+        const AUTH_TOKEN = "logos-jwt:965fb2cb54acec956bcf48c303bb0df538b423c9c84a48029d5e6fe3b61617cb";
+
+        async function executeLakeBuild() {
+            const textContent = document.getElementById("editorCanvas").value;
+            const badge = document.getElementById("buildBadge");
+            const telemetryBox = document.getElementById("telemetryBox");
+            const contractBox = document.getElementById("contractBox");
+
+            badge.className = "status-badge";
+            badge.style.background = "#333";
+            badge.style.color = "#fff";
+            badge.innerText = "COMPILING...";
+
+            try {
+                const response = await fetch("http://localhost:3000/api/verify", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        auth_token: AUTH_TOKEN,
+                        project_id: "cleanroom_canvas_session",
+                        text_content: textContent
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.is_prose_sorry_free) {
+                    badge.className = "status-badge status-passed";
+                    badge.innerText = "LAKE BUILD PASSED";
+                    contractBox.innerText = data.generated_sve_contract;
+                    telemetryBox.innerHTML = `<p style="color: #4af656; font-size: 13px;">✔ All open specification checks cleared. Narrative certified as completely sound.</p>`;
+                } else {
+                    badge.className = "status-badge status-failed";
+                    badge.innerText = "BUILD FAILED";
+                    contractBox.innerText = data.generated_sve_contract;
+                    
+                    let htmlLogs = "";
+                    data.analytical_diagnostics.forEach(diag => {
+                        htmlLogs += `<div style="margin-bottom: 10px; font-size: 13px; border-bottom: 1px solid #333; padding-bottom: 5px;">
+                            <strong style="color: #ff6b6b;">[${diag.epistemic_pillar}] Block Failed</strong><br>
+                            <span style="font-size: 11px; color: #aaa;">${diag.segment_text}</span>
+                        </div>`;
+                    });
+                    telemetryBox.innerHTML = htmlLogs;
+                }
+            } catch (err) {
+                badge.className = "status-badge status-failed";
+                badge.innerText = "NETWORK ERROR";
+                telemetryBox.innerHTML = `<p style="color: #ff6b6b;">Failed to connect to local server core engine gateway.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

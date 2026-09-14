@@ -1,0 +1,77 @@
+---
+lemma_id: SVE-L030
+name: Bribery
+triggers: ["bribery also"]
+ep_hash: sle_sha256_auto_8900fca9237a797d
+---
+
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L030) {
+  MATCH_CONTEXT(Rhetorical_Pattern["bribery also"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L030) {
+  MATCH_CONTEXT(Rhetorical_Pattern["bribery also"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L030) {
+  MATCH_CONTEXT(Rhetorical_Pattern["bribery also"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L030) {
+  MATCH_CONTEXT(Rhetorical_Pattern["bribery also"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
+Auto-compiled from committed LogosLib community manifest parameters.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L030) {
+  MATCH_CONTEXT(Rhetorical_Pattern["bribery also"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+
+### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
+30. Bribery (also, Material Persuasion, Material Incentive, Financial Incentive). The fallacy of "persuasion" by bribery,
+gifts or favors is the reverse of the Argumentum ad Baculum. As is well known, someone who is persuaded by
+bribery rarely "stays persuaded" in the long term unless the bribes keep on coming in and increasing with time. See
+also Appeasement.
+
+# AUTO-GENERATED MACHINE REFACTORING LAYERS
+
+```logos-spec
+CONSTANT SVE_L030_auto_generated_Context : Scope
+VARIABLE SVE_L030_auto_generated_Assertion : Prop
+
+DEF SVE_L030_auto_generated.check (s : Scope) : Prop :=
+  ASSERT_CONTEXT_BOUND(s) ⟹ THROW(LOGOS_ERR_GENERIC, "Legacy uncodified verification checkpoint reached.")
+```

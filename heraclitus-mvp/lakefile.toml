@@ -1,0 +1,11 @@
+[package]
+name = "logos_lib_core"
+version = "1.0.0"
+keywords = ["svi", "formal-verification", "logic"]
+
+[[lean_lib]]
+name = "LogosLib"
+
+[[lean_exe]]
+name = "runtime_verifier"
+root = "Runtime"
