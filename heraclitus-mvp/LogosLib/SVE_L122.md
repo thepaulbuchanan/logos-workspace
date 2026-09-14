@@ -55,6 +55,16 @@ DECLARE_LEMMA(SVE_L122) {
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L122) {
+  MATCH_CONTEXT(Rhetorical_Pattern["either we completely", "or humanity faces", "must choose between"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. LogosLang First-Order Logic Invariant Parameters
 ```logos
 lemma false_dilemma_boundary_check (E : Entity) (S1 : State) (S2 : State) : Prop :=

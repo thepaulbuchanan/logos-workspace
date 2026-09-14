@@ -55,6 +55,16 @@ DECLARE_LEMMA(LOGOS_012) {
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(LOGOS_012) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 # Integrated Logic Specification for LOGOS_012
 
 [Include text from Branch A here]

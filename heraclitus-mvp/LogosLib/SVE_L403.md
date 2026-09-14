@@ -55,6 +55,16 @@ DECLARE_LEMMA(SVE_L403) {
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L403) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### Formal Definition
 Let $A$ be an initial localized action state. A linguistic transition violates this lemma if it asserts that $A$ will inevitably trigger a catastrophic, non-linear chain reaction leading to an extreme terminal state $Z$, without executing the intervening conditional proofs ($A \implies B \implies C ... \implies Z$).
 
