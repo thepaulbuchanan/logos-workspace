@@ -39,12 +39,12 @@ fn compile_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
 
 fn main() {
     println!("==================================================");
-    println!("=== HERACLITUS GRAPH TOPOLOGY RUNTIME ===========");
+    println!("=== HERACLITUS LIVE PRODUCT WORKSPACE RUNTIME ===");
     println!("==================================================");
 
+    // 1. Ingest Libraries
     let mut v_engine = engine::VerificationEngine::new();
     let specs_dir = Path::new("../public-logoslib/specs");
-    
     if specs_dir.is_dir() {
         if let Ok(entries) = fs::read_dir(specs_dir) {
             for entry in entries.flatten() {
@@ -56,33 +56,67 @@ fn main() {
         }
     }
 
-    println!("Operational Core Library Ingested. Total Lemmas: {}", v_engine.compile_dictionary.len());
+    // 2. Initialize Session User & Base Project Profiles
+    let session_user = auth::UserAccount {
+        uuid: "usr_90a1-f3b5-77c8-9d2e".to_string(),
+        corporate_domain: "fortune500_firm.com".to_string(),
+        tier: auth::AccountTier::EnterprisePaid,
+    };
 
-    // --- TEST 1: Clean Hierarchical Document Pipeline ---
-    println!("\n[Test 1: Running Topological Sort on Valid Argument Dependency Tree...]");
-    let valid_dependencies = vec![
-        ("LOGOS_003_adhominem".to_string(), "LOGOS_002_adhoc".to_string()),
-        ("LOGOS_002_adhoc".to_string(), "LOGOS_001_accident".to_string()),
-    ];
+    let base_project = dashboard::VerificationProject {
+        project_id: "prj_001_annual_report".to_string(),
+        owner_uuid: session_user.uuid.clone(),
+        files: vec![dashboard::ProjectFile {
+            name: "draft.tex".to_string(),
+            raw_content: String::new(),
+        }],
+        historical_runs_count: 14,
+    };
 
-    match v_engine.verify_dependency_topology(valid_dependencies) {
-        Ok(sorted_sequence) => println!("  ↳ STATUS: SUCCESS. Optimized Compilation Order: {:?}", sorted_sequence),
-        Err(_) => println!("  ↳ STATUS: FAILED. Unexpected sorting exception."),
+    println!("User Dashboard Connected: {}", session_user.corporate_domain);
+    
+    // Start Overleaf live editor thread
+    let mut session = dashboard::project::LiveWorkspaceSession::new(base_project);
+
+    // 3. Simulate Live Streaming Typestream Event Transaction
+    let incoming_mutation = dashboard::project::EditorStreamEvent {
+        file_target: "draft.tex".to_string(),
+        line_delta: "We operate standard manufacturing guidelines across all regional locations. Therefore, surgeons operating inside medical units must obey factory uniform standards, ignoring operational constraints.\n\nThe market strategy proposed by the compliance auditor is clean and structurally solid, aligning directly with capital distribution parameters.".to_string(),
+    };
+
+    // Run string stream slice normalisation loops
+    let active_paragraphs = session.process_stream_mutation(incoming_mutation);
+    println!("Live Stream Parser: Isolate-processed {} text paragraphs.", active_paragraphs.len());
+
+    // 4. Execute Multi-Paragraph Epistemic Verification Pass
+    // Hook loaded contexts as test tracking mock inputs to evaluate paragraph runs
+    let mut mock_stream = Vec::new();
+    if let Some(ctx1) = v_engine.compile_dictionary.get("LOGOS_001") { mock_stream.push(ctx1.clone()); }
+    if let Some(ctx2) = v_engine.compile_dictionary.get("LOGOS_002") { mock_stream.push(ctx2.clone()); }
+
+    println!("\nExecuting Epistemic Validation over Stream Buffers...");
+    let reports = v_engine.verify_document_narrative(&active_paragraphs, &mock_stream);
+
+    let mut compilation_failed = false;
+    for report in reports {
+        println!("  [Index #{}] Verdict: {}", report.paragraph_index, report.status);
+        if report.status == "FAILED" {
+            compilation_failed = true;
+            println!("    ↳ Exception: {}", report.diagnostic_details.unwrap());
+        }
     }
 
-    // --- TEST 2: Circular Argument Intercept Loop ---
-    println!("\n[Test 2: Running Topological Sort on Malformed Circular Dependency Loop...]");
-    let circular_dependencies = vec![
-        ("LOGOS_006_baserate".to_string(), "LOGOS_007_beggingquestion".to_string()),
-        ("LOGOS_007_beggingquestion".to_string(), "LOGOS_006_baserate".to_string()), // The loop-closing edge
-    ];
-
-    match v_engine.verify_dependency_topology(circular_dependencies) {
-        Ok(_) => println!("  ↳ STATUS: PASSED. (Error: Engine failed to catch loop)"),
-        Err(loop_path) => {
-            println!("  ↳ STATUS: COMPILE BLOCKED (Cyclical Reference Conflict Detected!)");
-            println!("    Identified Trap Core Node: {:?}", loop_path);
-        }
+    // 5. Generate signed certificate IFF build achieves zero error state
+    if !compilation_failed {
+        println!("\nGenerating Cryptographic Logic Seal Verification Certificate...");
+        let certificate = storage::VerificationCertificate::generate_seal(
+            &session.active_project.project_id,
+            &session.active_project.files[0].raw_content,
+            v_engine.compile_dictionary.len()
+        );
+        println!("\n--- Verifiable Epistemic Token Export Payload ---\n{}", certificate.to_json_payload());
+    } else {
+        println!("\n[Build Warning] Cryptographic seal blocked. Clear logic compilation errors inside editor window to get signature stamp.");
     }
     println!("--------------------------------------------------");
 }
