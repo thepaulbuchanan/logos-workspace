@@ -55,7 +55,6 @@ impl VerificationEngine {
         self.compile_dictionary.insert(id, ctx);
     }
 
-    /// Computes a structural fingerprint hash of a lemma by normalising variable metadata names
     pub fn compute_structural_hash(&self, ctx: &CompilerContext) -> String {
         let mut hasher = Sha256::new();
         for node in &ctx.ast_nodes {
@@ -101,7 +100,7 @@ impl VerificationEngine {
         }
     }
 
-        pub fn evaluate_text_against_dictionary(&self, text: &str) -> Option<(String, String)> {
+    pub fn evaluate_text_against_dictionary(&self, text: &str) -> Option<(String, String)> {
         let normalized = text.to_lowercase();
         
         for lemma_id in self.compile_dictionary.keys() {
@@ -121,7 +120,6 @@ impl VerificationEngine {
                     ));
                 }
             }
-            // FIX: Added explicit evaluation rules for Fallacy #11
             if lemma_id.contains("redherring") || lemma_id.contains("011") {
                 if normalized.contains("competitors") && normalized.contains("marketing") {
                     return Some((
@@ -133,7 +131,6 @@ impl VerificationEngine {
         }
         None
     }
-
 
     pub fn verify_document_narrative(&self, paragraphs: &[String]) -> Vec<ParagraphDiagnostic> {
         let mut diagnostic_log = Vec::new();
@@ -158,9 +155,6 @@ impl VerificationEngine {
         diagnostic_log
     }
 
-    /// The Invariant Lock-Step Agent Pipeline
-        /// Upgraded Lock-Step Agent Pipeline: Standardises file layouts on disk 
-    /// using machine-predictable naming conventions, then seals the manifest.
     pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> LibraryManifestLock {
         use std::time::{SystemTime, UNIX_EPOCH};
         use std::fs;
@@ -169,7 +163,6 @@ impl VerificationEngine {
         println!("\n[AGENT] Initiating Hermetic Invariant Lock-Step Verification Pass...");
         let mut locked_registry = HashMap::new();
 
-        // 1. Scan and physically standardise filenames on disk to eliminate layout drift
         let specs_dir = Path::new(specs_dir_path);
         if specs_dir.is_dir() {
             if let Ok(entries) = fs::read_dir(specs_dir) {
@@ -178,7 +171,6 @@ impl VerificationEngine {
                     if current_path.extension().map_or(false, |ext| ext == "md") {
                         let file_content = fs::read_to_string(&current_path).expect("Unable to read file");
                         
-                        // Extract clean invariant ID directly from internal front matter
                         let mut target_id = String::new();
                         for line in file_content.lines() {
                             let clean_line = line.trim().to_lowercase();
@@ -190,7 +182,6 @@ impl VerificationEngine {
                             }
                         }
 
-                        // If internal front matter is present, enforce standard machine naming convention
                         if !target_id.is_empty() {
                             let canonical_name = format!("{}.md", target_id.replace("-", "_"));
                             let canonical_path = specs_dir.join(&canonical_name);
@@ -207,7 +198,6 @@ impl VerificationEngine {
             }
         }
 
-        // 2. Generate the immutable cryptographic manifest log
         for (lemma_id, ctx) in &self.compile_dictionary {
             let structural_hash = self.compute_structural_hash(ctx);
             
@@ -234,42 +224,5 @@ impl VerificationEngine {
             
         println!("[AGENT] Success! Invariant manifest sealed. Cryptographic lock file updated at: {}", target_lock_path);
         manifest
-    }
-
-// ... [Keep all previous VerificationEngine code exactly as it is]
-
-/// Structuring the formal payload block for outward network notifications
-#[derive(Debug, Clone, serde::Serialize)]
-pub struct ZulipWebhookPayload {
-    pub stream: String,
-    pub topic: String,
-    pub content: String,
-}
-
-impl VerificationEngine {
-    /// Automation Hook: Compiles a structural anomaly report and dispatches a simulated webhook request
-    pub fn dispatch_zulip_alert(&self, target_stream: &str, target_topic: &str, alert_details: &str) -> String {
-        let payload = ZulipWebhookPayload {
-            stream: target_stream.to_string(),
-            topic: target_topic.to_string(),
-            content: format!(
-                "### 🚨 HERACLITUS ENGINE EXCEPTION WARNING\n\n\
-                **Target Context:** {}\n\n\
-                **Automated Diagnostic Data:**\n\
-                ```text\n\
-                {}\n\
-                ```\n\n\
-                *Please check open specs repositories or regenerate the library_manifest.lock to sync workspace indexes.*",
-                target_topic, alert_details
-            ),
-        };
-
-        // Serialize the token into a pretty JSON payload string format
-        let json_payload = serde_json::to_string_pretty(&payload).unwrap();
-        
-        println!("\n[WEBHOOK AGENT] Formatting outbound JSON event notification payload...");
-        println!("[WEBHOOK AGENT] Piping HTTP POST payload to endpoint channel: `#stream/{}`", payload.stream);
-        
-        json_payload
     }
 }
