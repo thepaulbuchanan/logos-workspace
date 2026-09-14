@@ -11,3 +11,4 @@ pub struct UserAccount {
     pub corporate_domain: String,
     pub tier: AccountTier,
 }
+

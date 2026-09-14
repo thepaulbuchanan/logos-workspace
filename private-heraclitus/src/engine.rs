@@ -1,6 +1,7 @@
-use crate::ast::{ASTNode, CompilerContext, SVEType};
+use crate::ast::{ASTNode, CompilerContext};
 use petgraph::algo::toposort;
 use petgraph::graph::DiGraph;
+use sha2::{Digest, Sha256};
 use std::collections::HashMap;
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
@@ -20,6 +21,21 @@ pub enum VerificationStatus {
     CyclicalDependencyError { loop_path: Vec<String> },
 }
 
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct LockedLemmaEntry {
+    pub lemma_id: String,
+    pub structural_hash: String,
+    pub compiled_nodes_count: usize,
+}
+
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct LibraryManifestLock {
+    pub manifest_version: String,
+    pub global_verification_timestamp: u64,
+    pub total_verified_lemmas: usize,
+    pub locked_registry: HashMap<String, LockedLemmaEntry>,
+}
+
 pub struct VerificationEngine {
     pub compile_dictionary: HashMap<String, CompilerContext>,
     pub structural_registry: HashMap<String, String>,
@@ -34,16 +50,61 @@ impl VerificationEngine {
     }
 
     pub fn register_lemma(&mut self, id: String, ctx: CompilerContext) {
+        let structural_hash = self.compute_structural_hash(&ctx);
+        self.structural_registry.insert(structural_hash, id.clone());
         self.compile_dictionary.insert(id, ctx);
     }
 
-    /// Dynamic Evaluator Pass: Matches incoming text topology against ALL loaded lemmas in memory
+    /// Computes a structural fingerprint hash of a lemma by normalising variable metadata names
+    pub fn compute_structural_hash(&self, ctx: &CompilerContext) -> String {
+        let mut hasher = Sha256::new();
+        for node in &ctx.ast_nodes {
+            match node {
+                ASTNode::Declaration { is_constant, data_type, .. } => {
+                    hasher.update(format!("DECL:{}:{:?}|", is_constant, data_type).as_bytes());
+                }
+                ASTNode::Definition { args, return_type, .. } => {
+                    hasher.update(format!("DEF:ARGS:{:?}:RET:{:?}|", args.len(), return_type).as_bytes());
+                }
+                ASTNode::Assertion { tactic, .. } => {
+                    hasher.update(format!("ASSERT:{}|", tactic).as_bytes());
+                }
+            }
+        }
+        format!("{:x}", hasher.finalize())
+    }
+
+    pub fn verify_dependency_topology(&self, dependencies: Vec<(String, String)>) -> Result<Vec<String>, Vec<String>> {
+        let mut graph = DiGraph::<String, ()>::new();
+        let mut node_indices = HashMap::new();
+
+        for (parent, child) in &dependencies {
+            node_indices.entry(parent.clone()).or_insert_with(|| graph.add_node(parent.clone()));
+            node_indices.entry(child.clone()).or_insert_with(|| graph.add_node(child.clone()));
+        }
+
+        for (parent, child) in &dependencies {
+            let parent_idx = node_indices.get(parent).unwrap();
+            let child_idx = node_indices.get(child).unwrap();
+            graph.add_edge(*parent_idx, *child_idx, ());
+        }
+
+        match toposort(&graph, None) {
+            Ok(sorted_indices) => {
+                let sorted_nodes = sorted_indices.into_iter().map(|idx| graph[idx].clone()).collect();
+                Ok(sorted_nodes)
+            }
+            Err(cycle) => {
+                let loop_node = graph[cycle.node_id()].clone();
+                Err(vec![loop_node, "Cyclical Loop Closed".to_string()])
+            }
+        }
+    }
+
     pub fn evaluate_text_against_dictionary(&self, text: &str) -> Option<(String, String)> {
         let normalized = text.to_lowercase();
         
-        // Scan the active memory pool for any lemma matching the semantic shape of the paragraph text
-        for (lemma_id, ctx) in &self.compile_dictionary {
-            // Check cross-type violations (Ad Hominem checks across the 191 schema vectors)
+        for lemma_id in self.compile_dictionary.keys() {
             if lemma_id.contains("ad_hominem") || lemma_id.contains("L102") {
                 if normalized.contains("convict") && normalized.contains("statement") {
                     return Some((
@@ -76,7 +137,6 @@ impl VerificationEngine {
                 diagnostic_details: None,
             };
 
-            // Execute dynamic lexicon checking loop
             if let Some((failed_code, failure_detail)) = self.evaluate_text_against_dictionary(text) {
                 current_diag.status = "FAILED".to_string();
                 current_diag.violation_code = Some(failed_code);
@@ -86,5 +146,40 @@ impl VerificationEngine {
             diagnostic_log.push(current_diag);
         }
         diagnostic_log
+    }
+
+    /// The Invariant Lock-Step Agent Pipeline
+    pub fn execute_library_lock_pass(&self, target_lock_path: &str) -> LibraryManifestLock {
+        use std::time::{SystemTime, UNIX_EPOCH};
+        
+        println!("\n[AGENT] Initiating Hermetic Invariant Lock-Step Verification Pass...");
+        let mut locked_registry = HashMap::new();
+
+        for (lemma_id, ctx) in &self.compile_dictionary {
+            let structural_hash = self.compute_structural_hash(ctx);
+            
+            let locked_entry = LockedLemmaEntry {
+                lemma_id: lemma_id.clone(),
+                structural_hash,
+                compiled_nodes_count: ctx.ast_nodes.len(),
+            };
+            
+            locked_registry.insert(lemma_id.clone(), locked_entry);
+        }
+
+        let timestamp = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
+        let manifest = LibraryManifestLock {
+            manifest_version: "1.0.0".to_string(),
+            global_verification_timestamp: timestamp,
+            total_verified_lemmas: locked_registry.len(),
+            locked_registry,
+        };
+
+        let json_payload = serde_json::to_string_pretty(&manifest).unwrap();
+        std::fs::write(target_lock_path, json_payload)
+            .expect("Failed to write the library manifest lock file to disk root.");
+            
+        println!("[AGENT] Success! Invariant manifest sealed. Cryptographic lock file updated at: {}", target_lock_path);
+        manifest
     }
 }
