@@ -161,7 +161,7 @@ impl VerificationEngine {
         agent::execute_library_lock_pass(self, target_lock_path, specs_dir_path)
     }
 
-    pub fn dispatch_zulip_alert(&self, target_stream: &str, target_topic: &str, alert_details: &str) -> String {
+    pub fn dispatch_zulip_alert(&self, _target_stream: &str, target_topic: &str, alert_details: &str) -> String {
         let payload = crate::engine::evaluator::LakeBuildVerdict {
             is_prose_sorry_free: false,
             generated_sve_contract: format!("### 🚨 EMERGENCY SECURITY DISPATCH\nContext: {}\nDetails: {}", target_topic, alert_details),
@@ -169,4 +169,6 @@ impl VerificationEngine {
         };
         serde_json::to_string_pretty(&payload).unwrap()
     }
+    pub fn dispatch_zulip_alert(&self, _target_stream: &str, target_topic: &str, alert_details: &str) -> String {
+        let payload = crate::engine::evaluator::LakeBuildVerdict {
 }
