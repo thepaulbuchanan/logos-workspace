@@ -63,7 +63,7 @@ pub struct SecureWebIngestionRequest {
 async fn handle_web_verification(
     axum::extract::State(state): axum::extract::State<Arc<AppState>>,
     Json(payload): Json<SecureWebIngestionRequest>,
-) -> Result<Json<engine::LakeBuildVerdict>, (axum::http::StatusCode, String)> {
+) -> Result<Json<engine::evaluator::LakeBuildVerdict>, (axum::http::StatusCode, String)> {
     println!("\n[SECURITY GATE] Received secure verification request payload for project '{}'", payload.project_id);
 
     let active_user = {
@@ -80,19 +80,14 @@ async fn handle_web_verification(
     println!("[SECURITY GATE] Access Authorized. User identity confirmed as: '{}'", active_user.uuid);
 
     let document_payload = if payload.text_content.starts_with("%PDF") {
-        api::IngestionPayload::new(
-            api::IngestionType::AttachmentPDF,
-            payload.text_content.as_bytes().to_vec()
-        )
+        api::IngestionPayload::new(api::IngestionType::AttachmentPDF, payload.text_content.as_bytes().to_vec())
     } else {
-        api::IngestionPayload::new(
-            api::IngestionType::RawTextStream,
-            payload.text_content.as_bytes().to_vec()
-        )
+        api::IngestionPayload::new(api::IngestionType::RawTextStream, payload.text_content.as_bytes().to_vec())
     };
 
     let clean_paragraphs = document_payload.extract_clean_paragraphs();
     
+    // Live Workspace Memory Sync pass
     {
         let mut session_lock = state.session.lock().unwrap();
         let mutation = dashboard::project::EditorStreamEvent {
@@ -103,7 +98,33 @@ async fn handle_web_verification(
         let _ = session_lock.process_shared_stream_mutation(mutation);
     }
 
-    let (_diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
+    // SALVAGED INFRASTRUCTURE HANDSHAKE: Run the dual-kernel validation sequence
+    let (diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
+
+    // Reconstruct your original SVI-main log collection loops
+    let mut manifest_summary = format!(
+        "# HERACLITUS EPISTEMIC MANIFEST SUMMARY REPORT\n\nTarget Project: {}\nStatus: EVALUATION COMPLETE\n\n## Epistemic Audit Ledger:\n\n", 
+        payload.project_id
+    );
+    let mut sve_script_output = "-- HERACLITUS SCRIPT: INVARIANT LOGOS LEDGER\n-- VERSION: v1.0.0-ALPHA\n\n".to_string();
+
+    println!("\n--- [SVI-CORE] Live IR Trace Log Stream ---");
+    for diag in &diagnostics {
+        // Output trace logs straight to your active console panel on the fly
+        println!("{}", diag.ir_trace_log);
+        
+        manifest_summary.push_str(&diag.segment_text);
+        sve_script_output.push_str(&diag.generated_sve_block);
+    }
+    println!("-------------------------------------------\n");
+
+    // Write file logs straight onto the hard drive between web transaction frames
+    let target_dir = Path::new("tests");
+    if !target_dir.exists() { let _ = fs::create_dir_all(target_dir); }
+    
+    let _ = fs::write("tests/HERACLITUS_MANIFEST_SUMMARY.md", manifest_summary);
+    let _ = fs::write("tests/Validated.sve", sve_script_output);
+    println!("[SVI-LOGS] Physical ledger files generated under private-heraclitus/tests/");
 
     Ok(Json(verdict))
 }
@@ -221,13 +242,8 @@ async fn main() {
             tokio::time::sleep(Duration::from_secs(5)).await;
             let session_lock = saver_state.session.lock().unwrap();
             let current_project = &session_lock.active_project;
-            
             for file in &current_project.files {
-                storage_ledger.backup_active_project_files(
-                    &current_project.project_id, 
-                    &file.name, 
-                    &file.raw_content
-                );
+                storage_ledger.backup_active_project_files(&current_project.project_id, &file.name, &file.raw_content);
             }
         }
     });
@@ -246,6 +262,4 @@ async fn main() {
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
     println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
     println!("Press Ctrl+C to terminate server thread session.\n");
-
     axum::serve(listener, app).await.unwrap();
-}
