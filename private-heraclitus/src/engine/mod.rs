@@ -3,12 +3,17 @@ pub mod evaluator;
 pub mod agent;
 pub mod lexicon;
 
-use crate::ast::{ASTNode, CompilerContext};
-use sha2::{Digest, Sha256};
+use crate::ast::CompilerContext;
 use std::collections::HashMap;
+use std::path::PathBuf;
 
-// Re-export the newly added multi-kernel structures
-pub use evaluator::LakeBuildVerdict;
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct UnifiedLemma {
+    pub id: String,
+    pub name: String,
+    pub triggers: Vec<String>,
+    pub hash: String,
+}
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct ParagraphDiagnostic {
@@ -17,55 +22,110 @@ pub struct ParagraphDiagnostic {
     pub status: String,
     pub violation_code: Option<String>,
     pub diagnostic_details: Option<String>,
-}
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct LockedLemmaEntry {
-    pub lemma_id: String,
-    pub structural_hash: String,
-    pub compiled_nodes_count: usize,
-}
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct LibraryManifestLock {
-    pub manifest_version: String,
-    pub global_verification_timestamp: u64,
-    pub total_verified_lemmas: usize,
-    pub locked_registry: HashMap<String, LockedLemmaEntry>,
+    pub generated_sve_block: String,
+    pub ir_trace_log: String,
 }
 
 pub struct VerificationEngine {
     pub compile_dictionary: HashMap<String, CompilerContext>,
     pub structural_registry: HashMap<String, String>,
     pub global_thesaurus: lexicon::LogosLibThesaurus,
+    pub active_lemmas: Vec<UnifiedLemma>,
 }
 
 impl VerificationEngine {
     pub fn new() -> Self {
-        Self {
+        let mut engine = Self {
             compile_dictionary: HashMap::new(),
             structural_registry: HashMap::new(),
             global_thesaurus: lexicon::LogosLibThesaurus::new(),
+            active_lemmas: Vec::new(),
+        };
+        engine.bootstrap_logos_lib_front_matter();
+        engine
+    }
+
+    /// Dynamic Front-Matter Bootstrapper: Ingests the 386+ community spec lemmas directly
+    /// using your prototype's high-tolerance fallback path matrix loops.
+    pub fn bootstrap_logos_lib_front_matter(&mut self) {
+        use std::fs;
+        let paths = vec!["../public-logoslib/specs", "public-logoslib/specs", "specs"];
+        let mut target_dir = "";
+        for p in paths {
+            if std::path::Path::new(p).exists() && std::path::Path::new(p).is_dir() { 
+                target_dir = p; 
+                break; 
+            }
+        }
+        if target_dir.is_empty() { return; }
+
+        if let Ok(entries) = fs::read_dir(target_dir) {
+            for entry in entries.flatten() {
+                let path = entry.path();
+                if path.extension().map_or(false, |ext| ext == "md") {
+                    if let Ok(content) = fs::read_to_string(&path) {
+                        self.process_and_lock_lemma_meta(&content);
+                    }
+                }
+            }
         }
     }
 
-    pub fn register_lemma(&mut self, id: String, ctx: CompilerContext) {
-        let structural_hash = self.compute_structural_hash(&ctx);
-        self.structural_registry.insert(structural_hash, id.clone());
-        self.compile_dictionary.insert(id, ctx);
+    fn process_and_lock_lemma_meta(&mut self, content: &str) {
+        if !content.starts_with("---") { return; }
+        let parts: Vec<&str> = content.split("---").collect();
+        if parts.len() < 3 { return; }
+        
+        let yaml_payload = parts[1];
+        
+        let mut id = String::new();
+        let mut name = String::new();
+        let mut triggers = Vec::new();
+
+        for line in yaml_payload.lines() {
+            if !line.contains(':') { continue; }
+            let kv: Vec<&str> = line.splitn(2, ':').collect();
+            let key = kv[0].trim();
+            let val = kv[1].trim();
+
+            match key {
+                "id" | "lemma_id" => id = val.to_string(),
+                "name" => name = val.to_string(),
+                "aliases" | "triggers" => {
+                    let cleaned = val.replace('[', "").replace(']', "").replace('"', "").replace('\'', "");
+                    triggers = cleaned.split(',').map(|t| t.trim().to_string()).filter(|t| !t.is_empty()).collect();
+                }
+                _ => {}
+            }
+        }
+
+        if !id.is_empty() {
+            // Generate a secure cryptographic fingerprint hash seal signature
+            let mut hasher = sha2::Sha256::new();
+            hasher.update(format!("{}{:?}", id, triggers).as_bytes());
+            let hash = format!("{:x}", hasher.finalize());
+
+            // Handle uncodified fallback triggers
+            if triggers.is_empty() {
+                triggers.push(id.to_lowercase());
+            }
+
+            self.active_lemmas.push(UnifiedLemma { id, name, triggers, hash });
+        }
     }
 
     pub fn compute_structural_hash(&self, ctx: &CompilerContext) -> String {
-        let mut hasher = Sha256::new();
+        use sha2::Digest;
+        let mut hasher = sha2::Sha256::new();
         for node in &ctx.ast_nodes {
             match node {
-                ASTNode::Declaration { is_constant, data_type, .. } => {
+                crate::ast::ASTNode::Declaration { is_constant, data_type, .. } => {
                     hasher.update(format!("DECL:{}:{:?}|", is_constant, data_type).as_bytes());
                 }
-                ASTNode::Definition { args, return_type, .. } => {
+                crate::ast::ASTNode::Definition { args, return_type, .. } => {
                     hasher.update(format!("DEF:ARGS:{:?}:RET:{:?}|", args.len(), return_type).as_bytes());
                 }
-                ASTNode::Assertion { tactic, .. } => {
+                crate::ast::ASTNode::Assertion { tactic, .. } => {
                     hasher.update(format!("ASSERT:{}|", tactic).as_bytes());
                 }
             }
@@ -77,11 +137,11 @@ impl VerificationEngine {
         topology::verify_dependency_topology(dependencies)
     }
 
-    pub fn verify_paper_lake_build(&self, paragraphs: &[String], project_id: &str) -> (Vec<ParagraphDiagnostic>, LakeBuildVerdict) {
-        evaluator::verify_paper_lake_build(paragraphs, &self.compile_dictionary, &self.global_thesaurus, project_id)
+    pub fn verify_paper_lake_build(&self, paragraphs: &[String], project_id: &str) -> (Vec<ParagraphDiagnostic>, evaluator::LakeBuildVerdict) {
+        evaluator::verify_paper_lake_build(paragraphs, &self.active_lemmas, &self.global_thesaurus, project_id)
     }
 
-    pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> LibraryManifestLock {
+    pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> agent::LibraryManifestLock {
         agent::execute_library_lock_pass(self, target_lock_path, specs_dir_path)
     }
 }
