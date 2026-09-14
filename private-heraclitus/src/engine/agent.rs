@@ -1,5 +1,6 @@
 use crate::engine::{LibraryManifestLock, LockedLemmaEntry, VerificationEngine};
 use std::collections::HashMap;
+use std::fs;
 use std::fs::File;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -8,7 +9,6 @@ use std::time::{SystemTime, UNIX_EPOCH};
 pub struct LemmaRefactor;
 
 impl LemmaRefactor {
-    /// Invariant djb2 mutation algorithm generating standard machine signature hashes
     pub fn calculate_hash(id: &str, triggers: &[String]) -> String {
         let mut hash: usize = 5381;
         for c in id.bytes() { 
@@ -22,7 +22,6 @@ impl LemmaRefactor {
         format!("sle_sha256_auto_{:x}", hash)
     }
 
-    /// SALVAGED & INTEGRATED PROTOTYPE ENGINE: Compiles symbolic logic blocks and safely overwrites markdown on disk
     pub fn compile_and_lock(id: &str, name: &str, triggers: &[String], hash: &str, body: &str, path: &PathBuf) {
         let symbolic_bytecode = format!(
             "DECLARE_LEMMA({}) {{\n  MATCH_CONTEXT(Rhetorical_Pattern{:?});\n  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);\n}}\n",
@@ -82,7 +81,6 @@ pub fn execute_library_lock_pass(engine: &VerificationEngine, target_lock_path: 
                                 }
                             }
 
-                            // TRIGGER UNIFIED TRANS_MUTATION GATE: If signature hash is empty, compile and stamp the file in-place
                             if ep_hash.is_empty() && !id.is_empty() {
                                 let calculated_hash = LemmaRefactor::calculate_hash(&id, &triggers);
                                 LemmaRefactor::compile_and_lock(&id, &name, &triggers, &calculated_hash, &remaining_body, &current_path);
@@ -94,7 +92,6 @@ pub fn execute_library_lock_pass(engine: &VerificationEngine, target_lock_path: 
         }
     }
 
-    // 2. Generate the central immutable manifest mapping index lock
     for (lemma_id, ctx) in &engine.compile_dictionary {
         let structural_hash = engine.compute_structural_hash(ctx);
         

@@ -4,8 +4,8 @@ pub mod agent;
 pub mod lexicon;
 
 use crate::ast::CompilerContext;
+use sha2::Digest;
 use std::collections::HashMap;
-use std::path::PathBuf;
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct UnifiedLemma {
@@ -24,6 +24,21 @@ pub struct ParagraphDiagnostic {
     pub diagnostic_details: Option<String>,
     pub generated_sve_block: String,
     pub ir_trace_log: String,
+}
+
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct LockedLemmaEntry {
+    pub lemma_id: String,
+    pub structural_hash: String,
+    pub compiled_nodes_count: usize,
+}
+
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct LibraryManifestLock {
+    pub manifest_version: String,
+    pub global_verification_timestamp: u64,
+    pub total_verified_lemmas: usize,
+    pub locked_registry: HashMap<String, LockedLemmaEntry>,
 }
 
 pub struct VerificationEngine {
@@ -45,8 +60,12 @@ impl VerificationEngine {
         engine
     }
 
-    /// Dynamic Front-Matter Bootstrapper: Ingests the 386+ community spec lemmas directly
-    /// using your prototype's high-tolerance fallback path matrix loops.
+    pub fn register_lemma(&mut self, id: String, ctx: CompilerContext) {
+        let structural_hash = self.compute_structural_hash(&ctx);
+        self.structural_registry.insert(structural_hash, id.clone());
+        self.compile_dictionary.insert(id, ctx);
+    }
+
     pub fn bootstrap_logos_lib_front_matter(&mut self) {
         use std::fs;
         let paths = vec!["../public-logoslib/specs", "public-logoslib/specs", "specs"];
@@ -100,12 +119,10 @@ impl VerificationEngine {
         }
 
         if !id.is_empty() {
-            // Generate a secure cryptographic fingerprint hash seal signature
             let mut hasher = sha2::Sha256::new();
             hasher.update(format!("{}{:?}", id, triggers).as_bytes());
             let hash = format!("{:x}", hasher.finalize());
 
-            // Handle uncodified fallback triggers
             if triggers.is_empty() {
                 triggers.push(id.to_lowercase());
             }
@@ -115,7 +132,6 @@ impl VerificationEngine {
     }
 
     pub fn compute_structural_hash(&self, ctx: &CompilerContext) -> String {
-        use sha2::Digest;
         let mut hasher = sha2::Sha256::new();
         for node in &ctx.ast_nodes {
             match node {
@@ -141,7 +157,16 @@ impl VerificationEngine {
         evaluator::verify_paper_lake_build(paragraphs, &self.active_lemmas, &self.global_thesaurus, project_id)
     }
 
-    pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> agent::LibraryManifestLock {
+    pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> LibraryManifestLock {
         agent::execute_library_lock_pass(self, target_lock_path, specs_dir_path)
+    }
+
+    pub fn dispatch_zulip_alert(&self, target_stream: &str, target_topic: &str, alert_details: &str) -> String {
+        let payload = crate::engine::evaluator::LakeBuildVerdict {
+            is_prose_sorry_free: false,
+            generated_sve_contract: format!("### 🚨 EMERGENCY SECURITY DISPATCH\nContext: {}\nDetails: {}", target_topic, alert_details),
+            external_kernel_handshake_ready: false,
+        };
+        serde_json::to_string_pretty(&payload).unwrap()
     }
 }
