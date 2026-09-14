@@ -1,0 +1,8 @@
+{
+  "certificate_id": "CERT-prj_001_annual_report-1789387541",
+  "target_project_id": "prj_001_annual_report",
+  "sha256_document_hash": "ba19b1cf44ebe1927aeebc8bb18716ea9ef500aa8ae27682551b6460ade52e18",
+  "compilation_timestamp": 1789387541,
+  "compiled_lemma_count": 198,
+  "cryptographic_seal_signature": "logos-signed:a94d5733ce03492787bbf5fb54d53fa7b0caac1ab7a10beae720e8f0abfcef9d"
+}
