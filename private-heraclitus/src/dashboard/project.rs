@@ -69,7 +69,7 @@ impl LiveWorkspaceSession {
     pub fn process_shared_stream_mutation(&mut self, event: EditorStreamEvent) -> Result<Vec<String>, String> {
         // Step 1: Verify user possesses authorization clearance to mutate the buffer
         let user_session = self.active_collaborators.get(&event.actor_uuid)
-            .ok_ok_or_else(|| "ACCESS_DENIED: Unauthenticated actor string detected.".to_string())?;
+            .ok_or_else(|| "ACCESS_DENIED: Unauthenticated actor string detected.".to_string())?;
 
         if user_session.active_role == WorkspaceRole::Viewer {
             return Err("ACCESS_DENIED: Viewer tier lacks permission variables to mutate file buffers.".to_string());
