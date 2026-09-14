@@ -6,6 +6,16 @@ ep_hash: sle_sha256_auto_8900fca9237a797d
 ---
 
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L030) {
+  MATCH_CONTEXT(Rhetorical_Pattern["bribery also"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 
 ### 2. Machine Compiled Symbolic Logos Block

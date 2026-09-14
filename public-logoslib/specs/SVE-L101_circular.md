@@ -2,9 +2,19 @@
 lemma_id: SVE-L101
 name: Epistemic Circularity / Begging the Question
 triggers: ["simulation outputs confirm", "outputs prove", "confirm that the core parameters"]
-ep_hash: sle_sha256_7a9f2c8b3d4e1f6g
+ep_hash: sle_sha256_auto_eee6637cb11b5442
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L101) {
+  MATCH_CONTEXT(Rhetorical_Pattern["simulation outputs confirm", "outputs prove", "confirm that the core parameters"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. Human Readable Specification
 Let an author introduce a core model or premise. It is a structural fallacy to assert that downstream data outputs or simulation metrics validate the truth-value of that core model if those exact outputs require the model's parameters to be assumed true to execute the run.
 

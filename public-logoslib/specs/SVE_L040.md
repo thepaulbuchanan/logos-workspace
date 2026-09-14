@@ -6,6 +6,16 @@ ep_hash: sle_sha256_auto_a630c40a8d6113be
 ---
 
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L040) {
+  MATCH_CONTEXT(Rhetorical_Pattern["disciplinary blinders"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 
 ### 2. Machine Compiled Symbolic Logos Block

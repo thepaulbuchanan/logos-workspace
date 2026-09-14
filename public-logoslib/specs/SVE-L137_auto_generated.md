@@ -6,6 +6,16 @@ ep_hash: sle_sha256_auto_f3457d0d029a78a2
 ---
 
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L137) {
+  MATCH_CONTEXT(Rhetorical_Pattern["two-sides fallacy"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 
 ### 2. Machine Compiled Symbolic Logos Block

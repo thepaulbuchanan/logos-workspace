@@ -2,9 +2,19 @@
 lemma_id: SVE-L102
 name: Ad Hominem
 triggers: ["so corrupt", "cannot trust his", "so-called judge", "he is so evil"]
-ep_hash: sle_sha256_ad102hominem8b3d4e1f
+ep_hash: sle_sha256_auto_4594aab6c2a2e7b7
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L102) {
+  MATCH_CONTEXT(Rhetorical_Pattern["so corrupt", "cannot trust his", "so-called judge", "he is so evil"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. Human Readable Specification
 Attempting to invalidate or dismiss a structural thesis or data-driven proposition based entirely on a negative character assassination or identity trait evaluation of the presenting agent rather than auditing the argument's analytical properties is a failure of logic.
 

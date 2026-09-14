@@ -2,9 +2,19 @@
 lemma_id: SVE-L103
 name: Straw Man
 triggers: ["hate economic growth", "want to destroy", "hate babies", "barefoot and pregnant"]
-ep_hash: sle_sha256_sm103strawman1f6g7h9f
+ep_hash: sle_sha256_auto_ad604222b3d714fd
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L103) {
+  MATCH_CONTEXT(Rhetorical_Pattern["hate economic growth", "want to destroy", "hate babies", "barefoot and pregnant"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. Human Readable Specification
 Constructing a simplified, weakened, or extreme caricature of an opposing researcher's position, refuting that caricature, and claiming to have systematically dismantled the original position is a direct semantic violation.
 

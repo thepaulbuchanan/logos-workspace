@@ -1,10 +1,20 @@
 ---
 lemma_id: SVE-L3002
 name: Scanned Fallacy Clause Element 2
-triggers: ["fallacy claim"]
-ep_hash: sle_sha256_auto_f6a4168c96890353
+triggers: []
+ep_hash: sle_sha256_auto_377aef842794611
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L3002) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 

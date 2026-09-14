@@ -2,9 +2,19 @@
 lemma_id: SVE-L199
 name: Ad Hominem Tu Quoque
 triggers: ["you eat fat burgers", "you do it too", "not acting consistently"]
-ep_hash: sle_sha256_auto_e612551e21503f42
+ep_hash: sle_sha256_auto_a0aac6712db0aeb0
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L199) {
+  MATCH_CONTEXT(Rhetorical_Pattern["you eat fat burgers", "you do it too", "not acting consistently"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 

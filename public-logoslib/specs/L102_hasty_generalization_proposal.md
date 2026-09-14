@@ -1,10 +1,20 @@
 ---
 lemma_id: SVE-L102
 name: Hasty Generalization Fallacy
-triggers: ["all climate models", "always fails", "every model", "universally true"]
-ep_hash: sle_sha256_auto_cb240ce3e79226b5
+triggers: []
+ep_hash: sle_sha256_auto_1ae64595687d7f
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L102) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. Human Readable Specification
 Auto-compiled from Williamson Master List.
 

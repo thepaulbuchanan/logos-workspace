@@ -1,10 +1,20 @@
 ---
 lemma_id: SVE-L015
 name: The Argument from Ignorance
-triggers: ["the argument"]
-ep_hash: sle_sha256_auto_117820518817b566
+triggers: []
+ep_hash: sle_sha256_auto_1ae64595687962
 ---
 
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L015) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 ### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 
