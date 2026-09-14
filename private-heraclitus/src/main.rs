@@ -7,10 +7,13 @@ mod storage;
 mod api;
 
 use axum::{routing::post, Json, Router};
-use pest::Parser; // FIX: Ingest trait into scope for SVEParser method mapping resolution
+use pest::Parser;
 use std::fs;
 use std::path::Path;
 use std::sync::Arc;
+
+// Ingest CORS middleware items from our new dependency package
+use tower_http::cors::{Any, CorsLayer};
 
 struct AppState {
     engine: engine::VerificationEngine,
@@ -79,13 +82,22 @@ async fn main() {
 
     let shared_state = Arc::new(AppState { engine: v_engine });
 
+    // FIX: Define a production-ready CORS security policy layer for browser clients
+    let cors_policy = CorsLayer::new()
+        .allow_origin(Any) // Allows requests from any origin dashboard URL layer
+        .allow_methods([axum::http::Method::POST]) // Permits post streams
+        .allow_headers([axum::http::HeaderName::from_static("content-type")]);
+
+    // Attach the CORS middleware layer to our public router mapping context
     let app = Router::new()
         .route("/api/verify", post(handle_web_verification))
+        .layer(cors_policy)
         .with_state(shared_state);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
     println!("\n[NETWORK PUBLIC GATEWAY] Server live! Listening on: http://localhost:3000");
     println!("  ↳ Endpoint Ready: POST http://localhost:3000/api/verify");
+    println!("  ↳ Security Guard: CORS layer active. Allowing browser cross-origin requests.");
     println!("Press Ctrl+C to terminate server thread session.\n");
 
     axum::serve(listener, app).await.unwrap();
