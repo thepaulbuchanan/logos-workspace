@@ -1,50 +1,64 @@
-use crate::ast::CompilerContext;
+use crate::ast::{ASTNode, CompilerContext};
 use crate::engine::ParagraphDiagnostic;
 use crate::engine::lexicon::{LogosLibThesaurus, SymbolicPrimitive};
 use std::collections::HashMap;
 
-pub fn evaluate_text_symbolically(text: &str, thesaurus: &LogosLibThesaurus) -> Option<(String, String)> {
-    let words: Vec<&str> = text.split_whitespace().collect();
+/// The Core Pure Logic Reasoner: Evaluates an input string against 
+/// the compiled mathematical SVE specification laws generated in Stage 1.
+pub fn evaluate_symbolic_ast_matching(
+    text: &str, 
+    compile_dictionary: &HashMap<String, CompilerContext>,
+    thesaurus: &LogosLibThesaurus
+) -> Option<(String, String)> {
+    let normalized = text.to_lowercase();
+    let words: Vec<&str> = normalized.split_whitespace().collect();
     
-    // Transmute raw words into a vector of their underlying abstract mathematical concepts
+    // Pass 1: Translate the natural language stream into raw Symbolic Primitives
     let symbolic_stream: Vec<SymbolicPrimitive> = words
         .iter()
         .map(|&w| thesaurus.resolve_token(w))
         .collect();
 
-    // 1. SYMBOLIC REASONING CHECK: Catch Ad Hominem shapes across the 385 compiled lemmas
-    if symbolic_stream.contains(&SymbolicPrimitive::AgentDiscredited) {
-        return Some((
-            "SVE_L102_ad_hominem".to_string(),
-            "Symbolic System Intercept: Cross-type validation error. Properties of type [Agent::Discredited] carry zero structural entailment value over truth bounds of a [Prop].".to_string()
-        ));
-    }
+    // Pass 2: Loop through all 386+ community-proven lemmas registered in memory
+    for (lemma_id, context) in compile_dictionary {
+        let clean_id = lemma_id.to_lowercase();
+        
+        // Inspect the actual compiled SVE AST nodes injected during Stage 1
+        for node in &context.ast_nodes {
+            if let ASTNode::Assertion { tactic, expression } = node {
+                
+                // Case A: The lemma requires an [Agent] type safety boundary constraint (e.g. SVE_L102)
+                if expression.contains("Agent") && tactic.contains("INHERITANCE") {
+                    if symbolic_stream.contains(&SymbolicPrimitive::AgentDiscredited) {
+                        return Some((
+                            lemma_id.clone(),
+                            "Heraclitus Evaluator Intercept: Formal type-safety constraint breach derived from compiled SVE library manifest rule blueprint.".to_string()
+                        ));
+                    }
+                }
 
-    // 2. SYMBOLIC REASONING CHECK: Catch Red Herring shape variations
-    if symbolic_stream.contains(&SymbolicPrimitive::ConceptDistraction) {
-        return Some((
-            "LOGOS_011_redherring".to_string(),
-            "Symbolic System Intercept: Semantic trajectory drift. Extraneous topic token allocation detected outside active implication bounds.".to_string()
-        ));
-    }
+                // Case B: The lemma requires a strict context relevance implication constraint (e.g. LOGOS_011)
+                if expression.contains("RELEVANCE_MATRIX") && expression.contains("FALSE") {
+                    if symbolic_stream.contains(&SymbolicPrimitive::ConceptDistraction) {
+                        return Some((
+                            lemma_id.clone(),
+                            "Heraclitus Evaluator Intercept: Semantic trajectory drift. Extraneous concept token breaks relevance matrix implication rules.".to_string()
+                        ));
+                    }
+                }
 
-    // 3. SYMBOLIC REASONING CHECK: Catch Slippery Slope domino structures
-    if symbolic_stream.contains(&SymbolicPrimitive::InferenceDominoCascade) {
-        return Some((
-            "LOGOS_012_slippery_slope".to_string(),
-            "Symbolic System Intercept: Non-deterministic domino inference chain detected without verified step-level grounding variables.".to_string()
-        ));
+                // Case C: The lemma requires multi-chain causal grounding checks (e.g. LOGOS_012, LOGOS_017)
+                if expression.contains("CAUSAL_GROUNDING") || expression.contains("IMPLICATION") {
+                    if symbolic_stream.contains(&SymbolicPrimitive::InferenceDominoCascade) {
+                        return Some((
+                            lemma_id.clone(),
+                            "Heraclitus Evaluator Intercept: Non-deterministic domino causal chain detected without step-level grounding variables.".to_string()
+                        ));
+                    }
+                }
+            }
+        }
     }
-    // ... [Keep previous AgentDiscredited and ConceptDistraction check gates exactly as they are]
-
-    // 3. SYMBOLIC REASONING CHECK: Catch Mereological/Slippery Slope Domino leaps across the 386 items
-    if symbolic_stream.contains(&SymbolicPrimitive::InferenceDominoCascade) {
-        return Some((
-            "LOGOS_016".to_string(),
-            "Symbolic System Intercept: Mereological category error. Attributes bound to a [PartComponent] possess zero linear translation guarantees over properties of an emergent [CollectiveWhole].".to_string()
-        ));
-    }
-
     None
 }
 
@@ -64,14 +78,11 @@ pub fn verify_document_narrative(
             diagnostic_details: None,
         };
 
-        // Leverage the newly established symbolic evaluation pipeline engine block
-        if let Some((failed_code, failure_detail)) = evaluate_text_symbolically(text, thesaurus) {
-            // Confirm the targeted lemma exists inside our 385 active manifest dictionary mapping index
-            if compile_dictionary.contains_key(&failed_code) || true {
-                current_diag.status = "FAILED".to_string();
-                current_diag.violation_code = Some(failed_code);
-                current_diag.diagnostic_details = Some(failure_detail);
-            }
+        // Query the upgraded symbolic engine
+        if let Some((failed_code, failure_detail)) = evaluate_symbolic_ast_matching(text, compile_dictionary, thesaurus) {
+            current_diag.status = "FAILED".to_string();
+            current_diag.violation_code = Some(failed_code);
+            current_diag.diagnostic_details = Some(failure_detail);
         }
 
         diagnostic_log.push(current_diag);
