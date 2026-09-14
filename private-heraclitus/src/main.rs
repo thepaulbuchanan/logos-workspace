@@ -50,7 +50,7 @@ fn main() {
 
     println!("Secure Client Account Instantiated: {}", session_user.corporate_domain);
     let mut session = dashboard::project::LiveWorkspaceSession::new(base_project);
-    let mut storage_ledger = storage::repository::CertificateLedger::new("./vault_database");
+    let mut storage_ledger = storage::CertificateLedger::new("./vault_database");
 
     // PHASE 2: INVARIANT SPECIFICATION LEXICON SEALING
     let mut v_engine = engine::VerificationEngine::new();
@@ -109,12 +109,12 @@ fn main() {
 
     println!("  ------------------------------------------------");
 
-    // PHASE 4: PERSISTENT CRYPTOGRAPHIC SEIT SEALING
+    // PHASE 4: PERSISTENT CRYPTOGRAPHIC CORES SEALING
     if !system_build_halted {
         println!("\nGenerating Cryptographic Logic Seal Verification Certificate...");
         let certificate = storage::VerificationCertificate::generate_seal(
             &session.active_project.project_id,
-            &session.active_project.files.raw_content,
+            &session.active_project.files[0].raw_content, // FIX: Vector index explicitly handled
             lemma_count
         );
         
