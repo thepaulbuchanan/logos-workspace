@@ -26,6 +26,26 @@ DECLARE_LEMMA(SVE_L007) {
 }
 ```
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L007) {
+  MATCH_CONTEXT(Rhetorical_Pattern["alternative truth"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L007) {
+  MATCH_CONTEXT(Rhetorical_Pattern["alternative truth"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 
 ### 2. Machine Compiled Symbolic Logos Block

@@ -26,6 +26,26 @@ DECLARE_LEMMA(SVE_L103) {
 }
 ```
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L103) {
+  MATCH_CONTEXT(Rhetorical_Pattern["hate economic growth", "want to destroy", "hate babies", "barefoot and pregnant"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L103) {
+  MATCH_CONTEXT(Rhetorical_Pattern["hate economic growth", "want to destroy", "hate babies", "barefoot and pregnant"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Constructing a simplified, weakened, or extreme caricature of an opposing researcher's position, refuting that caricature, and claiming to have systematically dismantled the original position is a direct semantic violation.
 
 ### 2. First-Order Logic Invariant
