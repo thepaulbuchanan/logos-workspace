@@ -1,265 +1,15 @@
 {
   "manifest_version": "1.0.0",
-  "global_verification_timestamp": 1789393005,
+  "global_verification_timestamp": 1789395834,
   "total_verified_lemmas": 193,
   "locked_registry": {
-    "SVE_L040": {
-      "lemma_id": "SVE_L040",
+    "SVE_L060": {
+      "lemma_id": "SVE_L060",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L073": {
-      "lemma_id": "SVE_L073",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L102_ZULIP_REJECTION_REPORT": {
-      "lemma_id": "SVE_L102_ZULIP_REJECTION_REPORT",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L132": {
-      "lemma_id": "SVE_L132",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L048": {
-      "lemma_id": "SVE_L048",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3017": {
-      "lemma_id": "SVE_L3017",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L402": {
-      "lemma_id": "SVE_L402",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L018": {
-      "lemma_id": "SVE_L018",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L097": {
-      "lemma_id": "SVE_L097",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L083": {
-      "lemma_id": "SVE_L083",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L031": {
-      "lemma_id": "SVE_L031",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L072": {
-      "lemma_id": "SVE_L072",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L093": {
-      "lemma_id": "SVE_L093",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L037": {
-      "lemma_id": "SVE_L037",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L050": {
-      "lemma_id": "SVE_L050",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L056": {
-      "lemma_id": "SVE_L056",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L121": {
-      "lemma_id": "SVE_L121",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L094": {
-      "lemma_id": "SVE_L094",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3024": {
-      "lemma_id": "SVE_L3024",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3019": {
-      "lemma_id": "SVE_L3019",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L051": {
-      "lemma_id": "SVE_L051",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L012": {
-      "lemma_id": "SVE_L012",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L301": {
-      "lemma_id": "SVE_L301",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L027": {
-      "lemma_id": "SVE_L027",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L099": {
-      "lemma_id": "SVE_L099",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L064": {
-      "lemma_id": "SVE_L064",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3014": {
-      "lemma_id": "SVE_L3014",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L088": {
-      "lemma_id": "SVE_L088",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_010_composition": {
-      "lemma_id": "LOGOS_010_composition",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L101": {
-      "lemma_id": "SVE_L101",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L008": {
-      "lemma_id": "SVE_L008",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L078": {
-      "lemma_id": "SVE_L078",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L403": {
-      "lemma_id": "SVE_L403",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L145": {
-      "lemma_id": "SVE_L145",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L007": {
-      "lemma_id": "SVE_L007",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L023": {
-      "lemma_id": "SVE_L023",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L108": {
-      "lemma_id": "SVE_L108",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L030": {
-      "lemma_id": "SVE_L030",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_006_baserate": {
-      "lemma_id": "LOGOS_006_baserate",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L106": {
-      "lemma_id": "SVE_L106",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L065": {
-      "lemma_id": "SVE_L065",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L142": {
-      "lemma_id": "SVE_L142",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L112": {
-      "lemma_id": "SVE_L112",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3013": {
-      "lemma_id": "SVE_L3013",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L020": {
-      "lemma_id": "SVE_L020",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L035": {
-      "lemma_id": "SVE_L035",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3006": {
-      "lemma_id": "SVE_L3006",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L104": {
-      "lemma_id": "SVE_L104",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L084": {
-      "lemma_id": "SVE_L084",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_007_beggingquestion": {
-      "lemma_id": "LOGOS_007_beggingquestion",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3026": {
-      "lemma_id": "SVE_L3026",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L062": {
-      "lemma_id": "SVE_L062",
+    "SVE_L3007": {
+      "lemma_id": "SVE_L3007",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -268,138 +18,23 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L124": {
-      "lemma_id": "SVE_L124",
+    "SVE_L034": {
+      "lemma_id": "SVE_L034",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L090": {
-      "lemma_id": "SVE_L090",
+    "SVE_L127": {
+      "lemma_id": "SVE_L127",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L3025": {
-      "lemma_id": "SVE_L3025",
+    "SVE_L024": {
+      "lemma_id": "SVE_L024",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L085": {
-      "lemma_id": "SVE_L085",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L028": {
-      "lemma_id": "SVE_L028",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_003_adhominem": {
-      "lemma_id": "LOGOS_003_adhominem",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L082": {
-      "lemma_id": "SVE_L082",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L016": {
-      "lemma_id": "SVE_L016",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L061": {
-      "lemma_id": "SVE_L061",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L039": {
-      "lemma_id": "SVE_L039",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L199": {
-      "lemma_id": "SVE_L199",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L052": {
-      "lemma_id": "SVE_L052",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L111": {
-      "lemma_id": "SVE_L111",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L129": {
-      "lemma_id": "SVE_L129",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L140": {
-      "lemma_id": "SVE_L140",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3012": {
-      "lemma_id": "SVE_L3012",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3005": {
-      "lemma_id": "SVE_L3005",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L105": {
-      "lemma_id": "SVE_L105",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L043": {
-      "lemma_id": "SVE_L043",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L026": {
-      "lemma_id": "SVE_L026",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L125": {
-      "lemma_id": "SVE_L125",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L136": {
-      "lemma_id": "SVE_L136",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L045": {
-      "lemma_id": "SVE_L045",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L080": {
-      "lemma_id": "SVE_L080",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3027": {
-      "lemma_id": "SVE_L3027",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L146": {
-      "lemma_id": "SVE_L146",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L036": {
-      "lemma_id": "SVE_L036",
+    "SVE_L097": {
+      "lemma_id": "SVE_L097",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -408,118 +43,18 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
+    "SVE_L3012": {
+      "lemma_id": "SVE_L3012",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L004": {
+      "lemma_id": "SVE_L004",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
     "SVE_L3023": {
       "lemma_id": "SVE_L3023",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L025": {
-      "lemma_id": "SVE_L025",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_012_slippery_slope": {
-      "lemma_id": "LOGOS_012_slippery_slope",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L011": {
-      "lemma_id": "SVE_L011",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L117": {
-      "lemma_id": "SVE_L117",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_011": {
-      "lemma_id": "LOGOS_011",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L010": {
-      "lemma_id": "SVE_L010",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3008": {
-      "lemma_id": "SVE_L3008",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L118": {
-      "lemma_id": "SVE_L118",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L110": {
-      "lemma_id": "SVE_L110",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L128": {
-      "lemma_id": "SVE_L128",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L201": {
-      "lemma_id": "SVE_L201",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_008_hastygeneralization": {
-      "lemma_id": "LOGOS_008_hastygeneralization",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_009_strawman": {
-      "lemma_id": "LOGOS_009_strawman",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3022": {
-      "lemma_id": "SVE_L3022",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L999_ZULIP_REJECTION_REPORT": {
-      "lemma_id": "SVE_L999_ZULIP_REJECTION_REPORT",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3009": {
-      "lemma_id": "SVE_L3009",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L046": {
-      "lemma_id": "SVE_L046",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L070": {
-      "lemma_id": "SVE_L070",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L086": {
-      "lemma_id": "SVE_L086",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L079": {
-      "lemma_id": "SVE_L079",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L049": {
-      "lemma_id": "SVE_L049",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L041": {
-      "lemma_id": "SVE_L041",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -528,8 +63,18 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L044": {
-      "lemma_id": "SVE_L044",
+    "LOGOS_011": {
+      "lemma_id": "LOGOS_011",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L136": {
+      "lemma_id": "SVE_L136",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L001": {
+      "lemma_id": "SVE_L001",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -538,28 +83,23 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L053": {
-      "lemma_id": "SVE_L053",
+    "SVE_L3024": {
+      "lemma_id": "SVE_L3024",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L005": {
-      "lemma_id": "SVE_L005",
+    "SVE_L115": {
+      "lemma_id": "SVE_L115",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L068": {
-      "lemma_id": "SVE_L068",
+    "SVE_L003": {
+      "lemma_id": "SVE_L003",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L114": {
-      "lemma_id": "SVE_L114",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L130": {
-      "lemma_id": "SVE_L130",
+    "SVE_L058": {
+      "lemma_id": "SVE_L058",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -573,363 +113,8 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L139": {
-      "lemma_id": "SVE_L139",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3021": {
-      "lemma_id": "SVE_L3021",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L601": {
-      "lemma_id": "SVE_L601",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L001": {
-      "lemma_id": "SVE_L001",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_002_adhoc": {
-      "lemma_id": "LOGOS_002_adhoc",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L029": {
-      "lemma_id": "SVE_L029",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L009": {
-      "lemma_id": "SVE_L009",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L109": {
-      "lemma_id": "SVE_L109",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L003": {
-      "lemma_id": "SVE_L003",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L102": {
-      "lemma_id": "SVE_L102",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L076": {
-      "lemma_id": "SVE_L076",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L006": {
-      "lemma_id": "SVE_L006",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L104_ZULIP_REJECTION_REPORT": {
-      "lemma_id": "SVE_L104_ZULIP_REJECTION_REPORT",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L077": {
-      "lemma_id": "SVE_L077",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3004": {
-      "lemma_id": "SVE_L3004",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L115": {
-      "lemma_id": "SVE_L115",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L002": {
-      "lemma_id": "SVE_L002",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L103": {
-      "lemma_id": "SVE_L103",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3018": {
-      "lemma_id": "SVE_L3018",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L095": {
-      "lemma_id": "SVE_L095",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L116": {
-      "lemma_id": "SVE_L116",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L047": {
-      "lemma_id": "SVE_L047",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L134": {
-      "lemma_id": "SVE_L134",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L137": {
-      "lemma_id": "SVE_L137",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L143": {
-      "lemma_id": "SVE_L143",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L096": {
-      "lemma_id": "SVE_L096",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L054": {
-      "lemma_id": "SVE_L054",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L089": {
-      "lemma_id": "SVE_L089",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L100": {
-      "lemma_id": "SVE_L100",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3002": {
-      "lemma_id": "SVE_L3002",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L131": {
-      "lemma_id": "SVE_L131",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L004": {
-      "lemma_id": "SVE_L004",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L119": {
-      "lemma_id": "SVE_L119",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L092": {
-      "lemma_id": "SVE_L092",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3016": {
-      "lemma_id": "SVE_L3016",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L024": {
-      "lemma_id": "SVE_L024",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L034": {
-      "lemma_id": "SVE_L034",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L022": {
-      "lemma_id": "SVE_L022",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L059": {
-      "lemma_id": "SVE_L059",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L057": {
-      "lemma_id": "SVE_L057",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L042": {
-      "lemma_id": "SVE_L042",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L123": {
-      "lemma_id": "SVE_L123",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L087": {
-      "lemma_id": "SVE_L087",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "LOGOS_001": {
-      "lemma_id": "LOGOS_001",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L071": {
-      "lemma_id": "SVE_L071",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L127": {
-      "lemma_id": "SVE_L127",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L144": {
-      "lemma_id": "SVE_L144",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L122": {
-      "lemma_id": "SVE_L122",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L033": {
-      "lemma_id": "SVE_L033",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L074": {
-      "lemma_id": "SVE_L074",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L058": {
-      "lemma_id": "SVE_L058",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L113": {
-      "lemma_id": "SVE_L113",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L060": {
-      "lemma_id": "SVE_L060",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L014": {
-      "lemma_id": "SVE_L014",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L138": {
-      "lemma_id": "SVE_L138",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3020": {
-      "lemma_id": "SVE_L3020",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L069": {
-      "lemma_id": "SVE_L069",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3010": {
-      "lemma_id": "SVE_L3010",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L091": {
-      "lemma_id": "SVE_L091",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L075": {
-      "lemma_id": "SVE_L075",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3003": {
-      "lemma_id": "SVE_L3003",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L019": {
-      "lemma_id": "SVE_L019",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L3007": {
-      "lemma_id": "SVE_L3007",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L501": {
-      "lemma_id": "SVE_L501",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L067": {
-      "lemma_id": "SVE_L067",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L055": {
-      "lemma_id": "SVE_L055",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L021": {
-      "lemma_id": "SVE_L021",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L038": {
-      "lemma_id": "SVE_L038",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L066": {
-      "lemma_id": "SVE_L066",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L126": {
-      "lemma_id": "SVE_L126",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L032": {
-      "lemma_id": "SVE_L032",
-      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "compiled_nodes_count": 0
-    },
-    "SVE_L017": {
-      "lemma_id": "SVE_L017",
+    "SVE_L124": {
+      "lemma_id": "SVE_L124",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -938,13 +123,293 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L120": {
-      "lemma_id": "SVE_L120",
+    "SVE_L067": {
+      "lemma_id": "SVE_L067",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L3015": {
-      "lemma_id": "SVE_L3015",
+    "SVE_L088": {
+      "lemma_id": "SVE_L088",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L199": {
+      "lemma_id": "SVE_L199",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L131": {
+      "lemma_id": "SVE_L131",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L054": {
+      "lemma_id": "SVE_L054",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L062": {
+      "lemma_id": "SVE_L062",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L119": {
+      "lemma_id": "SVE_L119",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L102": {
+      "lemma_id": "SVE_L102",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L026": {
+      "lemma_id": "SVE_L026",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L045": {
+      "lemma_id": "SVE_L045",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L082": {
+      "lemma_id": "SVE_L082",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L143": {
+      "lemma_id": "SVE_L143",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L403": {
+      "lemma_id": "SVE_L403",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L501": {
+      "lemma_id": "SVE_L501",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L017": {
+      "lemma_id": "SVE_L017",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L111": {
+      "lemma_id": "SVE_L111",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L086": {
+      "lemma_id": "SVE_L086",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L095": {
+      "lemma_id": "SVE_L095",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L018": {
+      "lemma_id": "SVE_L018",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L049": {
+      "lemma_id": "SVE_L049",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L108": {
+      "lemma_id": "SVE_L108",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L301": {
+      "lemma_id": "SVE_L301",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L146": {
+      "lemma_id": "SVE_L146",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L038": {
+      "lemma_id": "SVE_L038",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3008": {
+      "lemma_id": "SVE_L3008",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3027": {
+      "lemma_id": "SVE_L3027",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L041": {
+      "lemma_id": "SVE_L041",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L014": {
+      "lemma_id": "SVE_L014",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L065": {
+      "lemma_id": "SVE_L065",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L019": {
+      "lemma_id": "SVE_L019",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L083": {
+      "lemma_id": "SVE_L083",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L043": {
+      "lemma_id": "SVE_L043",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L126": {
+      "lemma_id": "SVE_L126",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L145": {
+      "lemma_id": "SVE_L145",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L139": {
+      "lemma_id": "SVE_L139",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L100": {
+      "lemma_id": "SVE_L100",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L089": {
+      "lemma_id": "SVE_L089",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L009": {
+      "lemma_id": "SVE_L009",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3002": {
+      "lemma_id": "SVE_L3002",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L030": {
+      "lemma_id": "SVE_L030",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L061": {
+      "lemma_id": "SVE_L061",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3016": {
+      "lemma_id": "SVE_L3016",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_001": {
+      "lemma_id": "LOGOS_001",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3020": {
+      "lemma_id": "SVE_L3020",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_009_strawman": {
+      "lemma_id": "LOGOS_009_strawman",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L064": {
+      "lemma_id": "SVE_L064",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L092": {
+      "lemma_id": "SVE_L092",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L144": {
+      "lemma_id": "SVE_L144",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L028": {
+      "lemma_id": "SVE_L028",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3006": {
+      "lemma_id": "SVE_L3006",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L105": {
+      "lemma_id": "SVE_L105",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L022": {
+      "lemma_id": "SVE_L022",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L102_ZULIP_REJECTION_REPORT": {
+      "lemma_id": "SVE_L102_ZULIP_REJECTION_REPORT",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L010": {
+      "lemma_id": "SVE_L010",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L109": {
+      "lemma_id": "SVE_L109",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3022": {
+      "lemma_id": "SVE_L3022",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L090": {
+      "lemma_id": "SVE_L090",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L118": {
+      "lemma_id": "SVE_L118",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -953,8 +418,413 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L081": {
-      "lemma_id": "SVE_L081",
+    "SVE_L039": {
+      "lemma_id": "SVE_L039",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L104": {
+      "lemma_id": "SVE_L104",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L114": {
+      "lemma_id": "SVE_L114",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L005": {
+      "lemma_id": "SVE_L005",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L074": {
+      "lemma_id": "SVE_L074",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L112": {
+      "lemma_id": "SVE_L112",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L076": {
+      "lemma_id": "SVE_L076",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3003": {
+      "lemma_id": "SVE_L3003",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L085": {
+      "lemma_id": "SVE_L085",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3010": {
+      "lemma_id": "SVE_L3010",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L037": {
+      "lemma_id": "SVE_L037",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L094": {
+      "lemma_id": "SVE_L094",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L006": {
+      "lemma_id": "SVE_L006",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_008_hastygeneralization": {
+      "lemma_id": "LOGOS_008_hastygeneralization",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L402": {
+      "lemma_id": "SVE_L402",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L002": {
+      "lemma_id": "SVE_L002",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_007_beggingquestion": {
+      "lemma_id": "LOGOS_007_beggingquestion",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L016": {
+      "lemma_id": "SVE_L016",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L079": {
+      "lemma_id": "SVE_L079",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L073": {
+      "lemma_id": "SVE_L073",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L066": {
+      "lemma_id": "SVE_L066",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_006_baserate": {
+      "lemma_id": "LOGOS_006_baserate",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3013": {
+      "lemma_id": "SVE_L3013",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L096": {
+      "lemma_id": "SVE_L096",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L055": {
+      "lemma_id": "SVE_L055",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3026": {
+      "lemma_id": "SVE_L3026",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L130": {
+      "lemma_id": "SVE_L130",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L140": {
+      "lemma_id": "SVE_L140",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L059": {
+      "lemma_id": "SVE_L059",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L137": {
+      "lemma_id": "SVE_L137",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L093": {
+      "lemma_id": "SVE_L093",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3025": {
+      "lemma_id": "SVE_L3025",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3015": {
+      "lemma_id": "SVE_L3015",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L044": {
+      "lemma_id": "SVE_L044",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L033": {
+      "lemma_id": "SVE_L033",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L053": {
+      "lemma_id": "SVE_L053",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L099": {
+      "lemma_id": "SVE_L099",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L040": {
+      "lemma_id": "SVE_L040",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L046": {
+      "lemma_id": "SVE_L046",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3019": {
+      "lemma_id": "SVE_L3019",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3004": {
+      "lemma_id": "SVE_L3004",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L113": {
+      "lemma_id": "SVE_L113",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L080": {
+      "lemma_id": "SVE_L080",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L132": {
+      "lemma_id": "SVE_L132",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3005": {
+      "lemma_id": "SVE_L3005",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L069": {
+      "lemma_id": "SVE_L069",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L128": {
+      "lemma_id": "SVE_L128",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3021": {
+      "lemma_id": "SVE_L3021",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L125": {
+      "lemma_id": "SVE_L125",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3009": {
+      "lemma_id": "SVE_L3009",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L116": {
+      "lemma_id": "SVE_L116",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L601": {
+      "lemma_id": "SVE_L601",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L122": {
+      "lemma_id": "SVE_L122",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L052": {
+      "lemma_id": "SVE_L052",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L084": {
+      "lemma_id": "SVE_L084",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L110": {
+      "lemma_id": "SVE_L110",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L120": {
+      "lemma_id": "SVE_L120",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L029": {
+      "lemma_id": "SVE_L029",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L106": {
+      "lemma_id": "SVE_L106",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L078": {
+      "lemma_id": "SVE_L078",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L117": {
+      "lemma_id": "SVE_L117",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L051": {
+      "lemma_id": "SVE_L051",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L072": {
+      "lemma_id": "SVE_L072",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L032": {
+      "lemma_id": "SVE_L032",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L121": {
+      "lemma_id": "SVE_L121",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L042": {
+      "lemma_id": "SVE_L042",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_012": {
+      "lemma_id": "LOGOS_012",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L031": {
+      "lemma_id": "SVE_L031",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L134": {
+      "lemma_id": "SVE_L134",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3014": {
+      "lemma_id": "SVE_L3014",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L021": {
+      "lemma_id": "SVE_L021",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L104_ZULIP_REJECTION_REPORT": {
+      "lemma_id": "SVE_L104_ZULIP_REJECTION_REPORT",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L047": {
+      "lemma_id": "SVE_L047",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L025": {
+      "lemma_id": "SVE_L025",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3011": {
+      "lemma_id": "SVE_L3011",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L123": {
+      "lemma_id": "SVE_L123",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L201": {
+      "lemma_id": "SVE_L201",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_010_composition": {
+      "lemma_id": "LOGOS_010_composition",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L012": {
+      "lemma_id": "SVE_L012",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L027": {
+      "lemma_id": "SVE_L027",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L068": {
+      "lemma_id": "SVE_L068",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L077": {
+      "lemma_id": "SVE_L077",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
@@ -963,8 +833,138 @@
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     },
-    "SVE_L3011": {
-      "lemma_id": "SVE_L3011",
+    "SVE_L050": {
+      "lemma_id": "SVE_L050",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3017": {
+      "lemma_id": "SVE_L3017",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L023": {
+      "lemma_id": "SVE_L023",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L075": {
+      "lemma_id": "SVE_L075",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_002_adhoc": {
+      "lemma_id": "LOGOS_002_adhoc",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L035": {
+      "lemma_id": "SVE_L035",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L008": {
+      "lemma_id": "SVE_L008",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L036": {
+      "lemma_id": "SVE_L036",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "LOGOS_003_adhominem": {
+      "lemma_id": "LOGOS_003_adhominem",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L056": {
+      "lemma_id": "SVE_L056",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L142": {
+      "lemma_id": "SVE_L142",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L087": {
+      "lemma_id": "SVE_L087",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L070": {
+      "lemma_id": "SVE_L070",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L138": {
+      "lemma_id": "SVE_L138",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L103": {
+      "lemma_id": "SVE_L103",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L011": {
+      "lemma_id": "SVE_L011",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L081": {
+      "lemma_id": "SVE_L081",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L101": {
+      "lemma_id": "SVE_L101",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L999_ZULIP_REJECTION_REPORT": {
+      "lemma_id": "SVE_L999_ZULIP_REJECTION_REPORT",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L020": {
+      "lemma_id": "SVE_L020",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L057": {
+      "lemma_id": "SVE_L057",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L129": {
+      "lemma_id": "SVE_L129",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L091": {
+      "lemma_id": "SVE_L091",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L071": {
+      "lemma_id": "SVE_L071",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L3018": {
+      "lemma_id": "SVE_L3018",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L048": {
+      "lemma_id": "SVE_L048",
+      "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiled_nodes_count": 0
+    },
+    "SVE_L007": {
+      "lemma_id": "SVE_L007",
       "structural_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "compiled_nodes_count": 0
     }

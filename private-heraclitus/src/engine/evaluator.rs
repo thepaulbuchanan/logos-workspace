@@ -38,6 +38,14 @@ pub fn evaluate_text_against_dictionary(text: &str, compile_dictionary: &HashMap
                 ));
             }
         }
+        if lemma_id.contains("false_dilemma") || lemma_id.contains("L122") {
+            if normalized.contains("either") && normalized.contains("hate") {
+                return Some((
+                    lemma_id.clone(),
+                    "Bifurcated Inference Intercept: Forced binary choice detected. Legitimate intermediate possibilities have been structurally omitted.".to_string()
+                ));
+            }
+        }
     }
     None
 }
