@@ -117,3 +117,57 @@ ASSERT_EVALUATION(contextNodeA == contextNodeB) ⟹
 The automated linter executed on incoming Pull Requests checks this file format using a strict two-pass compile test:
 1. **Pass 1 (Linguistic Structure):** Validates that all variables match the casing constraints.
 2. **Pass 2 (Type Integrity):** Compiles the logical operators into a directed graph, ensuring that no `DEF` statement introduces an open-ended path containing unassigned dependencies (`sorryAx`).
+
+# Upgraded Specification Contract & Linter Rules v1.1
+
+To maintain absolute type-safety across our scaled collection of 198 lemmas, all community-submitted Pull Requests must adhere to a strict dual-branch layout contract. The automated linter (`Heraclitus Ingestion Gate`) will immediately reject any submission that deviates from this alignment.
+
+---
+
+## 1. Branch A: Pure Human Definitions Layout
+Every markdown file placed within the `public-logoslib/definitions/` path must lead with a clean YAML metadata front-matter block wrapped between triple-hyphen fencelines (`---`).
+
+### Mandatory Front-Matter Attributes:
+*   `id`: A unique, serialized identifier string prefixed by the project token (e.g., `LOGOS_011`, `SVE_L105`).
+*   `name`: The canonical human-readable name of the reasoning anomaly using UpperCamelCase spacing.
+*   `status`: Must be set explicitly to `SEED_PROSE_VERIFIED` to trigger the engineering audit pass.
+
+```yaml
+---
+id: LOGOS_011
+name: RedHerringFallacy
+aliases: [misdirection, smoke_screen]
+status: SEED_PROSE_VERIFIED
+---
+```
+
+---
+
+## 2. Branch B: Machine-Parsable Specification Layout
+The corresponding code file placed inside `public-logoslib/specs/` must contain the identical front-matter envelope block, immediately followed by an enclosed, executable ````logos-spec```` markdown block.
+
+### Absolute Grammar Invariants:
+1. **The Core Primitive Mapping:** Variable declarations must bind exclusively to native compiler types (`Prop`, `Agent`, `Token`, `Scope`, `Matrix`, `Float`). Using an unmapped custom string token will downgrade the file to an generic uncodified stub state.
+2. **Deterministic Operator Flow:** Conditional logic pathways, inference claims, and value comparisons must use our invariant token sets:
+   *   `⟹` (Implication)
+   *   `↛` (Contradiction / Logical Obstruction)
+   *   `==` / `!=` (Identity Equivalence and Identity Variance)
+   *   `<` / `>` / `<=` / gte_op (`>=`) (Numerical and Probabilistic Inequality Invariants)
+
+### Reference Syntax Blueprint:
+```logos-spec
+CONSTANT BaselineImplication : Scope
+VARIABLE ExtraneousVariable : Token
+
+DEF Fallacy.RedHerring.check (s : Scope) : Prop :=
+  ASSERT_CONTEXT_BOUND(s) ∧
+  ASSERT_RELEVANCE_MATRIX(ExtraneousVariable ⟹ BaselineImplication) == FALSE ⟹
+  THROW(LOGOS_ERR_011, "Semantic trajectory drift detected. Context compromised by extraneous token.")
+```
+
+---
+
+## 3. The Continuous Integration (CI) Reject Protocol
+When a contributor opens a Pull Request on GitHub:
+* **The Deduplication Test:** The validation runner strips user-variable labels to generate a normalized layout hash. If this hash matches any of our 198 existing lemmas, the PR is automatically flagged as a duplicate, closed, and mapped back to the canonical entry.
+* **The Grammar Validation Pass:** The `pest` parsing matrix checks every expression character. If an unexpected connective or a missing operator closure (such as an unclosed parenthetical delimiter) is discovered, the build halts with a detailed error stack output.
