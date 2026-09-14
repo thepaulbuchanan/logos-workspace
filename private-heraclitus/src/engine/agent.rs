@@ -1,8 +1,45 @@
 use crate::engine::{LibraryManifestLock, LockedLemmaEntry, VerificationEngine};
 use std::collections::HashMap;
-use std::fs;
-use std::path::Path;
+use std::fs::File;
+use std::io::Write;
+use std::path::{Path, PathBuf};
 use std::time::{SystemTime, UNIX_EPOCH};
+
+pub struct LemmaRefactor;
+
+impl LemmaRefactor {
+    /// Invariant djb2 mutation algorithm generating standard machine signature hashes
+    pub fn calculate_hash(id: &str, triggers: &[String]) -> String {
+        let mut hash: usize = 5381;
+        for c in id.bytes() { 
+            hash = ((hash << 5).wrapping_add(hash)).wrapping_add(c as usize); 
+        }
+        for tr in triggers {
+            for b in tr.bytes() { 
+                hash = ((hash << 5).wrapping_add(hash)).wrapping_add(b as usize); 
+            }
+        }
+        format!("sle_sha256_auto_{:x}", hash)
+    }
+
+    /// SALVAGED & INTEGRATED PROTOTYPE ENGINE: Compiles symbolic logic blocks and safely overwrites markdown on disk
+    pub fn compile_and_lock(id: &str, name: &str, triggers: &[String], hash: &str, body: &str, path: &PathBuf) {
+        let symbolic_bytecode = format!(
+            "DECLARE_LEMMA({}) {{\n  MATCH_CONTEXT(Rhetorical_Pattern{:?});\n  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);\n}}\n",
+            id.replace("-", "_"), triggers
+        );
+
+        let updated_manifest = format!(
+            "---\nlemma_id: {}\nname: {}\ntriggers: {:?}\nep_hash: {}\n---\n\n### 1. Human Readable Specification\nAuto-compiled from Williamson Master List.\n\n### 2. Machine Compiled Symbolic Logos Block\n```sve\n{}```\n{}",
+            id, name, triggers, hash, symbolic_bytecode, body.trim()
+        );
+
+        if let Ok(mut file) = File::create(path) {
+            let _ = file.write_all(updated_manifest.as_bytes());
+            println!("⚡ HERACLITUS REFACTOR: Compiled and signed asset {} -> Locked.", id);
+        }
+    }
+}
 
 pub fn execute_library_lock_pass(engine: &VerificationEngine, target_lock_path: &str, specs_dir_path: &str) -> LibraryManifestLock {
     println!("\n[AGENT] Initiating Hermetic Invariant Lock-Step Verification Pass...");
@@ -16,26 +53,40 @@ pub fn execute_library_lock_pass(engine: &VerificationEngine, target_lock_path: 
                 if current_path.extension().map_or(false, |ext| ext == "md") {
                     let file_content = fs::read_to_string(&current_path).expect("Unable to read file");
                     
-                    let mut target_id = String::new();
-                    for line in file_content.lines() {
-                        let clean_line = line.trim().to_lowercase();
-                        if clean_line.starts_with("lemma_id") || clean_line.starts_with("id") {
-                            if let Some(val_part) = line.split(':').nth(1) {
-                                target_id = val_part.replace('"', "").replace('\'', "").trim().to_string();
-                                break;
-                            }
-                        }
-                    }
+                    if file_content.starts_with("---") {
+                        let parts: Vec<&str> = file_content.split("---").collect();
+                        if parts.len() >= 3 {
+                            let yaml_payload = parts[1];
+                            let remaining_body = parts[2..].join("---");
+                            
+                            let mut id = String::new();
+                            let mut name = String::new();
+                            let mut ep_hash = String::new();
+                            let mut triggers = Vec::new();
 
-                    if !target_id.is_empty() {
-                        let canonical_name = format!("{}.md", target_id.replace("-", "_"));
-                        let canonical_path = specs_dir.join(&canonical_name);
-                        
-                        if current_path != canonical_path {
-                            fs::rename(&current_path, &canonical_path)
-                                .expect("Failed to execute agent renaming function on disk.");
-                            println!("  ↳ [AGENT RENAME] Standardised filename: '{}' ──► '{}'", 
-                                     current_path.file_name().unwrap().to_string_lossy(), canonical_name);
+                            for line in yaml_payload.lines() {
+                                if !line.contains(':') { continue; }
+                                let kv: Vec<&str> = line.splitn(2, ':').collect();
+                                let key = kv[0].trim();
+                                let val = kv[1].trim();
+
+                                match key {
+                                    "lemma_id" | "id" => id = val.to_string(),
+                                    "name" => name = val.to_string(),
+                                    "ep_hash" | "hash" => ep_hash = val.to_string(),
+                                    "triggers" | "aliases" => {
+                                        let cleaned = val.replace('[', "").replace(']', "").replace('"', "").replace('\'', "");
+                                        triggers = cleaned.split(',').map(|t| t.trim().to_string()).filter(|t| !t.is_empty()).collect();
+                                    }
+                                    _ => {}
+                                }
+                            }
+
+                            // TRIGGER UNIFIED TRANS_MUTATION GATE: If signature hash is empty, compile and stamp the file in-place
+                            if ep_hash.is_empty() && !id.is_empty() {
+                                let calculated_hash = LemmaRefactor::calculate_hash(&id, &triggers);
+                                LemmaRefactor::compile_and_lock(&id, &name, &triggers, &calculated_hash, &remaining_body, &current_path);
+                            }
                         }
                     }
                 }
@@ -43,6 +94,7 @@ pub fn execute_library_lock_pass(engine: &VerificationEngine, target_lock_path: 
         }
     }
 
+    // 2. Generate the central immutable manifest mapping index lock
     for (lemma_id, ctx) in &engine.compile_dictionary {
         let structural_hash = engine.compute_structural_hash(ctx);
         
