@@ -1,4 +1,4 @@
-use crate::engine::{ParagraphDiagnostic, UnifiedLemma};
+use crate::engine::{ParagraphDiagnostic, UnifiedLemma, EpistemicPillar};
 use crate::engine::lexicon::LogosLibThesaurus;
 use regex::Regex;
 use std::fs;
@@ -141,8 +141,6 @@ pub fn evaluate_block_production(
     }
 
     let base_op = if lower_cleaned.contains("predict") { "Project" } else if lower_cleaned.contains("trigger") { "Imply" } else { "Unknown" };
-    
-    // FIX: Added required 'if' keyword before condition variable
     let final_op = if is_conjecture_framed { format!("NOT(Operator[{}])", base_op) } else { format!("Operator[{}]", base_op) };
 
     let summary = format!("- **Paragraph {}**: 🟢 Verified Narrative Sound\n", index);
@@ -170,18 +168,17 @@ pub fn verify_paper_lake_build(
             prose_clean = false;
         }
         collected_sve_blocks.push_str(&sve_block);
-        // ... [Keep previous block evaluation code exactly as it is]
-        
+
         let pillar_classification = if passed {
             EpistemicPillar::UnclassifiedSoundness
         } else {
             let code_str = sve_block.to_uppercase();
             if code_str.contains("L301") || code_str.contains("LOGOS_014") {
-                crate::engine::EpistemicPillar::Epistemology
+                EpistemicPillar::Epistemology
             } else if code_str.contains("L601") || code_str.contains("L401") || code_str.contains("LOGOS_016") {
-                crate::engine::EpistemicPillar::Ontology
+                EpistemicPillar::Ontology
             } else {
-                crate::engine::EpistemicPillar::Phenomenology // Fallback target for math, timelines (L402), and stats
+                EpistemicPillar::Phenomenology
             }
         };
 
@@ -193,20 +190,7 @@ pub fn verify_paper_lake_build(
             diagnostic_details: Some(text.clone()),
             generated_sve_block: sve_block,
             ir_trace_log: ir_trace,
-            epistemic_pillar: pillar_classification, // Injecting explicit philosophical categorization tokens
-        });
-    }
-
-    // ... [Keep the rest of your evaluator file exactly as it was]
-
-        diagnostic_log.push(ParagraphDiagnostic {
-            paragraph_index: index,
-            segment_text: summary,
-            status: if passed { "PASSED".to_string() } else { "FAILED".to_string() },
-            violation_code: if passed { None } else { Some("LOGOS_FAULT".to_string()) },
-            diagnostic_details: Some(text.clone()),
-            generated_sve_block: sve_block,
-            ir_trace_log: ir_trace,
+            epistemic_pillar: pillar_classification,
         });
     }
 
