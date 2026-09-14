@@ -1,0 +1,38 @@
+---
+lemma_id: SVE-L053
+name: The False Analogy
+triggers: ["the false"]
+ep_hash: sle_sha256_auto_fcfc473436576550
+---
+
+### 1. Human Readable Specification
+Auto-compiled from committed LogosLib community manifest parameters.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L053) {
+  MATCH_CONTEXT(Rhetorical_Pattern["the false"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+
+### 3. Verification Context
+### 1. Human Readable Specification
+Auto-extracted from reference materials.
+
+### 2. Verification Context
+53. The False Analogy: The fallacy of incorrectly comparing one thing to another in order to draw a false conclusion.
+E.g., "Just like an alley cat needs to prowl, a normal adult can’t be tied down to one single lover." The opposite of
+this fallacy is the Sui Generis Fallacy (also, Differance), a postmodern stance that rejects the validity of analogy
+and of inductive reasoning altogether because any given person, place, thing or idea under consideration is "sui
+generis" i.e., different and unique, in a class unto itself.
+
+# AUTO-GENERATED MACHINE REFACTORING LAYERS
+
+```logos-spec
+CONSTANT SVE_L053_auto_generated_Context : Scope
+VARIABLE SVE_L053_auto_generated_Assertion : Prop
+
+DEF SVE_L053_auto_generated.check (s : Scope) : Prop :=
+  ASSERT_CONTEXT_BOUND(s) ⟹ THROW(LOGOS_ERR_GENERIC, "Legacy uncodified verification checkpoint reached.")
+```
