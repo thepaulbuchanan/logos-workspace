@@ -1,2 +1,2 @@
 pub mod user;
-pub use user::{UserAccount, AccountTier, CryptographicAuthRegistry};
+pub use user::{AccountTier, CryptographicAuthRegistry};

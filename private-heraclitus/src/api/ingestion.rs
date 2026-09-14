@@ -1,4 +1,4 @@
-pub mod latex;
+use crate::api::latex;
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub enum IngestionType {
@@ -78,6 +78,7 @@ impl IngestionPayload {
             }
         };
 
+        // Fix: Omit the explicit type annotations inside the mapping closure
         intermediate_paragraphs
             .into_iter()
             .map(|p| self.strip_rhetorical_waste(&p))
