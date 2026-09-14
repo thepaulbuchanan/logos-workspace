@@ -79,22 +79,30 @@ async fn handle_web_verification(
 
     println!("[SECURITY GATE] Access Authorized. User identity confirmed as: '{}'", active_user.uuid);
 
+    let document_payload = if payload.text_content.starts_with("%PDF") {
+        api::IngestionPayload::new(
+            api::IngestionType::AttachmentPDF,
+            payload.text_content.as_bytes().to_vec()
+        )
+    } else {
+        api::IngestionPayload::new(
+            api::IngestionType::RawTextStream,
+            payload.text_content.as_bytes().to_vec()
+        )
+    };
+
+    let clean_paragraphs = document_payload.extract_clean_paragraphs();
+    
     {
         let mut session_lock = state.session.lock().unwrap();
         let mutation = dashboard::project::EditorStreamEvent {
             file_target: "collab_draft.tex".to_string(),
-            line_delta: payload.text_content.clone(),
+            line_delta: clean_paragraphs.join("\n\n"),
             actor_uuid: active_user.uuid.clone(),
         };
         let _ = session_lock.process_shared_stream_mutation(mutation);
     }
 
-    let document_payload = api::IngestionPayload::new(
-        api::IngestionType::RawTextStream,
-        payload.text_content.as_bytes().to_vec()
-    );
-
-    let clean_paragraphs = document_payload.extract_clean_paragraphs();
     let (_diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
 
     Ok(Json(verdict))
