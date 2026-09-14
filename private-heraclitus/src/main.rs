@@ -10,11 +10,13 @@ use axum::{routing::post, Json, Router};
 use pest::Parser;
 use std::fs;
 use std::path::Path;
-use std::sync::Arc;
+use std::sync::{Arc, Mutex}; // NEW: Mutex primitive to safely read/write workspace state across threads
 use tower_http::cors::{Any, CorsLayer};
 
 struct AppState {
     engine: engine::VerificationEngine,
+    // NEW: Atomic wrapping to protect live collaborator cursor metadata matrices from data races
+    session: Mutex<dashboard::project::LiveWorkspaceSession>,
 }
 
 fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
@@ -24,13 +26,11 @@ fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::Verificati
         lemma_id = file_stem.replace("-", "_");
     }
     
-    // Check if the legacy file is completely missing our required executable block fence
     let has_spec_block = parser::extract_logos_spec_from_markdown(&file_content).is_some();
 
     let final_content = if has_spec_block {
         file_content
     } else {
-        // AUTOMATED MACHINE SYNTHESIS: Transmute the uncodified legacy asset into a formal SVE spec
         let mut continuous_spec = file_content.clone();
         continuous_spec.push_str("\n\n# AUTO-GENERATED MACHINE REFACTORING LAYERS\n\n```logos-spec\n");
         continuous_spec.push_str(&format!("CONSTANT {}_Context : Scope\n", lemma_id));
@@ -39,7 +39,7 @@ fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::Verificati
         continuous_spec.push_str("  ASSERT_CONTEXT_BOUND(s) ⟹ THROW(LOGOS_ERR_GENERIC, \"Legacy uncodified verification checkpoint reached.\")\n");
         continuous_spec.push_str("```\n");
         
-        fs::write(path, &continuous_spec).expect("Failed to write synthesized specification layer directly to hard drive.");
+        fs::write(path, &continuous_spec).expect("Failed to write synthesized specification layer.");
         continuous_spec
     };
 
@@ -69,6 +69,46 @@ async fn handle_web_verification(
     Json(diagnostics)
 }
 
+/// Dynamic JSON Model mapping incoming real-time network cursor streams [4]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
+struct CursorUpdateRequest {
+    pub user_uuid: String,
+    pub line_index: usize,
+    pub character_offset: usize,
+}
+
+/// NEW Live Endpoint: Acquires state lock, synchronizes editor offset data, and reports status vectors [4]
+// ... [Keep previous main.rs functions exactly as they are]
+
+async fn handle_cursor_sync(
+    axum::extract::State(state): axum::extract::State<Arc<AppState>>,
+    Json(payload): Json<CursorUpdateRequest>,
+) -> Json<String> {
+    let mut session_lock = state.session.lock().unwrap();
+    
+    // FIX: Refer to re-exported type structures directly via dashboard namespace
+    let coords = dashboard::LiveCursorCoordinates {
+        line_index: payload.line_index,
+        character_offset: payload.character_offset,
+    };
+
+    match session_lock.update_collaborator_cursor(&payload.user_uuid, coords) {
+        Ok(_) => Json("{\"status\": \"SYNC_SUCCESS\"}".to_string()),
+        Err(_) => {
+            session_lock.register_collaborator(dashboard::CollaboratorSession {
+                user_uuid: payload.user_uuid.clone(),
+                account_tier: auth::AccountTier::FreeFun,
+                active_role: dashboard::WorkspaceRole::Editor,
+                active_cursor: None,
+            });
+            Json("{\"status\": \"REGISTERED_AND_SYNCED\"}".to_string())
+        }
+    }
+}
+
+// ... [Keep the rest of your main function exactly as it was]
+
+
 #[tokio::main]
 async fn main() {
     println!("==================================================");
@@ -76,15 +116,10 @@ async fn main() {
     println!("==================================================");
 
     let mut v_engine = engine::VerificationEngine::new();
-    
-    // Target directories mapping the entire multi-year corpus portfolio layout
     let target_specs_dir = Path::new("../public-logoslib/specs");
     let legacy_svi_dir = Path::new("../archive-legacy/01-SVI-Prototype");
     let legacy_mvp_dir = Path::new("../archive-legacy/02-Heraclitus-MVP/LogosLib");
 
-    println!("[HARVEST PASS] Scanning legacy directories to ingest uncodified files...");
-    
-    // Batch Ingest from Historical Attempt 1 (SVI) if present
     if legacy_svi_dir.is_dir() {
         if let Ok(entries) = fs::read_dir(legacy_svi_dir) {
             for entry in entries.flatten() {
@@ -98,7 +133,6 @@ async fn main() {
         }
     }
 
-    // Batch Ingest from Historical Attempt 2 (MVP) if present
     if legacy_mvp_dir.is_dir() {
         if let Ok(entries) = fs::read_dir(legacy_mvp_dir) {
             for entry in entries.flatten() {
@@ -112,7 +146,6 @@ async fn main() {
         }
     }
 
-    // PHASE 2: MASS SYNTHESIS AND DIRECTORY RE-NAMING ENGINE
     if target_specs_dir.is_dir() {
         if let Ok(entries) = fs::read_dir(target_specs_dir) {
             for entry in entries.flatten() {
@@ -124,29 +157,42 @@ async fn main() {
         }
     }
 
-    // Pass the standard directory configurations to our Canonical Renaming Agent block
     let lock_file_path = "../public-logoslib/library_manifest.lock";
     let specs_folder_path = "../public-logoslib/specs";
     v_engine.execute_library_lock_pass(lock_file_path, specs_folder_path);
 
-    let final_count = v_engine.compile_dictionary.len();
-    println!("\n[SYNTHESIS COMPLETE] System expanded into an invariant single source library.");
-    println!("Total Active Codified Fallacies Sealed in Manifest Matrix: {}", final_count);
+    let base_project = dashboard::VerificationProject {
+        project_id: "prj_shared_report".to_string(),
+        owner_uuid: "usr_owner_90a1".to_string(),
+        files: vec![dashboard::ProjectFile {
+            name: "collab_draft.tex".to_string(),
+            raw_content: String::new(),
+        }],
+        historical_runs_count: 5,
+    };
 
-    let shared_state = Arc::new(AppState { engine: v_engine });
+    // Instantiate our shared application state wrapper containers
+    let shared_state = Arc::new(AppState { 
+        engine: v_engine,
+        session: Mutex::new(dashboard::project::LiveWorkspaceSession::new(base_project)),
+    });
 
     let cors_policy = CorsLayer::new()
         .allow_origin(Any)
         .allow_methods([axum::http::Method::POST])
         .allow_headers([axum::http::HeaderName::from_static("content-type")]);
 
+    // Map endpoints and scale with active multi-user workspace streams [4]
     let app = Router::new()
         .route("/api/verify", post(handle_web_verification))
+        .route("/api/cursor", post(handle_cursor_sync)) // NEW: Expose cursor synchronization API gateway [4]
         .layer(cors_policy)
         .with_state(shared_state);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
     println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
+    println!("  ↳ Verification Stream: POST http://localhost:3000/api/verify");
+    println!("  ↳ Cursor Tracking Hub: POST http://localhost:3000/api/cursor");
     println!("Press Ctrl+C to terminate server thread session.\n");
 
     axum::serve(listener, app).await.unwrap();
