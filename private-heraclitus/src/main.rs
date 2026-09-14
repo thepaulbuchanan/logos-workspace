@@ -87,7 +87,6 @@ async fn handle_web_verification(
 
     let clean_paragraphs = document_payload.extract_clean_paragraphs();
     
-    // Live Workspace Memory Sync pass
     {
         let mut session_lock = state.session.lock().unwrap();
         let mutation = dashboard::project::EditorStreamEvent {
@@ -98,10 +97,8 @@ async fn handle_web_verification(
         let _ = session_lock.process_shared_stream_mutation(mutation);
     }
 
-    // SALVAGED INFRASTRUCTURE HANDSHAKE: Run the dual-kernel validation sequence
     let (diagnostics, verdict) = state.engine.verify_paper_lake_build(&clean_paragraphs, &payload.project_id);
 
-    // Reconstruct your original SVI-main log collection loops
     let mut manifest_summary = format!(
         "# HERACLITUS EPISTEMIC MANIFEST SUMMARY REPORT\n\nTarget Project: {}\nStatus: EVALUATION COMPLETE\n\n## Epistemic Audit Ledger:\n\n", 
         payload.project_id
@@ -110,15 +107,12 @@ async fn handle_web_verification(
 
     println!("\n--- [SVI-CORE] Live IR Trace Log Stream ---");
     for diag in &diagnostics {
-        // Output trace logs straight to your active console panel on the fly
         println!("{}", diag.ir_trace_log);
-        
         manifest_summary.push_str(&diag.segment_text);
         sve_script_output.push_str(&diag.generated_sve_block);
     }
     println!("-------------------------------------------\n");
 
-    // Write file logs straight onto the hard drive between web transaction frames
     let target_dir = Path::new("tests");
     if !target_dir.exists() { let _ = fs::create_dir_all(target_dir); }
     
@@ -242,24 +236,27 @@ async fn main() {
             tokio::time::sleep(Duration::from_secs(5)).await;
             let session_lock = saver_state.session.lock().unwrap();
             let current_project = &session_lock.active_project;
+            
             for file in &current_project.files {
-                storage_ledger.backup_active_project_files(&current_project.project_id, &file.name, &file.raw_content);
-            }
-        }
-    });
-
-    let cors_policy = CorsLayer::new()
-        .allow_origin(Any)
-        .allow_methods([axum::http::Method::POST])
-        .allow_headers([axum::http::HeaderName::from_static("content-type")]);
-
-    let app = Router::new()
-        .route("/api/verify", post(handle_web_verification))
-        .route("/api/cursor", post(handle_cursor_sync))
-        .layer(cors_policy)
-        .with_state(shared_state);
-
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
-    println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
-    println!("Press Ctrl+C to terminate server thread session.\n");
-    axum::serve(listener, app).await.unwrap();
+                storage_ledger.backup_active_project_files(
+                    &current_project.project_id, 
+                    &file.name, 
+&file.raw_content
+);
+}
+}
+});
+let cors_policy = CorsLayer::new()
+.allow_origin(Any)
+.allow_methods([axum::http::Method::POST])
+.allow_headers([axum::http::HeaderName::from_static("content-type")]);
+let app = Router::new()
+.route("/api/verify", post(handle_web_verification))
+.route("/api/cursor", post(handle_cursor_sync))
+.layer(cors_policy)
+.with_state(shared_state);
+let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
+println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
+println!("Press Ctrl+C to terminate server thread session.\n");
+axum::serve(listener, app).await.unwrap();
+}
