@@ -16,6 +16,16 @@ DECLARE_LEMMA(SVE_L199) {
 }
 ```
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L199) {
+  MATCH_CONTEXT(Rhetorical_Pattern["you eat fat burgers", "you do it too", "not acting consistently"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Auto-compiled from committed LogosLib community manifest parameters.
 
 ### 2. Machine Compiled Symbolic Logos Block

@@ -16,6 +16,16 @@ DECLARE_LEMMA(SVE_L301) {
 }
 ```
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L301) {
+  MATCH_CONTEXT(Rhetorical_Pattern["experts agree", "universally accepted", "consensus shows", "most scientists believe"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Substituting empirical variables, tracking limits, or hard data points with structural sociological assertions like consensus or expert alignment to force a conclusion is an epistemic boundary breach.
 
 ### 2. First-Order Logic Invariant

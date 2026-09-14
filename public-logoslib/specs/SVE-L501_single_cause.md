@@ -16,6 +16,16 @@ DECLARE_LEMMA(SVE_L501) {
 }
 ```
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L501) {
+  MATCH_CONTEXT(Rhetorical_Pattern["solely driven", "entirely due to", "the single cause", "exclusively because"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Declaring that a highly complex, non-linear macro-system state shift is driven exclusively by a single, isolated causal input factor is a structural type violation.
 
 ### 2. First-Order Logic Invariant

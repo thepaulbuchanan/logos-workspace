@@ -16,6 +16,16 @@ DECLARE_LEMMA(SVE_L102) {
 }
 ```
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L102) {
+  MATCH_CONTEXT(Rhetorical_Pattern["so corrupt", "cannot trust his", "so-called judge", "he is so evil"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Attempting to invalidate or dismiss a structural thesis or data-driven proposition based entirely on a negative character assassination or identity trait evaluation of the presenting agent rather than auditing the argument's analytical properties is a failure of logic.
 
 ### 2. First-Order Logic Invariant

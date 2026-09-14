@@ -25,6 +25,16 @@ DECLARE_LEMMA(LOGOS_001) {
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }
 ```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(LOGOS_001) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
 # Master Lemma: The Accident Fallacy
 
 ## 1. Description

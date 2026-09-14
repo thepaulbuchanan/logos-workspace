@@ -21,6 +21,16 @@ Auto-compiled from Williamson Master List.
 ### 2. Machine Compiled Symbolic Logos Block
 ```sve
 DECLARE_LEMMA(SVE_L102) {
+  MATCH_CONTEXT(Rhetorical_Pattern[]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L102) {
   MATCH_CONTEXT(Rhetorical_Pattern["all climate models", "always fails", "every model", "universally true"]);
   ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
 }

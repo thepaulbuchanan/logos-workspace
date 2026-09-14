@@ -16,6 +16,16 @@ DECLARE_LEMMA(SVE_L601) {
 }
 ```
 ### 1. Human Readable Specification
+Auto-compiled from Williamson Master List.
+
+### 2. Machine Compiled Symbolic Logos Block
+```sve
+DECLARE_LEMMA(SVE_L601) {
+  MATCH_CONTEXT(Rhetorical_Pattern["absolute faith", "religious pursuit", "modeling is fundamentally"]);
+  ON_VIOLATION(THROW_QUARANTINE_CONJECTURE);
+}
+```
+### 1. Human Readable Specification
 Shifting the definitive structural type alignment of a variable, term, or linguistic category halfway through a narrative clause to pass an unvetted inference step or force an invalid logical bridge.
 
 ### 2. First-Order Logic Invariant
