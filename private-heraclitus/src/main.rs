@@ -28,9 +28,31 @@ fn compile_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
 
 fn main() {
     println!("==================================================");
-    println!("=== HERACLITUS IMMUTABLE MANIFEST ARCHITECT =====");
+    println!("=== HERACLITUS SAAS ENTERPRISE PRODUCTION LAYER ==");
     println!("==================================================");
 
+    // PHASE 1: ACCOUNT SECURITY & DASHBOARD INITIALISATION
+    let session_user = auth::UserAccount {
+        uuid: "usr_90a1-f3b5-77c8-9d2e".to_string(),
+        corporate_domain: "fortune500_firm.com".to_string(),
+        tier: auth::AccountTier::EnterprisePaid,
+    };
+
+    let base_project = dashboard::VerificationProject {
+        project_id: "prj_001_annual_report".to_string(),
+        owner_uuid: session_user.uuid.clone(),
+        files: vec![dashboard::ProjectFile {
+            name: "annual_draft.tex".to_string(),
+            raw_content: String::new(),
+        }],
+        historical_runs_count: 14,
+    };
+
+    println!("Secure Client Account Instantiated: {}", session_user.corporate_domain);
+    let mut session = dashboard::project::LiveWorkspaceSession::new(base_project);
+    let mut storage_ledger = storage::repository::CertificateLedger::new("./vault_database");
+
+    // PHASE 2: INVARIANT SPECIFICATION LEXICON SEALING
     let mut v_engine = engine::VerificationEngine::new();
     let specs_dir = Path::new("../public-logoslib/specs");
     
@@ -45,9 +67,61 @@ fn main() {
         }
     }
 
-    println!("Dynamic Directory Sweep Complete. Ingested Core Count: {}", v_engine.compile_dictionary.len());
+    let lemma_count = v_engine.compile_dictionary.len();
+    println!("Dynamic Directory Sweep Complete. Compiled Active Lemmas: {}", lemma_count);
 
-    // TRIGGER THE INVARIANT AGENT: Scan, cross-verify, and lock down the 198 items into a master manifest file
+    // Execute Hermetic Invariant Manifest Lock agent pass
     let lock_file_path = "../public-logoslib/library_manifest.lock";
     v_engine.execute_library_lock_pass(lock_file_path);
+
+    // PHASE 3: LIVE MULTI-FORMAT DOCUMENT INGESTION & EVALUATION LOOP
+    let incoming_bytes = b"Paragraph 1: Tony claims corporate tax drops work. But Tony is a convict, so his statement is false.\n\nParagraph 2: The market strategy proposed by the compliance auditor is clean and structurally solid, aligning directly with capital parameters.";
+    
+    let document_payload = api::IngestionPayload::new(
+        api::IngestionType::RawTextStream,
+        incoming_bytes.to_vec()
+    );
+
+    // Execute our custom SVI-salvaged rhetorical waste pre-filter loop pass
+    let clean_paragraphs = document_payload.extract_clean_paragraphs();
+    
+    let mutation_event = dashboard::project::EditorStreamEvent {
+        file_target: "annual_draft.tex".to_string(),
+        line_delta: clean_paragraphs.join("\n\n"),
+    };
+
+    // Update our Overleaf-style live streaming workspace content buffers
+    let active_paragraphs = session.process_stream_mutation(mutation_event);
+    println!("\nExecuting Epistemic Validation over live pre-filtered document buffers...");
+    let diagnostics = v_engine.verify_document_narrative(&active_paragraphs);
+
+    let mut system_build_halted = false;
+    for log in &diagnostics {
+        println!("  ------------------------------------------------");
+        println!("  FRAME [#{}] | Status Verdict: {}", log.paragraph_index, log.status);
+        println!("  Scrubbed Text Segment: \"{}\"", log.segment_text);
+        if let Some(code) = &log.violation_code {
+            system_build_halted = true;
+            println!("    ↳ LOGICAL FALLACY INTERCEPTED: {}", code);
+            println!("      Details: {}", log.diagnostic_details.as_ref().unwrap());
+        }
+    }
+
+    println!("  ------------------------------------------------");
+
+    // PHASE 4: PERSISTENT CRYPTOGRAPHIC SEIT SEALING
+    if !system_build_halted {
+        println!("\nGenerating Cryptographic Logic Seal Verification Certificate...");
+        let certificate = storage::VerificationCertificate::generate_seal(
+            &session.active_project.project_id,
+            &session.active_project.files.raw_content,
+            lemma_count
+        );
+        
+        storage_ledger.persist_certificate_to_disk(&session.active_project.project_id, certificate);
+    } else {
+        println!("\n[Build Aborted] Cryptographic verification signature blocked due to critical logic anomalies in text stream.");
+        println!("Total Verified Project Runs Saved on Disk: {} runs.", storage_ledger.get_history_count_from_disk(&session.active_project.project_id));
+    }
+    println!("==================================================");
 }
