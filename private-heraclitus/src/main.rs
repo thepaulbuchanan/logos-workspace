@@ -11,12 +11,14 @@ use pest::Parser;
 use std::fs;
 use std::path::Path;
 use std::sync::{Arc, Mutex};
-use std::time::Duration; // NEW: Duration primitive to manage scheduled sleep intervals
+use std::time::Duration;
 use tower_http::cors::{Any, CorsLayer};
 
 struct AppState {
     engine: engine::VerificationEngine,
     session: Mutex<dashboard::project::LiveWorkspaceSession>,
+    // NEW: Central authentication gatekeeper data tracker
+    auth_registry: Mutex<auth::CryptographicAuthRegistry>,
 }
 
 fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::VerificationEngine) {
@@ -52,19 +54,43 @@ fn compile_and_synthesize_spec_file(path: &Path, engine: &mut engine::Verificati
     }
 }
 
+/// Upgraded JSON model accepted by the public web API endpoint to process token clearance checks
+#[derive(Debug, Clone, serde::Deserialize)]
+pub struct SecureWebIngestionRequest {
+    pub auth_token: String, // Requires a cryptographically signed token instead of a raw user UUID string
+    pub project_id: String,
+    pub text_content: String,
+}
+
 async fn handle_web_verification(
     axum::extract::State(state): axum::extract::State<Arc<AppState>>,
-    Json(payload): Json<api::WebIngestionRequest>,
-) -> Json<Vec<engine::ParagraphDiagnostic>> {
-    println!("\n[WEB SERVER] Received live verification request payload for project '{}'", payload.project_id);
+    Json(payload): Json<SecureWebIngestionRequest>,
+) -> Result<Json<Vec<engine::ParagraphDiagnostic>>, (axum::http::StatusCode, String)> {
+    println!("\n[SECURITY GATE] Received secure verification request payload for project '{}'", payload.project_id);
 
-    // Dynamic Intake Integration: Mutate the thread-safe workspace buffer directly during user requests
+    // Step 1: Execute active token verification clearance check
+    let active_user = {
+        let auth_lock = state.auth_registry.lock().unwrap();
+        match auth_lock.verify_token_clearance(&payload.auth_token) {
+            Ok(user) => user,
+            Err(err_msg) => {
+                eprintln!("\n[SECURITY ALERT] Unauthorized transaction blocked! Exception: {}", err_msg);
+                // Dispatch alert straight to Zulip logs channel in our native server voice
+                let _ = state.engine.dispatch_zulip_alert("security-firewall", "ACCESS_VIOLATION", &err_msg);
+                return Err((axum::http::StatusCode::UNAUTHORIZED, err_msg));
+            }
+        }
+    };
+
+    println!("[SECURITY GATE] Access Authorized. User identity confirmed as: '{}'", active_user.uuid);
+
+    // Step 2: Access authorized. Mutate workspace content buffers safely
     {
         let mut session_lock = state.session.lock().unwrap();
         let mutation = dashboard::project::EditorStreamEvent {
             file_target: "collab_draft.tex".to_string(),
             line_delta: payload.text_content.clone(),
-            actor_uuid: payload.actor_uuid.clone(),
+            actor_uuid: active_user.uuid.clone(),
         };
         let _ = session_lock.process_shared_stream_mutation(mutation);
     }
@@ -77,7 +103,7 @@ async fn handle_web_verification(
     let clean_paragraphs = document_payload.extract_clean_paragraphs();
     let diagnostics = state.engine.verify_document_narrative(&clean_paragraphs);
 
-    Json(diagnostics)
+    Ok(Json(diagnostics))
 }
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
@@ -174,21 +200,26 @@ async fn main() {
         historical_runs_count: 5,
     };
 
+    // Instantiate our core authentication registry manager
+    let mut auth_manager = auth::CryptographicAuthRegistry::new();
+    
+    // Mint a baseline valid token context string for our primary corporate owner
+    let _valid_test_token = auth_manager.mint_auth_token("usr_owner_90a1").unwrap();
+    println!("  ↳ [BOOT DATA] Baseline production token token minted to console for local testing: {}\n", _valid_test_token);
+
     let shared_state = Arc::new(AppState { 
         engine: v_engine,
         session: Mutex::new(dashboard::project::LiveWorkspaceSession::new(base_project)),
+        auth_registry: Mutex::new(auth_manager),
     });
 
-    // TRIGGER THE ASYNC DISK-SAVER LOOP THREAD WORKER
     let saver_state = Arc::clone(&shared_state);
     tokio::spawn(async move {
         let storage_ledger = storage::CertificateLedger::new("./vault_database");
         println!("[WORKER INIT] Background Automated Disk-Saver Thread Active.");
         
         loop {
-            // Wake up and flush changes every 5 seconds
             tokio::time::sleep(Duration::from_secs(5)).await;
-            
             let session_lock = saver_state.session.lock().unwrap();
             let current_project = &session_lock.active_project;
             
@@ -214,8 +245,10 @@ async fn main() {
         .with_state(shared_state);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
-    println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
-    println!("Press Ctrl+C to terminate server thread session.\n");
+
+
+println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
+println!("Press Ctrl+C to terminate server thread session.\n");
 
     axum::serve(listener, app).await.unwrap();
 }

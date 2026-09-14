@@ -35,6 +35,15 @@ pub fn evaluate_text_symbolically(text: &str, thesaurus: &LogosLibThesaurus) -> 
             "Symbolic System Intercept: Non-deterministic domino inference chain detected without verified step-level grounding variables.".to_string()
         ));
     }
+    // ... [Keep previous AgentDiscredited and ConceptDistraction check gates exactly as they are]
+
+    // 3. SYMBOLIC REASONING CHECK: Catch Mereological/Slippery Slope Domino leaps across the 386 items
+    if symbolic_stream.contains(&SymbolicPrimitive::InferenceDominoCascade) {
+        return Some((
+            "LOGOS_016".to_string(),
+            "Symbolic System Intercept: Mereological category error. Attributes bound to a [PartComponent] possess zero linear translation guarantees over properties of an emergent [CollectiveWhole].".to_string()
+        ));
+    }
 
     None
 }

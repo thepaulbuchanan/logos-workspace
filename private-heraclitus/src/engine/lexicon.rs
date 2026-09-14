@@ -44,6 +44,12 @@ impl LogosLibThesaurus {
         for word in &["proven", "disproven", "flawless", "untested", "invisible", "absence"] {
             matrix.insert(word.to_string(), SymbolicPrimitive::EvidentialAbsence);
         }
+        // ... [Keep previous ad_hominem, redherring, slippery_slope, false_dilemma, and ignorance synsets exactly as they are]
+
+        // 6. Grouping Mereological Part-to-Whole Fallacy Clusters (LOGOS_016)
+        for word in &["individual", "module", "component", "part", "microsecond", "scaled", "entire", "whole"] {
+            matrix.insert(word.to_string(), SymbolicPrimitive::InferenceDominoCascade); // Re-utilises cascade or maps an advanced token if expanded
+        }
 
         Self { synset_matrix: matrix }
     }

@@ -1,2 +1,2 @@
 pub mod repository;
-pub use repository::{VerificationCertificate, CertificateLedger};
+pub use repository::CertificateLedger;

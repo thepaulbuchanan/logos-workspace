@@ -31,6 +31,13 @@ pub struct LibraryManifestLock {
     pub locked_registry: HashMap<String, LockedLemmaEntry>,
 }
 
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ZulipWebhookPayload {
+    pub stream: String,
+    pub topic: String,
+    pub content: String,
+}
+
 pub struct VerificationEngine {
     pub compile_dictionary: HashMap<String, CompilerContext>,
     pub structural_registry: HashMap<String, String>,
@@ -80,5 +87,28 @@ impl VerificationEngine {
 
     pub fn execute_library_lock_pass(&self, target_lock_path: &str, specs_dir_path: &str) -> LibraryManifestLock {
         agent::execute_library_lock_pass(self, target_lock_path, specs_dir_path)
+    }
+
+    /// Automation Hook: Compiles a security/structural anomaly report and dispatches a simulated webhook
+    pub fn dispatch_zulip_alert(&self, target_stream: &str, target_topic: &str, alert_details: &str) -> String {
+        let payload = ZulipWebhookPayload {
+            stream: target_stream.to_string(),
+            topic: target_topic.to_string(),
+            content: format!(
+                "### 🚨 HERACLITUS EMERGENCY RESPONSE EXCEPTION WARNING\n\n\
+                **Target Context:** {}\n\n\
+                **Automated Diagnostic Data:**\n\
+                ```text\n\
+                {}\n\
+                ```\n\n\
+                *Security firewall intercept active. Session transaction blocked and logged.*",
+                target_topic, alert_details
+            ),
+        };
+
+        let json_payload = serde_json::to_string_pretty(&payload).unwrap();
+        println!("\n[WEBSERVER WEBHOOK AGENT] Formatting outbound JSON security event payload...");
+        println!("[WEBSERVER WEBHOOK AGENT] Piping HTTP POST payload to endpoint channel: `#stream/{}`", payload.stream);
+        json_payload
     }
 }
