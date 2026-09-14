@@ -8,8 +8,15 @@ use crate::ast::CompilerContext;
 use sha2::Digest;
 use std::collections::HashMap;
 
-// Re-export structural layout metrics
 pub use evaluator::LakeBuildVerdict;
+
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub enum EpistemicPillar {
+    Epistemology,   
+    Ontology,       
+    Phenomenology,  
+    UnclassifiedSoundness,
+}
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct UnifiedLemma {
@@ -28,30 +35,8 @@ pub struct ParagraphDiagnostic {
     pub diagnostic_details: Option<String>,
     pub generated_sve_block: String,
     pub ir_trace_log: String,
+    pub epistemic_pillar: EpistemicPillar, 
 }
-// ... [Keep previous module declarations and imports exactly as they are]
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub enum EpistemicPillar {
-    Epistemology,   // Audits how a statement claims to know a fact
-    Ontology,       // Audits entity property stability across text history
-    Phenomenology,  // Audits mathematical formulas, data streams, and timelines
-    UnclassifiedSoundness,
-}
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct ParagraphDiagnostic {
-    pub paragraph_index: usize,
-    pub segment_text: String,
-    pub status: String,
-    pub violation_code: Option<String>,
-    pub diagnostic_details: Option<String>,
-    pub generated_sve_block: String,
-    pub ir_trace_log: String,
-    pub epistemic_pillar: EpistemicPillar, // NEW: Categorization field for Grokepedia Protocol
-}
-
-// ... [Keep the rest of your engine/mod.rs structures exactly as they are]
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct LockedLemmaEntry {
@@ -180,19 +165,14 @@ impl VerificationEngine {
         topology::verify_dependency_topology(dependencies)
     }
 
-    /// TIER 1 AGENT: The Logos Commander Orchestrator Tournament Loop
     pub fn verify_paper_lake_build(&self, paragraphs: &[String], project_id: &str) -> (Vec<ParagraphDiagnostic>, evaluator::LakeBuildVerdict) {
         println!("\n[TIER 1: LOGOS COMMANDER] Ingesting manuscript parameters for project '{}'...", project_id);
         println!("[TIER 1: LOGOS COMMANDER] Slicing text buffers into {} discrete diagnostic blocks.", paragraphs.len());
-
-        // TIER 2 AGENT: Sub-Lexer Analytics Cells invoke semantic tokenization via the global thesaurus
         println!("[TIER 2: SUB-LEXER CELLS] Mapping prose strings onto invariant intermediate synset primitives.");
-
-        // TIER 3 AGENT: Co-Prover Adversary Nodes execute aggressive logical falsification passes
         println!("[TIER 3: CO-PROVER ADVERSARIES] Spawning compilation sub-provers to actively break text bounds.");
+        
         let (diagnostics, intermediate_verdict) = evaluator::verify_paper_lake_build(paragraphs, &self.active_lemmas, &self.global_thesaurus, project_id);
 
-        // TIER 4 AGENT: The Master Critic Verifier runs top-level zero-defect self-auditing reconciliation loops
         println!("[TIER 4: MASTER CRITIC VERIFIER] Intercepting traces to verify tournament reconciliation path parameters.");
         
         let is_self_audit_sound = !intermediate_verdict.generated_sve_contract.contains("COMPILATION_ERROR_ANOMALY");
