@@ -10,12 +10,12 @@ use axum::{routing::post, Json, Router};
 use pest::Parser;
 use std::fs;
 use std::path::Path;
-use std::sync::{Arc, Mutex}; // NEW: Mutex primitive to safely read/write workspace state across threads
+use std::sync::{Arc, Mutex};
+use std::time::Duration; // NEW: Duration primitive to manage scheduled sleep intervals
 use tower_http::cors::{Any, CorsLayer};
 
 struct AppState {
     engine: engine::VerificationEngine,
-    // NEW: Atomic wrapping to protect live collaborator cursor metadata matrices from data races
     session: Mutex<dashboard::project::LiveWorkspaceSession>,
 }
 
@@ -58,6 +58,17 @@ async fn handle_web_verification(
 ) -> Json<Vec<engine::ParagraphDiagnostic>> {
     println!("\n[WEB SERVER] Received live verification request payload for project '{}'", payload.project_id);
 
+    // Dynamic Intake Integration: Mutate the thread-safe workspace buffer directly during user requests
+    {
+        let mut session_lock = state.session.lock().unwrap();
+        let mutation = dashboard::project::EditorStreamEvent {
+            file_target: "collab_draft.tex".to_string(),
+            line_delta: payload.text_content.clone(),
+            actor_uuid: payload.actor_uuid.clone(),
+        };
+        let _ = session_lock.process_shared_stream_mutation(mutation);
+    }
+
     let document_payload = api::IngestionPayload::new(
         api::IngestionType::RawTextStream,
         payload.text_content.as_bytes().to_vec()
@@ -69,7 +80,6 @@ async fn handle_web_verification(
     Json(diagnostics)
 }
 
-/// Dynamic JSON Model mapping incoming real-time network cursor streams [4]
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 struct CursorUpdateRequest {
     pub user_uuid: String,
@@ -77,16 +87,12 @@ struct CursorUpdateRequest {
     pub character_offset: usize,
 }
 
-/// NEW Live Endpoint: Acquires state lock, synchronizes editor offset data, and reports status vectors [4]
-// ... [Keep previous main.rs functions exactly as they are]
-
 async fn handle_cursor_sync(
     axum::extract::State(state): axum::extract::State<Arc<AppState>>,
     Json(payload): Json<CursorUpdateRequest>,
 ) -> Json<String> {
     let mut session_lock = state.session.lock().unwrap();
     
-    // FIX: Refer to re-exported type structures directly via dashboard namespace
     let coords = dashboard::LiveCursorCoordinates {
         line_index: payload.line_index,
         character_offset: payload.character_offset,
@@ -105,9 +111,6 @@ async fn handle_cursor_sync(
         }
     }
 }
-
-// ... [Keep the rest of your main function exactly as it was]
-
 
 #[tokio::main]
 async fn main() {
@@ -166,15 +169,37 @@ async fn main() {
         owner_uuid: "usr_owner_90a1".to_string(),
         files: vec![dashboard::ProjectFile {
             name: "collab_draft.tex".to_string(),
-            raw_content: String::new(),
+            raw_content: "Initial structural asset draft template.".to_string(),
         }],
         historical_runs_count: 5,
     };
 
-    // Instantiate our shared application state wrapper containers
     let shared_state = Arc::new(AppState { 
         engine: v_engine,
         session: Mutex::new(dashboard::project::LiveWorkspaceSession::new(base_project)),
+    });
+
+    // TRIGGER THE ASYNC DISK-SAVER LOOP THREAD WORKER
+    let saver_state = Arc::clone(&shared_state);
+    tokio::spawn(async move {
+        let storage_ledger = storage::CertificateLedger::new("./vault_database");
+        println!("[WORKER INIT] Background Automated Disk-Saver Thread Active.");
+        
+        loop {
+            // Wake up and flush changes every 5 seconds
+            tokio::time::sleep(Duration::from_secs(5)).await;
+            
+            let session_lock = saver_state.session.lock().unwrap();
+            let current_project = &session_lock.active_project;
+            
+            for file in &current_project.files {
+                storage_ledger.backup_active_project_files(
+                    &current_project.project_id, 
+                    &file.name, 
+                    &file.raw_content
+                );
+            }
+        }
     });
 
     let cors_policy = CorsLayer::new()
@@ -182,17 +207,14 @@ async fn main() {
         .allow_methods([axum::http::Method::POST])
         .allow_headers([axum::http::HeaderName::from_static("content-type")]);
 
-    // Map endpoints and scale with active multi-user workspace streams [4]
     let app = Router::new()
         .route("/api/verify", post(handle_web_verification))
-        .route("/api/cursor", post(handle_cursor_sync)) // NEW: Expose cursor synchronization API gateway [4]
+        .route("/api/cursor", post(handle_cursor_sync))
         .layer(cors_policy)
         .with_state(shared_state);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
     println!("\n[NETWORK GATEWAY OPERATIONAL] Server live at: http://localhost:3000");
-    println!("  ↳ Verification Stream: POST http://localhost:3000/api/verify");
-    println!("  ↳ Cursor Tracking Hub: POST http://localhost:3000/api/cursor");
     println!("Press Ctrl+C to terminate server thread session.\n");
 
     axum::serve(listener, app).await.unwrap();

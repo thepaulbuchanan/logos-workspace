@@ -103,15 +103,17 @@ impl LiveWorkspaceSession {
             event.actor_uuid, event.file_target
         );
         
+        let mut updated_content = String::new();
         for file in &mut self.active_project.files {
             if file.name == event.file_target {
                 file.raw_content = event.line_delta.clone();
+                updated_content = file.raw_content.clone();
             }
         }
 
         self.active_file_locks.remove(&event.file_target);
 
-        Ok(self.active_project.files.raw_content
+        Ok(updated_content
             .split("\n\n")
             .map(|s| s.trim().to_string())
             .filter(|s| !s.is_empty())

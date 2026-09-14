@@ -1,2 +1,2 @@
 pub mod project;
-pub use project::{VerificationProject, ProjectFile, LiveWorkspaceSession, CollaboratorSession, LiveCursorCoordinates, WorkspaceRole};
+pub use project::{VerificationProject, ProjectFile, CollaboratorSession, LiveCursorCoordinates, WorkspaceRole};

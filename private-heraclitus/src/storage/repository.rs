@@ -1,4 +1,3 @@
-
 use sha2::{Sha256, Digest};
 use std::collections::HashMap;
 use std::fs;
@@ -44,7 +43,6 @@ impl VerificationCertificate {
     }
 }
 
-/// Upgraded Persistent Storage Ledger (Module 3 Milestone)
 pub struct CertificateLedger {
     pub db_directory: String,
     pub records: HashMap<String, Vec<VerificationCertificate>>,
@@ -63,19 +61,29 @@ impl CertificateLedger {
         }
     }
 
-    /// Harddrive Persistence Layer: Writes the cryptographically sealed JSON stamp straight to a local file database
     pub fn persist_certificate_to_disk(&mut self, project_id: &str, cert: VerificationCertificate) {
-        // Log in memory cache stack
         let timeline = self.records.entry(project_id.to_string()).or_insert_with(Vec::new);
         timeline.push(cert.clone());
 
-        // Construct a unique filename bound to the certificate ID
         let file_path = Path::new(&self.db_directory).join(format!("{}.json", cert.certificate_id));
         let json_payload = cert.to_json_payload();
         
         fs::write(&file_path, json_payload)
             .expect("Failed to write certificate token record directly to system database disk storage.");
         println!("[STORAGE COMPONENT] Successfully persisted signed certificate token to disk storage path: {:?}", file_path);
+    }
+
+    /// NEW AUTOMATED BACKGROUND BACKUP LAYER: Persists live working workspace file streams to hard drive
+    pub fn backup_active_project_files(&self, project_id: &str, file_name: &str, raw_content: &str) {
+        let backups_dir = Path::new(&self.db_directory).join("project_backups").join(project_id);
+        if !backups_dir.exists() {
+            fs::create_dir_all(&backups_dir).expect("Failed to establish secure disk target for backup channels.");
+        }
+
+        let target_file_path = backups_dir.join(file_name);
+        fs::write(&target_file_path, raw_content)
+            .expect("Failed to flush active document delta memory maps to hardware partition.");
+        println!("[DISK SAVER] Flushed real-time workspace snapshot for '{}' ──► {:?}", file_name, target_file_path);
     }
 
     pub fn get_history_count_from_disk(&self, project_id: &str) -> usize {
